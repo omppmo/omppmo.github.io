@@ -406,9 +406,121 @@
         
           
         
+          
+        
       
     
     
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/05/05/java%E5%AD%A6%E4%B9%A02/">
+      java学习(2)
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="" rel="nofollow">
+    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
+    <p>omp</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/java/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>java</p>
+    </a>
+  </div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：May 5, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="关于protected权限的子类访问方式"><a href="#关于protected权限的子类访问方式" class="headerlink" title="关于protected权限的子类访问方式"></a>关于protected权限的子类访问方式</h1><h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>听老师讲课说到Object类的clone()方法，其声明方法是protected修饰的。protected修饰的可见性在本类，同包类，子类中皆可见。但子类clone()方法使用时，却不能直接调用Object类的clone()方法，而是需要进行重写,这个问题令我很迷茫。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public Object clone() throws CloneNotSupportedException&#123;</span><br><span class="line">              return super.clone();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="前置芝士"><a href="#前置芝士" class="headerlink" title="前置芝士"></a>前置芝士</h2><p>学习出处：<br><a href="https://blog.csdn.net/blacktal/article/details/81198579" target="_blank" rel="noopener">https://blog.csdn.net/blacktal/article/details/81198579</a><br><a href="https://blog.csdn.net/asahinokawa/article/details/80777302" target="_blank" rel="noopener">https://blog.csdn.net/asahinokawa/article/details/80777302</a><br>通过学习我认识到，protected修饰并不只是被同一包中的所有类和不同包中的子类访问那么简单。<br>直接总结一下，详细实例看出处</p>
+<ol>
+<li><p>子类可以通过继承获得不同包父类的protected权限成员变量和成员方法，在子类中可以直接访问</p>
+</li>
+<li><p>在子类中可以通过子类的对象访问父类的protected成员变量和方法</p>
+</li>
+<li><p>在子类中反而<strong>不能</strong>通过父类的对象实例访问父类的protected成员变量和方法</p>
+</li>
+<li><p>在子类中不能通过其他子类的对象访问父类的protected成员变量和方法</p>
+</li>
+<li><p>在与子类同包的其他类中不能通过子类的对象访问父类的protected成员变量和方法</p>
+</li>
+</ol>
+<p>子类可以在自己这里直接调用父类protected修饰的成员变量和方法，但是若在别的类中使用<code>子类.clone()</code>，protected修饰的就不可见(同第5条)</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>所以为了能在其他类中调用clone()方法，必须通过<strong>在子类中重写把clone()方法的权限提升并且实现Cloneable接口</strong><br>在自定义子类A类体中调用Object的clone()方法的问题不再讨论，不能这么使用</p>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
       
         
           <div class='post-wrapper'>
@@ -1239,7 +1351,7 @@
           <li><a class="flat-box"
             title="/categories/java/" href="/categories/java/"
             id="categoriesjava"
-            ><div class='name'>java</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>java</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/"
@@ -1273,7 +1385,7 @@
 
 
     <div class='content'>
-      <a href="/tags/AES/" style="font-size: 14px; color: #999">AES</a> <a href="/tags/RSA/" style="font-size: 19px; color: #777">RSA</a> <a href="/tags/java/" style="font-size: 14px; color: #999">java</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 24px; color: #555">杂项</a> <a href="/tags/%E7%BC%96%E7%A0%81/" style="font-size: 14px; color: #999">编码</a>
+      <a href="/tags/AES/" style="font-size: 14px; color: #999">AES</a> <a href="/tags/RSA/" style="font-size: 19px; color: #777">RSA</a> <a href="/tags/java/" style="font-size: 19px; color: #777">java</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 24px; color: #555">杂项</a> <a href="/tags/%E7%BC%96%E7%A0%81/" style="font-size: 14px; color: #999">编码</a>
     </div>
   </section>
 
