@@ -427,9 +427,9 @@
 <h3 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">n = <span class="number">248254007851526241177721526698901802985832766176221609612258877371620580060433101538328030305219918697643619814200930679612109885533801335348445023751670478437073055544724280684733298051599167660303645183146161497485358633681492129668802402065797789905550489547645118787266601929429724133167768465309665906113</span></span><br><span class="line">dp = <span class="number">905074498052346904643025132879518330691925174573054004621877253318682675055421970943552016695528560364834446303196939207056642927148093290374440210503657</span></span><br><span class="line">c = <span class="number">140423670976252696807533673586209400575664282100684119784203527124521188996403826597436883766041879067494280957410201958935737360380801845453829293997433414188838725751796261702622028587211560353362847191060306578510511380965162133472698713063592621028959167072781482562673683090590521214218071160287665180751</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>,e+<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">if</span> (e*dp<span class="number">-1</span>)%x==<span class="number">0</span> <span class="keyword">and</span> n%((e*dp<span class="number">-1</span>)//x+<span class="number">1</span>)==<span class="number">0</span>:</span><br><span class="line">        p=(e*dp<span class="number">-1</span>)//x+<span class="number">1</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">q=n//p </span><br><span class="line">d=inverse(e,(p<span class="number">-1</span>)*(q<span class="number">-1</span>))</span><br><span class="line">m=pow(c,d,n)</span><br><span class="line">print(long_to_bytes(m))</span><br><span class="line"></span><br><span class="line"><span class="comment">#b'flag&#123;wow_leaking_dp_breaks_rsa?_98924743502&#125;'</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="已知dp-dq-p-q"><a href="#已知dp-dq-p-q" class="headerlink" title="已知dp dq p q"></a>已知dp dq p q</h1><h2 id="推导-1"><a href="#推导-1" class="headerlink" title="推导"></a>推导</h2><p>由中国剩余定理可知，我们可以通过①②式联立求出m</p>
-<p>m1 ≡ c ^d^ mod p ①</p>
-<p>m2 ≡ c ^d^ mod q ②</p>
-<p>=&gt; m ≡ c ^d^ mod n </p>
+<p>m1 ≡ c^d^ mod p ①</p>
+<p>m2 ≡ c^d^ mod q ②</p>
+<p>=&gt; m ≡ c^d^ mod n </p>
 <p>由①式 c^d^ = k * p + m1</p>
 <p>代入②式  m2 = (k * p + m1) mod q</p>
 <p>(m2 - m1) ≡ k*p mod q</p>
@@ -541,7 +541,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-19T23:27:38+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-19T23:29:11+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：May 19, 2020</p>
