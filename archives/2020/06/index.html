@@ -18,7 +18,7 @@
 
   <!-- 页面元数据 -->
   
-    <title>Tag: java - omp&#39;s blog</title>
+    <title>Archive: 2020/6 - omp&#39;s blog</title>
   
   
 
@@ -71,7 +71,61 @@
 
 <body>
   
-  <div id="loading-bar-wrapper">
+  <div class="cover-wrapper">
+    
+      <cover class='cover  half'>
+        <div class='cover-body'>
+  <div class='a'>
+    
+    
+      <p class="title">omp's blog</p>
+    
+    
+      <p class="subtitle">一个密码学小白的学习之路</p>
+    
+  </div>
+  <div class='b'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <ul class='cover-list-h'>
+        
+          
+            <li>
+              <a class="nav home"
+                href="/archives/"
+                
+                
+                id="archives">
+                <i class='fas fa-book fa-fw'></i>文档
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="/"
+                
+                
+                id="home">
+                <i class='fas fa-rss fa-fw'></i>博文
+              </a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+      </cover>
+    
+    <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
 </div>
 <header class="l_header shadow blur">
@@ -324,25 +378,22 @@
 
 <script>setLoadingBarProgress(40);</script>
 
+  </div>
 
 
-  <div class="l_body nocover">
+  <div class="l_body">
     <div class='body-wrapper'>
       
 
-
 <div class='l_main'>
-  
-    
-      
+	
+		
   <section class="post-list ">
     
       
         
           
         
-          
-        
       
     
     
@@ -361,8 +412,8 @@
         
           
   <h2 class="title">
-    <a href="/2020/05/05/java%E5%AD%A6%E4%B9%A02/">
-      java学习(2)
+    <a href="/2020/06/22/knapsack/">
+      knapsack
     </a>
   </h2>
 
@@ -387,9 +438,9 @@
               
   
   <div class='new-meta-item category'>
-    <a href='/categories/java/' rel="nofollow">
+    <a href='/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/' rel="nofollow">
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>java</p>
+      <p>密码学</p>
     </a>
   </div>
 
@@ -400,7 +451,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：May 5, 2020</p>
+    <p>发布于：Jun 22, 2020</p>
   </a>
 </div>
 
@@ -428,127 +479,7 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="关于protected权限的子类访问方式"><a href="#关于protected权限的子类访问方式" class="headerlink" title="关于protected权限的子类访问方式"></a>关于protected权限的子类访问方式</h1><h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>听老师讲课说到Object类的clone()方法，其声明方法是protected修饰的。protected修饰的可见性在本类，同包类，子类中皆可见。但子类clone()方法使用时，却不能直接调用Object类的clone()方法，而是需要进行重写,这个问题令我很迷茫。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public Object clone() throws CloneNotSupportedException&#123;</span><br><span class="line">              return super.clone();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="前置芝士"><a href="#前置芝士" class="headerlink" title="前置芝士"></a>前置芝士</h2><p>学习出处：<br><a href="https://blog.csdn.net/blacktal/article/details/81198579" target="_blank" rel="noopener">https://blog.csdn.net/blacktal/article/details/81198579</a><br><a href="https://blog.csdn.net/asahinokawa/article/details/80777302" target="_blank" rel="noopener">https://blog.csdn.net/asahinokawa/article/details/80777302</a><br>通过学习我认识到，protected修饰并不只是被同一包中的所有类和不同包中的子类访问那么简单。<br>直接总结一下，详细实例看出处</p>
-<ol>
-<li><p>子类可以通过继承获得不同包父类的protected权限成员变量和成员方法，在子类中可以直接访问</p>
-</li>
-<li><p>在子类中可以通过子类的对象访问父类的protected成员变量和方法</p>
-</li>
-<li><p>在子类中反而<strong>不能</strong>通过父类的对象实例访问父类的protected成员变量和方法</p>
-</li>
-<li><p>在子类中不能通过其他子类的对象访问父类的protected成员变量和方法</p>
-</li>
-<li><p>在与子类同包的其他类中不能通过子类的对象访问父类的protected成员变量和方法</p>
-</li>
-</ol>
-<p>子类可以在自己这里直接调用父类protected修饰的成员变量和方法，但是若在别的类中使用<code>子类.clone()</code>，protected修饰的就不可见(同第5条)</p>
-<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>所以为了能在其他类中调用clone()方法，必须通过<strong>在子类中重写把clone()方法的权限提升并且实现Cloneable接口</strong><br>在自定义子类A类体中调用Object的clone()方法的问题不再讨论，不能这么使用</p>
-
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2020/05/05/java%E5%AD%A6%E4%B9%A01/">
-      java学习(1)
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="" rel="nofollow">
-    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
-    <p>omp</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/java/' rel="nofollow">
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>java</p>
-    </a>
-  </div>
-
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：May 5, 2020</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <meta name="referrer" content="no-referrer"/>
-
-<p>今天老师留了一个作业：建立框架，在中央放置多行文本框（TextArea）,在南方放置一个面板(JPanel),并在上边放置两个按钮，按钮文本分别为确定和取消</p>
-<h1 id="多行文本框"><a href="#多行文本框" class="headerlink" title="多行文本框"></a>多行文本框</h1><p>TextArea是一个AWT组件<br>JTextArea是一个swing组件<br>想要加一个多行文本框，就需要<code>new JTextArea()</code></p>
-<h1 id="正确的代码"><a href="#正确的代码" class="headerlink" title="正确的代码"></a>正确的代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> pack2;</span><br><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"><span class="keyword">import</span> javax.swing.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFrame</span> <span class="keyword">extends</span> <span class="title">JFrame</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line">	JButton bt1,bt2;</span><br><span class="line">	JTextArea textarea;</span><br><span class="line">	JPanel j1;</span><br><span class="line">	MyFrame()&#123;</span><br><span class="line">		<span class="keyword">this</span>.setSize(<span class="number">400</span>, <span class="number">400</span>);</span><br><span class="line">		<span class="keyword">this</span>.setDefaultCloseOperation(EXIT_ON_CLOSE);</span><br><span class="line">		<span class="keyword">this</span>.setVisible(<span class="keyword">true</span>);</span><br><span class="line">		bt1=<span class="keyword">new</span> JButton(<span class="string">"确定"</span>);</span><br><span class="line">		bt2=<span class="keyword">new</span> JButton(<span class="string">"取消"</span>);</span><br><span class="line">		textarea=<span class="keyword">new</span> JTextArea();</span><br><span class="line">		j1=<span class="keyword">new</span> JPanel();</span><br><span class="line">		j1.add(bt1);</span><br><span class="line">		j1.add(bt2);</span><br><span class="line">		<span class="keyword">this</span>.add(j1,BorderLayout.SOUTH);</span><br><span class="line">		<span class="keyword">this</span>.add(textarea);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO 自动生成的方法存根</span></span><br><span class="line">		<span class="keyword">new</span> MyFrame();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h1><p>##adding container’s parent to itself<br>错误的代码为<code>this.add(j1, BorderLayout.SOUTH)</code><br>补充一下，在类中还定义了<code>JPanel j1</code>，以及构造方法中的<code>j1=(JPanel)this.getContentPane()</code><br>其中由于内容面板是container类型的，所以需要类型强制转换<br>这是把容器自身添加到了自身内容造成的<br><strong>JDK1.5之前需要先获取内容面板，然后在内容面板上添加组件，从JDK1.5之后，可以直接使用<br>  <code>this.add()</code>添加组件，但组件依然被添加到内容面板上，而不是JFrame上</strong></p>
-<h3 id="错在哪里"><a href="#错在哪里" class="headerlink" title="错在哪里"></a>错在哪里</h3><p>这里显然j1就是内容面板，我在这句话中把j1添加到了JFrame上。但实质是把j1加到了j1上</p>
-<h3 id="纠错"><a href="#纠错" class="headerlink" title="纠错"></a>纠错</h3><p>这里我实际上是误解了题意，题目说的是放置一个面板，所以和获取内容面板没关系。<br>只需要<code>j1=new JPanel()</code>,然后把按钮添加到这个面板上，再把这个面板添加到JFrame（真正的内容面板）就可以了</p>
-<h2 id="默认布局"><a href="#默认布局" class="headerlink" title="默认布局"></a>默认布局</h2><p>jframe默认是边界布局,同一个位置放入组件,那么后面的组件覆盖前面的组件（BorderLayout）<br>JPanel的默认布局为流式布局 ,所以就是一个靠近一个的出来（FlowLayout）<br>这里new出来的JPanel是流式布局，所以不会覆盖</p>
-<h3 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h3><p><img src="https://upload-images.jianshu.io/upload_images/19601162-d400bd536c3eb5f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2020-02-25 (4).png"></p>
-<p>如果我非要用<code>j1=(JPanel)this.getContentPane();</code>获取内容面板，然后<code>j1.add(bt1,BorderLayout.SOUTH);</code> <code>j1.add(bt2,BorderLayout.SOUTH);</code>为什么同时添加的两个南方的按钮会有一个被覆盖呢，明明JPanel是流式的…<br><strong>内容面板的默认布局管理器是边界式的，普通面板是流式的</strong><br>经过答疑了解到，<strong>强制类型转换改变不了内容面板的布局管理器，只是可以赋值给JPanel对象了</strong><br>当然题目说的是放置一个面板，如果像我这样做，等于直接在内容面板的南方放了两个按钮，虽然看着没什么不同，但感觉还是有实质上的区别</p>
+        <p>学习出处：<a href="https://wiki.x10sec.org/crypto/asymmetric/knapsack/knapsack/#merklehellman" target="_blank" rel="noopener">https://wiki.x10sec.org/crypto/asymmetric/knapsack/knapsack/#merklehellman</a></p>
 
       
     </div>
@@ -572,8 +503,7 @@
   
 
 
-    
-  
+	
 </div>
 <aside class='l_side'>
   
@@ -805,6 +735,14 @@
   </footer>
 
 <script>setLoadingBarProgress(80);</script>
+
+
+
+
+	<!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+	
+
+	
 
 
       <script>setLoadingBarProgress(60);</script>
