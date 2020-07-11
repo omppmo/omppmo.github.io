@@ -352,6 +352,114 @@
         
           
   <h2 class="title">
+    <a href="/2020/05/05/AES/">
+      AES加密解密
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="" rel="nofollow">
+    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
+    <p>omp</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>密码学</p>
+    </a>
+  </div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：May 5, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <meta name="referrer" content="no-referrer"/>
+
+<p>学习来源：<a href="https://blog.csdn.net/gulang03/article/details/81175854" target="_blank" rel="noopener">https://blog.csdn.net/gulang03/article/details/81175854</a></p>
+<p>所有图片来源<a href="https://blog.csdn.net/gulang03/article/details/81175854" target="_blank" rel="noopener">https://blog.csdn.net/gulang03/article/details/81175854</a></p>
+<h1 id="AES"><a href="#AES" class="headerlink" title="AES"></a>AES</h1><p>高级加密标准(AES,Advanced Encryption Standard)为最常见的对称加密算法。<br>下面分析一下AES-128的加密过程<br>128即密钥为128位，进行10轮加密，密钥位数不同，加密轮数也不同。</p>
+<h2 id="轮密钥加"><a href="#轮密钥加" class="headerlink" title="轮密钥加"></a>轮密钥加</h2><p><img src="https://upload-images.jianshu.io/upload_images/19601162-a400b0cd5249d2dc.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="20170219152638324.jpg"><br>图中的W[0],W[1],W[2],W[3]是原始密钥，一列如k0,k1,k2,k3(每个key8位)组成W[0]   (32位字)<br>轮密钥加是将128位轮密钥Ki同状态矩阵(一般地，明文分组用字节为单位的正方形矩阵描述，称为状态矩阵。)中的数据进行逐位异或操作。<br>明文矩阵与状态矩阵的转换：<br><img src="https://upload-images.jianshu.io/upload_images/19601162-8cebeb0a38a431e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="20170219134722812.png"><br>轮密钥加图解：<br><img src="https://upload-images.jianshu.io/upload_images/19601162-75b295e3c76fb9f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="20170220080512086.png"><br>可以看做是S0,S1,S2,S3组成的32位字与W[0]的异或运算</p>
+<h2 id="轮函数"><a href="#轮函数" class="headerlink" title="轮函数"></a>轮函数</h2><p>前九轮分为字节代换，行移位，列混合三步，第10轮没有列混合</p>
+<h3 id="字节代换"><a href="#字节代换" class="headerlink" title="字节代换"></a>字节代换</h3><p>根据给出的S盒代换表进行代换<br>将一个字节前四位看作行数，后四位看作列数，找到对应的数字进行代换</p>
+<h3 id="行移位"><a href="#行移位" class="headerlink" title="行移位"></a>行移位</h3><p>当密钥长度为128比特时，状态矩阵的第0行左移0字节，第1行左移1字节，第2行左移2字节，第3行左移3字节。<br><img src="https://upload-images.jianshu.io/upload_images/19601162-0e8dbda1dbaaa861.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="20170219174015167.png"></p>
+<h3 id="列混合"><a href="#列混合" class="headerlink" title="列混合"></a>列混合</h3><p>列混合需要将状态矩阵与固定的矩阵相乘，此处相乘是基于GF(2^8)上的二元运算,并不是通常意义上的乘法和加法。虽然关于有限域的运算我不会，但是这好像不影响我们理解此处的运算<br><img src="https://upload-images.jianshu.io/upload_images/19601162-9a34cb6c3dfcc89f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="20170219203346436.png"><br>等号右侧左边的矩阵就是固定矩阵，矩阵的相乘究竟是如何运算的呢<br>状态矩阵中的第j列(0 ≤j≤3)的列混合可以表示为下图所示：<br><img src="https://upload-images.jianshu.io/upload_images/19601162-a4141904f538b9e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="20170219203742516.png"><br>从图中可知列混合的新矩阵的第一行第j列元素是固定矩阵中第一行元素与原矩阵第j列元素对应相乘并异或</p>
+<h2 id="轮密钥的生成"><a href="#轮密钥的生成" class="headerlink" title="轮密钥的生成"></a>轮密钥的生成</h2><p><img src="https://upload-images.jianshu.io/upload_images/19601162-86e8000fe89d204a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="20170220082316736.png"><br>有了初始密钥W[0],W[1],W[2],W[3]hou,后面密钥的生成都基于这个规则<br>其中的T函数又分为三步：字循环，字节代换，轮常量异或</p>
+<h3 id="字循环"><a href="#字循环" class="headerlink" title="字循环"></a>字循环</h3><p>将1个字中的4个字节循环左移1个字节。即将输入字[b0, b1, b2, b3]变换成[b1,b2,b3,b0]</p>
+<h3 id="字节代换-1"><a href="#字节代换-1" class="headerlink" title="字节代换"></a>字节代换</h3><p>使用S盒代换</p>
+<h3 id="轮常量异或"><a href="#轮常量异或" class="headerlink" title="轮常量异或"></a>轮常量异或</h3><p><img src="https://upload-images.jianshu.io/upload_images/19601162-c088d299c207f72b.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="轮常量.PNG"><br>将字节代换的结果再与每轮相应的轮常量异或</p>
+<h2 id="加密与解密"><a href="#加密与解密" class="headerlink" title="加密与解密"></a>加密与解密</h2><p><img src="https://upload-images.jianshu.io/upload_images/19601162-2b0a0b973ed601ed.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="20170219161202485.jpg"><br>加密过程与上述标题相同，解密过程与之相反<br>在第一轮中先进行逆行移位，再进行逆字节代换，在第二到十轮中先逆列混合，逆行移位，再逆字节代换</p>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
     <a href="/2020/05/05/ntfs%E9%9A%90%E5%86%99/">
       ntfs隐写
     </a>
@@ -885,6 +993,11 @@
       <ul class="entry navigation">
         
           <li><a class="flat-box"
+            title="/categories/BUU%E5%88%B7%E9%A2%98/" href="/categories/BUU%E5%88%B7%E9%A2%98/"
+            id="categoriesBUUE588B7E9A298"
+            ><div class='name'>BUU刷题</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box"
             title="/categories/CTF/" href="/categories/CTF/"
             id="categoriesCTF"
             ><div class='name'>CTF</div><div class='badge'>(2)</div></a></li>
@@ -897,7 +1010,7 @@
           <li><a class="flat-box"
             title="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/"
             id="categoriesE5AF86E7A081E5ADA6"
-            ><div class='name'>密码学</div><div class='badge'>(5)</div></a></li>
+            ><div class='name'>密码学</div><div class='badge'>(4)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E6%9D%82%E9%A1%B9/" href="/categories/%E6%9D%82%E9%A1%B9/"
@@ -926,7 +1039,7 @@
 
 
     <div class='content'>
-      <a href="/tags/AES/" style="font-size: 14px; color: #999">AES</a> <a href="/tags/DLP/" style="font-size: 19px; color: #777">DLP</a> <a href="/tags/RC4/" style="font-size: 14px; color: #999">RC4</a> <a href="/tags/RSA/" style="font-size: 19px; color: #777">RSA</a> <a href="/tags/java/" style="font-size: 19px; color: #777">java</a> <a href="/tags/knapsack/" style="font-size: 19px; color: #777">knapsack</a> <a href="/tags/stream/" style="font-size: 14px; color: #999">stream</a> <a href="/tags/%E6%89%A9%E5%B1%95CRT/" style="font-size: 14px; color: #999">扩展CRT</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 24px; color: #555">杂项</a> <a href="/tags/%E7%BC%96%E7%A0%81/" style="font-size: 14px; color: #999">编码</a>
+      <a href="/tags/AES/" style="font-size: 14px; color: #999">AES</a> <a href="/tags/DLP/" style="font-size: 19px; color: #777">DLP</a> <a href="/tags/ECC/" style="font-size: 14px; color: #999">ECC</a> <a href="/tags/RC4/" style="font-size: 14px; color: #999">RC4</a> <a href="/tags/RSA/" style="font-size: 24px; color: #555">RSA</a> <a href="/tags/java/" style="font-size: 19px; color: #777">java</a> <a href="/tags/knapsack/" style="font-size: 19px; color: #777">knapsack</a> <a href="/tags/stream/" style="font-size: 14px; color: #999">stream</a> <a href="/tags/%E6%89%A9%E5%B1%95CRT/" style="font-size: 14px; color: #999">扩展CRT</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 24px; color: #555">杂项</a> <a href="/tags/%E7%BC%96%E7%A0%81/" style="font-size: 14px; color: #999">编码</a>
     </div>
   </section>
 
