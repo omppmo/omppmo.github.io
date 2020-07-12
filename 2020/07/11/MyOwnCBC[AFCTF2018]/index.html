@@ -16,7 +16,7 @@
 
   <!-- 页面元数据 -->
   
-    <title>MyOwnCBC - omp&#39;s blog</title>
+    <title>MyOwnCBC[AFCTF2018] - omp&#39;s blog</title>
   
     <meta name="keywords" content="AES">
   
@@ -346,8 +346,8 @@
         
           
   <h1 class="title">
-    <a href="/2020/07/11/MyOwnCBC/">
-      MyOwnCBC
+    <a href="/2020/07/11/MyOwnCBC%5BAFCTF2018%5D/">
+      MyOwnCBC[AFCTF2018]
     </a>
   </h1>
 
@@ -420,17 +420,17 @@
 <p>电码本模式</p>
 <p>这种模式是将整个明文分成若干段相同的小段，然后对每一小段进行加密。</p>
 </blockquote>
-<p><img src="/2020/07/11/MyOwnCBC/image-20200712162612376.png" alt="image-20200712162612376"></p>
+<p><img src="/2020/07/11/MyOwnCBC[AFCTF2018]/image-20200712162612376.png" alt="image-20200712162612376"></p>
 <p>CBC模式</p>
 <blockquote>
 <p>密码分组链接模式</p>
 <p> 这种模式是先将明文切分成若干小段，然后每一小段与初始块或者上一段的密文段进行异或运算后，再与密钥进行加密。</p>
 </blockquote>
-<p><img src="/2020/07/11/MyOwnCBC/image-20200712162708926.png" alt="image-20200712162708926"></p>
+<p><img src="/2020/07/11/MyOwnCBC[AFCTF2018]/image-20200712162708926.png" alt="image-20200712162708926"></p>
 <p>搬运自:<a href="https://www.jianshu.com/p/79a225c2650e" target="_blank" rel="noopener">https://www.jianshu.com/p/79a225c2650e</a></p>
 <h2 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes</span><br><span class="line">cipher_text=open(<span class="string">'MyOwnCBC/flag_cipher'</span>,<span class="string">'rb'</span>).read()</span><br><span class="line">cipher=[]</span><br><span class="line">plain=[]</span><br><span class="line">mode=AES.MODE_ECB</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(cipher_text),<span class="number">32</span>):</span><br><span class="line">    cipher.append(cipher_text[i:i+<span class="number">32</span>])</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(cipher)<span class="number">-1</span>):</span><br><span class="line">    cryptor=AES.new(cipher[(<span class="number">-1</span>)*i<span class="number">-2</span>],mode)</span><br><span class="line">    plain.append(cryptor.decrypt(cipher[(<span class="number">-1</span>)*i<span class="number">-1</span>]))</span><br><span class="line">flag=[i.decode(<span class="string">'utf-8'</span>) <span class="keyword">for</span> i <span class="keyword">in</span>  plain]</span><br><span class="line">print(<span class="string">''</span>.join(flag[::<span class="number">-1</span>]))</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2020/07/11/MyOwnCBC/image-20200712163031171.png" alt="image-20200712163031171"></p>
+<p><img src="/2020/07/11/MyOwnCBC[AFCTF2018]/image-20200712163031171.png" alt="image-20200712163031171"></p>
 
           
             <div class='article_footer'>
@@ -467,7 +467,7 @@
           
         
           
-            <p>本文永久链接是：<a href=https://omppppppp.xyz/2020/07/11/MyOwnCBC/>https://omppppppp.xyz/2020/07/11/MyOwnCBC/</a></p>
+            <p>本文永久链接是：<a href=https://omppppppp.xyz/2020/07/11/MyOwnCBC[AFCTF2018]/>https://omppppppp.xyz/2020/07/11/MyOwnCBC[AFCTF2018]/</a></p>
           
         
       </blockquote>
@@ -518,7 +518,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-12T17:15:17+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-12T17:17:36+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：Jul 12, 2020</p>
@@ -548,7 +548,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://omppppppp.xyz/2020/07/11/MyOwnCBC/&title=MyOwnCBC - omp's blog&summary="
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://omppppppp.xyz/2020/07/11/MyOwnCBC[AFCTF2018]/&title=MyOwnCBC[AFCTF2018] - omp's blog&summary="
           
           >
           
@@ -560,7 +560,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://omppppppp.xyz/2020/07/11/MyOwnCBC/&title=MyOwnCBC - omp's blog&summary="
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://omppppppp.xyz/2020/07/11/MyOwnCBC[AFCTF2018]/&title=MyOwnCBC[AFCTF2018] - omp's blog&summary="
           
           >
           
@@ -572,7 +572,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://omppppppp.xyz/2020/07/11/MyOwnCBC/&title=MyOwnCBC - omp's blog&summary="
+          href="http://service.weibo.com/share/share.php?url=https://omppppppp.xyz/2020/07/11/MyOwnCBC[AFCTF2018]/&title=MyOwnCBC[AFCTF2018] - omp's blog&summary="
           
           >
           
@@ -645,7 +645,7 @@
 
   <script>
     window.subData = {
-      title: 'MyOwnCBC',
+      title: 'MyOwnCBC[AFCTF2018]',
       tools: true
     }
   </script>
