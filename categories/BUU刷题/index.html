@@ -440,7 +440,8 @@
 <p>result的前shift位和value相同</p>
 <p>使用比特遮罩或截取result的前shift位得到value的前shift位</p>
 <p>tmp=value&gt;&gt;shift</p>
-<p>由此可以得到tmp的前shift<em>2位 与result异或 得到value的前shift\</em>2位</p>
+<p>由此可以得到tmp的前shift*2位 </p>
+<p>与result异或 得到value的前shift*2位</p>
 <p>循环往复，可以得到value</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">right</span><span class="params">(result, shift)</span>:</span></span><br><span class="line">    i,value=<span class="number">0</span>,<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i*shift&lt;<span class="number">32</span>:</span><br><span class="line">        part_mask=((kMaxBits &lt;&lt; (<span class="number">32</span> - shift)) &amp; kMaxBits)&gt;&gt;(i*shift)</span><br><span class="line">        part=result&amp;part_mask</span><br><span class="line">        result^=part&gt;&gt;shift</span><br><span class="line">        value|=part</span><br><span class="line">        i+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> value</span><br></pre></td></tr></table></figure>
 
