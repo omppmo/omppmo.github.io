@@ -486,7 +486,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>使用burpsuite抓包看到Secret.php</p>
-<p>显示It doesn’t come from ‘<a href="https://www.Sycsecret.com&#39;" target="_blank" rel="noopener">https://www.Sycsecret.com&#39;</a></p>
+<p>显示It doesn’t come from ‘<a href="https://www.Sycsecret.com" target="_blank" rel="noopener">https://www.Sycsecret.com</a>‘</p>
 <p>学到了请求首部字段</p>
 <p>Referer 告知请求的原始资源的URI，可以看出请求URI是从哪个页面发出的</p>
 <p>把请求包发送到重发器 修改头部Referer为 <a href="https://www.Sycsecret.com" target="_blank" rel="noopener">https://www.Sycsecret.com</a></p>
@@ -596,7 +596,6 @@
       
         <p>学习出处：<a href="http://element-ui.cn/article/show-13917.aspx" target="_blank" rel="noopener">http://element-ui.cn/article/show-13917.aspx</a></p>
 <h2 id="p与q推理"><a href="#p与q推理" class="headerlink" title="p与q推理"></a>p与q推理</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">g, r1, r2 = [getRandomRange(<span class="number">1</span>, N) <span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">3</span>)]</span><br><span class="line">g1 = pow(g, r1 * (p<span class="number">-1</span>), N)</span><br><span class="line">g2 = pow(g, r2 * (q<span class="number">-1</span>), N)</span><br></pre></td></tr></table></figure>
-
 <p>$g^{r_1*(p-1)} \equiv g_1 \bmod N$</p>
 <p>$g^{r_1<em>(p-1)}=k</em>N+g_1$</p>
 <p>$g^{r_1*(p-1)}\equiv g_1 \bmod p$</p>
@@ -607,7 +606,6 @@
 <p>同理$g_2 \equiv 1 \bmod q$</p>
 <p>gcd($g_1$-1,N)与gcd($g_2$,N)求出p,q</p>
 <h2 id="解密函数推理"><a href="#解密函数推理" class="headerlink" title="解密函数推理"></a>解密函数推理</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encrypt</span><span class="params">(m)</span>:</span></span><br><span class="line">    s1, s2 = [getRandomRange(<span class="number">1</span>, N) <span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">2</span>)]</span><br><span class="line">    c1 = (m * pow(g1, s1, N)) % N</span><br><span class="line">    c2 = (m * pow(g2, s2, N)) % N</span><br><span class="line">    <span class="keyword">return</span> (c1, c2)</span><br></pre></td></tr></table></figure>
-
 <p>加密函数如上所示</p>
 <p>$c_1=((m\bmod N)(g_1^{s_1}\bmod N))\bmod N$</p>
 <p>$c_1=(m*g_1^{s_1})\bmod N$</p>
@@ -619,13 +617,7 @@
 <p>使用中国剩余定理即可求解m</p>
 <p>解密函数如下</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt</span><span class="params">(c1, c2)</span>:</span></span><br><span class="line">    xp = c1 % p</span><br><span class="line">    xq = c2 % q</span><br><span class="line">    <span class="comment"># Chinese Remainder Theorem</span></span><br><span class="line">    m = (xp*inverse(q, p)*q + xq*inverse(p, q)*p) % N</span><br><span class="line">    <span class="keyword">return</span> m</span><br></pre></td></tr></table></figure>
-
 <h2 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line">g1 = <span class="number">9143176283300810019842153344177123108612540016879643936458724056602746667157014763960725115919119704406826965726023263657276550779443988565368344040505696950820899770544814163379169539926317676679421275092688200844094929042154854719312788471536324082041360841253720783220459009201882865091829118575721525038404689868986360373373122049951274015083845966946475469982961355934516388706446794517870569063777231434618411404965077775991870069073539415961610645268985004687402050059891500490949250730689691141954694508001895390336750734542724392709744200091587065816283592253967715080611459937165344139809223328071517060208</span></span><br><span class="line">g2 = <span class="number">14068322834597276347776814624877614869834816383564391664570268934537693322688875343215293618493363798985047779057952636529313879548457643220996398640913517182122425631198219387988691569709691279442005545716133131472147592456812502863851227108284027033557263611949365667779259585770738623603814004666845554284808166195201470503432803440754207350347128045893594280079379926676477680556845095378093693409219131090910168117334308781843178748431526974047817218228075136005979538773141427004682344298827618677773735288946271346252828348742296301538573408254015281232250841148556304927266143397565889649305095857756884049430</span></span><br><span class="line">n = <span class="number">18680643069610062851842282268594530254220611012409807422663284548187050713427682950720783343430650669361838067625768840896513125210105582070603021732086193955893838077699465426052925750736212977005683541174195320832791835197114668838654054444342903298662698415765898335350206380896849522280206304272801325820946987172164086644949521111058774180676742851681476123338557138770304164634321305204827406522957769478330124484710532963132900017800651579612646041955628867746525508376194147796920773364680264059390497210260540079810501777507814448518995581208169818764701641258963569599247156932381367802991222265241699715283</span></span><br><span class="line">c1, c2 = (</span><br><span class="line">    <span class="number">3976514029543484086411168675941075541422870678409709261442618832911574665848843566949154289825219682094719766762966082440586568781997199077781276145091509192208487682443007457513002005089654365915817414921574344557570444253187757317116858499013550050579856269915915792827620535138057468531410166908365364129001407147467636145589396570815405571923148902993581000542566387654639930651683044853608873583911638108204074537952317056718986683846742909366072461130053275195290631718363272923316002049685111871888148244026652658482359335651889139243735138819453744763293112267738369048641158946411500606588429007794613880534</span>,</span><br><span class="line">    <span class="number">18524535479582837341745231233387403662294605513261199630593257391163433751052467785080620993007681605662927226603747560698627838567782891522546977611597418150309028806158429831471152782211111046118637630899456903846057977815397285171313888516791822545633820066408276065732715348834255021260666966934592884548856831383262013360819013814149529393178712576141627031723067564594282618223686778534522328204603249125537258294561872667849498796757523663858312311082034700705599706428944071848443463999351872482644584735305157234751806369172212650596041534643187402820399145288902719434158798638116870325144146218568810928344</span></span><br><span class="line">)</span><br><span class="line">p = gcd(g1 - <span class="number">1</span>, n)</span><br><span class="line">q = gcd(g2 - <span class="number">1</span>, n)</span><br><span class="line"><span class="keyword">assert</span> p * q == n</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt</span><span class="params">(c1, c2)</span>:</span></span><br><span class="line">    xp = c1 % p</span><br><span class="line">    xq = c2 % q</span><br><span class="line">    <span class="comment"># Chinese Remainder Theorem</span></span><br><span class="line">    m = (xp * inverse(q, p) * q + xq * inverse(p, q) * p) % n</span><br><span class="line">    <span class="keyword">return</span> m</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(long_to_bytes(decrypt(c1, c2)))</span><br></pre></td></tr></table></figure>
-
-
-
-
-
 
       
     </div>
@@ -726,7 +718,6 @@
 <p><img src="/2020/09/16/file/image-20200904150424108.png" alt="image-20200904150424108"></p>
 <p>发现secr3t.php</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">    error_reporting(<span class="number">0</span>);</span><br><span class="line">    $file=$_GET[<span class="string">'file'</span>];</span><br><span class="line">    <span class="keyword">if</span>(strstr($file,<span class="string">"../"</span>)||stristr($file, <span class="string">"tp"</span>)||stristr($file,<span class="string">"input"</span>)||stristr($file,<span class="string">"data"</span>))&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Oh no!"</span>;</span><br><span class="line">        <span class="keyword">exit</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">include</span>($file); </span><br><span class="line"><span class="comment">//flag放在了flag.php里</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>文件包含漏洞并并过滤掉了一些关键词</p>
 <p>学习到了对于文件包含漏洞用php伪协议读取文件</p>
 <p>学习出处：<a href="https://www.freebuf.com/column/148886.html" target="_blank" rel="noopener">https://www.freebuf.com/column/148886.html</a></p>
@@ -839,14 +830,12 @@
         <h2 id="对源文件的分析学习"><a href="#对源文件的分析学习" class="headerlink" title="对源文件的分析学习"></a>对源文件的分析学习</h2><h3 id="code-py"><a href="#code-py" class="headerlink" title="code.py"></a>code.py</h3><p><strong>random.sample</strong></p>
 <p>多用于截取列表的指定长度的随机数，但是不会改变列表本身的排序：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">list = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">rs = random.sample(list, <span class="number">2</span>)</span><br><span class="line">print(rs)</span><br><span class="line">print(list)</span><br><span class="line"></span><br><span class="line">》》》[<span class="number">2</span>, <span class="number">4</span>]    <span class="comment">#此数组随着不同的执行，里面的元素随机，但都是两个</span></span><br><span class="line">》》》[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure>
-
 <p><strong>string.digits</strong></p>
 <p>digits方法的作用是生成字符串，包括0-9</p>
 <p><strong>string.ascii_letters</strong></p>
 <p>a-z A-Z</p>
 <p>原来验证码是这样生成的(好神奇</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gene_text</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">'''生成4位验证码'''</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span>.join(random.sample(string.ascii_letters+string.digits, <span class="number">4</span>))</span><br></pre></td></tr></table></figure>
-
 <h4 id="PIL库使用"><a href="#PIL库使用" class="headerlink" title="PIL库使用"></a><strong>PIL库使用</strong></h4><p>PIL.image</p>
 <p><strong>1)新建图片对象</strong></p>
 <p>im = Image.new(‘RGB’,(width, height),’white’)</p>
@@ -869,7 +858,6 @@
 <p>高斯模糊 GaussianBlur(radius=2)</p>
 <p><strong>Image.save</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img.save(img_name, quality=<span class="number">95</span>)</span><br></pre></td></tr></table></figure>
-
 <p>有些时候往往需要图片的大小不能变化太大或不能太小。所以在使用此方式时可以加入参数。quality参数： 保存图像的质量，值的范围从1（最差）到95（最佳）。 默认值为75，使用中应尽量避免高于95的值; 100会禁用部分JPEG压缩算法，并导致大文件图像质量几乎没有任何增益。</p>
 <h3 id="routes-py"><a href="#routes-py" class="headerlink" title="routes.py"></a>routes.py</h3><p><strong>and/or</strong></p>
 <p>学习出处：<a href="https://www.cnblogs.com/yonyong/p/9166067.html" target="_blank" rel="noopener">https://www.cnblogs.com/yonyong/p/9166067.html</a></p>
@@ -898,7 +886,7 @@
 <p>注册一个ᴬdmin账号 此时第一次调用nodeprep.prepare()账号变为<br>Admin() 此时进行登录，再次调用nodeprep.prepare()，页面显示Hello Admin,此时应已变成admin,修改密码再次调用，修改admin密码 再进行登录</p>
 <p>2.flask session伪造</p>
 <p>学习出处:<a href="https://www.leavesongs.com/PENETRATION/client-session-security.html" target="_blank" rel="noopener">https://www.leavesongs.com/PENETRATION/client-session-security.html</a></p>
-<p>通过这个工具(<a href="https://github.com/noraj/flask-session-cookie-manager)可以加密解密flask中session，大概看了一下具体的原理" target="_blank" rel="noopener">https://github.com/noraj/flask-session-cookie-manager)可以加密解密flask中session，大概看了一下具体的原理</a>(因为太菜了，还没太看懂呜呜呜呜</p>
+<p>通过这个工具(<a href="https://github.com/noraj/flask-session-cookie-manager)可以加密解密flask中session，大概看了一下具体的原理(因为太菜了，还没太看懂呜呜呜呜" target="_blank" rel="noopener">https://github.com/noraj/flask-session-cookie-manager)可以加密解密flask中session，大概看了一下具体的原理(因为太菜了，还没太看懂呜呜呜呜</a></p>
 <p>大概分为这几步:</p>
 <ol>
 <li>json.dumps 将对象转换成json字符串，作为数据</li>
@@ -908,11 +896,25 @@
 </ol>
 <p>这里还有师傅写的解密的脚本,都记录一下</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> zlib</span><br><span class="line"><span class="keyword">from</span> base64 <span class="keyword">import</span> b64decode</span><br><span class="line"><span class="keyword">from</span> flask.sessions <span class="keyword">import</span> session_json_serializer</span><br><span class="line"><span class="keyword">from</span> itsdangerous <span class="keyword">import</span> base64_decode</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decryption</span><span class="params">(payload)</span>:</span></span><br><span class="line">    payload, sig = payload.rsplit(<span class="string">b'.'</span>, <span class="number">1</span>)</span><br><span class="line">    payload, timestamp = payload.rsplit(<span class="string">b'.'</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    decompress = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">if</span> payload.startswith(<span class="string">b'.'</span>):</span><br><span class="line">        payload = payload[<span class="number">1</span>:]</span><br><span class="line">        decompress = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        payload = base64_decode(payload)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">'Could not base64 decode the payload because of '</span></span><br><span class="line">                         <span class="string">'an exception'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> decompress:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            payload = zlib.decompress(payload)</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            <span class="keyword">raise</span> Exception(<span class="string">'Could not zlib decompress the payload before '</span></span><br><span class="line">                             <span class="string">'decoding the payload'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> session_json_serializer.loads(payload)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    print(decryption(sys.argv[<span class="number">1</span>].encode()))</span><br></pre></td></tr></table></figure>
-
 <p>拿到secret_key以后，伪造session重发即可拿到flag</p>
 <p>还根据师傅的博客学习到利用解密session绕过验证码， 不过这道题里的session直接给了验证码hh</p>
 <p>3.条件竞争</p>
-<p>先咕为敬</p>
+<p><strong>threading.Thread类</strong></p>
+<p>创建线程<code>thread=threading.Thread(target=function_name, args=(function_parameter1, function_parameterN))</code></p>
+<p>function_name: 需要线程去执行的方法名</p>
+<p>args: 线程执行方法接收的参数，该属性是一个<strong>元组</strong>，如果只有一个参数也需要在末尾加逗号。</p>
+<p>启动创建的线程<code>thread.start()</code></p>
+<p><strong>requests模块</strong></p>
+<p>不带参数get请求<code>r=requests.get(&#39;&#39;)</code></p>
+<p>带参数的get请求<code>r=requests.get(&#39;&#39;,params=url_params)</code></p>
+<p>其中字典传递参数url_params={‘key’:’value’}</p>
+<p>post请求<code>r=requests.post(&#39;&#39;)</code></p>
+<p>带参数的post请求<code>r=requests.post(url,data=params)</code></p>
+<p>params同样为字典传递参数</p>
+<p><code>r=requests.post(url,data=params)</code></p>
+<p><img src="https://images2017.cnblogs.com/blog/77835/201709/77835-20170907152822351-1210277893.png" alt="img"></p>
+<p>r.text输出结果:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"args"</span>: &#123;&#125;, </span><br><span class="line">  <span class="string">"data"</span>: <span class="string">""</span>, </span><br><span class="line">  <span class="string">"files"</span>: &#123;&#125;, </span><br><span class="line">  <span class="string">"form"</span>: &#123;</span><br><span class="line">    <span class="string">"key1"</span>: <span class="string">"value1"</span>, </span><br><span class="line">    <span class="string">"key2"</span>: <span class="string">"value2"</span></span><br><span class="line">  &#125;, </span><br><span class="line">  <span class="string">"headers"</span>: &#123;</span><br><span class="line">    <span class="string">"Accept"</span>: <span class="string">"*/*"</span>, </span><br><span class="line">    <span class="string">"Accept-Encoding"</span>: <span class="string">"gzip, deflate"</span>, </span><br><span class="line">    <span class="string">"Connection"</span>: <span class="string">"close"</span>, </span><br><span class="line">    <span class="string">"Content-Length"</span>: <span class="string">"23"</span>, </span><br><span class="line">    <span class="string">"Content-Type"</span>: <span class="string">"application/x-www-form-urlencoded"</span>, </span><br><span class="line">    <span class="string">"Host"</span>: <span class="string">"httpbin.org"</span>, </span><br><span class="line">    <span class="string">"User-Agent"</span>: <span class="string">"python-requests/2.18.1"</span></span><br><span class="line">  &#125;, </span><br><span class="line">  <span class="string">"json"</span>: null, </span><br><span class="line">  <span class="string">"origin"</span>: <span class="string">"183.14.133.88"</span>, </span><br><span class="line">  <span class="string">"url"</span>: <span class="string">"http://httpbin.org/post"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -931,6 +933,27 @@
     
     <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
     
+    
+      <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    processEscapes: true,
+    tags: "ams",
+    macros: {
+      href: "{}"
+    }
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|dno",
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  }
+};
+</script>
+
     
 
   
@@ -1155,7 +1178,8 @@
       
     
       
-        <div>Blog content follows the [Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</div>
+        <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
       
     
       
@@ -1169,7 +1193,8 @@
     
       
         <div class='copyright'>
-        [Copyright © 2017-2020 Mr. X](https://xaoxuu.com)
+        <p><a href="https://xaoxuu.com" target="_blank" rel="noopener">Copyright © 2017-2020 Mr. X</a></p>
+
         </div>
       
     
@@ -1182,6 +1207,27 @@
 
 	<!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
 	
+
+	
+	    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    processEscapes: true,
+    tags: "ams",
+    macros: {
+      href: "{}"
+    }
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|dno",
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  }
+};
+</script>
 
 	
 

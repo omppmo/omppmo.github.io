@@ -408,29 +408,27 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           
-          <meta name="referrer" content="no-referrer"/>
+          <meta name="referrer" content="no-referrer">
 
 <p>因为太菜了所以写不出脚本，找到了一位师傅写的好好分析一下</p>
 <h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>base64隐写只能用于有两个等号和有一个等号的情况<br><img src="https://upload-images.jianshu.io/upload_images/19601162-be8b316f572880c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="20180917030350894.png!blog.png"></p>
 <p>有两个等号的可以隐藏四位，当Base64解码时，这隐藏的四位会抹去<br>同理，有一个等号的能隐藏两位<br><img src="https://upload-images.jianshu.io/upload_images/19601162-908dc5e782022fd0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="20190517212307382.jpg.png"></p>
 <h2 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h2><p>学习来源<a href="https://www.jianshu.com/p/f1f4e10ad10e" target="_blank" rel="noopener">https://www.jianshu.com/p/f1f4e10ad10e</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line">import base64</span><br><span class="line"></span><br><span class="line">b64chars &#x3D; &#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+&#x2F;&#39;</span><br><span class="line"></span><br><span class="line"># ccc.txt为待解密的base64隐写字符串所在的文件</span><br><span class="line">f &#x3D; open(&#39;ccc.txt&#39;,&#39;r&#39;)</span><br><span class="line">base64str &#x3D; f.readline()</span><br><span class="line"></span><br><span class="line"># pattern2用于匹配两个等号情况时，等号前的一个字符</span><br><span class="line"># pattern2用于匹配一个等号情况时，等号前的一个字符</span><br><span class="line">pattern2 &#x3D; r&#39;(\S)&#x3D;&#x3D;$&#39;</span><br><span class="line">pattern1 &#x3D; r&#39;(\S)&#x3D;$&#39;</span><br><span class="line"></span><br><span class="line"># 提取后的隐写二进制字符加入binstring中</span><br><span class="line">binstring &#x3D; &#39;&#39;</span><br><span class="line"></span><br><span class="line"># 逐行读取待解密的base64隐写字符串，逐行处理</span><br><span class="line">while(base64str):</span><br><span class="line">    # 先匹配两个等号的情况，如果匹配不上，再配置一个等号的情况</span><br><span class="line">    # 如果无等号，则没有隐藏，无需处理</span><br><span class="line">    if re.compile(pattern2).findall(base64str):</span><br><span class="line">        # mstr为等号前的一个字符，该字符为隐写二进制信息所在的字符</span><br><span class="line">        mstr &#x3D; re.compile(pattern2).findall(base64str)[0]</span><br><span class="line">        # 确认mstr字符对应的base64二进制数，赋值给mbin</span><br><span class="line">        mbin &#x3D; bin(b64chars.find(mstr))</span><br><span class="line">        # mbin格式如0b100，mbin[0:2]为0b</span><br><span class="line">        # mbin[2:].zfill(6)为将0b后面的二进制数前面补0，使0b后面的长度为6</span><br><span class="line">        mbin2 &#x3D; mbin[0:2] + mbin[2:].zfill(6)</span><br><span class="line">        # 两个等号情况隐写了4位二进制数，所以提取mbin2的后4bit</span><br><span class="line">        # 赋值给stegobin，这就是隐藏的二进制信息</span><br><span class="line">        stegobin &#x3D; mbin2[-4:]</span><br><span class="line">        binstring +&#x3D; stegobin</span><br><span class="line">    elif re.compile(pattern1).findall(base64str):</span><br><span class="line">        mstr &#x3D; re.compile(pattern1).findall(base64str)[0]</span><br><span class="line">        mbin &#x3D; bin(b64chars.find(mstr))</span><br><span class="line">        mbin2 &#x3D; mbin[0:2] + mbin[2:].zfill(6)</span><br><span class="line">        # 一个等号情况隐写了2位二进制数，所以提取mbin2的后2bit</span><br><span class="line">        stegobin &#x3D; mbin2[-2:]</span><br><span class="line">        binstring +&#x3D; stegobin</span><br><span class="line">    base64str &#x3D; f.readline()</span><br><span class="line"></span><br><span class="line"># stegobin将各行隐藏的二进制字符拼接在一起</span><br><span class="line"># 从第0位开始，8bit、8bit处理，所以range的步进为8</span><br><span class="line">for i in range(0,len(binstring),8):</span><br><span class="line">    # int(xxx,2)，将二进制字符串转换为10进制的整数，再用chr()转为字符</span><br><span class="line">    print(chr(int(binstring[i:i+8],2)),end&#x3D;&#39;&#39;)</span><br></pre></td></tr></table></figure>
-
 <h3 id="相关函数"><a href="#相关函数" class="headerlink" title="相关函数"></a>相关函数</h3><h4 id="readline-方法"><a href="#readline-方法" class="headerlink" title="readline()方法"></a>readline()方法</h4><p>read() 读取整个文件，将文件内容放到一个字符串变量中<br>readline() readline()方法每次读取一行；返回的是一个字符串对象<br>readlines() 读取整个文件所有行，保存在一个列表(list)变量中，每行作为一个元素</p>
 <h4 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h4><blockquote>
 <p>正则表达式是一个特殊的字符序列，它能帮助你方便的检查一个字符串是否与某种模式匹配。<br>re 模块使 Python 语言拥有全部的正则表达式功能。 </p>
 </blockquote>
 <p>一般在正则表达式之前加r，防止字符转义</p>
-<h5 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h5><p>1.”\s”：匹配空格<br>改成大写后，意思与原来相反<br> “\S”   匹配任意不是空白符的字符<br>2.元字符^ 与$<br> ^  ：^ 会匹配行或者字符串的起始位置，有时还会匹配整个文档的起始位置。<br> $ ：$ 会匹配行或字符串的结尾<br>详细用法<a href="https://www.cnblogs.com/zery/p/3438845.html]https://www.cnblogs.com/zery/p/3438845.html" target="_blank" rel="noopener">https://www.cnblogs.com/zery/p/3438845.html]https://www.cnblogs.com/zery/p/3438845.html</a></p>
+<h5 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h5><p>1.”\s”：匹配空格<br>改成大写后，意思与原来相反<br> “\S”   匹配任意不是空白符的字符<br>2.元字符\^ 与$<br> \^  ：\^ 会匹配行或者字符串的起始位置，有时还会匹配整个文档的起始位置。<br> $ ：$ 会匹配行或字符串的结尾<br>详细用法<a href="https://www.cnblogs.com/zery/p/3438845.html]https://www.cnblogs.com/zery/p/3438845.html" target="_blank" rel="noopener">https://www.cnblogs.com/zery/p/3438845.html]https://www.cnblogs.com/zery/p/3438845.html</a></p>
 <h5 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h5><h6 id="compile-函数"><a href="#compile-函数" class="headerlink" title="compile()函数"></a>compile()函数</h6><p>compile()函数的定义中，可以看出返回的是一个匹配对象，它单独使用就没有任何意义，需要和findall(), search(), match(）搭配使用<br>compile()与findall()一起使用，返回一个列表。</p>
 <p>在百度上看到的一个例子</p>
 <blockquote>
 <p>使用re的一般步骤是先使用re.compile()函数，将正则表达式的字符串形式编译为Pattern实例，然后使用Pattern实例处理文本并获得匹配结果（一个Match实例），最后使用Match实例获得信息，进行其他的操作。</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line">pattern &#x3D; re.compile(&#39;[a-zA-Z]&#39;)</span><br><span class="line">result &#x3D; pattern.findall(&#39;as3SiOPdj#@23awe&#39;)</span><br><span class="line">print result</span><br><span class="line"># [&#39;a&#39;, &#39;s&#39;, &#39;S&#39;, &#39;i&#39;, &#39;O&#39;, &#39;P&#39;, &#39;d&#39;, &#39;j&#39;, &#39;a&#39;, &#39;w&#39;, &#39;e&#39;]</span><br></pre></td></tr></table></figure>
-
 <p>试了一下，原来re.compile(pattern2).findall(base64str)返回的列表中只有等号前字母一个元素<br>详细用法[<a href="https://blog.csdn.net/Darkman_EX/article/details/80973656]https://blog.csdn.net/Darkman_EX/article/details/80973656" target="_blank" rel="noopener">https://blog.csdn.net/Darkman_EX/article/details/80973656]https://blog.csdn.net/Darkman_EX/article/details/80973656</a></p>
-<h4 id="zfill-方法"><a href="#zfill-方法" class="headerlink" title="zfill()方法"></a>zfill()方法</h4><p>用法  <code>str.zfill(width)</code><br>width – 指定字符串的长度。原字符串右对齐，前面填充0。</p>
+<h4 id="zfill-方法"><a href="#zfill-方法" class="headerlink" title="zfill()方法"></a>zfill()方法</h4><p>用法  <code>str.zfill(width)</code><br>width — 指定字符串的长度。原字符串右对齐，前面填充0。</p>
 
           
             <div class='article_footer'>
@@ -462,7 +460,8 @@
       <blockquote>
         
           
-            博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议
+            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
           
         
           
@@ -758,7 +757,8 @@ png图片是一种无损压缩的位图片形格式，也只有在无损压缩�
       
     
       
-        <div>Blog content follows the [Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</div>
+        <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
       
     
       
@@ -772,7 +772,8 @@ png图片是一种无损压缩的位图片形格式，也只有在无损压缩�
     
       
         <div class='copyright'>
-        [Copyright © 2017-2020 Mr. X](https://xaoxuu.com)
+        <p><a href="https://xaoxuu.com" target="_blank" rel="noopener">Copyright © 2017-2020 Mr. X</a></p>
+
         </div>
       
     

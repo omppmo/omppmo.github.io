@@ -408,12 +408,12 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           
-          <meta name="referrer" content="no-referrer"/>
+          <meta name="referrer" content="no-referrer">
 
 <p>今天老师留了一个作业：建立框架，在中央放置多行文本框（TextArea）,在南方放置一个面板(JPanel),并在上边放置两个按钮，按钮文本分别为确定和取消</p>
 <h1 id="多行文本框"><a href="#多行文本框" class="headerlink" title="多行文本框"></a>多行文本框</h1><p>TextArea是一个AWT组件<br>JTextArea是一个swing组件<br>想要加一个多行文本框，就需要<code>new JTextArea()</code></p>
 <h1 id="正确的代码"><a href="#正确的代码" class="headerlink" title="正确的代码"></a>正确的代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> pack2;</span><br><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"><span class="keyword">import</span> javax.swing.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFrame</span> <span class="keyword">extends</span> <span class="title">JFrame</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line">	JButton bt1,bt2;</span><br><span class="line">	JTextArea textarea;</span><br><span class="line">	JPanel j1;</span><br><span class="line">	MyFrame()&#123;</span><br><span class="line">		<span class="keyword">this</span>.setSize(<span class="number">400</span>, <span class="number">400</span>);</span><br><span class="line">		<span class="keyword">this</span>.setDefaultCloseOperation(EXIT_ON_CLOSE);</span><br><span class="line">		<span class="keyword">this</span>.setVisible(<span class="keyword">true</span>);</span><br><span class="line">		bt1=<span class="keyword">new</span> JButton(<span class="string">"确定"</span>);</span><br><span class="line">		bt2=<span class="keyword">new</span> JButton(<span class="string">"取消"</span>);</span><br><span class="line">		textarea=<span class="keyword">new</span> JTextArea();</span><br><span class="line">		j1=<span class="keyword">new</span> JPanel();</span><br><span class="line">		j1.add(bt1);</span><br><span class="line">		j1.add(bt2);</span><br><span class="line">		<span class="keyword">this</span>.add(j1,BorderLayout.SOUTH);</span><br><span class="line">		<span class="keyword">this</span>.add(textarea);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO 自动生成的方法存根</span></span><br><span class="line">		<span class="keyword">new</span> MyFrame();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h1><p>##adding container’s parent to itself<br>错误的代码为<code>this.add(j1, BorderLayout.SOUTH)</code><br>补充一下，在类中还定义了<code>JPanel j1</code>，以及构造方法中的<code>j1=(JPanel)this.getContentPane()</code><br>其中由于内容面板是container类型的，所以需要类型强制转换<br>这是把容器自身添加到了自身内容造成的<br><strong>JDK1.5之前需要先获取内容面板，然后在内容面板上添加组件，从JDK1.5之后，可以直接使用<br>  <code>this.add()</code>添加组件，但组件依然被添加到内容面板上，而不是JFrame上</strong></p>
+<h1 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h1><h2 id="adding-container’s-parent-to-itself"><a href="#adding-container’s-parent-to-itself" class="headerlink" title="adding container’s parent to itself"></a>adding container’s parent to itself</h2><p>错误的代码为<code>this.add(j1, BorderLayout.SOUTH)</code><br>补充一下，在类中还定义了<code>JPanel j1</code>，以及构造方法中的<code>j1=(JPanel)this.getContentPane()</code><br>其中由于内容面板是container类型的，所以需要类型强制转换<br>这是把容器自身添加到了自身内容造成的<br><strong>JDK1.5之前需要先获取内容面板，然后在内容面板上添加组件，从JDK1.5之后，可以直接使用<br>  <code>this.add()</code>添加组件，但组件依然被添加到内容面板上，而不是JFrame上</strong></p>
 <h3 id="错在哪里"><a href="#错在哪里" class="headerlink" title="错在哪里"></a>错在哪里</h3><p>这里显然j1就是内容面板，我在这句话中把j1添加到了JFrame上。但实质是把j1加到了j1上</p>
 <h3 id="纠错"><a href="#纠错" class="headerlink" title="纠错"></a>纠错</h3><p>这里我实际上是误解了题意，题目说的是放置一个面板，所以和获取内容面板没关系。<br>只需要<code>j1=new JPanel()</code>,然后把按钮添加到这个面板上，再把这个面板添加到JFrame（真正的内容面板）就可以了</p>
 <h2 id="默认布局"><a href="#默认布局" class="headerlink" title="默认布局"></a>默认布局</h2><p>jframe默认是边界布局,同一个位置放入组件,那么后面的组件覆盖前面的组件（BorderLayout）<br>JPanel的默认布局为流式布局 ,所以就是一个靠近一个的出来（FlowLayout）<br>这里new出来的JPanel是流式布局，所以不会覆盖</p>
@@ -450,7 +450,8 @@
       <blockquote>
         
           
-            博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议
+            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
           
         
           
@@ -662,7 +663,7 @@
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#错在哪里"><span class="toc-text">错在哪里</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#纠错"><span class="toc-text">纠错</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#默认布局"><span class="toc-text">默认布局</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#疑问"><span class="toc-text">疑问</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#adding-container’s-parent-to-itself"><span class="toc-text">adding container’s parent to itself</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#错在哪里"><span class="toc-text">错在哪里</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#纠错"><span class="toc-text">纠错</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#默认布局"><span class="toc-text">默认布局</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#疑问"><span class="toc-text">疑问</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -741,7 +742,8 @@
       
     
       
-        <div>Blog content follows the [Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</div>
+        <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
       
     
       
@@ -755,7 +757,8 @@
     
       
         <div class='copyright'>
-        [Copyright © 2017-2020 Mr. X](https://xaoxuu.com)
+        <p><a href="https://xaoxuu.com" target="_blank" rel="noopener">Copyright © 2017-2020 Mr. X</a></p>
+
         </div>
       
     

