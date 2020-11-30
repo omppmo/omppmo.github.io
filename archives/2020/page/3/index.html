@@ -70,6 +70,8 @@
 </head>
 
 <body>
+<script src="https://cdn.jsdelivr.net/gh/zyoushuo/Blog/hexo/js/mouse_click.js"></script>
+
   
   <div class="cover-wrapper">
     
@@ -391,6 +393,529 @@
   <section class="post-list ">
     
     
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/05/05/java%E5%AD%A6%E4%B9%A02/">
+      java学习(2)
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="" rel="nofollow">
+    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
+    <p>omp</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/java/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>java</p>
+    </a>
+  </div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：May 5, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="关于protected权限的子类访问方式"><a href="#关于protected权限的子类访问方式" class="headerlink" title="关于protected权限的子类访问方式"></a>关于protected权限的子类访问方式</h1><h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>听老师讲课说到Object类的clone()方法，其声明方法是protected修饰的。protected修饰的可见性在本类，同包类，子类中皆可见。但子类clone()方法使用时，却不能直接调用Object类的clone()方法，而是需要进行重写,这个问题令我很迷茫。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public Object clone() throws CloneNotSupportedException&#123;</span><br><span class="line">              return super.clone();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="前置芝士"><a href="#前置芝士" class="headerlink" title="前置芝士"></a>前置芝士</h2><p>学习出处：<br><a href="https://blog.csdn.net/blacktal/article/details/81198579" target="_blank" rel="noopener">https://blog.csdn.net/blacktal/article/details/81198579</a><br><a href="https://blog.csdn.net/asahinokawa/article/details/80777302" target="_blank" rel="noopener">https://blog.csdn.net/asahinokawa/article/details/80777302</a><br>通过学习我认识到，protected修饰并不只是被同一包中的所有类和不同包中的子类访问那么简单。<br>直接总结一下，详细实例看出处</p>
+<ol>
+<li><p>子类可以通过继承获得不同包父类的protected权限成员变量和成员方法，在子类中可以直接访问</p>
+</li>
+<li><p>在子类中可以通过子类的对象访问父类的protected成员变量和方法</p>
+</li>
+<li><p>在子类中反而<strong>不能</strong>通过父类的对象实例访问父类的protected成员变量和方法</p>
+</li>
+<li><p>在子类中不能通过其他子类的对象访问父类的protected成员变量和方法</p>
+</li>
+<li><p>在与子类同包的其他类中不能通过子类的对象访问父类的protected成员变量和方法</p>
+</li>
+</ol>
+<p>子类可以在自己这里直接调用父类protected修饰的成员变量和方法，但是若在别的类中使用<code>子类.clone()</code>，protected修饰的就不可见(同第5条)</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>所以为了能在其他类中调用clone()方法，必须通过<strong>在子类中重写把clone()方法的权限提升并且实现Cloneable接口</strong><br>在自定义子类A类体中调用Object的clone()方法的问题不再讨论，不能这么使用</p>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/05/05/java%E5%AD%A6%E4%B9%A01/">
+      java学习(1)
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="" rel="nofollow">
+    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
+    <p>omp</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/java/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>java</p>
+    </a>
+  </div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：May 5, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <meta name="referrer" content="no-referrer">
+
+<p>今天老师留了一个作业：建立框架，在中央放置多行文本框（TextArea）,在南方放置一个面板(JPanel),并在上边放置两个按钮，按钮文本分别为确定和取消</p>
+<h1 id="多行文本框"><a href="#多行文本框" class="headerlink" title="多行文本框"></a>多行文本框</h1><p>TextArea是一个AWT组件<br>JTextArea是一个swing组件<br>想要加一个多行文本框，就需要<code>new JTextArea()</code></p>
+<h1 id="正确的代码"><a href="#正确的代码" class="headerlink" title="正确的代码"></a>正确的代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> pack2;</span><br><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"><span class="keyword">import</span> javax.swing.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFrame</span> <span class="keyword">extends</span> <span class="title">JFrame</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line">	JButton bt1,bt2;</span><br><span class="line">	JTextArea textarea;</span><br><span class="line">	JPanel j1;</span><br><span class="line">	MyFrame()&#123;</span><br><span class="line">		<span class="keyword">this</span>.setSize(<span class="number">400</span>, <span class="number">400</span>);</span><br><span class="line">		<span class="keyword">this</span>.setDefaultCloseOperation(EXIT_ON_CLOSE);</span><br><span class="line">		<span class="keyword">this</span>.setVisible(<span class="keyword">true</span>);</span><br><span class="line">		bt1=<span class="keyword">new</span> JButton(<span class="string">"确定"</span>);</span><br><span class="line">		bt2=<span class="keyword">new</span> JButton(<span class="string">"取消"</span>);</span><br><span class="line">		textarea=<span class="keyword">new</span> JTextArea();</span><br><span class="line">		j1=<span class="keyword">new</span> JPanel();</span><br><span class="line">		j1.add(bt1);</span><br><span class="line">		j1.add(bt2);</span><br><span class="line">		<span class="keyword">this</span>.add(j1,BorderLayout.SOUTH);</span><br><span class="line">		<span class="keyword">this</span>.add(textarea);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO 自动生成的方法存根</span></span><br><span class="line">		<span class="keyword">new</span> MyFrame();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h1><h2 id="adding-container’s-parent-to-itself"><a href="#adding-container’s-parent-to-itself" class="headerlink" title="adding container’s parent to itself"></a>adding container’s parent to itself</h2><p>错误的代码为<code>this.add(j1, BorderLayout.SOUTH)</code><br>补充一下，在类中还定义了<code>JPanel j1</code>，以及构造方法中的<code>j1=(JPanel)this.getContentPane()</code><br>其中由于内容面板是container类型的，所以需要类型强制转换<br>这是把容器自身添加到了自身内容造成的<br><strong>JDK1.5之前需要先获取内容面板，然后在内容面板上添加组件，从JDK1.5之后，可以直接使用<br>  <code>this.add()</code>添加组件，但组件依然被添加到内容面板上，而不是JFrame上</strong></p>
+<h3 id="错在哪里"><a href="#错在哪里" class="headerlink" title="错在哪里"></a>错在哪里</h3><p>这里显然j1就是内容面板，我在这句话中把j1添加到了JFrame上。但实质是把j1加到了j1上</p>
+<h3 id="纠错"><a href="#纠错" class="headerlink" title="纠错"></a>纠错</h3><p>这里我实际上是误解了题意，题目说的是放置一个面板，所以和获取内容面板没关系。<br>只需要<code>j1=new JPanel()</code>,然后把按钮添加到这个面板上，再把这个面板添加到JFrame（真正的内容面板）就可以了</p>
+<h2 id="默认布局"><a href="#默认布局" class="headerlink" title="默认布局"></a>默认布局</h2><p>jframe默认是边界布局,同一个位置放入组件,那么后面的组件覆盖前面的组件（BorderLayout）<br>JPanel的默认布局为流式布局 ,所以就是一个靠近一个的出来（FlowLayout）<br>这里new出来的JPanel是流式布局，所以不会覆盖</p>
+<h3 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h3><p><img src="https://upload-images.jianshu.io/upload_images/19601162-d400bd536c3eb5f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2020-02-25 (4).png"></p>
+<p>如果我非要用<code>j1=(JPanel)this.getContentPane();</code>获取内容面板，然后<code>j1.add(bt1,BorderLayout.SOUTH);</code> <code>j1.add(bt2,BorderLayout.SOUTH);</code>为什么同时添加的两个南方的按钮会有一个被覆盖呢，明明JPanel是流式的…<br><strong>内容面板的默认布局管理器是边界式的，普通面板是流式的</strong><br>经过答疑了解到，<strong>强制类型转换改变不了内容面板的布局管理器，只是可以赋值给JPanel对象了</strong><br>当然题目说的是放置一个面板，如果像我这样做，等于直接在内容面板的南方放了两个按钮，虽然看着没什么不同，但感觉还是有实质上的区别</p>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/05/05/MRCTF%20WP/">
+      MRCTF WP
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="" rel="nofollow">
+    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
+    <p>omp</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/CTF/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>CTF</p>
+    </a>
+  </div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：May 5, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="babyRSA"><a href="#babyRSA" class="headerlink" title="babyRSA"></a>babyRSA</h1><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sympy</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> gcd, invert</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> getPrime, isPrime, getRandomNBitInteger, bytes_to_long, long_to_bytes</span><br><span class="line"><span class="keyword">from</span> z3 <span class="keyword">import</span> *</span><br><span class="line">flag = <span class="string">b"MRCTF&#123;xxxx&#125;"</span></span><br><span class="line">base = <span class="number">65537</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">GCD</span><span class="params">(A)</span>:</span></span><br><span class="line">    B = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(A)):</span><br><span class="line">        B = gcd(A[i<span class="number">-1</span>], A[i])</span><br><span class="line">    <span class="keyword">return</span> B</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gen_p</span><span class="params">()</span>:</span></span><br><span class="line">    P = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">17</span>)]</span><br><span class="line">    P[<span class="number">0</span>] = getPrime(<span class="number">128</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">17</span>):</span><br><span class="line">        P[i] = sympy.nextprime(P[i<span class="number">-1</span>])</span><br><span class="line">    print(<span class="string">"P_p :"</span>, P[<span class="number">9</span>])</span><br><span class="line">    n = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">17</span>):</span><br><span class="line">        n *= P[i]</span><br><span class="line">    p = getPrime(<span class="number">1024</span>)</span><br><span class="line">    factor = pow(p, base, n)</span><br><span class="line">    print(<span class="string">"P_factor :"</span>, factor)</span><br><span class="line">    <span class="keyword">return</span> sympy.nextprime(p)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gen_q</span><span class="params">()</span>:</span></span><br><span class="line">    sub_Q = getPrime(<span class="number">1024</span>)</span><br><span class="line">    Q_1 = getPrime(<span class="number">1024</span>)</span><br><span class="line">    Q_2 = getPrime(<span class="number">1024</span>)</span><br><span class="line">    Q = sub_Q ** Q_2 % Q_1</span><br><span class="line">    print(<span class="string">"Q_1: "</span>, Q_1)</span><br><span class="line">    print(<span class="string">"Q_2: "</span>, Q_2)</span><br><span class="line">    print(<span class="string">"sub_Q: "</span>, sub_Q)</span><br><span class="line">    <span class="keyword">return</span> sympy.nextprime(Q)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    _E = base</span><br><span class="line">    _P = gen_p()</span><br><span class="line">    _Q = gen_q()</span><br><span class="line">    <span class="keyword">assert</span> (gcd(_E, (_P - <span class="number">1</span>) * (_Q - <span class="number">1</span>)) == <span class="number">1</span>)</span><br><span class="line">    _M = bytes_to_long(flag)</span><br><span class="line">    _C = pow(_M, _E, _P * _Q)</span><br><span class="line">    print(<span class="string">"Ciphertext = "</span>, _C)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">P_p : 206027926847308612719677572554991143421</span></span><br><span class="line"><span class="string">P_factor : 213671742765908980787116579976289600595864704574134469173111790965233629909513884704158446946409910475727584342641848597858942209151114627306286393390259700239698869487469080881267182803062488043469138252786381822646126962323295676431679988602406971858136496624861228526070581338082202663895710929460596143281673761666804565161435963957655012011051936180536581488499059517946308650135300428672486819645279969693519039407892941672784362868653243632727928279698588177694171797254644864554162848696210763681197279758130811723700154618280764123396312330032986093579531909363210692564988076206283296967165522152288770019720928264542910922693728918198338839</span></span><br><span class="line"><span class="string">Q_1:  103766439849465588084625049495793857634556517064563488433148224524638105971161051763127718438062862548184814747601299494052813662851459740127499557785398714481909461631996020048315790167967699932967974484481209879664173009585231469785141628982021847883945871201430155071257803163523612863113967495969578605521</span></span><br><span class="line"><span class="string">Q_2:  151010734276916939790591461278981486442548035032350797306496105136358723586953123484087860176438629843688462671681777513652947555325607414858514566053513243083627810686084890261120641161987614435114887565491866120507844566210561620503961205851409386041194326728437073995372322433035153519757017396063066469743</span></span><br><span class="line"><span class="string">sub_Q:  168992529793593315757895995101430241994953638330919314800130536809801824971112039572562389449584350643924391984800978193707795909956472992631004290479273525116959461856227262232600089176950810729475058260332177626961286009876630340945093629959302803189668904123890991069113826241497783666995751391361028949651</span></span><br><span class="line"><span class="string">Ciphertext =  1709187240516367141460862187749451047644094885791761673574674330840842792189795049968394122216854491757922647656430908587059997070488674220330847871811836724541907666983042376216411561826640060734307013458794925025684062804589439843027290282034999617915124231838524593607080377300985152179828199569474241678651559771763395596697140206072537688129790126472053987391538280007082203006348029125729650207661362371936196789562658458778312533505938858959644541233578654340925901963957980047639114170033936570060250438906130591377904182111622236567507022711176457301476543461600524993045300728432815672077399879668276471832</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>gen_q()中sub_Q,Q_1,Q_2都已给出，唯一注意的一点是<code>Q = sub_Q ** Q_2 % Q_1</code>,大数乘方计算量太大，应该改为模运算<code>Q=pow(sub_ Q,Q_2,Q_1)</code><br>gen_p()给出第十个素数，使用sympy.nextprime()和sympy.prevprime()向前向后推就行，由于n由17个小素数相乘得到，对应的φ(n)分别用小素数-1相乘得到，然后进行一次普通的RSA，得到P</p>
+<h3 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> sympy</span><br><span class="line">C=  <span class="number">1709187240516367141460862187749451047644094885791761673574674330840842792189795049968394122216854491757922647656430908587059997070488674220330847871811836724541907666983042376216411561826640060734307013458794925025684062804589439843027290282034999617915124231838524593607080377300985152179828199569474241678651559771763395596697140206072537688129790126472053987391538280007082203006348029125729650207661362371936196789562658458778312533505938858959644541233578654340925901963957980047639114170033936570060250438906130591377904182111622236567507022711176457301476543461600524993045300728432815672077399879668276471832</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gen_q</span><span class="params">()</span>:</span></span><br><span class="line">    Q_1=<span class="number">103766439849465588084625049495793857634556517064563488433148224524638105971161051763127718438062862548184814747601299494052813662851459740127499557785398714481909461631996020048315790167967699932967974484481209879664173009585231469785141628982021847883945871201430155071257803163523612863113967495969578605521</span></span><br><span class="line">    Q_2=<span class="number">151010734276916939790591461278981486442548035032350797306496105136358723586953123484087860176438629843688462671681777513652947555325607414858514566053513243083627810686084890261120641161987614435114887565491866120507844566210561620503961205851409386041194326728437073995372322433035153519757017396063066469743</span></span><br><span class="line">    sub_Q=<span class="number">168992529793593315757895995101430241994953638330919314800130536809801824971112039572562389449584350643924391984800978193707795909956472992631004290479273525116959461856227262232600089176950810729475058260332177626961286009876630340945093629959302803189668904123890991069113826241497783666995751391361028949651</span></span><br><span class="line">    Q =pow(sub_Q,Q_2,Q_1)</span><br><span class="line">    <span class="keyword">return</span> sympy.nextprime(Q)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gen_p</span><span class="params">()</span>:</span></span><br><span class="line">    n=<span class="number">1</span></span><br><span class="line">    phin=<span class="number">1</span></span><br><span class="line">    P=[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">17</span>)]</span><br><span class="line">    P[<span class="number">9</span>]=<span class="number">206027926847308612719677572554991143421</span></span><br><span class="line">    P_factor =<span class="number">213671742765908980787116579976289600595864704574134469173111790965233629909513884704158446946409910475727584342641848597858942209151114627306286393390259700239698869487469080881267182803062488043469138252786381822646126962323295676431679988602406971858136496624861228526070581338082202663895710929460596143281673761666804565161435963957655012011051936180536581488499059517946308650135300428672486819645279969693519039407892941672784362868653243632727928279698588177694171797254644864554162848696210763681197279758130811723700154618280764123396312330032986093579531909363210692564988076206283296967165522152288770019720928264542910922693728918198338839</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">8</span>,<span class="number">-1</span>,<span class="number">-1</span>):</span><br><span class="line">        P[i]=sympy.prevprime(P[i+<span class="number">1</span>])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>,<span class="number">17</span>):</span><br><span class="line">        P[i]=sympy.nextprime(P[i<span class="number">-1</span>])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">17</span>):</span><br><span class="line">        n*=P[i]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">17</span>):</span><br><span class="line">        phin*=P[i]<span class="number">-1</span></span><br><span class="line">    d=invert(<span class="number">65537</span>,phin)</span><br><span class="line">    p=pow(P_factor,d,n)</span><br><span class="line">    <span class="keyword">return</span> sympy.nextprime(p)</span><br><span class="line">P=gen_p()</span><br><span class="line">Q=gen_q()</span><br><span class="line">D=invert(<span class="number">65537</span>,(P<span class="number">-1</span>)*(Q<span class="number">-1</span>))</span><br><span class="line">M=pow(C,D,P*Q)</span><br><span class="line">print(long_to_bytes(M))</span><br></pre></td></tr></table></figure>
+<h1 id="easyRSA"><a href="#easyRSA" class="headerlink" title="easyRSA"></a>easyRSA</h1><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sympy</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> gcd, invert</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> getPrime, isPrime, getRandomNBitInteger, bytes_to_long, long_to_bytes</span><br><span class="line"><span class="keyword">from</span> z3 <span class="keyword">import</span> *</span><br><span class="line">flag = <span class="string">b"MRCTF&#123;xxxx&#125;"</span></span><br><span class="line">base = <span class="number">65537</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">GCD</span><span class="params">(A)</span>:</span></span><br><span class="line">    B = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(A)):</span><br><span class="line">        B = gcd(A[i<span class="number">-1</span>], A[i])</span><br><span class="line">    <span class="keyword">return</span> B</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gen_p</span><span class="params">()</span>:</span></span><br><span class="line">    P = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">17</span>)]</span><br><span class="line">    P[<span class="number">0</span>] = getPrime(<span class="number">128</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">17</span>):</span><br><span class="line">        P[i] = sympy.nextprime(P[i<span class="number">-1</span>])</span><br><span class="line">    print(<span class="string">"P_p :"</span>, P[<span class="number">9</span>])</span><br><span class="line">    n = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">17</span>):</span><br><span class="line">        n *= P[i]</span><br><span class="line">    p = getPrime(<span class="number">1024</span>)</span><br><span class="line">    factor = pow(p, base, n)</span><br><span class="line">    print(<span class="string">"P_factor :"</span>, factor)</span><br><span class="line">    <span class="keyword">return</span> sympy.nextprime(p)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gen_q</span><span class="params">()</span>:</span></span><br><span class="line">    sub_Q = getPrime(<span class="number">1024</span>)</span><br><span class="line">    Q_1 = getPrime(<span class="number">1024</span>)</span><br><span class="line">    Q_2 = getPrime(<span class="number">1024</span>)</span><br><span class="line">    Q = sub_Q ** Q_2 % Q_1</span><br><span class="line">    print(<span class="string">"Q_1: "</span>, Q_1)</span><br><span class="line">    print(<span class="string">"Q_2: "</span>, Q_2)</span><br><span class="line">    print(<span class="string">"sub_Q: "</span>, sub_Q)</span><br><span class="line">    <span class="keyword">return</span> sympy.nextprime(Q)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    _E = base</span><br><span class="line">    _P = gen_p()</span><br><span class="line">    _Q = gen_q()</span><br><span class="line">    <span class="keyword">assert</span> (gcd(_E, (_P - <span class="number">1</span>) * (_Q - <span class="number">1</span>)) == <span class="number">1</span>)</span><br><span class="line">    _M = bytes_to_long(flag)</span><br><span class="line">    _C = pow(_M, _E, _P * _Q)</span><br><span class="line">    print(<span class="string">"Ciphertext = "</span>, _C)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">P_p : 206027926847308612719677572554991143421</span></span><br><span class="line"><span class="string">P_factor : 213671742765908980787116579976289600595864704574134469173111790965233629909513884704158446946409910475727584342641848597858942209151114627306286393390259700239698869487469080881267182803062488043469138252786381822646126962323295676431679988602406971858136496624861228526070581338082202663895710929460596143281673761666804565161435963957655012011051936180536581488499059517946308650135300428672486819645279969693519039407892941672784362868653243632727928279698588177694171797254644864554162848696210763681197279758130811723700154618280764123396312330032986093579531909363210692564988076206283296967165522152288770019720928264542910922693728918198338839</span></span><br><span class="line"><span class="string">Q_1:  103766439849465588084625049495793857634556517064563488433148224524638105971161051763127718438062862548184814747601299494052813662851459740127499557785398714481909461631996020048315790167967699932967974484481209879664173009585231469785141628982021847883945871201430155071257803163523612863113967495969578605521</span></span><br><span class="line"><span class="string">Q_2:  151010734276916939790591461278981486442548035032350797306496105136358723586953123484087860176438629843688462671681777513652947555325607414858514566053513243083627810686084890261120641161987614435114887565491866120507844566210561620503961205851409386041194326728437073995372322433035153519757017396063066469743</span></span><br><span class="line"><span class="string">sub_Q:  168992529793593315757895995101430241994953638330919314800130536809801824971112039572562389449584350643924391984800978193707795909956472992631004290479273525116959461856227262232600089176950810729475058260332177626961286009876630340945093629959302803189668904123890991069113826241497783666995751391361028949651</span></span><br><span class="line"><span class="string">Ciphertext =  1709187240516367141460862187749451047644094885791761673574674330840842792189795049968394122216854491757922647656430908587059997070488674220330847871811836724541907666983042376216411561826640060734307013458794925025684062804589439843027290282034999617915124231838524593607080377300985152179828199569474241678651559771763395596697140206072537688129790126472053987391538280007082203006348029125729650207661362371936196789562658458778312533505938858959644541233578654340925901963957980047639114170033936570060250438906130591377904182111622236567507022711176457301476543461600524993045300728432815672077399879668276471832</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>gen_q()中sub_Q,Q_1,Q_2都已给出，唯一注意的一点是<code>Q = sub_Q ** Q_2 % Q_1</code>,大数乘方计算量太大，应该改为模运算<code>Q=pow(sub_ Q,Q_2,Q_1)</code><br>gen_p()给出第十个素数，使用sympy.nextprime()和sympy.prevprime()向前向后推就行，由于n由17个小素数相乘得到，对应的φ(n)分别用小素数-1相乘得到，然后进行一次普通的RSA，得到P</p>
+<h3 id="解题-1"><a href="#解题-1" class="headerlink" title="解题"></a>解题</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> sympy</span><br><span class="line">C=  <span class="number">1709187240516367141460862187749451047644094885791761673574674330840842792189795049968394122216854491757922647656430908587059997070488674220330847871811836724541907666983042376216411561826640060734307013458794925025684062804589439843027290282034999617915124231838524593607080377300985152179828199569474241678651559771763395596697140206072537688129790126472053987391538280007082203006348029125729650207661362371936196789562658458778312533505938858959644541233578654340925901963957980047639114170033936570060250438906130591377904182111622236567507022711176457301476543461600524993045300728432815672077399879668276471832</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gen_q</span><span class="params">()</span>:</span></span><br><span class="line">    Q_1=<span class="number">103766439849465588084625049495793857634556517064563488433148224524638105971161051763127718438062862548184814747601299494052813662851459740127499557785398714481909461631996020048315790167967699932967974484481209879664173009585231469785141628982021847883945871201430155071257803163523612863113967495969578605521</span></span><br><span class="line">    Q_2=<span class="number">151010734276916939790591461278981486442548035032350797306496105136358723586953123484087860176438629843688462671681777513652947555325607414858514566053513243083627810686084890261120641161987614435114887565491866120507844566210561620503961205851409386041194326728437073995372322433035153519757017396063066469743</span></span><br><span class="line">    sub_Q=<span class="number">168992529793593315757895995101430241994953638330919314800130536809801824971112039572562389449584350643924391984800978193707795909956472992631004290479273525116959461856227262232600089176950810729475058260332177626961286009876630340945093629959302803189668904123890991069113826241497783666995751391361028949651</span></span><br><span class="line">    Q =pow(sub_Q,Q_2,Q_1)</span><br><span class="line">    <span class="keyword">return</span> sympy.nextprime(Q)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gen_p</span><span class="params">()</span>:</span></span><br><span class="line">    n=<span class="number">1</span></span><br><span class="line">    phin=<span class="number">1</span></span><br><span class="line">    P=[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">17</span>)]</span><br><span class="line">    P[<span class="number">9</span>]=<span class="number">206027926847308612719677572554991143421</span></span><br><span class="line">    P_factor =<span class="number">213671742765908980787116579976289600595864704574134469173111790965233629909513884704158446946409910475727584342641848597858942209151114627306286393390259700239698869487469080881267182803062488043469138252786381822646126962323295676431679988602406971858136496624861228526070581338082202663895710929460596143281673761666804565161435963957655012011051936180536581488499059517946308650135300428672486819645279969693519039407892941672784362868653243632727928279698588177694171797254644864554162848696210763681197279758130811723700154618280764123396312330032986093579531909363210692564988076206283296967165522152288770019720928264542910922693728918198338839</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">8</span>,<span class="number">-1</span>,<span class="number">-1</span>):</span><br><span class="line">        P[i]=sympy.prevprime(P[i+<span class="number">1</span>])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>,<span class="number">17</span>):</span><br><span class="line">        P[i]=sympy.nextprime(P[i<span class="number">-1</span>])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">17</span>):</span><br><span class="line">        n*=P[i]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">17</span>):</span><br><span class="line">        phin*=P[i]<span class="number">-1</span></span><br><span class="line">    d=invert(<span class="number">65537</span>,phin)</span><br><span class="line">    p=pow(P_factor,d,n)</span><br><span class="line">    <span class="keyword">return</span> sympy.nextprime(p)</span><br><span class="line">P=gen_p()</span><br><span class="line">Q=gen_q()</span><br><span class="line">D=invert(<span class="number">65537</span>,(P<span class="number">-1</span>)*(Q<span class="number">-1</span>))</span><br><span class="line">M=pow(C,D,P*Q)</span><br><span class="line">print(long_to_bytes(M))</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/05/05/AES/">
+      AES加密解密
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="" rel="nofollow">
+    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
+    <p>omp</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>密码学</p>
+    </a>
+  </div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：May 5, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <meta name="referrer" content="no-referrer">
+
+<p>学习来源：<a href="https://blog.csdn.net/gulang03/article/details/81175854" target="_blank" rel="noopener">https://blog.csdn.net/gulang03/article/details/81175854</a></p>
+<p>所有图片来源<a href="https://blog.csdn.net/gulang03/article/details/81175854" target="_blank" rel="noopener">https://blog.csdn.net/gulang03/article/details/81175854</a></p>
+<h1 id="AES"><a href="#AES" class="headerlink" title="AES"></a>AES</h1><p>高级加密标准(AES,Advanced Encryption Standard)为最常见的对称加密算法。<br>下面分析一下AES-128的加密过程<br>128即密钥为128位，进行10轮加密，密钥位数不同，加密轮数也不同。</p>
+<h2 id="轮密钥加"><a href="#轮密钥加" class="headerlink" title="轮密钥加"></a>轮密钥加</h2><p><img src="https://upload-images.jianshu.io/upload_images/19601162-a400b0cd5249d2dc.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="20170219152638324.jpg"><br>图中的W[0],W[1],W[2],W[3]是原始密钥，一列如k0,k1,k2,k3(每个key8位)组成W[0]   (32位字)<br>轮密钥加是将128位轮密钥Ki同状态矩阵(一般地，明文分组用字节为单位的正方形矩阵描述，称为状态矩阵。)中的数据进行逐位异或操作。<br>明文矩阵与状态矩阵的转换：<br><img src="https://upload-images.jianshu.io/upload_images/19601162-8cebeb0a38a431e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="20170219134722812.png"><br>轮密钥加图解：<br><img src="https://upload-images.jianshu.io/upload_images/19601162-75b295e3c76fb9f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="20170220080512086.png"><br>可以看做是S0,S1,S2,S3组成的32位字与W[0]的异或运算</p>
+<h2 id="轮函数"><a href="#轮函数" class="headerlink" title="轮函数"></a>轮函数</h2><p>前九轮分为字节代换，行移位，列混合三步，第10轮没有列混合</p>
+<h3 id="字节代换"><a href="#字节代换" class="headerlink" title="字节代换"></a>字节代换</h3><p>根据给出的S盒代换表进行代换<br>将一个字节前四位看作行数，后四位看作列数，找到对应的数字进行代换</p>
+<h3 id="行移位"><a href="#行移位" class="headerlink" title="行移位"></a>行移位</h3><p>当密钥长度为128比特时，状态矩阵的第0行左移0字节，第1行左移1字节，第2行左移2字节，第3行左移3字节。<br><img src="https://upload-images.jianshu.io/upload_images/19601162-0e8dbda1dbaaa861.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="20170219174015167.png"></p>
+<h3 id="列混合"><a href="#列混合" class="headerlink" title="列混合"></a>列混合</h3><p>列混合需要将状态矩阵与固定的矩阵相乘，此处相乘是基于GF(2^8)上的二元运算,并不是通常意义上的乘法和加法。虽然关于有限域的运算我不会，但是这好像不影响我们理解此处的运算<br><img src="https://upload-images.jianshu.io/upload_images/19601162-9a34cb6c3dfcc89f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="20170219203346436.png"><br>等号右侧左边的矩阵就是固定矩阵，矩阵的相乘究竟是如何运算的呢<br>状态矩阵中的第j列(0 ≤j≤3)的列混合可以表示为下图所示：<br><img src="https://upload-images.jianshu.io/upload_images/19601162-a4141904f538b9e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="20170219203742516.png"><br>从图中可知列混合的新矩阵的第一行第j列元素是固定矩阵中第一行元素与原矩阵第j列元素对应相乘并异或</p>
+<h2 id="轮密钥的生成"><a href="#轮密钥的生成" class="headerlink" title="轮密钥的生成"></a>轮密钥的生成</h2><p><img src="https://upload-images.jianshu.io/upload_images/19601162-86e8000fe89d204a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="20170220082316736.png"><br>有了初始密钥W[0],W[1],W[2],W[3]hou,后面密钥的生成都基于这个规则<br>其中的T函数又分为三步：字循环，字节代换，轮常量异或</p>
+<h3 id="字循环"><a href="#字循环" class="headerlink" title="字循环"></a>字循环</h3><p>将1个字中的4个字节循环左移1个字节。即将输入字[b0, b1, b2, b3]变换成[b1,b2,b3,b0]</p>
+<h3 id="字节代换-1"><a href="#字节代换-1" class="headerlink" title="字节代换"></a>字节代换</h3><p>使用S盒代换</p>
+<h3 id="轮常量异或"><a href="#轮常量异或" class="headerlink" title="轮常量异或"></a>轮常量异或</h3><p><img src="https://upload-images.jianshu.io/upload_images/19601162-c088d299c207f72b.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="轮常量.PNG"><br>将字节代换的结果再与每轮相应的轮常量异或</p>
+<h2 id="加密与解密"><a href="#加密与解密" class="headerlink" title="加密与解密"></a>加密与解密</h2><p><img src="https://upload-images.jianshu.io/upload_images/19601162-2b0a0b973ed601ed.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="20170219161202485.jpg"><br>加密过程与上述标题相同，解密过程与之相反<br>在第一轮中先进行逆行移位，再进行逆字节代换，在第二到十轮中先逆列混合，逆行移位，再逆字节代换</p>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/05/05/ntfs%E9%9A%90%E5%86%99/">
+      ntfs隐写
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="" rel="nofollow">
+    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
+    <p>omp</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/%E6%9D%82%E9%A1%B9/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>杂项</p>
+    </a>
+  </div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：May 5, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <meta name="referrer" content="no-referrer">
+
+
+
+<h2 id="NTFS交换数据流（ADS）简介"><a href="#NTFS交换数据流（ADS）简介" class="headerlink" title="NTFS交换数据流（ADS）简介"></a>NTFS交换数据流（ADS）简介</h2><blockquote>
+<p> 在NTFS文件系统中存在着NTFS交换数据流（Alternate Data Streams，简称ADS），这是NTFS磁盘格式的特性之一。每一个文件，都有着主文件流和非主文件流，主文件流能够直接看到；而非主文件流寄宿于主文件流中，无法直接读取，这个非主文件流就是NTFS交换数据流。<br>   ADS的作用在于，它允许一个文件携带着附加的信息。例如，IE浏览器下载文件时，会向文件添加一个数据流，标记该文件来源于外部，即带有风险，那么，在用户打开文件时，就会弹出文件警告提示。再如，在网址收藏中，也会附加一个favicon数据流以存放网站图标。<br> ADS也被用于一些恶意文件隐藏自身,作为后门</p>
+</blockquote>
+<p>学习戳<a href="https://www.cnblogs.com/Chesky/p/ALTERNATE_DATA_STREAMS.html" target="_blank" rel="noopener">https://www.cnblogs.com/Chesky/p/ALTERNATE_DATA_STREAMS.html</a></p>
+<h2 id="提取隐藏文件"><a href="#提取隐藏文件" class="headerlink" title="提取隐藏文件"></a>提取隐藏文件</h2><p>通过看了一些资料，找到了Ntfs Streams Editor这个工具，可以扫描到可疑文件<br><img src="https://upload-images.jianshu.io/upload_images/19601162-79d1842106f967a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="977035-20161116005326607-289849401.png"><br>图片来源：<a href="https://www.cnblogs.com/Chesky/p/ALTERNATE_DATA_STREAMS.html" target="_blank" rel="noopener">https://www.cnblogs.com/Chesky/p/ALTERNATE_DATA_STREAMS.html</a><br>后来又学到了一种可以直接通过DOS命令查看的方法<br><code>dir /r</code>以只读查看文件(这里不知道为什么<code>dir /a:h</code>和<code>dir</code>都不行)<br><img src="https://upload-images.jianshu.io/upload_images/19601162-c25b3d0604557916.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ntfs.PNG"><br>然后输入notepad命令直接查看<br><code>notepad 293.txt:flag.txt</code></p>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
       
         
           <div class='post-wrapper'>
@@ -850,12 +1375,17 @@
           <li><a class="flat-box"
             title="/categories/java/" href="/categories/java/"
             id="categoriesjava"
-            ><div class='name'>java</div><div class='badge'>(2)</div></a></li>
+            ><div class='name'>java</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/web/" href="/categories/web/"
             id="categoriesweb"
-            ><div class='name'>web</div><div class='badge'>(5)</div></a></li>
+            ><div class='name'>web</div><div class='badge'>(8)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+            id="categoriesE5ADA6E4B9A0E7AC94E8AEB0"
+            ><div class='name'>学习笔记</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/"
@@ -889,7 +1419,7 @@
 
 
     <div class='content'>
-      <a href="/tags/AES/" style="font-size: 19px; color: #777">AES</a> <a href="/tags/DLP/" style="font-size: 19px; color: #777">DLP</a> <a href="/tags/ECC/" style="font-size: 14px; color: #999">ECC</a> <a href="/tags/RC4/" style="font-size: 14px; color: #999">RC4</a> <a href="/tags/RSA/" style="font-size: 24px; color: #555">RSA</a> <a href="/tags/crt/" style="font-size: 14px; color: #999">crt</a> <a href="/tags/flask/" style="font-size: 14px; color: #999">flask</a> <a href="/tags/http/" style="font-size: 14px; color: #999">http</a> <a href="/tags/java/" style="font-size: 19px; color: #777">java</a> <a href="/tags/knapsack/" style="font-size: 19px; color: #777">knapsack</a> <a href="/tags/mt19937/" style="font-size: 14px; color: #999">mt19937</a> <a href="/tags/php%E4%BC%AA%E5%8D%8F%E8%AE%AE/" style="font-size: 14px; color: #999">php伪协议</a> <a href="/tags/sql%E6%B3%A8%E5%85%A5/" style="font-size: 19px; color: #777">sql注入</a> <a href="/tags/stream/" style="font-size: 14px; color: #999">stream</a> <a href="/tags/%E6%89%A9%E5%B1%95CRT/" style="font-size: 14px; color: #999">扩展CRT</a> <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" style="font-size: 14px; color: #999">文件包含</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 24px; color: #555">杂项</a> <a href="/tags/%E7%BC%96%E7%A0%81/" style="font-size: 14px; color: #999">编码</a>
+      <a href="/tags/AES/" style="font-size: 17.33px; color: #828282">AES</a> <a href="/tags/DLP/" style="font-size: 17.33px; color: #828282">DLP</a> <a href="/tags/ECC/" style="font-size: 14px; color: #999">ECC</a> <a href="/tags/RC4/" style="font-size: 14px; color: #999">RC4</a> <a href="/tags/RSA/" style="font-size: 20.67px; color: #6c6c6c">RSA</a> <a href="/tags/crt/" style="font-size: 14px; color: #999">crt</a> <a href="/tags/flask/" style="font-size: 14px; color: #999">flask</a> <a href="/tags/http/" style="font-size: 14px; color: #999">http</a> <a href="/tags/java/" style="font-size: 20.67px; color: #6c6c6c">java</a> <a href="/tags/knapsack/" style="font-size: 17.33px; color: #828282">knapsack</a> <a href="/tags/mt19937/" style="font-size: 14px; color: #999">mt19937</a> <a href="/tags/php%E4%BC%AA%E5%8D%8F%E8%AE%AE/" style="font-size: 14px; color: #999">php伪协议</a> <a href="/tags/php%E5%BC%B1%E7%B1%BB%E5%9E%8B/" style="font-size: 14px; color: #999">php弱类型</a> <a href="/tags/sql%E6%B3%A8%E5%85%A5/" style="font-size: 24px; color: #555">sql注入</a> <a href="/tags/ssti/" style="font-size: 17.33px; color: #828282">ssti</a> <a href="/tags/stream/" style="font-size: 14px; color: #999">stream</a> <a href="/tags/tornado/" style="font-size: 14px; color: #999">tornado</a> <a href="/tags/%E6%89%A9%E5%B1%95CRT/" style="font-size: 14px; color: #999">扩展CRT</a> <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" style="font-size: 14px; color: #999">文件包含</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 20.67px; color: #6c6c6c">杂项</a> <a href="/tags/%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2/" style="font-size: 14px; color: #999">源码泄露</a> <a href="/tags/%E7%BC%96%E7%A0%81/" style="font-size: 14px; color: #999">编码</a>
     </div>
   </section>
 
