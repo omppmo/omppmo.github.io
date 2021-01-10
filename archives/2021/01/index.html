@@ -18,7 +18,7 @@
 
   <!-- 页面元数据 -->
   
-    <title>Tag: php弱类型 - omp&#39;s blog</title>
+    <title>Archive: 2021/1 - omp&#39;s blog</title>
   
   
 
@@ -73,7 +73,61 @@
 <script src="https://cdn.jsdelivr.net/gh/zyoushuo/Blog/hexo/js/mouse_click.js"></script>
 
   
-  <div id="loading-bar-wrapper">
+  <div class="cover-wrapper">
+    
+      <cover class='cover  half'>
+        <div class='cover-body'>
+  <div class='a'>
+    
+    
+      <p class="title">omp's blog</p>
+    
+    
+      <p class="subtitle">一个密码学小白的学习之路</p>
+    
+  </div>
+  <div class='b'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <ul class='cover-list-h'>
+        
+          
+            <li>
+              <a class="nav home"
+                href="/archives/"
+                
+                
+                id="archives">
+                <i class='fas fa-book fa-fw'></i>文档
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="/"
+                
+                
+                id="home">
+                <i class='fas fa-rss fa-fw'></i>博文
+              </a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+      </cover>
+    
+    <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
 </div>
 <header class="l_header shadow blur">
@@ -326,17 +380,16 @@
 
 <script>setLoadingBarProgress(40);</script>
 
+  </div>
 
 
-  <div class="l_body nocover">
+  <div class="l_body">
     <div class='body-wrapper'>
       
 
-
 <div class='l_main'>
-  
-    
-      
+	
+		
   <section class="post-list ">
     
       
@@ -361,8 +414,8 @@
         
           
   <h2 class="title">
-    <a href="/2020/11/30/backupfile/">
-      BackupFile[ACTF2020 新生赛]
+    <a href="/2021/01/10/bot/">
+      基于mirai和graia框架的机器人搭建
     </a>
   </h2>
 
@@ -387,9 +440,9 @@
               
   
   <div class='new-meta-item category'>
-    <a href='/categories/web/' rel="nofollow">
+    <a href='/categories/%E5%85%B6%E4%BB%96/' rel="nofollow">
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>web</p>
+      <p>其他</p>
     </a>
   </div>
 
@@ -400,7 +453,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Nov 30, 2020</p>
+    <p>发布于：Jan 10, 2021</p>
   </a>
 </div>
 
@@ -428,14 +481,111 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><ul>
-<li>常见的源码泄露</li>
-<li>php弱类型</li>
-</ul>
-<h2 id="做题思路"><a href="#做题思路" class="headerlink" title="做题思路"></a>做题思路</h2><p>备份文件index.php.bak</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include_once</span> <span class="string">"flag.php"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'key'</span>])) &#123;</span><br><span class="line">    $key = $_GET[<span class="string">'key'</span>];</span><br><span class="line">    <span class="keyword">if</span>(!is_numeric($key)) &#123;</span><br><span class="line">        <span class="keyword">exit</span>(<span class="string">"Just num!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    $key = intval($key);</span><br><span class="line">    $str = <span class="string">"123ffwsfwefwf24r2f32ir23jrw923rskfjwtsw54w3"</span>;</span><br><span class="line">    <span class="keyword">if</span>($key == $str) &#123;</span><br><span class="line">        <span class="keyword">echo</span> $flag;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"Try to find out source file!"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>php弱类型:int和string无法直接比较，php将string转换为int再进行比较，转换方法：该字符串的开始部分决定了它的值，如果该字符串以合法的数值开始，则使用该数值，否则其值为0。</p>
-<p>故使用get传参 key=123即可得到flag</p>
+        <h2 id="基本搭建"><a href="#基本搭建" class="headerlink" title="基本搭建"></a>基本搭建</h2><p>Day1</p>
+<p>首先找到了 为数不多可用的sagiri-bot框架</p>
+<p>服务器pip换源  pip3 install -r requirements.txt</p>
+<p>创建数据库文件同名数据库(这边之前自己没操作服务器，之间修改配置文件把mysql登录跳过了)</p>
+<p>source 数据库文件的绝对路径 执行数据库文件</p>
+<p>:x:mysql报错</p>
+<p>ERROR 1273 (HY000): Unknown collation: ‘utf8mb4_0900_ai_ci’</p>
+<p>版本原因：生成转储文件的数据库版本为8.0,要导入sql文件的数据库版本为5.6,因为是高版本导入到低版本，引起1273错误</p>
+<p>解决方法：<br> 打开sql文件，将文件中的所有<br> <code>utf8mb4_0900_ai_ci</code>替换为<code>utf8_general_ci</code><br> <code>utf8mb4</code>替换为<code>utf8</code><br> 保存后再次运行sql文件，运行成功</p>
+<p>基于mirai框架，需要下mirai-console和配置mirai-api-http</p>
+<p>启动mirai-console需要装自启动mirai-console-loader</p>
+<p>:zap:优化</p>
+<p>这边github太慢了，直接导入gitee仓库</p>
+<p>给服务器装一下Java环境</p>
+<p>:x:启动console报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.UnsupportedClassVersionError: org&#x2F;zjh&#x2F;openlayersdemo&#x2F;OpenlayersdemoApplication has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime only recognizes class file versions up to 52.0</span><br></pre></td></tr></table></figure>
+<p>这边装的java8..  需要重装java11</p>
+<p>:x:启动console报错</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.NoSuchMethodError: net.mamoe.mirai.utils.MiraiLogger$Companion.setDefaultLoggerCreator(Lkotlin/jvm/functions/Function1;)V</span><br></pre></td></tr></table></figure>
+<p>解决:.\mcl —update-package net.mamoe:mirai-core-all —channel nightly</p>
+<p>重新运行mcl 启动mirai-console<br>将mirai-api-http的jar文件拖入plugins</p>
+<p>配置生成的setting.yml 文件</p>
+<p>authkey 1234567890   占用8888端口</p>
+<p>重新启动console</p>
+<p>配置sagiri-bot个人信息</p>
+<p>:x:java报错</p>
+<p>JCE cannot authenticate the provider BC</p>
+<p>报错原因：在使用oracle的JDK时，JAR包必须签署特殊的证书才能使用。</p>
+<p>使用openJDK或者非oracle的JDK，这样就可以绕开证书的限制。</p>
+<p>所以重装了java环境，卸载了原有java11环境，使用yum安装了openjdk,将/etc/profile配置文件中的环境变量更改为openjdk安装目录/usr/lib/jvm/xxx，source使之生效</p>
+<p>虽然报错解决了，但对登录不上去这个问题没什么改变…</p>
+<p>:x:console登录报错</p>
+<p>在mirai-console登录qq报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2021-01-01 16:26:05 E&#x2F;main: Failed to init MiraiConsole.</span><br><span class="line"></span><br><span class="line">net.mamoe.mirai.network.WrongPasswordException: Error(title&#x3D;温馨提示, message&#x3D;当前版本过低，请先升级到手机QQ最新版本。, errorInfo&#x3D;)</span><br></pre></td></tr></table></figure>
+<p>最开始报错是不支持滑动验证，根据文档提示修改协议为PAD后</p>
+<p>输入验证码登录，若账号密码验证码不正确则报错网络环境问题；若都正确报错以上信息…问题772</p>
+<p>已解决，更改协议为WATCH后，验证登录即可</p>
+<p>至此mirai部分配置完成，启动需要graia</p>
+<p>DAY2</p>
+<p>:x:启动bot 报错</p>
+<p>python3 sagiri_bot.py报错</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">File <span class="string">"/usr/lib64/python3.6/functools.py"</span>, line <span class="number">477</span>, <span class="keyword">in</span> lru_cache     <span class="keyword">raise</span> TypeError(<span class="string">'Expected maxsize to be an integer or None'</span>) TypeError: Expected maxsize to be an integer <span class="keyword">or</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+<p> 装了SDK</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install graia-application-mirai</span><br><span class="line">pip install graia-broadcast --upgrade</span><br></pre></td></tr></table></figure>
+<p>发现不仅是import graia.broadcast产生的报错,后边调库的时候还有很多别的报错，经过很久很久的搜索，终于在graia project的issue下面找到了原因所在</p>
+<p>由于pip使用阿里源的问题，直接下载了graia-application-mirai 0.0.6的版本 会出现很多报错</p>
+<p><code>$ pip install -i https://pypi.python.org/simple graia-application-mirai==0.1.0</code></p>
+<p>更改为0.1.0版本不再报错</p>
+<p>:x:启动bot报错</p>
+<p>这次又有了船新报错</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">from</span> __future__ <span class="keyword">import</span> annotations</span><br><span class="line">    ^</span><br><span class="line">SyntaxError: future feature annotations <span class="keyword">is</span> <span class="keyword">not</span> defined</span><br></pre></td></tr></table></figure>
+<p>从<code>Python 3.7</code>才可以开始导入<code>__future__``annotations</code></p>
+<p>服务器centos自带3.6 重装3.7….. 之前给ubuntu做过升级</p>
+<p>装好后更改软连接，使pip3与python3指向3.7</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -s &#x2F;usr&#x2F;local&#x2F;python3&#x2F;bin&#x2F;python3 &#x2F;usr&#x2F;local&#x2F;bin&#x2F;python3</span><br><span class="line">ln -s &#x2F;usr&#x2F;local&#x2F;python3&#x2F;bin&#x2F;pip3 &#x2F;usr&#x2F;local&#x2F;bin&#x2F;pip3</span><br></pre></td></tr></table></figure>
+<p>重装第三方库</p>
+<p>:x:启动bot报错</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AttributeError: <span class="string">'ApplicationLaunched'</span> object has no attribute <span class="string">'app'</span></span><br></pre></td></tr></table></figure>
+<p>好家伙，还有什么报错是我没遇到的…</p>
+<p>报错原因:问题出在pydantic包，graia.broadcast.entities.event.EventMeta类继承自pydantic中的ModelMetaclass类，在pydantic版本是1.7.1的情况下该类貌似添加了一个空的<strong>slots</strong>属性，导致子类都无法进行self的赋值。把pydantic包回退到1.6.1版本问题解决。</p>
+<p>pip3 install pydantic-1.6.1</p>
+<p>重新运行bot.py </p>
+<p>至此，机器人实现了第一次会话  芜湖~</p>
+<p><img src="/2021/01/10/bot/image-20210102175545239.png" alt="image-20210102175545239"></p>
+<p><img src="/2021/01/10/bot/image-20210102175556793.png" alt="image-20210102175556793"></p>
+<p>DAY3</p>
+<p>:zap:优化</p>
+<p>编写代码再用winscp上传到服务器太过费劲(关键是老断，vim也比较麻烦</p>
+<p>装了vscode的插件sftp</p>
+<p>服务器建立相同文件名文件夹  右键直接upload即可</p>
+<p>芜湖~</p>
+<p>:x:关于scheduler与application不兼容</p>
+<p>运行sagiri_bot.py  报错无graia.scheduler模块</p>
+<p>装后broadcast版本问题发生冲突…</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">graia-application-mirai <span class="number">0.1</span><span class="number">.0</span> has requirement graia-broadcast&lt;<span class="number">0.0</span><span class="number">.6</span>,&gt;=<span class="number">0.0</span><span class="number">.5</span>, but yo<span class="string">u'll have graia-broadcast 0.5.3 which is incompatible.</span></span><br></pre></td></tr></table></figure>
+<p>graia-application-mirai 0.1.0 需要 broadcast<0.0.6,>=0.0.5</0.0.6,></p>
+<p>但graia-scheduler需要broadcast<0.6.0,>=0.5.3</0.6.0,></p>
+<p>安装scheduler后broadcast版本为0.5.3</p>
+<p>解决:搜索后发现文档更新</p>
+<p><img src="/2021/01/10/bot/image-20210103225327439.png" alt="image-20210103225327439"></p>
+<p>更新到graia-application-mirai==0.1.1后，broadcast版本可以兼容</p>
+<p>但是佩奇不能回复了….</p>
+<blockquote>
+<p>现在服务器软连接都快乱了..记录一下</p>
+<p>cd usr/bin</p>
+<p>ls -al *python*</p>
+<p>python3-&gt;python3.7.0   pip3-&gt;python3.7.0</p>
+<p>python3.6-&gt;python3.6.8  pip3.6-&gt; python3.6.8</p>
+</blockquote>
+<p>最终解决: 看github上作者commit的历史版本找了个合适的graia-application-mirai 0.11.0 ,可以兼容并运行(突然发现graia-application-mirai 都更到0.14.0了</p>
+<p>耶斯莫拉，今天佩奇被冻结了呜呜呜呜，又是拼命解冻的一天</p>
+<h2 id="bot编写"><a href="#bot编写" class="headerlink" title="bot编写"></a>bot编写</h2><p>DAY4</p>
+<p>async与await</p>
+<p>def name(x:’str’)-&gt;’int’:</p>
+<p>服务器服务后台悬挂(关闭终端不影响)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nohup python xxx.py &amp;  </span><br><span class="line">ps -ef|grep xxx</span><br><span class="line">kill -9 pid</span><br></pre></td></tr></table></figure>
+<h3 id="钉钉接口"><a href="#钉钉接口" class="headerlink" title="钉钉接口"></a>钉钉接口</h3><p>可以实现从后台导出日报数据，但必须是企业管理员权限</p>
+<p>分析河北师大的组织架构与我创建的APItest映射</p>
+<p>河北师范大学(APItest)</p>
+<p>2019级群(子部门)</p>
+<p>辅导员(子部门群主test)</p>
+<p>班长(子部门管理员)</p>
+<p>经测试，所有人都可创建表，并对自己创建的表有管理权限</p>
+<p>子部门群主和管理员都没有权限登录后台(估计要河北师范大学的管理员</p>
+<p>所以不考虑从后台导出表格</p>
 
       
     </div>
@@ -459,8 +609,7 @@
   
 
 
-    
-  
+	
 </div>
 <aside class='l_side'>
   
@@ -712,6 +861,14 @@
   </footer>
 
 <script>setLoadingBarProgress(80);</script>
+
+
+
+
+	<!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+	
+
+	
 
 
       <script>setLoadingBarProgress(60);</script>
