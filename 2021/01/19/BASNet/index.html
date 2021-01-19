@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta name="renderer" content="webkit">
@@ -18,8 +16,14 @@
 
   <!-- 页面元数据 -->
   
-    <title>Tag: java - omp&#39;s blog</title>
+    <title>BASNet - omp&#39;s blog</title>
   
+    <meta name="keywords" content="DL">
+  
+  
+    <meta name="description" content="Boundary-Aware Salient Object Detection 即边界感知显著目标检测
+
+根据放假以来的学习，简单画了下理解网络所需要的知识。自己还没有摸太清，只是目前理解的，待更新…">
   
 
   <!-- feed -->
@@ -332,29 +336,12 @@
     <div class='body-wrapper'>
       
 
-
 <div class='l_main'>
   
-    
-      
-  <section class="post-list ">
-    
-      
-        
-          
-        
-          
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
+
   
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+      
 
 
   <section class='meta'>
@@ -364,11 +351,11 @@
       <div class="meta" id="header-meta">
         
           
-  <h2 class="title">
-    <a href="/2020/11/30/java3/">
-      java学习(3)
+  <h1 class="title">
+    <a href="/2021/01/19/BASNet/">
+      BASNet
     </a>
-  </h2>
+  </h1>
 
 
         
@@ -391,9 +378,9 @@
               
   
   <div class='new-meta-item category'>
-    <a href='/categories/java/' rel="nofollow">
+    <a href='/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/' rel="nofollow">
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>java</p>
+      <p>学习笔记</p>
     </a>
   </div>
 
@@ -404,7 +391,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Nov 30, 2020</p>
+    <p>发布于：Jan 19, 2021</p>
   </a>
 </div>
 
@@ -420,7 +407,7 @@
   <div class="new-meta-item browse valine">
     <a class='notlink'>
       <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      <span id="/2020/11/30/java3/" class="leancloud_visitors" data-flag-title="java学习(3)">
+      <span id="/2021/01/19/BASNet/" class="leancloud_visitors" data-flag-title="BASNet">
       <p>
         <span class="leancloud-visitors-count"></span>
       </p>
@@ -449,342 +436,68 @@
   </section>
 
 
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>期末考试临时冲的，java的事件处理以及监听类的几个类别。</p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2020/11/30/java3/">
-            Read More <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
           
-  <h2 class="title">
-    <a href="/2020/05/05/java%E5%AD%A6%E4%B9%A02/">
-      java学习(2)
-    </a>
-  </h2>
+          <p>Boundary-Aware Salient Object Detection 即边界感知显著目标检测</p>
+<p><img src="/2021/01/19/BASNet/BASNet.png" alt></p>
+<p>根据放假以来的学习，简单画了下理解网络所需要的知识。自己还没有摸太清，只是目前理解的，待更新…</p>
+<a id="more"></a>
+<h2 id="BASNet"><a href="#BASNet" class="headerlink" title="BASNet"></a>BASNet</h2><details><summary><p>BASNet相关资料</p></summary><p>
+    paper:<a href="https://openaccess.thecvf.com/content_CVPR_2019/papers/Qin_BASNet_Boundary-Aware_Salient_Object_Detection_CVPR_2019_paper.pdf" target="_blank" rel="noopener">戳这里</a></p><p>简介:<a href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650795924&idx=2&sn=1b15a2540ffb9220f00be0cbbd62cafd&chksm=871a2beab06da2fcd63c7b22ecde508e90b488533a3f97939ec1cfc65ec3ab823e3afe579a7f&mpshare=1&scene=23&srcid=1123k84nCTl7SzHKywymED4G&sharer_sharetime=1606132949286&sharer_shareid=8feb0cd9552063c70146726ba076ab86#rd" target="_blank" rel="noopener">戳这里</a></p>
+    <p>解读:<a href="https://blog.csdn.net/calvinpaean/article/details/101036249" target="_blank" rel="noopener">戳这里</a></p><p>github:<a href="https://github.com/NathanUA/BASNet" target="_blank" rel="noopener">戳这里</a></p></details>
 
-
-        
-        <div class='new-meta-box'>
+<h3 id="Predict-预测模块"><a href="#Predict-预测模块" class="headerlink" title="Predict(预测模块)"></a>Predict(预测模块)</h3><h4 id="Resnet"><a href="#Resnet" class="headerlink" title="Resnet"></a>Resnet</h4><h5 id="resblock"><a href="#resblock" class="headerlink" title="resblock"></a>resblock</h5><p>encoder-decoder网络</p>
+<h4 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h4><ul>
+<li><h5 id="Cov"><a href="#Cov" class="headerlink" title="Cov"></a>Cov</h5><ul>
+<li>filter</li>
+</ul>
+</li>
+<li><h5 id="Pooling"><a href="#Pooling" class="headerlink" title="Pooling"></a>Pooling</h5></li>
+<li><h5 id="FC"><a href="#FC" class="headerlink" title="FC"></a>FC</h5></li>
+<li><h5 id="BN"><a href="#BN" class="headerlink" title="BN"></a>BN</h5></li>
+<li><h5 id="感受野"><a href="#感受野" class="headerlink" title="感受野"></a>感受野</h5></li>
+</ul>
+<h4 id="ReLu"><a href="#ReLu" class="headerlink" title="ReLu"></a>ReLu</h4><h4 id="FCN"><a href="#FCN" class="headerlink" title="FCN"></a>FCN</h4><h3 id="RRM-优化模块"><a href="#RRM-优化模块" class="headerlink" title="RRM(优化模块)"></a>RRM(优化模块)</h3><h4 id="loss"><a href="#loss" class="headerlink" title="loss"></a>loss</h4><h5 id="bce"><a href="#bce" class="headerlink" title="bce"></a>bce</h5><h5 id="ssim"><a href="#ssim" class="headerlink" title="ssim"></a>ssim</h5><h5 id="iou"><a href="#iou" class="headerlink" title="iou"></a>iou</h5><h2 id="SGD"><a href="#SGD" class="headerlink" title="SGD"></a>SGD</h2>
           
-            
-          
-            
+            <div class='article_footer'>
               
-<div class='new-meta-item author'>
-  <a href="" rel="nofollow">
-    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
-    <p>omp</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/java/' rel="nofollow">
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>java</p>
-    </a>
-  </div>
-
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：May 5, 2020</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      <span id="/2020/05/05/java%E5%AD%A6%E4%B9%A02/" class="leancloud_visitors" data-flag-title="java学习(2)">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-          
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>关于protected权限的子类访问方式</p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2020/05/05/java%E5%AD%A6%E4%B9%A02/">
-            Read More <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2020/05/05/java%E5%AD%A6%E4%B9%A01/">
-      java学习(1)
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="" rel="nofollow">
-    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
-    <p>omp</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/java/' rel="nofollow">
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>java</p>
-    </a>
-  </div>
-
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：May 5, 2020</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      <span id="/2020/05/05/java%E5%AD%A6%E4%B9%A01/" class="leancloud_visitors" data-flag-title="java学习(1)">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-          
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <meta name="referrer" content="no-referrer">
-
-<p>今天老师留了一个作业：建立框架，在中央放置多行文本框（TextArea）,在南方放置一个面板(JPanel),并在上边放置两个按钮，按钮文本分别为确定和取消</p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2020/05/05/java%E5%AD%A6%E4%B9%A01/">
-            Read More <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-    <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-    
-    
-
-  
-
-
-    
-  
-</div>
-<aside class='l_side'>
-  
+                
   
     
     
 
-<section class="widget blogger shadow desktop mobile">
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
   <div class='content'>
     
-      
-        <a class='avatar flat-box' href='/about/'>
-          <img no-lazy src='https://s3.ax1x.com/2021/01/03/spRpoq.jpg'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">omp's blog</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
+      <blockquote>
         
           
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
+            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
           
         
           
-            <a href="mailto:me@xaoxuu.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
+            <p>本文永久链接是：<a href=https://omppppppp.xyz/2021/01/19/BASNet/>https://omppppppp.xyz/2021/01/19/BASNet/</a></p>
           
         
-          
-            <a href="https://github.com/xaoxuu"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-          
-            <a href="https://music.163.com/#/user/home?id=63035382"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-      </div>
+      </blockquote>
     
   </div>
 </section>
@@ -794,83 +507,208 @@
   
     
     
+
+<section class="widget qrcode  desktop mobile">
   
 
-  <section class="widget category shadow desktop">
+  <div class='content article-entry'>
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+  </div>
+</section>
+
+  
+
+
+              
+            </div>
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-19T21:44:34+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Jan 19, 2021</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/DL/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>DL</p></a></div>
+
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://omppppppp.xyz/2021/01/19/BASNet/&title=BASNet - omp's blog&summary=Boundary-Aware Salient Object Detection 即边界感知显著目标检测
+
+根据放假以来的学习，简单画了下理解网络所需要的知识。自己还没有摸太清，只是目前理解的，待更新…"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://omppppppp.xyz/2021/01/19/BASNet/&title=BASNet - omp's blog&summary=Boundary-Aware Salient Object Detection 即边界感知显著目标检测
+
+根据放假以来的学习，简单画了下理解网络所需要的知识。自己还没有摸太清，只是目前理解的，待更新…"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=https://omppppppp.xyz/2021/01/19/BASNet/&title=BASNet - omp's blog&summary=Boundary-Aware Salient Object Detection 即边界感知显著目标检测
+
+根据放假以来的学习，简单画了下理解网络所需要的知识。自己还没有摸太清，只是目前理解的，待更新…"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+            
+              <a class='next' href='/2021/01/10/bot/'>
+                <p class='title'>基于mirai和graia框架的机器人搭建<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>一直想搭建一个bot实现一些功能，该bot基于mirai机器人框架和graia搭建，参考sagiri-bot功能实现。自己随便写写，这篇文章主要记录一下报错信息和心路历程。
+
+基本搭建首先找到了...</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
+      
+      
+      
+      
+      
+      
+        <section id="comments">
+          <div id="valine_container" class="valine_thread">
+            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'BASNet',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+  
+
+  
+    
+    
+
+
+  <section class="widget toc-wrapper shadow desktop mobile">
     
   <header>
     
-      <a href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/crypto%E5%88%B7%E9%A2%98/" href="/categories/crypto%E5%88%B7%E9%A2%98/"
-            id="categoriescryptoE588B7E9A298"
-            ><div class='name'>crypto刷题</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/java/" href="/categories/java/"
-            id="categoriesjava"
-            ><div class='name'>java</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/web%E5%88%B7%E9%A2%98/" href="/categories/web%E5%88%B7%E9%A2%98/"
-            id="categorieswebE588B7E9A298"
-            ><div class='name'>web刷题</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%85%B6%E4%BB%96/" href="/categories/%E5%85%B6%E4%BB%96/"
-            id="categoriesE585B6E4BB96"
-            ><div class='name'>其他</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
-            id="categoriesE5ADA6E4B9A0E7AC94E8AEB0"
-            ><div class='name'>学习笔记</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/"
-            id="categoriesE5AF86E7A081E5ADA6"
-            ><div class='name'>密码学</div><div class='badge'>(4)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E6%9D%82%E9%A1%B9/" href="/categories/%E6%9D%82%E9%A1%B9/"
-            id="categoriesE69D82E9A1B9"
-            ><div class='name'>杂项</div><div class='badge'>(3)</div></a></li>
-        
-      </ul>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#BASNet"><span class="toc-text">BASNet</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Predict-预测模块"><span class="toc-text">Predict(预测模块)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Resnet"><span class="toc-text">Resnet</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CNN"><span class="toc-text">CNN</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ReLu"><span class="toc-text">ReLu</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#FCN"><span class="toc-text">FCN</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RRM-优化模块"><span class="toc-text">RRM(优化模块)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#loss"><span class="toc-text">loss</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SGD"><span class="toc-text">SGD</span></a></li></ol>
     </div>
   </section>
 
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/AES/" style="font-size: 17.33px; color: #828282">AES</a> <a href="/tags/DL/" style="font-size: 14px; color: #999">DL</a> <a href="/tags/DLP/" style="font-size: 17.33px; color: #828282">DLP</a> <a href="/tags/ECC/" style="font-size: 14px; color: #999">ECC</a> <a href="/tags/RC4/" style="font-size: 14px; color: #999">RC4</a> <a href="/tags/RSA/" style="font-size: 20.67px; color: #6c6c6c">RSA</a> <a href="/tags/bot/" style="font-size: 14px; color: #999">bot</a> <a href="/tags/crt/" style="font-size: 14px; color: #999">crt</a> <a href="/tags/flask/" style="font-size: 14px; color: #999">flask</a> <a href="/tags/http/" style="font-size: 14px; color: #999">http</a> <a href="/tags/java/" style="font-size: 20.67px; color: #6c6c6c">java</a> <a href="/tags/knapsack/" style="font-size: 14px; color: #999">knapsack</a> <a href="/tags/mt19937/" style="font-size: 14px; color: #999">mt19937</a> <a href="/tags/php%E4%BC%AA%E5%8D%8F%E8%AE%AE/" style="font-size: 14px; color: #999">php伪协议</a> <a href="/tags/php%E5%BC%B1%E7%B1%BB%E5%9E%8B/" style="font-size: 14px; color: #999">php弱类型</a> <a href="/tags/sql%E6%B3%A8%E5%85%A5/" style="font-size: 24px; color: #555">sql注入</a> <a href="/tags/ssti/" style="font-size: 17.33px; color: #828282">ssti</a> <a href="/tags/stream/" style="font-size: 14px; color: #999">stream</a> <a href="/tags/tornado/" style="font-size: 14px; color: #999">tornado</a> <a href="/tags/%E6%89%A9%E5%B1%95CRT/" style="font-size: 14px; color: #999">扩展CRT</a> <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" style="font-size: 14px; color: #999">文件包含</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 20.67px; color: #6c6c6c">杂项</a> <a href="/tags/%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2/" style="font-size: 14px; color: #999">源码泄露</a> <a href="/tags/%E7%BC%96%E7%A0%81/" style="font-size: 14px; color: #999">编码</a>
-    </div>
-  </section>
-
-
-  
 
   
 
