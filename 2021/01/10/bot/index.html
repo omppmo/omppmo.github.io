@@ -443,18 +443,20 @@
 <p>服务器pip换源  pip3 install -r requirements.txt</p>
 <p>创建数据库文件同名数据库(这边之前自己没操作服务器，之间修改配置文件把mysql登录跳过了)</p>
 <p>source 数据库文件的绝对路径 执行数据库文件</p>
+<div class="note warning"><p>值得注意的是，开启了这个功能之后，每次修改文章内容包括 <code>front-matter</code> 之后，都需要重新 <code>hexo s</code>。</p></div>
+
 <p>:x:mysql报错</p>
 <p>ERROR 1273 (HY000): Unknown collation: ‘utf8mb4_0900_ai_ci’</p>
 <p>版本原因：生成转储文件的数据库版本为8.0,要导入sql文件的数据库版本为5.6,因为是高版本导入到低版本，引起1273错误</p>
 <p>解决方法：<br> 打开sql文件，将文件中的所有<br> <code>utf8mb4_0900_ai_ci</code>替换为<code>utf8_general_ci</code><br> <code>utf8mb4</code>替换为<code>utf8</code><br> 保存后再次运行sql文件，运行成功</p>
-<p>基于mirai框架，需要下mirai-console和配置mirai-api-http</p>
+<hr>
+<p>以上做的都没什么用，事实上sagiri-bot不能用，魔改了源码采用部分功能重写了</p>
+<h3 id="mirai部分"><a href="#mirai部分" class="headerlink" title="mirai部分"></a>mirai部分</h3><p>基于mirai框架，需要下mirai-console和配置mirai-api-http</p>
 <p>启动mirai-console需要装自启动mirai-console-loader</p>
 <p>:zap:优化</p>
 <p>这边github太慢了，直接导入gitee仓库</p>
 <p>给服务器装一下Java环境</p>
-<hr>
-<p>以上做的都没什么用，事实上sagiri-bot不能用，魔改了源码采用部分功能重写了</p>
-<h3 id="mirai部分"><a href="#mirai部分" class="headerlink" title="mirai部分"></a>mirai部分</h3><p>:x:启动console报错</p>
+<p>:x:启动console报错</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.UnsupportedClassVersionError: org&#x2F;zjh&#x2F;openlayersdemo&#x2F;OpenlayersdemoApplication has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime only recognizes class file versions up to 52.0</span><br></pre></td></tr></table></figure>
 <p>这边装的java8..  需要重装java11</p>
 <p>:x:启动console报错</p>
@@ -552,13 +554,13 @@
 <p>读文件r读字符串utf8无法解码，rb以二进制形式读进来后需要再解码进行转换成str 解码用gbk就可以显示了(不知道为啥utf8不行 菜鸡の迷惑</p>
 <p>奥  txt是ANSI编码的，GBK属于ANSI之中的，在ANSI的国际通用集，GBK是专门来解决中文编码的，那没事了TnT</p>
 <h3 id="bilibili推送模块"><a href="#bilibili推送模块" class="headerlink" title="bilibili推送模块"></a>bilibili推送模块</h3><p>三个思路</p>
-<p>:x:1.搞了bilibili的json</p>
+<p>× 1.搞了bilibili的json</p>
 <p>哔哩哔哩小程序 最终分享地址为url参数中的内容，需要每日分享获取其url 较难自动实现(后面的随机值应该为哔哩哔哩小程序自动生成)</p>
 <p>手机端不能显示 PC端可以</p>
 <p><img src="/2021/01/10/bot/image-20210117181941668.png" alt="image-20210117181941668"></p>
 <p>这个格式是Bilibili小程序的 url问题解决不了 呜呜呜呜</p>
-<p>:x:2.申请自己的小程序 最终直接访问 bilibili.com 涉及开发了 草</p>
-<p>3.找其他小程序的跳转功能 json源码 试了几个跳不了 草</p>
+<p>× 2.申请自己的小程序 最终直接访问 bilibili.com 涉及开发了 草</p>
+<p>√ 3.找其他小程序的跳转功能 json源码 试了几个跳不了 草</p>
 <p>歪日 终于成了 google永远滴神 找了一个可跳转的小程序 唯二不足就是图片白搞了&amp;BV号得手动输入（待优化）</p>
 <p>然后设成定时了</p>
 
@@ -648,7 +650,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-19T11:05:52+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-19T11:22:55+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：Jan 19, 2021</p>
@@ -1186,5 +1188,20 @@ sql：结构化查询语言
 
 
   <script>setLoadingBarProgress(100);</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/miku.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":false},"react":{"opacity":0.7},"log":false});</script></body>
 </html>
