@@ -21,6 +21,8 @@
     <meta name="keywords" content="ssti,tornado">
   
   
+    <meta name="description" content="tornado与ssti模版注入">
+  
 
   <!-- feed -->
   
@@ -374,9 +376,9 @@
               
   
   <div class='new-meta-item category'>
-    <a href='/categories/web/' rel="nofollow">
+    <a href='/categories/web%E5%88%B7%E9%A2%98/' rel="nofollow">
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>web</p>
+      <p>web刷题</p>
     </a>
   </div>
 
@@ -435,7 +437,9 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           
-          <h2 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h2><p>发现三个文件，点开后发现访问文件需要对应的文件名和md5值</p>
+          <p>tornado与ssti模版注入</p>
+<a id="more"></a>
+<h2 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h2><p>发现三个文件，点开后发现访问文件需要对应的文件名和md5值</p>
 <p>flag.txt中提示 flag in /fllllllllllllag  知道文件名为 /fllllllllllllag</p>
 <p>(这里还以为flag在 /fllllllllllllag路径下的flag.txt，原来是包含flag的文件TnT</p>
 <p>hints.txt发现对应md5值生成方法md5(cookie_secret+md5(filename))</p>
@@ -540,10 +544,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-11-30T21:57:24+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-19T14:29:17+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Nov 30, 2020</p>
+    <p>更新于：Jan 19, 2021</p>
   </a>
 </div>
 
@@ -570,7 +574,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://omppppppp.xyz/2020/11/30/easy-tornado/&title=easy_tornado[护网杯 2018] - omp's blog&summary="
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://omppppppp.xyz/2020/11/30/easy-tornado/&title=easy_tornado[护网杯 2018] - omp's blog&summary=tornado与ssti模版注入"
           
           >
           
@@ -582,7 +586,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://omppppppp.xyz/2020/11/30/easy-tornado/&title=easy_tornado[护网杯 2018] - omp's blog&summary="
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://omppppppp.xyz/2020/11/30/easy-tornado/&title=easy_tornado[护网杯 2018] - omp's blog&summary=tornado与ssti模版注入"
           
           >
           
@@ -594,7 +598,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://omppppppp.xyz/2020/11/30/easy-tornado/&title=easy_tornado[护网杯 2018] - omp's blog&summary="
+          href="http://service.weibo.com/share/share.php?url=https://omppppppp.xyz/2020/11/30/easy-tornado/&title=easy_tornado[护网杯 2018] - omp's blog&summary=tornado与ssti模版注入"
           
           >
           
@@ -620,23 +624,26 @@
             
               <a class='prev' href='/2020/11/30/hackworld/'>
                 <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Hack World[CISCN2019 华北赛区 Day2 Web1]</p>
-                <p class='content'>学习博客https://www.cnblogs.com/20175211lyz/p/11435298.html
+                <p class='content'>空格绕过与bool盲注二分查找
+
 知识点
 空格绕过
 bool盲注二分查找
 
 学到的新知识
 空格被过滤可以使用tab
-...</p>
+空格的绕过:%09 %0a %0b %0c %0d /**/ /*!*/或者直...</p>
               </a>
             
             
               <a class='next' href='/2020/09/16/Http/'>
                 <p class='title'>Http[极客大挑战 2019]<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-                <p class='content'>使用burpsuite抓包看到Secret.php
+                <p class='content'>http请求头
+
+使用burpsuite抓包看到Secret.php
 显示It doesn’t come from ‘https://www.Sycsecret.com‘
 学到了请求首部字段
-Referer 告知...</p>
+R...</p>
               </a>
             
           </div>

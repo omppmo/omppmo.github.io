@@ -21,6 +21,8 @@
     <meta name="keywords" content="ECC,RSA">
   
   
+    <meta name="description" content="椭圆曲线ECC与RSA">
+  
 
   <!-- feed -->
   
@@ -374,9 +376,9 @@
               
   
   <div class='new-meta-item category'>
-    <a href='/categories/BUU%E5%88%B7%E9%A2%98/' rel="nofollow">
+    <a href='/categories/crypto%E5%88%B7%E9%A2%98/' rel="nofollow">
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>BUU刷题</p>
+      <p>crypto刷题</p>
     </a>
   </div>
 
@@ -435,7 +437,9 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           
-          <p>学习出处：<a href="https://www.anquanke.com/post/id/196010?display=mobile" target="_blank" rel="noopener">https://www.anquanke.com/post/id/196010?display=mobile</a></p>
+          <p>椭圆曲线ECC与RSA</p>
+<a id="more"></a>
+<p>学习出处：<a href="https://www.anquanke.com/post/id/196010?display=mobile" target="_blank" rel="noopener">https://www.anquanke.com/post/id/196010?display=mobile</a></p>
 <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastecdsa.curve <span class="keyword">import</span> P521 <span class="keyword">as</span> Curve</span><br><span class="line"><span class="keyword">from</span> fastecdsa.point <span class="keyword">import</span> Point</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> bytes_to_long, isPrime</span><br><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> urandom</span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> getrandbits</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gen_rsa_primes</span><span class="params">(G)</span>:</span></span><br><span class="line">	urand = bytes_to_long(urandom(<span class="number">521</span>//<span class="number">8</span>))</span><br><span class="line">	<span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">		s = getrandbits(<span class="number">521</span>) ^ urand</span><br><span class="line"></span><br><span class="line">		Q = s*G</span><br><span class="line">		<span class="keyword">if</span> isPrime(Q.x) <span class="keyword">and</span> isPrime(Q.y):</span><br><span class="line">			print(<span class="string">"ECC Private key:"</span>, hex(s))</span><br><span class="line">			print(<span class="string">"RSA primes:"</span>, hex(Q.x), hex(Q.y))</span><br><span class="line">			print(<span class="string">"Modulo:"</span>, hex(Q.x * Q.y))</span><br><span class="line">			<span class="keyword">return</span> (Q.x, Q.y)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">flag = int.from_bytes(input(), byteorder=<span class="string">"big"</span>)</span><br><span class="line"></span><br><span class="line">ecc_p = Curve.p</span><br><span class="line">a = Curve.a</span><br><span class="line">b = Curve.b</span><br><span class="line"></span><br><span class="line">Gx = Curve.gx</span><br><span class="line">Gy = Curve.gy</span><br><span class="line">G = Point(Gx, Gy, curve=Curve)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">e = <span class="number">0x10001</span></span><br><span class="line">p, q = gen_rsa_primes(G)</span><br><span class="line">n = p*q</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">file_out = open(<span class="string">"downloads/ecc-rsa.txt"</span>, <span class="string">"w"</span>)</span><br><span class="line"></span><br><span class="line">file_out.write(<span class="string">"ECC Curve Prime: "</span> + hex(ecc_p) + <span class="string">"\n"</span>)</span><br><span class="line">file_out.write(<span class="string">"Curve a: "</span> + hex(a) + <span class="string">"\n"</span>)</span><br><span class="line">file_out.write(<span class="string">"Curve b: "</span> + hex(b) + <span class="string">"\n"</span>)</span><br><span class="line">file_out.write(<span class="string">"Gx: "</span> + hex(Gx) + <span class="string">"\n"</span>)</span><br><span class="line">file_out.write(<span class="string">"Gy: "</span> + hex(Gy) + <span class="string">"\n"</span>)</span><br><span class="line"></span><br><span class="line">file_out.write(<span class="string">"e: "</span> + hex(e) + <span class="string">"\n"</span>)</span><br><span class="line">file_out.write(<span class="string">"p * q: "</span> + hex(n) + <span class="string">"\n"</span>)</span><br><span class="line"></span><br><span class="line">c = pow(flag, e, n)</span><br><span class="line">file_out.write(<span class="string">"ciphertext: "</span> + hex(c) + <span class="string">"\n"</span>)</span><br></pre></td></tr></table></figure>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>RSA中（p,q）是以G为基点，P,a,b为参量的椭圆曲线上一点</p>
 <p>已知Q，G，在素数域中推断出私钥s十分困难</p>
@@ -544,10 +548,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-11T15:27:09+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-19T14:31:53+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Jul 11, 2020</p>
+    <p>更新于：Jan 19, 2021</p>
   </a>
 </div>
 
@@ -574,7 +578,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://omppppppp.xyz/2020/07/10/ECC-RSA/&title=ECC-RSA[watevrCTF 2019] - omp's blog&summary="
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://omppppppp.xyz/2020/07/10/ECC-RSA/&title=ECC-RSA[watevrCTF 2019] - omp's blog&summary=椭圆曲线ECC与RSA"
           
           >
           
@@ -586,7 +590,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://omppppppp.xyz/2020/07/10/ECC-RSA/&title=ECC-RSA[watevrCTF 2019] - omp's blog&summary="
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://omppppppp.xyz/2020/07/10/ECC-RSA/&title=ECC-RSA[watevrCTF 2019] - omp's blog&summary=椭圆曲线ECC与RSA"
           
           >
           
@@ -598,7 +602,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://omppppppp.xyz/2020/07/10/ECC-RSA/&title=ECC-RSA[watevrCTF 2019] - omp's blog&summary="
+          href="http://service.weibo.com/share/share.php?url=https://omppppppp.xyz/2020/07/10/ECC-RSA/&title=ECC-RSA[watevrCTF 2019] - omp's blog&summary=椭圆曲线ECC与RSA"
           
           >
           
@@ -624,17 +628,20 @@
             
               <a class='prev' href='/2020/07/11/MyOwnCBC%5BAFCTF2018%5D/'>
                 <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>MyOwnCBC[AFCTF2018]</p>
-                <p class='content'>学习出处:
+                <p class='content'>分组密码的CBC与EBC模式
+
+学习出处:
 https://www.cnblogs.com/eleven-elv/p/7289579.html
-https://www.jianshu.com/p/79a225c2650e
-题目...</p>
+https://www.jianshu.com/p...</p>
               </a>
             
             
               <a class='next' href='/2020/07/10/xorz/'>
                 <p class='title'>xorz[De1ctf]<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-                <p class='content'>学习出处:https://www.anquanke.com/post/id/161171#h3-6
-题目123456789101112from itertools import *from da...</p>
+                <p class='content'>流密码与汉明距离
+
+学习出处:https://www.anquanke.com/post/id/161171#h3-6
+题目123456789101112from itertools impor...</p>
               </a>
             
           </div>

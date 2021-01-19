@@ -387,9 +387,9 @@
               
   
   <div class='new-meta-item category'>
-    <a href='/categories/web/' rel="nofollow">
+    <a href='/categories/web%E5%88%B7%E9%A2%98/' rel="nofollow">
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>web</p>
+      <p>web刷题</p>
     </a>
   </div>
 
@@ -448,18 +448,16 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><ul>
-<li>常见的源码泄露</li>
-<li>php弱类型</li>
-</ul>
-<h2 id="做题思路"><a href="#做题思路" class="headerlink" title="做题思路"></a>做题思路</h2><p>备份文件index.php.bak</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include_once</span> <span class="string">"flag.php"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'key'</span>])) &#123;</span><br><span class="line">    $key = $_GET[<span class="string">'key'</span>];</span><br><span class="line">    <span class="keyword">if</span>(!is_numeric($key)) &#123;</span><br><span class="line">        <span class="keyword">exit</span>(<span class="string">"Just num!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    $key = intval($key);</span><br><span class="line">    $str = <span class="string">"123ffwsfwefwf24r2f32ir23jrw923rskfjwtsw54w3"</span>;</span><br><span class="line">    <span class="keyword">if</span>($key == $str) &#123;</span><br><span class="line">        <span class="keyword">echo</span> $flag;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"Try to find out source file!"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>php弱类型:int和string无法直接比较，php将string转换为int再进行比较，转换方法：该字符串的开始部分决定了它的值，如果该字符串以合法的数值开始，则使用该数值，否则其值为0。</p>
-<p>故使用get传参 key=123即可得到flag</p>
-
+        <p>源码泄露与php弱类型</p>
       
     </div>
     
+      
+        <div class="button readmore">
+          <a href="/2020/11/30/backupfile/">
+            Read More <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
       
     
   </section>
@@ -567,14 +565,9 @@
       <ul class="entry navigation">
         
           <li><a class="flat-box"
-            title="/categories/BUU%E5%88%B7%E9%A2%98/" href="/categories/BUU%E5%88%B7%E9%A2%98/"
-            id="categoriesBUUE588B7E9A298"
-            ><div class='name'>BUU刷题</div><div class='badge'>(5)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/CTF/" href="/categories/CTF/"
-            id="categoriesCTF"
-            ><div class='name'>CTF</div><div class='badge'>(2)</div></a></li>
+            title="/categories/crypto%E5%88%B7%E9%A2%98/" href="/categories/crypto%E5%88%B7%E9%A2%98/"
+            id="categoriescryptoE588B7E9A298"
+            ><div class='name'>crypto刷题</div><div class='badge'>(8)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/java/" href="/categories/java/"
@@ -582,9 +575,9 @@
             ><div class='name'>java</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
-            title="/categories/web/" href="/categories/web/"
-            id="categoriesweb"
-            ><div class='name'>web</div><div class='badge'>(8)</div></a></li>
+            title="/categories/web%E5%88%B7%E9%A2%98/" href="/categories/web%E5%88%B7%E9%A2%98/"
+            id="categorieswebE588B7E9A298"
+            ><div class='name'>web刷题</div><div class='badge'>(8)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%85%B6%E4%BB%96/" href="/categories/%E5%85%B6%E4%BB%96/"
@@ -628,7 +621,7 @@
 
 
     <div class='content'>
-      <a href="/tags/AES/" style="font-size: 17.33px; color: #828282">AES</a> <a href="/tags/DLP/" style="font-size: 17.33px; color: #828282">DLP</a> <a href="/tags/ECC/" style="font-size: 14px; color: #999">ECC</a> <a href="/tags/RC4/" style="font-size: 14px; color: #999">RC4</a> <a href="/tags/RSA/" style="font-size: 20.67px; color: #6c6c6c">RSA</a> <a href="/tags/bot/" style="font-size: 14px; color: #999">bot</a> <a href="/tags/crt/" style="font-size: 14px; color: #999">crt</a> <a href="/tags/flask/" style="font-size: 14px; color: #999">flask</a> <a href="/tags/http/" style="font-size: 14px; color: #999">http</a> <a href="/tags/java/" style="font-size: 20.67px; color: #6c6c6c">java</a> <a href="/tags/knapsack/" style="font-size: 17.33px; color: #828282">knapsack</a> <a href="/tags/mt19937/" style="font-size: 14px; color: #999">mt19937</a> <a href="/tags/php%E4%BC%AA%E5%8D%8F%E8%AE%AE/" style="font-size: 14px; color: #999">php伪协议</a> <a href="/tags/php%E5%BC%B1%E7%B1%BB%E5%9E%8B/" style="font-size: 14px; color: #999">php弱类型</a> <a href="/tags/sql%E6%B3%A8%E5%85%A5/" style="font-size: 24px; color: #555">sql注入</a> <a href="/tags/ssti/" style="font-size: 17.33px; color: #828282">ssti</a> <a href="/tags/stream/" style="font-size: 14px; color: #999">stream</a> <a href="/tags/tornado/" style="font-size: 14px; color: #999">tornado</a> <a href="/tags/%E6%89%A9%E5%B1%95CRT/" style="font-size: 14px; color: #999">扩展CRT</a> <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" style="font-size: 14px; color: #999">文件包含</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 20.67px; color: #6c6c6c">杂项</a> <a href="/tags/%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2/" style="font-size: 14px; color: #999">源码泄露</a> <a href="/tags/%E7%BC%96%E7%A0%81/" style="font-size: 14px; color: #999">编码</a>
+      <a href="/tags/AES/" style="font-size: 17.33px; color: #828282">AES</a> <a href="/tags/DLP/" style="font-size: 17.33px; color: #828282">DLP</a> <a href="/tags/ECC/" style="font-size: 14px; color: #999">ECC</a> <a href="/tags/RC4/" style="font-size: 14px; color: #999">RC4</a> <a href="/tags/RSA/" style="font-size: 20.67px; color: #6c6c6c">RSA</a> <a href="/tags/bot/" style="font-size: 14px; color: #999">bot</a> <a href="/tags/crt/" style="font-size: 14px; color: #999">crt</a> <a href="/tags/flask/" style="font-size: 14px; color: #999">flask</a> <a href="/tags/http/" style="font-size: 14px; color: #999">http</a> <a href="/tags/java/" style="font-size: 20.67px; color: #6c6c6c">java</a> <a href="/tags/knapsack/" style="font-size: 14px; color: #999">knapsack</a> <a href="/tags/mt19937/" style="font-size: 14px; color: #999">mt19937</a> <a href="/tags/php%E4%BC%AA%E5%8D%8F%E8%AE%AE/" style="font-size: 14px; color: #999">php伪协议</a> <a href="/tags/php%E5%BC%B1%E7%B1%BB%E5%9E%8B/" style="font-size: 14px; color: #999">php弱类型</a> <a href="/tags/sql%E6%B3%A8%E5%85%A5/" style="font-size: 24px; color: #555">sql注入</a> <a href="/tags/ssti/" style="font-size: 17.33px; color: #828282">ssti</a> <a href="/tags/stream/" style="font-size: 14px; color: #999">stream</a> <a href="/tags/tornado/" style="font-size: 14px; color: #999">tornado</a> <a href="/tags/%E6%89%A9%E5%B1%95CRT/" style="font-size: 14px; color: #999">扩展CRT</a> <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" style="font-size: 14px; color: #999">文件包含</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 20.67px; color: #6c6c6c">杂项</a> <a href="/tags/%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2/" style="font-size: 14px; color: #999">源码泄露</a> <a href="/tags/%E7%BC%96%E7%A0%81/" style="font-size: 14px; color: #999">编码</a>
     </div>
   </section>
 

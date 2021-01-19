@@ -21,6 +21,8 @@
     <meta name="keywords" content="AES">
   
   
+    <meta name="description" content="分组密码的CBC与EBC模式">
+  
 
   <!-- feed -->
   
@@ -374,9 +376,9 @@
               
   
   <div class='new-meta-item category'>
-    <a href='/categories/BUU%E5%88%B7%E9%A2%98/' rel="nofollow">
+    <a href='/categories/crypto%E5%88%B7%E9%A2%98/' rel="nofollow">
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>BUU刷题</p>
+      <p>crypto刷题</p>
     </a>
   </div>
 
@@ -435,7 +437,9 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           
-          <p>学习出处:</p>
+          <p>分组密码的CBC与EBC模式</p>
+<a id="more"></a>
+<p>学习出处:</p>
 <p><a href="https://www.cnblogs.com/eleven-elv/p/7289579.html" target="_blank" rel="noopener">https://www.cnblogs.com/eleven-elv/p/7289579.html</a></p>
 <p><a href="https://www.jianshu.com/p/79a225c2650e" target="_blank" rel="noopener">https://www.jianshu.com/p/79a225c2650e</a></p>
 <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python2.7</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> Crypto.Random <span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">MyOwnCBC</span><span class="params">(key, plain)</span>:</span></span><br><span class="line">	<span class="keyword">if</span> len(key)!=<span class="number">32</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"error!"</span></span><br><span class="line">	cipher_txt = <span class="string">b""</span></span><br><span class="line">	cipher_arr = []</span><br><span class="line">	cipher = AES.new(key, AES.MODE_ECB, <span class="string">""</span>)</span><br><span class="line">	plain = [plain[i:i+<span class="number">32</span>] <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(plain), <span class="number">32</span>)]</span><br><span class="line">	<span class="keyword">print</span> plain</span><br><span class="line">	cipher_arr.append(cipher.encrypt(plain[<span class="number">0</span>]))</span><br><span class="line">	cipher_txt += cipher_arr[<span class="number">0</span>]</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(plain)):</span><br><span class="line">		cipher = AES.new(cipher_arr[i<span class="number">-1</span>], AES.MODE_ECB, <span class="string">""</span>)</span><br><span class="line">		cipher_arr.append(cipher.encrypt(plain[i]))</span><br><span class="line">		cipher_txt += cipher_arr[i]</span><br><span class="line">	<span class="keyword">return</span> cipher_txt</span><br><span class="line">	</span><br><span class="line">key = random.getrandbits(<span class="number">256</span>)</span><br><span class="line">key = long_to_bytes(key)</span><br><span class="line"></span><br><span class="line">s = <span class="string">""</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"flag.txt"</span>,<span class="string">"r"</span>) <span class="keyword">as</span> f:</span><br><span class="line">	s = f.read()</span><br><span class="line">	f.close()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"flag_cipher"</span>,<span class="string">"wb"</span>) <span class="keyword">as</span> f:</span><br><span class="line">	f.write(MyOwnCBC(key, s))</span><br><span class="line">	f.close()</span><br></pre></td></tr></table></figure>
@@ -543,10 +547,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-12T17:17:36+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-19T14:11:22+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Jul 12, 2020</p>
+    <p>更新于：Jan 19, 2021</p>
   </a>
 </div>
 
@@ -573,7 +577,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://omppppppp.xyz/2020/07/11/MyOwnCBC[AFCTF2018]/&title=MyOwnCBC[AFCTF2018] - omp's blog&summary="
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://omppppppp.xyz/2020/07/11/MyOwnCBC[AFCTF2018]/&title=MyOwnCBC[AFCTF2018] - omp's blog&summary=分组密码的CBC与EBC模式"
           
           >
           
@@ -585,7 +589,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://omppppppp.xyz/2020/07/11/MyOwnCBC[AFCTF2018]/&title=MyOwnCBC[AFCTF2018] - omp's blog&summary="
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://omppppppp.xyz/2020/07/11/MyOwnCBC[AFCTF2018]/&title=MyOwnCBC[AFCTF2018] - omp's blog&summary=分组密码的CBC与EBC模式"
           
           >
           
@@ -597,7 +601,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://omppppppp.xyz/2020/07/11/MyOwnCBC[AFCTF2018]/&title=MyOwnCBC[AFCTF2018] - omp's blog&summary="
+          href="http://service.weibo.com/share/share.php?url=https://omppppppp.xyz/2020/07/11/MyOwnCBC[AFCTF2018]/&title=MyOwnCBC[AFCTF2018] - omp's blog&summary=分组密码的CBC与EBC模式"
           
           >
           
@@ -623,16 +627,20 @@
             
               <a class='prev' href='/2020/07/30/%E9%9A%8F%E4%BE%BF%E6%B3%A8-%E5%BC%BA%E7%BD%91%E6%9D%AF/'>
                 <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>随便注[强网杯]</p>
-                <p class='content'>学习出处：
+                <p class='content'>sql注入
+
+学习出处：
 https://blog.csdn.net/weixin_45551083/article/details/105389126
-https://blog.csdn.net/qq_26...</p>
+https://blog.csdn.ne...</p>
               </a>
             
             
               <a class='next' href='/2020/07/10/ECC-RSA/'>
                 <p class='title'>ECC-RSA[watevrCTF 2019]<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-                <p class='content'>学习出处：https://www.anquanke.com/post/id/196010?display=mobile
-题目12345678910111213141516171819202122...</p>
+                <p class='content'>椭圆曲线ECC与RSA
+
+学习出处：https://www.anquanke.com/post/id/196010?display=mobile
+题目1234567891011121314151...</p>
               </a>
             
           </div>

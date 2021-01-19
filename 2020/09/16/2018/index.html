@@ -21,6 +21,8 @@
     <meta name="keywords" content="flask,ssti">
   
   
+    <meta name="description" content="unicode欺骗、flask session伪造、条件竞争">
+  
 
   <!-- feed -->
   
@@ -374,9 +376,9 @@
               
   
   <div class='new-meta-item category'>
-    <a href='/categories/web/' rel="nofollow">
+    <a href='/categories/web%E5%88%B7%E9%A2%98/' rel="nofollow">
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>web</p>
+      <p>web刷题</p>
     </a>
   </div>
 
@@ -435,7 +437,9 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           
-          <h2 id="对源文件的分析学习"><a href="#对源文件的分析学习" class="headerlink" title="对源文件的分析学习"></a>对源文件的分析学习</h2><h3 id="code-py"><a href="#code-py" class="headerlink" title="code.py"></a>code.py</h3><p><strong>random.sample</strong></p>
+          <p>unicode欺骗、flask session伪造、条件竞争</p>
+<a id="more"></a>
+<h2 id="对源文件的分析学习"><a href="#对源文件的分析学习" class="headerlink" title="对源文件的分析学习"></a>对源文件的分析学习</h2><h3 id="code-py"><a href="#code-py" class="headerlink" title="code.py"></a>code.py</h3><p><strong>random.sample</strong></p>
 <p>多用于截取列表的指定长度的随机数，但是不会改变列表本身的排序：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">list = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">rs = random.sample(list, <span class="number">2</span>)</span><br><span class="line">print(rs)</span><br><span class="line">print(list)</span><br><span class="line"></span><br><span class="line">》》》[<span class="number">2</span>, <span class="number">4</span>]    <span class="comment">#此数组随着不同的执行，里面的元素随机，但都是两个</span></span><br><span class="line">》》》[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure>
 <p><strong>string.digits</strong></p>
@@ -610,10 +614,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-11-30T21:46:53+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-19T14:30:34+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Nov 30, 2020</p>
+    <p>更新于：Jan 19, 2021</p>
   </a>
 </div>
 
@@ -640,7 +644,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://omppppppp.xyz/2020/09/16/2018/&title=admin[hctf 2018] - omp's blog&summary="
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://omppppppp.xyz/2020/09/16/2018/&title=admin[hctf 2018] - omp's blog&summary=unicode欺骗、flask session伪造、条件竞争"
           
           >
           
@@ -652,7 +656,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://omppppppp.xyz/2020/09/16/2018/&title=admin[hctf 2018] - omp's blog&summary="
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://omppppppp.xyz/2020/09/16/2018/&title=admin[hctf 2018] - omp's blog&summary=unicode欺骗、flask session伪造、条件竞争"
           
           >
           
@@ -664,7 +668,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://omppppppp.xyz/2020/09/16/2018/&title=admin[hctf 2018] - omp's blog&summary="
+          href="http://service.weibo.com/share/share.php?url=https://omppppppp.xyz/2020/09/16/2018/&title=admin[hctf 2018] - omp's blog&summary=unicode欺骗、flask session伪造、条件竞争"
           
           >
           
@@ -690,20 +694,23 @@
             
               <a class='prev' href='/2020/09/16/file/'>
                 <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Secret File[极客大挑战 2019]</p>
-                <p class='content'>查看源码发现Archive_room.php
+                <p class='content'>文件包含与php伪协议
+
+查看源码发现Archive_room.php
 接着是action.php
 但由于访问时间过短直接跳转到end.php
 使用burpsuite抓包
 
-发现secr3t.php
-1234567891...</p>
+发现secr3t.p...</p>
               </a>
             
             
               <a class='next' href='/2020/08/09/mt-SUCTF/'>
                 <p class='title'>mt[SUCTF]<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-                <p class='content'>学习出处:https://liam.page/2018/01/12/Mersenne-twister/
-题目12345678910111213141516171819202122232425fr...</p>
+                <p class='content'>MT的提取算法逆向
+
+学习出处:https://liam.page/2018/01/12/Mersenne-twister/
+题目12345678910111213141516171819202...</p>
               </a>
             
           </div>

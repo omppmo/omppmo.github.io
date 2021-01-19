@@ -21,6 +21,8 @@
     <meta name="keywords" content="java">
   
   
+    <meta name="description" content="关于protected权限的子类访问方式">
+  
 
   <!-- feed -->
   
@@ -435,7 +437,9 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           
-          <h1 id="关于protected权限的子类访问方式"><a href="#关于protected权限的子类访问方式" class="headerlink" title="关于protected权限的子类访问方式"></a>关于protected权限的子类访问方式</h1><h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>听老师讲课说到Object类的clone()方法，其声明方法是protected修饰的。protected修饰的可见性在本类，同包类，子类中皆可见。但子类clone()方法使用时，却不能直接调用Object类的clone()方法，而是需要进行重写,这个问题令我很迷茫。</p>
+          <p>关于protected权限的子类访问方式</p>
+<a id="more"></a>
+<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>听老师讲课说到Object类的clone()方法，其声明方法是protected修饰的。protected修饰的可见性在本类，同包类，子类中皆可见。但子类clone()方法使用时，却不能直接调用Object类的clone()方法，而是需要进行重写,这个问题令我很迷茫。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public Object clone() throws CloneNotSupportedException&#123;</span><br><span class="line">              return super.clone();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="前置芝士"><a href="#前置芝士" class="headerlink" title="前置芝士"></a>前置芝士</h2><p>学习出处：<br><a href="https://blog.csdn.net/blacktal/article/details/81198579" target="_blank" rel="noopener">https://blog.csdn.net/blacktal/article/details/81198579</a><br><a href="https://blog.csdn.net/asahinokawa/article/details/80777302" target="_blank" rel="noopener">https://blog.csdn.net/asahinokawa/article/details/80777302</a><br>通过学习我认识到，protected修饰并不只是被同一包中的所有类和不同包中的子类访问那么简单。<br>直接总结一下，详细实例看出处</p>
 <ol>
@@ -539,10 +543,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-11-30T21:20:46+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-19T14:32:45+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Nov 30, 2020</p>
+    <p>更新于：Jan 19, 2021</p>
   </a>
 </div>
 
@@ -569,7 +573,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://omppppppp.xyz/2020/05/05/java%E5%AD%A6%E4%B9%A02/&title=java学习(2) - omp's blog&summary="
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://omppppppp.xyz/2020/05/05/java%E5%AD%A6%E4%B9%A02/&title=java学习(2) - omp's blog&summary=关于protected权限的子类访问方式"
           
           >
           
@@ -581,7 +585,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://omppppppp.xyz/2020/05/05/java%E5%AD%A6%E4%B9%A02/&title=java学习(2) - omp's blog&summary="
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://omppppppp.xyz/2020/05/05/java%E5%AD%A6%E4%B9%A02/&title=java学习(2) - omp's blog&summary=关于protected权限的子类访问方式"
           
           >
           
@@ -593,7 +597,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://omppppppp.xyz/2020/05/05/java%E5%AD%A6%E4%B9%A02/&title=java学习(2) - omp's blog&summary="
+          href="http://service.weibo.com/share/share.php?url=https://omppppppp.xyz/2020/05/05/java%E5%AD%A6%E4%B9%A02/&title=java学习(2) - omp's blog&summary=关于protected权限的子类访问方式"
           
           >
           
@@ -618,8 +622,10 @@
           <div class="prev-next">
             
               <a class='prev' href='/2020/05/17/NPUCTFWP/'>
-                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>WP</p>
-                <p class='content'>认清形势，建立信心题目12345678910p = getPrime(25)e = # Hiddenq = getPrime(25)n = p * qm = bytes_to_long(flag...</p>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>认清形势，建立信心[npuctf]</p>
+                <p class='content'>DLP与扩展CRT
+
+题目12345678910p = getPrime(25)e = # Hiddenq = getPrime(25)n = p * qm = bytes_to_long(fl...</p>
               </a>
             
             
@@ -628,7 +634,8 @@
                 <p class='content'>
 
 今天老师留了一个作业：建立框架，在中央放置多行文本框（TextArea）,在南方放置一个面板(JPanel),并在上边放置两个按钮，按钮文本分别为确定和取消
-多行文本框TextArea是一个...</p>
+
+多行文本框TextArea是一...</p>
               </a>
             
           </div>
@@ -699,7 +706,7 @@
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#关于protected权限的子类访问方式"><span class="toc-text">关于protected权限的子类访问方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#引入"><span class="toc-text">引入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前置芝士"><span class="toc-text">前置芝士</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决"><span class="toc-text">解决</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引入"><span class="toc-text">引入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前置芝士"><span class="toc-text">前置芝士</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决"><span class="toc-text">解决</span></a></li></ol>
     </div>
   </section>
 
