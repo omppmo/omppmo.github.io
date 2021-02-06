@@ -25,7 +25,7 @@
 
 Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 
-根据放假以来的学习，简单画了下理解网络所需要的知识。自己还没有摸太清，只是目前理解的，待更新…">
+根据放假以来的学习，简单画了下理解网络所需要理解掌握的知识。自己还没有摸太清，只是目前理解的，待更新…">
   
 
   <!-- feed -->
@@ -445,15 +445,19 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 
 <p>Boundary-Aware Salient Object Detection 即边界感知显著目标检测</p>
 <p><a href="https://imgchr.com/i/s2xsC8" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2021/01/19/s2xsC8.png" alt="s2xsC8.png"></a></p>
-<p>根据放假以来的学习，简单画了下理解网络所需要的知识。自己还没有摸太清，只是目前理解的，待更新…</p>
+<p>根据放假以来的学习，简单画了下理解网络所需要理解掌握的知识。自己还没有摸太清，只是目前理解的，待更新…</p>
 <a id="more"></a>
-<h2 id="BASNet"><a href="#BASNet" class="headerlink" title="BASNet"></a>BASNet</h2><details><summary><p>BASNet相关资料</p></summary><p>
+<h1 id="BASNet"><a href="#BASNet" class="headerlink" title="BASNet"></a>BASNet</h1><p><details><summary><p>BASNet相关资料</p></summary><p>
     paper:<a href="https://openaccess.thecvf.com/content_CVPR_2019/papers/Qin_BASNet_Boundary-Aware_Salient_Object_Detection_CVPR_2019_paper.pdf" target="_blank" rel="noopener">戳这里</a></p><p>简介:<a href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650795924&idx=2&sn=1b15a2540ffb9220f00be0cbbd62cafd&chksm=871a2beab06da2fcd63c7b22ecde508e90b488533a3f97939ec1cfc65ec3ab823e3afe579a7f&mpshare=1&scene=23&srcid=1123k84nCTl7SzHKywymED4G&sharer_sharetime=1606132949286&sharer_shareid=8feb0cd9552063c70146726ba076ab86#rd" target="_blank" rel="noopener">戳这里</a></p>
-    <p>解读:<a href="https://blog.csdn.net/calvinpaean/article/details/101036249" target="_blank" rel="noopener">戳这里</a></p><p>github:<a href="https://github.com/NathanUA/BASNet" target="_blank" rel="noopener">戳这里</a></p></details>
-
-<h3 id="Predict-预测模块"><a href="#Predict-预测模块" class="headerlink" title="Predict(预测模块)"></a>Predict(预测模块)</h3><h4 id="Resnet"><a href="#Resnet" class="headerlink" title="Resnet"></a>Resnet</h4><h5 id="resblock"><a href="#resblock" class="headerlink" title="resblock"></a>resblock</h5><p>encoder-decoder网络</p>
-<h4 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h4><ul>
-<li><h5 id="Cov"><a href="#Cov" class="headerlink" title="Cov"></a>Cov</h5><ul>
+    <p>解读:<a href="https://blog.csdn.net/calvinpaean/article/details/101036249" target="_blank" rel="noopener">戳这里</a></p><p>github:<a href="https://github.com/NathanUA/BASNet" target="_blank" rel="noopener">戳这里</a></p></details><br><img src="https://img-blog.csdnimg.cn/20190920102120212.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NhbHZpbnBhZWFu,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="Predict-预测模块"><a href="#Predict-预测模块" class="headerlink" title="Predict(预测模块)"></a>Predict(预测模块)</h2><h3 id="Resnet"><a href="#Resnet" class="headerlink" title="Resnet"></a>Resnet</h3><p>两个需要解决的问题</p>
+<ul>
+<li>梯度弥散/爆炸</li>
+<li>退化问题</li>
+</ul>
+<h3 id="encoder-decoder网络"><a href="#encoder-decoder网络" class="headerlink" title="encoder-decoder网络"></a>encoder-decoder网络</h3><h3 id="U-net"><a href="#U-net" class="headerlink" title="U-net"></a>U-net</h3><h3 id="Segnet"><a href="#Segnet" class="headerlink" title="Segnet"></a>Segnet</h3><p>paper:<a href="https://arxiv.org/abs/1511.00561" target="_blank" rel="noopener">https://arxiv.org/abs/1511.00561</a></p>
+<h3 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h3><ul>
+<li><h5 id="Conv"><a href="#Conv" class="headerlink" title="Conv"></a>Conv</h5><ul>
 <li>filter</li>
 </ul>
 </li>
@@ -462,7 +466,38 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 <li><h5 id="BN"><a href="#BN" class="headerlink" title="BN"></a>BN</h5></li>
 <li><h5 id="感受野"><a href="#感受野" class="headerlink" title="感受野"></a>感受野</h5></li>
 </ul>
-<h4 id="ReLu"><a href="#ReLu" class="headerlink" title="ReLu"></a>ReLu</h4><h4 id="FCN"><a href="#FCN" class="headerlink" title="FCN"></a>FCN</h4><h3 id="RRM-优化模块"><a href="#RRM-优化模块" class="headerlink" title="RRM(优化模块)"></a>RRM(优化模块)</h3><h4 id="loss"><a href="#loss" class="headerlink" title="loss"></a>loss</h4><h5 id="bce"><a href="#bce" class="headerlink" title="bce"></a>bce</h5><h5 id="ssim"><a href="#ssim" class="headerlink" title="ssim"></a>ssim</h5><h5 id="iou"><a href="#iou" class="headerlink" title="iou"></a>iou</h5><h2 id="SGD"><a href="#SGD" class="headerlink" title="SGD"></a>SGD</h2>
+<h3 id="ReLu"><a href="#ReLu" class="headerlink" title="ReLu"></a>ReLu</h3><h3 id="FCN"><a href="#FCN" class="headerlink" title="FCN"></a>FCN</h3><p>paper:<a href="https://arxiv.org/abs/1411.4038" target="_blank" rel="noopener">https://arxiv.org/abs/1411.4038</a></p>
+<h4 id="上采样-Upsample"><a href="#上采样-Upsample" class="headerlink" title="上采样(Upsample)"></a>上采样(Upsample)</h4><p>在应用在计算机视觉的深度学习领域，由于输入图像通过卷积神经网络(CNN)提取特征后，输出的尺寸往往会变小，而有时我们需要将图像恢复到原来的尺寸以便进行进一步的计算(e.g.:图像的语义分割)，这个采用扩大图像尺寸，实现图像由小分辨率到大分辨率的映射的操作，叫做上采样(Upsample)。</p>
+<p>上采样有3种常见的方法：双线性插值(bilinear)，反卷积(Transposed Convolution)，反池化(Unpooling)。</p>
+<h5 id="反卷积"><a href="#反卷积" class="headerlink" title="反卷积"></a>反卷积</h5><p><a href="https://blog.csdn.net/jasonleesjtu/article/details/89791528" target="_blank" rel="noopener">https://blog.csdn.net/jasonleesjtu/article/details/89791528</a></p>
+<p><a href="https://www.zhihu.com/question/48279880" target="_blank" rel="noopener">https://www.zhihu.com/question/48279880</a></p>
+<blockquote>
+<p>稀疏矩阵</p>
+<p>在矩阵中，<strong>若数值为0的元素数目远远多于非0元素的数目，并且非0元素分布没有规律时</strong>，则称该矩阵为稀疏矩阵；与之相反，若非0元素数目占大多数时，则称该矩阵为稠密矩阵。定义非零元素的总数比上矩阵所有元素的总数为矩阵的稠密度。</p>
+</blockquote>
+<p>反卷积的操作只是恢复了输入矩阵的尺寸大小，并不能恢复输入矩阵的每个元素值。反卷积，也叫转置卷积，它并不是正向卷积的完全逆过程。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-78be59f3fee31730d49372bca2cec843_1440w.jpg?source=1940ef5c" alt="img"></p>
+<p>反卷积的输入输出尺寸关系为：<img src="https://www.zhihu.com/equation?tex=o%3Ds%28i-1%29-2p%2Bk" alt="[公式]"></p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Cbegin%7Balign%2A%7D+o%26%3Dsize%5C+of%5C+output%5C%5C+i%26%3Dsize%5C+of%5C+input%5C%5C+p%26%3Dpadding%5C%5C+s%26%3Dstrides+%5Cend%7Balign%2A%7D" alt="[公式]"></p>
+<h5 id="双线性插值-bilinear-upsampling"><a href="#双线性插值-bilinear-upsampling" class="headerlink" title="双线性插值(bilinear upsampling)"></a>双线性插值(bilinear upsampling)</h5><p>FCN中上采样的过程用到的就是双线性插值法，双线性插值不需要学习任何的参数，通过人为的操作的。</p>
+<p>用x和x0，x1的距离作为一个权重，用于y0和y1的加权。双线性插值本质上就是在两个方向上做线性插值。</p>
+<p><a href="https://blog.csdn.net/qq_37577735/article/details/80041586" target="_blank" rel="noopener">https://blog.csdn.net/qq_37577735/article/details/80041586</a></p>
+<h2 id="RRM-优化模块"><a href="#RRM-优化模块" class="headerlink" title="RRM(优化模块)"></a>RRM(优化模块)</h2><h2 id="loss"><a href="#loss" class="headerlink" title="loss"></a>loss</h2><h3 id="bce"><a href="#bce" class="headerlink" title="bce"></a>bce</h3><h3 id="SSIM-结构相似性"><a href="#SSIM-结构相似性" class="headerlink" title="SSIM(结构相似性)"></a>SSIM(结构相似性)</h3><p>SSIM是一种衡量两幅图片相似度的指标。</p>
+<p>SSIM的输入就是两张图像，我们要得到其相似性的两张图像。其中一张是未经压缩的无失真图像(即ground truth)，另一张就是你恢复出的图像。</p>
+<p>假设输入的两张图像是x和y</p>
+<p>$SSIM(x,y)=[l(x,y)]^α[c(x,y)]^β[s(x,y)]^γ$</p>
+<p>α&gt;0, β&gt;0, γ&gt;0</p>
+<p>其中$l(x,y)=\frac{2μ_xμ_y+c_1}{\mu_x^2+\mu_y^2+c_1}$</p>
+<p>c(x,y)=$\frac{2\sigma_{xy}+c_2}{\sigma_x^2+\sigma_y^2+c_2}$</p>
+<p>s(x,y)=$\frac{\sigma_{xy}+c_3}{\sigma_x\sigma_y+c_3}$</p>
+<p>其中l(x, y)是<strong>亮度比较</strong>，c(x,y)是<strong>对比度比较</strong>，s(x,y)是<strong>结构比较</strong>。$\mu_x$和$\mu_y$分别代表x,y的平均值，$\sigma_x和\sigma_y$分别代表x,y的标准差。$\sigma_{xy}$代表x和y的协方差。而$c_1,c_2,c_3$分别为常数，避免分母为0带来的系统错误。</p>
+<p>在实际工程计算中，我们一般设定$\alpha=\beta=\gamma=1$,以及$c_3=c_2/2$,可以将SSIM简化为下:<br>SSIM(x,y)=$\frac{(2\mu_x\mu_y+c_1)(\sigma_{xy}+c_2)}{(\mu_x^2+\mu_y^2+c_1)(\sigma_x^2+\sigma_y^2+c_2)}$</p>
+<p>总结:</p>
+<ol>
+<li>SSIM具有对称性，即SSIM(x,y)=SSIM(y,x)</li>
+<li><strong>SSIM是一个0到1之间的数，越大表示输出图像和无失真图像的差距越小，即图像质量越好</strong>。当两幅图像一模一样时，SSIM=1</li>
+</ol>
+<h3 id="iou"><a href="#iou" class="headerlink" title="iou"></a>iou</h3><h2 id="SGD"><a href="#SGD" class="headerlink" title="SGD"></a>SGD</h2>
           
             <div class='article_footer'>
               
@@ -549,10 +584,10 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-19T22:26:53+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-25T23:51:54+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Jan 19, 2021</p>
+    <p>更新于：Jan 25, 2021</p>
   </a>
 </div>
 
@@ -583,7 +618,7 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 
 Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 
-根据放假以来的学习，简单画了下理解网络所需要的知识。自己还没有摸太清，只是目前理解的，待更新…"
+根据放假以来的学习，简单画了下理解网络所需要理解掌握的知识。自己还没有摸太清，只是目前理解的，待更新…"
           
           >
           
@@ -599,7 +634,7 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 
 Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 
-根据放假以来的学习，简单画了下理解网络所需要的知识。自己还没有摸太清，只是目前理解的，待更新…"
+根据放假以来的学习，简单画了下理解网络所需要理解掌握的知识。自己还没有摸太清，只是目前理解的，待更新…"
           
           >
           
@@ -615,7 +650,7 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 
 Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 
-根据放假以来的学习，简单画了下理解网络所需要的知识。自己还没有摸太清，只是目前理解的，待更新…"
+根据放假以来的学习，简单画了下理解网络所需要理解掌握的知识。自己还没有摸太清，只是目前理解的，待更新…"
           
           >
           
@@ -715,7 +750,7 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#BASNet"><span class="toc-text">BASNet</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Predict-预测模块"><span class="toc-text">Predict(预测模块)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Resnet"><span class="toc-text">Resnet</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CNN"><span class="toc-text">CNN</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ReLu"><span class="toc-text">ReLu</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#FCN"><span class="toc-text">FCN</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RRM-优化模块"><span class="toc-text">RRM(优化模块)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#loss"><span class="toc-text">loss</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SGD"><span class="toc-text">SGD</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BASNet"><span class="toc-text">BASNet</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Predict-预测模块"><span class="toc-text">Predict(预测模块)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Resnet"><span class="toc-text">Resnet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#encoder-decoder网络"><span class="toc-text">encoder-decoder网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#U-net"><span class="toc-text">U-net</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Segnet"><span class="toc-text">Segnet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CNN"><span class="toc-text">CNN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ReLu"><span class="toc-text">ReLu</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FCN"><span class="toc-text">FCN</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#上采样-Upsample"><span class="toc-text">上采样(Upsample)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RRM-优化模块"><span class="toc-text">RRM(优化模块)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#loss"><span class="toc-text">loss</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bce"><span class="toc-text">bce</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSIM-结构相似性"><span class="toc-text">SSIM(结构相似性)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iou"><span class="toc-text">iou</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SGD"><span class="toc-text">SGD</span></a></li></ol></li></ol>
     </div>
   </section>
 

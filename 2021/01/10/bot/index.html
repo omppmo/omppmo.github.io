@@ -567,6 +567,19 @@
 <p>√ 3.找其他小程序的跳转功能 json源码 试了几个跳不了 草</p>
 <p>歪日 终于成了 google永远滴神 找了一个可跳转的小程序 唯二不足就是图片白搞了&amp;BV号得手动输入（待优化）</p>
 <p>然后设成定时了</p>
+<h3 id="论文推送"><a href="#论文推送" class="headerlink" title="论文推送"></a>论文推送</h3><p>知乎的非官方api都用不了了，增加了反爬机制。</p>
+<p>最初使用requests包请求界面，报403..原来是因为没加headers(没有设置headers请求头，被服务器拦截，一般情况下设置user-agent即可。)</p>
+<p>后来使用selenium库 模拟打开浏览器，寻找元素并定位</p>
+<p>一直报错找不到元素，很疑惑  加个sleep就好了 一部分没加载出来</p>
+<p>找到对应标题的超链接 获取元素属性get_attribute()</p>
+<p>定位使用的是find_element_by_link_text</p>
+<p>得到对应文章url  推送即可</p>
+<p>问题是如何部署在centos上，服务器无GUI使用selenium</p>
+<p>参考链接:<a href="https://blog.csdn.net/shilaike2/article/details/102595228" target="_blank" rel="noopener">https://blog.csdn.net/shilaike2/article/details/102595228</a></p>
+<p>安装xvfb  Xvfb是一个实现了X11显示服务协议的显示服务器。 不同于其他显示服务器，Xvfb在内存中执行所有的图形操作，不需要借助任何显示设备</p>
+<p>还需增加几个options</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">chrome_options =webdriver.Options()</span><br><span class="line"></span><br><span class="line">chrome_options.add_argument(<span class="string">'--no-sandbox'</span>) <span class="comment">#让Chrome在root权限运行</span></span><br><span class="line"></span><br><span class="line">chrome_options.add_argument(<span class="string">'--disable-dev-shm-usage'</span>) <span class="comment">#不打开图形界面</span></span><br><span class="line"></span><br><span class="line">chrome_options.add_argument(<span class="string">'--headless'</span>) <span class="comment">#浏览器不提供可视化页面</span></span><br><span class="line"></span><br><span class="line">chrome_options.add_argument(<span class="string">'blink-settings=imagesEnabled=false'</span>) <span class="comment">#不加载图片, 提升速度</span></span><br><span class="line"></span><br><span class="line">chrome_options.add_argument(<span class="string">'--disable-gpu'</span>) <span class="comment">#谷歌文档提到需要加上这个属性来规避bug</span></span><br></pre></td></tr></table></figure>
+<p>又是面向百度编程的一天</p>
 
           
             <div class='article_footer'>
@@ -654,10 +667,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-19T12:04:17+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-02-06T08:57:12+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Jan 19, 2021</p>
+    <p>更新于：Feb 6, 2021</p>
   </a>
 </div>
 
@@ -738,7 +751,7 @@
 
 Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 
-根据放假以来的学习，简单画了下理解网络所需要的知识。自己还没有摸太清，只是目前理解的...</p>
+根据放假以来的学习，简单画了下理解网络所需要理解掌握的知识。自己还没有摸太清，只是目...</p>
               </a>
             
             
@@ -815,7 +828,7 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本搭建"><span class="toc-text">基本搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mirai部分"><span class="toc-text">mirai部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#graia部分"><span class="toc-text">graia部分</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bot编写"><span class="toc-text">bot编写</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#钉钉接口"><span class="toc-text">钉钉接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#疫情模块"><span class="toc-text">疫情模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六级词汇模块"><span class="toc-text">六级词汇模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bilibili推送模块"><span class="toc-text">bilibili推送模块</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本搭建"><span class="toc-text">基本搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mirai部分"><span class="toc-text">mirai部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#graia部分"><span class="toc-text">graia部分</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bot编写"><span class="toc-text">bot编写</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#钉钉接口"><span class="toc-text">钉钉接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#疫情模块"><span class="toc-text">疫情模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六级词汇模块"><span class="toc-text">六级词汇模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bilibili推送模块"><span class="toc-text">bilibili推送模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#论文推送"><span class="toc-text">论文推送</span></a></li></ol></li></ol>
     </div>
   </section>
 
