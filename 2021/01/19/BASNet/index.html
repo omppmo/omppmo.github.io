@@ -539,6 +539,7 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 <p><a href="https://blog.csdn.net/sunny_yeah_/article/details/89430124" target="_blank" rel="noopener">https://blog.csdn.net/sunny_yeah_/article/details/89430124</a></p>
 <p><a href="https://www.bilibili.com/video/BV1T7411T7wa" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1T7411T7wa</a></p>
 <p>解决了梯度弥散/爆炸问题和退化问题</p>
+<p>BasicBlock和Bottleneck的优缺点:<a href="https://www.zhihu.com/question/413586557/answer/1402003639" target="_blank" rel="noopener">https://www.zhihu.com/question/413586557/answer/1402003639</a></p>
 <h3 id="HED"><a href="#HED" class="headerlink" title="HED"></a>HED</h3><p>paper:<a href="https://arxiv.org/abs/1504.06375" target="_blank" rel="noopener">https://arxiv.org/abs/1504.06375</a></p>
 <p>解读:<a href="https://blog.csdn.net/u014779538/article/details/92765963" target="_blank" rel="noopener">https://blog.csdn.net/u014779538/article/details/92765963</a></p>
 <p>supervision by gt这块不懂 留坑了</p>
@@ -656,10 +657,10 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-09T16:05:39+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-02T17:35:27+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Mar 9, 2021</p>
+    <p>更新于：Apr 2, 2021</p>
   </a>
 </div>
 
@@ -791,6 +792,27 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 
 
 <!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    processEscapes: true,
+    tags: "ams",
+    macros: {
+      href: "{}"
+    }
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|dno",
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  }
+};
+</script>
+
 
 
 
