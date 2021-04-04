@@ -475,11 +475,15 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 <h4 id="网络架构"><a href="#网络架构" class="headerlink" title="网络架构"></a>网络架构</h4><p><strong>卷积神经网络结构包括：卷积层，降采样层，全链接层。每一层有多个特征图，每个特征图通过一种卷积滤波器提取输入的一种特征，每个特征图有多个神经元。</strong></p>
 <p>卷积神经网络是一种多层的监督学习神经网络，隐含层的卷积层和池采样层是实现卷积神经网络特征提取功能的核心模块。该网络模型通过采用梯度下降法最小化损失函数对网络中的权重参数逐层反向调节，通过频繁的迭代训练提高网络的精度。==卷积神经网络的低隐层是由卷积层和最大池采样层交替组成，高层是全连接层对应传统多层感知器的隐含层和逻辑回归分类器。==第一个全连接层的输入是由卷积层和子采样层进行特征提取得到的特征图像。最后一层输出层是一个分类器，可以采用逻辑回归，Softmax回归甚至是支持向量机对输入图像进行分类。</p>
 <h4 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h4><p>卷积的目的：为了从输入图像中提取特征。卷积可以通过从输入的一小块数据中学到图像的特征，并可以保留像素间的空间关系。</p>
-<h5 id="滤波器filter-卷积核kernel-的运算"><a href="#滤波器filter-卷积核kernel-的运算" class="headerlink" title="滤波器filter(卷积核kernel)的运算"></a>滤波器filter(卷积核kernel)的运算</h5><p> 对于同样的输入图像，不同值的滤波器将会生成不同的特征图。</p>
+<h5 id="滤波器filter-卷积核kernel-的运算"><a href="#滤波器filter-卷积核kernel-的运算" class="headerlink" title="滤波器filter(卷积核kernel)的运算"></a>滤波器filter(卷积核kernel)的运算</h5><p>卷积运算细节:<a href="https://blog.csdn.net/dcrmg/article/details/79652487" target="_blank" rel="noopener">https://blog.csdn.net/dcrmg/article/details/79652487</a></p>
+<p> 对于同样的输入图像，不同值的滤波器将会生成不同的特征图。</p>
 <p>通过在卷积操作前修改滤波矩阵的数值，我们可以进行诸如边缘检测、锐化和模糊等操作 —— 这表明不同的滤波器可以从图中检测到不同的特征，比如边缘、曲线等。</p>
 <p><strong>卷积核与通道数的关系</strong></p>
+<p><a href="https://segmentfault.com/q/1010000016667038" target="_blank" rel="noopener">https://segmentfault.com/q/1010000016667038</a></p>
 <p>看网络架构的时候很懵，回来补一下基础。</p>
-<p>卷积核数与输出通道数是相等的，且可以自定义，取决于自己的实验设置。</p>
+<p><strong>卷积核数与输出通道数是相等的</strong>，且可以自定义，取决于自己的实验设置。</p>
+<p><img src="https://img-blog.csdn.net/20180322130042532?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L2Rjcm1n/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p><img src="https://image-static.segmentfault.com/292/098/292098771-59e98309e35bc_fix732" alt></p>
 <h5 id="特征图"><a href="#特征图" class="headerlink" title="特征图"></a>特征图</h5><p>通过在图像上滑动滤波器并计算点乘得到矩阵叫做“卷积特征（Convolved Feature）”或者“激活图（Activation Map）”或者“特征图（Feature Map）”。</p>
 <p>特征图的大小（卷积特征）由三个参数控制：深度（depth）、步长（stride）、零填充（zero-padding）。</p>
 <p>深度：深度对应的是卷积操作所需的滤波器个数。在下图的网络中，我们使用三个不同的滤波器对原始图像进行卷积操作，这样就可以生成三个不同的特征图。你可以把这三个特征图看作是堆叠的 2d 矩阵，那么，特征图的“深度”就是三。</p>
@@ -575,7 +579,8 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 <p><a href="https://imgtu.com/i/cKnXcj" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/04/cKnXcj.png" alt="cKnXcj.png"></a></p>
 <h3 id="HED"><a href="#HED" class="headerlink" title="HED"></a>HED</h3><p>paper:<a href="https://arxiv.org/abs/1504.06375" target="_blank" rel="noopener">https://arxiv.org/abs/1504.06375</a></p>
 <p>解读:<a href="https://blog.csdn.net/u014779538/article/details/92765963" target="_blank" rel="noopener">https://blog.csdn.net/u014779538/article/details/92765963</a></p>
-<p>supervision by gt这块不懂 留坑了</p>
+<p>supervised by gt这块不懂 留坑了</p>
+<p>这部分感谢研究生姐姐的帮助，我不懂HED中多尺度特征与supervised by gt之间的关系，感谢细心的解答QAQ</p>
 <h4 id="监督学习与无监督学习"><a href="#监督学习与无监督学习" class="headerlink" title="监督学习与无监督学习"></a>监督学习与无监督学习</h4><h2 id="loss"><a href="#loss" class="headerlink" title="loss"></a>loss</h2><h3 id="BCE"><a href="#BCE" class="headerlink" title="BCE"></a>BCE</h3><p>如何理解信息量、熵、相对熵、交叉熵:</p>
 <p><a href="https://blog.csdn.net/Lison_Zhu/article/details/97234817" target="_blank" rel="noopener">https://blog.csdn.net/Lison_Zhu/article/details/97234817</a></p>
 <p>BCE用于二分类 </p>
@@ -603,13 +608,15 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 <p><strong>可以反映预测检测框与真实检测框的检测效果</strong></p>
 <p>关于IOU/GIOU/DIOU/CIOU:</p>
 <p><a href="https://www.cnblogs.com/wujianming-110117/p/13019343.html" target="_blank" rel="noopener">https://www.cnblogs.com/wujianming-110117/p/13019343.html</a></p>
-<h2 id="网络架构-2"><a href="#网络架构-2" class="headerlink" title="网络架构"></a>网络架构</h2><p>有了上述基础知识和相关模型的了解，我们分析一下BASNET的架构。</p>
+<h2 id="网络架构分析"><a href="#网络架构分析" class="headerlink" title="网络架构分析"></a>网络架构分析</h2><p>有了上述基础知识和相关模型的了解，我们分析一下BASNET的架构。</p>
 <details><summary><p>BASNet相关资料</p></summary><p>
     paper:<a href="https://openaccess.thecvf.com/content_CVPR_2019/papers/Qin_BASNet_Boundary-Aware_Salient_Object_Detection_CVPR_2019_paper.pdf" target="_blank" rel="noopener">戳这里</a></p><p>简介:<a href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650795924&idx=2&sn=1b15a2540ffb9220f00be0cbbd62cafd&chksm=871a2beab06da2fcd63c7b22ecde508e90b488533a3f97939ec1cfc65ec3ab823e3afe579a7f&mpshare=1&scene=23&srcid=1123k84nCTl7SzHKywymED4G&sharer_sharetime=1606132949286&sharer_shareid=8feb0cd9552063c70146726ba076ab86#rd" target="_blank" rel="noopener">戳这里</a></p>
     <p>解读:<a href="https://blog.csdn.net/calvinpaean/article/details/101036249" target="_blank" rel="noopener">戳这里</a></p><p>github:<a href="https://github.com/NathanUA/BASNet" target="_blank" rel="noopener">戳这里</a></p></details>
 
 <p><img src="https://img-blog.csdnimg.cn/20190920102120212.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NhbHZpbnBhZWFu,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h3 id="Predict-Module"><a href="#Predict-Module" class="headerlink" title="Predict Module"></a>Predict Module</h3><h4 id="Encoder"><a href="#Encoder" class="headerlink" title="Encoder"></a>Encoder</h4><p>Encoder部分包含一个输入卷积层和六个由基本残差模块组成的stage。输入卷积层和前4个stages都是使用ResNet-34的层。</p>
+<p>ResNet34架构:</p>
+<p><img src="https://img-blog.csdnimg.cn/20190521090040152.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjEzNTM5OQ==,size_16,color_FFFFFF,t_70" alt="img"></p>
 <p>各层参数如下:</p>
 <p>1.输入卷积层</p>
 <div class="table-container">
@@ -624,13 +631,13 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 <tbody>
 <tr>
 <td>input</td>
-<td>224x224</td>
-<td>224x224</td>
+<td>224×224×</td>
+<td>224×224×</td>
 </tr>
 <tr>
 <td>kernel</td>
-<td>7x7,64</td>
-<td>3x3,64</td>
+<td>7×7,64</td>
+<td>3×3,64</td>
 </tr>
 <tr>
 <td>padding</td>
@@ -644,8 +651,8 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 </tr>
 <tr>
 <td>output</td>
-<td>112x112</td>
-<td>224x224</td>
+<td>112×112×64</td>
+<td>224×224×64</td>
 </tr>
 </tbody>
 </table>
@@ -655,7 +662,7 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 <p>ResNet34有3x3，stride为2，padding为1的MaxPool</p>
 <p>故经过MaxPool后 输出特征图为56x56。</p>
 <p>而BASNet在输入层之后没有池化操作。</p>
-<p>以下是一个ResBlock的参数，本stage共有三个残差模块。</p>
+<p>以下是一个ResBlock的参数，ResBlock_num=3。</p>
 <div class="table-container">
 <table>
 <thead>
@@ -673,26 +680,287 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 </tr>
 <tr>
 <td>kernel</td>
-<td>3×3</td>
-<td>3×3</td>
+<td>3×3,64</td>
+<td>3×3,64</td>
 </tr>
 <tr>
 <td>padding</td>
-<td></td>
-<td></td>
+<td>1</td>
+<td>1</td>
 </tr>
 <tr>
 <td>stride</td>
-<td>2</td>
-<td>2</td>
+<td>1</td>
+<td>1</td>
 </tr>
 <tr>
 <td>output</td>
-<td></td>
+<td>56×56×64</td>
+<td>224×224×64</td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>经过三个ResBlock后，RESNet34 output=56×56×64,BASNet output=224×224×224</p>
+<p>此时在BASNet中输出特征图与输入图像依然有着相同的分辨率。</p>
+<p>这和原来的ResNet-34不同，它在第一个特征图的分辨率缩小到了 1 / 4大小。</p>
+<p><strong>这个改动使得网络在早期阶段就能够获取更高的分辨率特征图，也可以降低整体的感受野。</strong><br>（？留坑  降低感受野有什么作用 感受野是增加还是降低有益）</p>
+<p>3.stage2</p>
+<p>ResBlock_num=4</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>CONV</th>
+<th>RESNET34</th>
+<th>BASNET</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>input</td>
+<td>56×56×64</td>
+<td>224×224×64</td>
+</tr>
+<tr>
+<td>kernel</td>
+<td>3×3,128</td>
+<td>3×3,128</td>
+</tr>
+<tr>
+<td>padding</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>stride</td>
+<td>第一个ResBlock为2，其余为1</td>
+<td>第一个ResBlock为2，其余为1</td>
+</tr>
+<tr>
+<td>output</td>
+<td>28×28×128</td>
+<td>112×112×128</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>4.stage3</p>
+<p>ResBlock_num=6</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>CONV</th>
+<th>RESNET34</th>
+<th>BASNET</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>input</td>
+<td>28×28×128</td>
+<td>112×112×128</td>
+</tr>
+<tr>
+<td>kernel</td>
+<td>3×3,256</td>
+<td>3×3,256</td>
+</tr>
+<tr>
+<td>padding</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>stride</td>
+<td>第一个ResBlock为2，其余为1</td>
+<td>第一个ResBlock为2，其余为1</td>
+</tr>
+<tr>
+<td>output</td>
+<td>14×14×256</td>
+<td>56×56×256</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>5.stage4</p>
+<p>ResBlock_num=3</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>CONV</th>
+<th>RESNET34</th>
+<th>BASNET</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>input</td>
+<td>14×14×256</td>
+<td>56×56×256</td>
+</tr>
+<tr>
+<td>kernel</td>
+<td>3×3,512</td>
+<td>3×3,512</td>
+</tr>
+<tr>
+<td>padding</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>stride</td>
+<td>第一个ResBlock为2，其余为1</td>
+<td>第一个ResBlock为2，其余为1</td>
+</tr>
+<tr>
+<td>output</td>
+<td>7×7×512</td>
+<td>28×28×512</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>为了获得和ResNet-34一样的感受野，我们在ResNet-34第4个stage之后增加了2个额外的stages。这两个stages都由3个基础的ResBlock构成，有512个filters。在此之前有一个大小为2、不重叠的max pool层。</p>
+<p>6.stage5</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>MAXPOOL</th>
+<th>BASNET</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>input</td>
+<td>28×28×512</td>
+</tr>
+<tr>
+<td>kernel</td>
+<td>2×2</td>
+</tr>
+<tr>
+<td>padding</td>
+<td>0</td>
+</tr>
+<tr>
+<td>stride</td>
+<td>2</td>
+</tr>
+<tr>
+<td>output</td>
+<td>14×14×512</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>关于padding和stride的细节论文里好像没写(根据代码和计算推一下,可能有误…</p>
+<p>ResBlock_num=3</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>CONV</th>
+<th>BASNET</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>input</td>
+<td>14×14×512</td>
+</tr>
+<tr>
+<td>kernel</td>
+<td>3×3,512</td>
+</tr>
+<tr>
+<td>padding</td>
+<td>1</td>
+</tr>
+<tr>
+<td>stride</td>
+<td>1</td>
+</tr>
+<tr>
+<td>output</td>
+<td>14×14×512</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>7.stage6</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>MAXPOOL</th>
+<th>BASNET</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>input</td>
+<td>14×14×512</td>
+</tr>
+<tr>
+<td>kernel</td>
+<td>2×2</td>
+</tr>
+<tr>
+<td>padding</td>
+<td>0</td>
+</tr>
+<tr>
+<td>stride</td>
+<td>2</td>
+</tr>
+<tr>
+<td>output</td>
+<td>7×7×512</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>ResBlock_num=3</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>CONV</th>
+<th>BASNET</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>input</td>
+<td>7×7×512</td>
+</tr>
+<tr>
+<td>kernel</td>
+<td>3×3,512</td>
+</tr>
+<tr>
+<td>padding</td>
+<td>1</td>
+</tr>
+<tr>
+<td>stride</td>
+<td>1</td>
+</tr>
+<tr>
+<td>output</td>
+<td>7×7×512</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>至此,Encoder部分结束，BASNet输出的特征图大小与ResNet34输出特征图大小相同。</p>
+<p>通过对特征图的计算，我对卷积与池化操作的细节和代码参数更加了解，也理解了网络中图片尺寸的变化过程以及网络的架构。待更新….</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>pytorch学习</p>
 <p>开发文档:<a href="https://pytorch.org/docs/stable/index.html" target="_blank" rel="noopener">https://pytorch.org/docs/stable/index.html</a></p>
 <h3 id="Tensors"><a href="#Tensors" class="headerlink" title="Tensors"></a>Tensors</h3><p><a href="https://zhuanlan.zhihu.com/p/347676809" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/347676809</a></p>
@@ -749,7 +1017,7 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 <p>优化器也是一个类，先定义一个实例optimizer，然后之后会用。<strong>注意在optimizer定义的时候，==需要给SGD传入了net的参数parameters，这样之后优化器就掌握了对网络参数的控制权==，就能够对它进行修改了。传入的时候把学习率lr也传入了。</strong></p>
 <p>在每次迭代之前，先把optimizer里存的梯度清零一下（因为W已经更新过的“更新量”下一次就不需要用了）·<code>optimizer.zero_grad()</code></p>
 <p>在loss.backward()反向传播以后，更新参数： <code>optimizer.step()</code></p>
-<p><img src="/2021/01/19/BASNet/image-20210401225509818.png" alt="image-20210401225509818"></p>
+<p><a href="https://imgtu.com/i/cKuuE6" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/04/cKuuE6.png" alt="cKuuE6.png"></a></p>
 
           
             <div class='article_footer'>
@@ -837,7 +1105,7 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-04T16:13:57+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-04T18:03:36+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：Apr 4, 2021</p>
@@ -1024,7 +1292,7 @@ window.MathJax = {
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BASNet"><span class="toc-text">BASNet</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础知识"><span class="toc-text">基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度下降"><span class="toc-text">梯度下降</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#softmax"><span class="toc-text">softmax</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BN"><span class="toc-text">BN</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Relu与BN层顺序问题"><span class="toc-text">Relu与BN层顺序问题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关模型"><span class="toc-text">相关模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CNN"><span class="toc-text">CNN</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#网络架构"><span class="toc-text">网络架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#卷积"><span class="toc-text">卷积</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#池化"><span class="toc-text">池化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#卷积与池化的区别"><span class="toc-text">卷积与池化的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#卷积与池化特征图的计算"><span class="toc-text">卷积与池化特征图的计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#high-level与low-level-feature"><span class="toc-text">high-level与low-level feature</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FCN"><span class="toc-text">FCN</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#上采样-Upsample"><span class="toc-text">上采样(Upsample)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#U-net"><span class="toc-text">U-net</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#skip-connection"><span class="toc-text">skip-connection</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Segnet"><span class="toc-text">Segnet</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#网络架构-1"><span class="toc-text">网络架构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Resnet"><span class="toc-text">Resnet</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BasicBlock和Bottleneck"><span class="toc-text">BasicBlock和Bottleneck</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HED"><span class="toc-text">HED</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#监督学习与无监督学习"><span class="toc-text">监督学习与无监督学习</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#loss"><span class="toc-text">loss</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BCE"><span class="toc-text">BCE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSIM-结构相似性"><span class="toc-text">SSIM(结构相似性)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iou"><span class="toc-text">iou</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络架构-2"><span class="toc-text">网络架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Predict-Module"><span class="toc-text">Predict Module</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Encoder"><span class="toc-text">Encoder</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tensors"><span class="toc-text">Tensors</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Autograd"><span class="toc-text">Autograd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#神经网络"><span class="toc-text">神经网络</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BASNet"><span class="toc-text">BASNet</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础知识"><span class="toc-text">基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度下降"><span class="toc-text">梯度下降</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#softmax"><span class="toc-text">softmax</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BN"><span class="toc-text">BN</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Relu与BN层顺序问题"><span class="toc-text">Relu与BN层顺序问题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关模型"><span class="toc-text">相关模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CNN"><span class="toc-text">CNN</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#网络架构"><span class="toc-text">网络架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#卷积"><span class="toc-text">卷积</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#池化"><span class="toc-text">池化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#卷积与池化的区别"><span class="toc-text">卷积与池化的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#卷积与池化特征图的计算"><span class="toc-text">卷积与池化特征图的计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#high-level与low-level-feature"><span class="toc-text">high-level与low-level feature</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FCN"><span class="toc-text">FCN</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#上采样-Upsample"><span class="toc-text">上采样(Upsample)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#U-net"><span class="toc-text">U-net</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#skip-connection"><span class="toc-text">skip-connection</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Segnet"><span class="toc-text">Segnet</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#网络架构-1"><span class="toc-text">网络架构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Resnet"><span class="toc-text">Resnet</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BasicBlock和Bottleneck"><span class="toc-text">BasicBlock和Bottleneck</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HED"><span class="toc-text">HED</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#监督学习与无监督学习"><span class="toc-text">监督学习与无监督学习</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#loss"><span class="toc-text">loss</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BCE"><span class="toc-text">BCE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSIM-结构相似性"><span class="toc-text">SSIM(结构相似性)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iou"><span class="toc-text">iou</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络架构分析"><span class="toc-text">网络架构分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Predict-Module"><span class="toc-text">Predict Module</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Encoder"><span class="toc-text">Encoder</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tensors"><span class="toc-text">Tensors</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Autograd"><span class="toc-text">Autograd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#神经网络"><span class="toc-text">神经网络</span></a></li></ol></li></ol></li></ol>
     </div>
   </section>
 
@@ -1404,20 +1672,5 @@ window.MathJax = {
 
 
   <script>setLoadingBarProgress(100);</script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/miku.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":false},"react":{"opacity":0.7},"log":false});</script></body>
 </html>
