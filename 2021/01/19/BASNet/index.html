@@ -471,6 +471,7 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 <p><a href="https://www.zhihu.com/question/318354788" target="_blank" rel="noopener">https://www.zhihu.com/question/318354788</a></p>
 <p>现在网络一般默认用BN-ReLu</p>
 <p>Batch Norm方法经过规范化和缩放平移，可以使输入数据，重新回到非饱和区，还可以更进一步：控制激活的饱和程度，或是非饱和函数抑制与激活的范围。</p>
+<h3 id="sigmoid"><a href="#sigmoid" class="headerlink" title="sigmoid"></a>sigmoid</h3><p>看到源码里BASNET中最后return的是几个side-output的sigmoid值不理解，留坑</p>
 <h2 id="相关模型"><a href="#相关模型" class="headerlink" title="相关模型"></a>相关模型</h2><h3 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h3><p>卷积神经网络是一种带有卷积结构的深度神经网络，卷积结构可以减少深层网络占用的内存量，其三个关键的操作，<strong>其一是局部感受野，其二是权值共享，其三是pooling层</strong>，有效的减少了网络的参数个数，缓解了模型的过拟合问题。</p>
 <h4 id="网络架构"><a href="#网络架构" class="headerlink" title="网络架构"></a>网络架构</h4><p><strong>卷积神经网络结构包括：卷积层，降采样层，全链接层。每一层有多个特征图，每个特征图通过一种卷积滤波器提取输入的一种特征，每个特征图有多个神经元。</strong></p>
 <p>卷积神经网络是一种多层的监督学习神经网络，隐含层的卷积层和池采样层是实现卷积神经网络特征提取功能的核心模块。该网络模型通过采用梯度下降法最小化损失函数对网络中的权重参数逐层反向调节，通过频繁的迭代训练提高网络的精度。==卷积神经网络的低隐层是由卷积层和最大池采样层交替组成，高层是全连接层对应传统多层感知器的隐含层和逻辑回归分类器。==第一个全连接层的输入是由卷积层和子采样层进行特征提取得到的特征图像。最后一层输出层是一个分类器，可以采用逻辑回归，Softmax回归甚至是支持向量机对输入图像进行分类。</p>
@@ -478,6 +479,7 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 <h5 id="滤波器filter-卷积核kernel-的运算"><a href="#滤波器filter-卷积核kernel-的运算" class="headerlink" title="滤波器filter(卷积核kernel)的运算"></a>滤波器filter(卷积核kernel)的运算</h5><p>卷积运算细节:<a href="https://blog.csdn.net/dcrmg/article/details/79652487" target="_blank" rel="noopener">https://blog.csdn.net/dcrmg/article/details/79652487</a></p>
 <p> 对于同样的输入图像，不同值的滤波器将会生成不同的特征图。</p>
 <p>通过在卷积操作前修改滤波矩阵的数值，我们可以进行诸如边缘检测、锐化和模糊等操作 —— 这表明不同的滤波器可以从图中检测到不同的特征，比如边缘、曲线等。</p>
+<p><strong>卷积核里面的参数，一开始是随机数，它本身是需要训练的权重值，只是一开始被初始化了为随机数，并不是一直都是随机数，它会随着网络的训练，逐渐发生变化，最后生成固定的权重值。</strong></p>
 <p><strong>卷积核与通道数的关系</strong></p>
 <p><a href="https://segmentfault.com/q/1010000016667038" target="_blank" rel="noopener">https://segmentfault.com/q/1010000016667038</a></p>
 <p>看网络架构的时候很懵，回来补一下基础。</p>
@@ -508,7 +510,7 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 <p>2:池化下采样是为了降低特征的维度，池化操作可以起到平移不变性，如4个像素经过池化选泽一个具有代表的像素，给相似特征一定弹性。</p>
 <p>虽然结果都是图像或者特征图变小，但是目的是不一样的。<strong>池化下采样比较粗暴，可能将有用的信息滤除掉，而卷积下采样过程控制了步进大小，信息融合较好，现在池化操作较少的被采用。</strong>反卷积和上采样也同理。</p>
 <h4 id="卷积与池化特征图的计算"><a href="#卷积与池化特征图的计算" class="headerlink" title="卷积与池化特征图的计算"></a>卷积与池化特征图的计算</h4><p><a href="https://www.pianshen.com/article/30711004970/" target="_blank" rel="noopener">https://www.pianshen.com/article/30711004970/</a></p>
-<p>卷积:</p>
+<p><strong>卷积:</strong></p>
 <p>若图像为正方形：设输入图像尺寸为WxW，卷积核尺寸为FxF，步幅为S，Padding使用P,经过该卷积层后输出的图像尺寸为NxN：</p>
 <p>$N=\frac{W-F+2P}{S}+1$</p>
 <p>若图像为矩形：设输入图像尺寸为WxH，卷积核的尺寸为FxF，步幅为S，图像深度(通道数)为C，Padding使用P，则：</p>
@@ -516,7 +518,7 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 <p>$N=\frac{W-F+2P}{S}+1$</p>
 <p>$H=\frac{H-F+2P}{S}+1$</p>
 <p>输出图像的通道数=C </p>
-<p>池化:</p>
+<p><strong>池化:</strong></p>
 <p>设输入图像尺寸为WxH，其中W:图像宽，H:图像高，D:图像深度（通道数），卷积核的尺寸为FxF，S:步长</p>
 <p>池化后输出图像大小：</p>
 <p>$W=\frac{W-F}{S}+1$</p>
@@ -525,6 +527,9 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 <p>当进行池化操作时，步长S就等于池化核的尺寸，如输入为24x24，池化核为4x4，则输出为$\frac{24-4}{4}+1 = 6$</p>
 <p>若除不尽，则取较小的数，如池化核为7x7，则输出为$\frac{24-7}{7}+1 = 3.428 =3$，不是用四舍五入，就是取最小的整数，即使为3.9，也是 取3</p>
 <p>式子是怎么来的我还不太理解emm…</p>
+<p><strong>空洞卷积:</strong></p>
+<p>$W=\frac{W-d(k-1)-1+2p}{s}+1$</p>
+<p>d为dilation(空洞率)  p为padding k为kernel size</p>
 <h4 id="high-level与low-level-feature"><a href="#high-level与low-level-feature" class="headerlink" title="high-level与low-level feature"></a>high-level与low-level feature</h4><p><a href="https://blog.csdn.net/nanhuaibeian/article/details/103305128" target="_blank" rel="noopener">https://blog.csdn.net/nanhuaibeian/article/details/103305128</a></p>
 <p>Low-level feature： 通常是指图像中的一些小的细节信息，例如边缘（edge),角(corner),颜色(color),像素(pixeles), 梯度(gradients)等，这些信息可以通过滤波器、SIFT或HOG获取</p>
 <p>high-level feature:是建立在low level feature之上的,可以用于图像中目标或物体形状的识别和检测,具有更丰富的语义信息</p>
@@ -536,6 +541,11 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 <p>空洞卷积核kernel 并不连续，也就是并不是所有的 pixel 都用来计算了。</p>
 <p><img src="https://pic1.zhimg.com/50/v2-4959201e816888c6648f2e78cccfd253_hd.webp?source=1940ef5c" alt="img"></p>
 <p>上图实际的卷积kernel  size还是3x3，但是空洞为1，也可以理解为kernel的size为7x7，但是只有图中的9个点的权重不为0，其余都为0。<strong>可以看到虽然kernel size只有3x3，但是这个卷积的感受野已经增大到了7x7。</strong></p>
+<h5 id="dilation空洞率的计算"><a href="#dilation空洞率的计算" class="headerlink" title="dilation空洞率的计算"></a>dilation空洞率的计算</h5><p><a href="https://blog.csdn.net/chen1234520nnn/article/details/102516704" target="_blank" rel="noopener">https://blog.csdn.net/chen1234520nnn/article/details/102516704</a></p>
+<p>膨胀后卷积核尺寸 = 膨胀系数 * (原始卷积核尺寸 - 1) + 1</p>
+<p>以卷积核3*3为例，膨胀系数为2，那么卷积核膨胀之后，卷积核的单边尺寸就变成了2*(3-1)+1，即卷积核的尺寸变成了5*5。</p>
+<p><img src="https://img-blog.csdnimg.cn/20191012113145392.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoZW4xMjM0NTIwbm5u,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p><strong>卷积核膨胀是将卷积核扩张到膨胀尺度约束的尺度中，并将原卷积核没有占用的区域填充零</strong></p>
 <h3 id="FCN"><a href="#FCN" class="headerlink" title="FCN"></a>FCN</h3><p>paper:<a href="https://arxiv.org/abs/1411.4038" target="_blank" rel="noopener">https://arxiv.org/abs/1411.4038</a></p>
 <p>对于一般的分类CNN网络，如VGG和Resnet，都会在网络的最后加入一些全连接层，经过softmax后就可以获得类别概率信息。但是这个概率信息是1维的，即只能标识整个图片的类别，不能标识每个像素点的类别，所以这种全连接方法不适用于图像分割。而FCN提出可以把后面几个全连接都换成卷积，这样就可以获得一张2维的feature map，后接softmax获得每个像素点的分类信息，从而解决了分割问题。</p>
 <h4 id="上采样-Upsample"><a href="#上采样-Upsample" class="headerlink" title="上采样(Upsample)"></a>上采样(Upsample)</h4><p>在应用在计算机视觉的深度学习领域，由于输入图像通过卷积神经网络(CNN)提取特征后，输出的尺寸往往会变小，而有时我们需要将图像恢复到原来的尺寸以便进行进一步的计算(e.g.:图像的语义分割)，这个采用扩大图像尺寸，实现图像由小分辨率到大分辨率的映射的操作，叫做上采样(Upsample)。</p>
@@ -589,9 +599,18 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 <h4 id="BasicBlock和Bottleneck"><a href="#BasicBlock和Bottleneck" class="headerlink" title="BasicBlock和Bottleneck"></a>BasicBlock和Bottleneck</h4><p><a href="https://www.zhihu.com/question/413586557/answer/1402003639" target="_blank" rel="noopener">https://www.zhihu.com/question/413586557/answer/1402003639</a></p>
 <p>在ResNet网络结构中会用到两种残差模块，一种是以两个3*3的卷积网络串接在一起作为一个残差模块，另外一种是1*1、3*3、1*1的3个卷积网络串接在一起作为一个残差模块。</p>
 <p><a href="https://imgtu.com/i/cKnXcj" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/04/cKnXcj.png" alt="cKnXcj.png"></a></p>
+<h4 id="1-1卷积核的作用"><a href="#1-1卷积核的作用" class="headerlink" title="1*1卷积核的作用"></a>1*1卷积核的作用</h4><p><a href="https://blog.csdn.net/qq_27871973/article/details/82970640" target="_blank" rel="noopener">https://blog.csdn.net/qq_27871973/article/details/82970640</a></p>
+<p>看到Bottleneck中使用了1*1卷积核，好奇起什么作用</p>
+<p>对二维矩阵来说，相当于直接乘以2</p>
+<p><img src="https://img-blog.csdn.net/2018100817560866?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI3ODcxOTcz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>对三维矩阵来说</p>
+<p>可以进行降维或者升维，也就是通过控制卷积核（通道数）实现，这个可以帮助减少模型参数，也可以对不同特征进行尺寸的归一化；同时也可以用于不同channel上特征的融合。</p>
+<p>(?留坑了 三维不懂 所以Bottleneck也留坑)</p>
 <h3 id="HED"><a href="#HED" class="headerlink" title="HED"></a>HED</h3><p>paper:<a href="https://arxiv.org/abs/1504.06375" target="_blank" rel="noopener">https://arxiv.org/abs/1504.06375</a></p>
-<p>解读:<a href="https://blog.csdn.net/u014779538/article/details/92765963" target="_blank" rel="noopener">https://blog.csdn.net/u014779538/article/details/92765963</a></p>
+<p>参考资料:</p>
+<p><a href="https://blog.csdn.net/u014779538/article/details/92765963" target="_blank" rel="noopener">https://blog.csdn.net/u014779538/article/details/92765963</a></p>
 <p><a href="https://blog.csdn.net/u012905422/article/details/52782615" target="_blank" rel="noopener">https://blog.csdn.net/u012905422/article/details/52782615</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/35694372" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/35694372</a></p>
 <p>supervised by gt这块不懂 留坑了</p>
 <p>这部分感谢研究生姐姐的帮助，我不懂HED中多尺度特征与supervised by gt之间的关系，感谢细心的解答QAQ</p>
 <h4 id="ground-truth"><a href="#ground-truth" class="headerlink" title="ground truth"></a>ground truth</h4><p><a href="https://www.zhihu.com/question/22464082" target="_blank" rel="noopener">https://www.zhihu.com/question/22464082</a></p>
@@ -619,7 +638,17 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 <p>构建对应的拉普拉斯金字塔如下（第1级为高斯金字塔中最小尺寸的图，也就是高斯金字塔最后1级)</p>
 <p><img src="https://pic3.zhimg.com/80/v2-d88c440419db98a262482d31b4a19e22_1440w.jpg" alt="img"></p>
 <h5 id="多尺度模型架构"><a href="#多尺度模型架构" class="headerlink" title="多尺度模型架构"></a>多尺度模型架构</h5><p><a href="https://zhuanlan.zhihu.com/p/74710464" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/74710464</a></p>
-<h3 id="VGG"><a href="#VGG" class="headerlink" title="VGG"></a>VGG</h3><h2 id="loss"><a href="#loss" class="headerlink" title="loss"></a>loss</h2><h3 id="BCE"><a href="#BCE" class="headerlink" title="BCE"></a>BCE</h3><p>如何理解信息量、熵、相对熵、交叉熵:</p>
+<p>（先留坑）</p>
+<h4 id="网络架构-2"><a href="#网络架构-2" class="headerlink" title="网络架构"></a>网络架构</h4><p><img src="/2021/01/19/BASNet/image-20210408204932290.png" alt="image-20210408204932290"></p>
+<p>HED采用的多尺度特征结构。</p>
+<p>Holistically ：表示边缘预测结果是基于端对端的</p>
+<p>Nested：生成的Edge过程中，将许多尺度不同的图片进行fusion得到结果</p>
+<p>作者在VGG-Net的基础上进行修改，在每个卷积层的后边加入一层 side output layer，<strong>在每个side output layer 上进行deep supervision learning</strong>，有助于结果向边缘检测方向进行。每个side output layer  将得到一个edge map，如下图：</p>
+<p><img src="https://pic4.zhimg.com/80/v2-50f95cf6d020d31732014bf39b3289fb_720w.jpg" alt="img"></p>
+<p>浅层越能检测出很细节的边缘信息，越深层越能体现一些语义分割上的信息，与ground truth 比较接近。最后通过一个fusion  layer将各个edge map 进行融合，在这个fusion layer中对所有的edge map  都进行loss，以及bp等操作（multi-loss）。</p>
+<p>在VGG-16的5个block的Max  Pooling降采样之前，HED通过side_branch函数产生了5个分支,最后这5个side_branch的输出通过Concatenate操作合并在一起。网络的5个side_branch和一个fuse branch通过sigmoid激活函数后共同作为网络的输出，每个输出的尺寸均和输入图像相同。</p>
+<p>还是不懂 代码也是- -留坑 </p>
+<h2 id="loss"><a href="#loss" class="headerlink" title="loss"></a>loss</h2><h3 id="BCE"><a href="#BCE" class="headerlink" title="BCE"></a>BCE</h3><p>如何理解信息量、熵、相对熵、交叉熵:</p>
 <p><a href="https://blog.csdn.net/Lison_Zhu/article/details/97234817" target="_blank" rel="noopener">https://blog.csdn.net/Lison_Zhu/article/details/97234817</a></p>
 <p>BCE用于二分类 </p>
 <p><img src="https://www.zhihu.com/equation?tex=Loss+%3D+-%28y+%5Ccdot+log%28%5Chat%7By%7D%29+%2B+%281-y%29+%5Ccdot+log%281+-+%5Chat%7By%7D%29%29" alt="[公式]"></p>
@@ -640,13 +669,13 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 <li>SSIM具有对称性，即SSIM(x,y)=SSIM(y,x)</li>
 <li><strong>SSIM是一个0到1之间的数，越大表示输出图像和无失真图像的差距越小，即图像质量越好</strong>。当两幅图像一模一样时，SSIM=1</li>
 </ol>
-<h3 id="iou"><a href="#iou" class="headerlink" title="iou"></a>iou</h3><p><strong>交并比</strong>，是目标检测中最常用的指标</p>
+<h3 id="IOU"><a href="#IOU" class="headerlink" title="IOU"></a>IOU</h3><p><strong>交并比</strong>，是目标检测中最常用的指标</p>
 <p><img src="https://www.zhihu.com/equation?tex=IOU+%3D++%5Cfrac%7B%28A%5Ccap+B%29%7D%7B%28A%5Ccup+B%29%7D" alt="[公式]"></p>
 <p><img src="https://www.zhihu.com/equation?tex=IOU+Loss+%3D+1+-+IOU" alt="[公式]"></p>
 <p><strong>可以反映预测检测框与真实检测框的检测效果</strong></p>
 <p>关于IOU/GIOU/DIOU/CIOU:</p>
 <p><a href="https://www.cnblogs.com/wujianming-110117/p/13019343.html" target="_blank" rel="noopener">https://www.cnblogs.com/wujianming-110117/p/13019343.html</a></p>
-<h2 id="网络架构分析"><a href="#网络架构分析" class="headerlink" title="网络架构分析"></a>网络架构分析</h2><p>有了上述基础知识和相关模型的了解，我们分析一下BASNET的架构。</p>
+<h2 id="optimizer"><a href="#optimizer" class="headerlink" title="optimizer"></a>optimizer</h2><h3 id="标准动量优化算法（Momentum）"><a href="#标准动量优化算法（Momentum）" class="headerlink" title="标准动量优化算法（Momentum）"></a>标准动量优化算法（Momentum）</h3><h3 id="RMSProp算法"><a href="#RMSProp算法" class="headerlink" title="RMSProp算法"></a>RMSProp算法</h3><h3 id="Adam算法"><a href="#Adam算法" class="headerlink" title="Adam算法"></a>Adam算法</h3><h2 id="网络架构分析"><a href="#网络架构分析" class="headerlink" title="网络架构分析"></a>网络架构分析</h2><p>有了上述基础知识和相关模型的了解，我们分析一下BASNET的架构。</p>
 <p>目的是实现显著目标检测和物体分割</p>
 <details><summary><p>BASNet相关资料</p></summary><p>
     paper:<a href="https://openaccess.thecvf.com/content_CVPR_2019/papers/Qin_BASNet_Boundary-Aware_Salient_Object_Detection_CVPR_2019_paper.pdf" target="_blank" rel="noopener">戳这里</a></p><p>简介:<a href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650795924&idx=2&sn=1b15a2540ffb9220f00be0cbbd62cafd&chksm=871a2beab06da2fcd63c7b22ecde508e90b488533a3f97939ec1cfc65ec3ab823e3afe579a7f&mpshare=1&scene=23&srcid=1123k84nCTl7SzHKywymED4G&sharer_sharetime=1606132949286&sharer_shareid=8feb0cd9552063c70146726ba076ab86#rd" target="_blank" rel="noopener">戳这里</a></p>
@@ -743,7 +772,8 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 <p>经过三个ResBlock后，RESNet34 output=56×56×64,BASNet output=224×224×224</p>
 <p>此时在BASNet中输出特征图与输入图像依然有着相同的分辨率。</p>
 <p>这和原来的ResNet-34不同，它在第一个特征图的分辨率缩小到了 1 / 4大小。</p>
-<p><strong>这个改动使得网络在早期阶段就能够获取更高的分辨率特征图，也可以降低整体的感受野。</strong><br>（？留坑  降低感受野有什么作用 感受野是增加还是降低有益）</p>
+<p><strong>这个改动使得网络在早期阶段就能够获取更高的分辨率特征图，也可以降低整体的感受野。</strong></p>
+<p> 降低感受野有什么作用 感受野是增加还是降低有益:</p>
 <p><strong>如果感受野太小，则只能观察到局部的特征，如果感受野太大，则获取了过多的无效信息</strong></p>
 <p>3.stage2</p>
 <p>ResBlock_num=4</p>
@@ -1002,7 +1032,45 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 <p>至此,Encoder部分结束，BASNet输出的特征图大小与ResNet34输出特征图大小相同。</p>
 <p>通过对特征图的计算，我对卷积与池化操作的细节和代码参数更加了解，也理解了网络中图片尺寸的变化过程以及网络的架构。</p>
 <h4 id="Bridge"><a href="#Bridge" class="headerlink" title="Bridge"></a>Bridge</h4><p>为了进一步捕捉到全局信息，在Encoder和Decoder之间添加brige。包含三个有512filter,dilation为2的空洞卷积，每个卷积层后跟随一个BN和ReLU。</p>
-<h4 id="Decoder"><a href="#Decoder" class="headerlink" title="Decoder"></a>Decoder</h4><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>pytorch学习</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>dila-conv</th>
+<th>basnet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>input</td>
+<td>7×7</td>
+</tr>
+<tr>
+<td>kernel</td>
+<td>3×3</td>
+</tr>
+<tr>
+<td>dilation</td>
+<td>2</td>
+</tr>
+<tr>
+<td>padding</td>
+<td>2</td>
+</tr>
+<tr>
+<td></td>
+<td>1</td>
+</tr>
+<tr>
+<td>output</td>
+<td>7×7</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="Decoder"><a href="#Decoder" class="headerlink" title="Decoder"></a>Decoder</h4><p>Decoder结构几乎与Encoder对称。每个stage包括三个卷积层，每个卷积层后跟随BN,ReLU。每个stage的input都是前一层upsample和在Encoder中对应层concatenate而成的。</p>
+<p>为了生成特征图的side-output，将每个decoder stage和bridge stage的多通道输出作为一个普通的 3 × 3 卷积层的输入，后面跟着一个双线性上采样以及一个sigmoid 函数。因而，给定输入图像，我们的预测模块在训练过程中就产生7个特征图。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>pytorch学习</p>
 <p>开发文档:<a href="https://pytorch.org/docs/stable/index.html" target="_blank" rel="noopener">https://pytorch.org/docs/stable/index.html</a></p>
 <h3 id="Tensors"><a href="#Tensors" class="headerlink" title="Tensors"></a>Tensors</h3><p><a href="https://zhuanlan.zhihu.com/p/347676809" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/347676809</a></p>
 <p>Tensors张量是一种特殊的数据结构，它和数组还有矩阵十分相似。在Pytorch中，我们使用tensors来给模型的输入输出以及参数进行编码。 Tensors除了张量可以在gpu或其他专用硬件上运行来加速计算之外，其他用法类似于Numpy中的ndarrays。</p>
@@ -1059,6 +1127,30 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
 <p>在每次迭代之前，先把optimizer里存的梯度清零一下（因为W已经更新过的“更新量”下一次就不需要用了）·<code>optimizer.zero_grad()</code></p>
 <p>在loss.backward()反向传播以后，更新参数： <code>optimizer.step()</code></p>
 <p><a href="https://imgtu.com/i/cKuuE6" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/04/cKuuE6.png" alt="cKuuE6.png"></a></p>
+<h3 id="处理流程"><a href="#处理流程" class="headerlink" title="处理流程"></a>处理流程</h3><h4 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h4><p><a href="https://blog.csdn.net/qq_37568167/article/details/105841129" target="_blank" rel="noopener">https://blog.csdn.net/qq_37568167/article/details/105841129</a></p>
+<p>数据包含以下四个子模块：</p>
+<ul>
+<li>数据收集： img,label 原始数据和标签</li>
+<li>数据划分： train训练集，valid验证集，test测试集</li>
+<li>数据读取： DataLoader<br>   1） Sampler(生成index)；<br>2)  Dataset(读取Img，Label)；</li>
+<li>数据预处理：transforms</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20200429153312260.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NTY4MTY3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="DataLoader"><a href="#DataLoader" class="headerlink" title="DataLoader"></a>DataLoader</h5><p>torch.utils.data.DataLoader  功能：构建可迭代的数据装载器<br>参数：</p>
+<pre><code>- dataset：Dataset类，决定数据从哪里读取及如何读取
+- batchsize：批大小
+- num_works：是否多进程读取数据
+- shuffle：每个epoch是否乱序
+- drop_last：当样本数不能被batchsize整除时，是否舍弃最后一批数据
+</code></pre><h6 id="Epoch、Iteration、Batchsize"><a href="#Epoch、Iteration、Batchsize" class="headerlink" title="Epoch、Iteration、Batchsize"></a>Epoch、Iteration、Batchsize</h6><pre><code>- Epoch：所有训练样本都已输入到模型中，称为一个epoch
+- Iteration：一批样本输入到模型中，称之为一个Iteration
+- Batchsize：批大小，决定一个Epoch有多少个iteration
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">样本总数：<span class="number">80</span> batchsize：<span class="number">8</span> </span><br><span class="line">　<span class="number">1</span>  epoch = <span class="number">10</span>  iteration  一次iteration输入<span class="number">8</span>个样本，所以一次的epoch=<span class="number">8</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">样本总数：<span class="number">87</span> batchsize：<span class="number">8</span></span><br><span class="line"> <span class="keyword">if</span>  drop_last = true   <span class="number">1</span> epoch = <span class="number">10</span>  iteration</span><br><span class="line"> <span class="keyword">else</span>  drop_last = false  <span class="number">1</span> epoch = <span class="number">11</span>  iteration</span><br></pre></td></tr></table></figure>
+<h5 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h5><p>torch.utils.data.Dataset   功能：Dataset抽象类，所有自定义的Dataset需要继承它，并且要复写函数 <strong>getitem</strong>()</p>
+<pre><code> - __getitem__()  ：接收一个索引，返回一个样本及标签
+</code></pre><h5 id="数据转换"><a href="#数据转换" class="headerlink" title="数据转换"></a>数据转换</h5><p><a href="http://t.zoukankan.com/houjun-p-10406458.html" target="_blank" rel="noopener">http://t.zoukankan.com/houjun-p-10406458.html</a></p>
+<p>为了满足神经网络输入要求，需要对原图进行Rescale或者Crop操作，然后返回的数据需要转换成Tensor</p>
 
           
             <div class='article_footer'>
@@ -1146,10 +1238,10 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-07T21:42:15+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-19T20:40:38+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Apr 7, 2021</p>
+    <p>更新于：Apr 19, 2021</p>
   </a>
 </div>
 
@@ -1235,6 +1327,15 @@ Boundary-Aware Salient Object Detection 即边界感知显著目标检测
         
         
           <div class="prev-next">
+            
+              <a class='prev' href='/2021/04/19/SSIM/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>SSIM</p>
+                <p class='content'>
+
+SSIM( Structural SIMilarity)
+图像质量评估的多尺度结构相似方法
+paper:https://www.researchgate.net/publication/40...</p>
+              </a>
             
             
               <a class='next' href='/2021/01/10/bot/'>
@@ -1333,7 +1434,7 @@ window.MathJax = {
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BASNet"><span class="toc-text">BASNet</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础知识"><span class="toc-text">基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度下降"><span class="toc-text">梯度下降</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#softmax"><span class="toc-text">softmax</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BN"><span class="toc-text">BN</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Relu与BN层顺序问题"><span class="toc-text">Relu与BN层顺序问题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关模型"><span class="toc-text">相关模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CNN"><span class="toc-text">CNN</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#网络架构"><span class="toc-text">网络架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#卷积"><span class="toc-text">卷积</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#池化"><span class="toc-text">池化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#卷积与池化的区别"><span class="toc-text">卷积与池化的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#卷积与池化特征图的计算"><span class="toc-text">卷积与池化特征图的计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#high-level与low-level-feature"><span class="toc-text">high-level与low-level feature</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#空洞卷积"><span class="toc-text">空洞卷积</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FCN"><span class="toc-text">FCN</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#上采样-Upsample"><span class="toc-text">上采样(Upsample)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#U-net"><span class="toc-text">U-net</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#skip-connection"><span class="toc-text">skip-connection</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Segnet"><span class="toc-text">Segnet</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#网络架构-1"><span class="toc-text">网络架构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Resnet"><span class="toc-text">Resnet</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BasicBlock和Bottleneck"><span class="toc-text">BasicBlock和Bottleneck</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HED"><span class="toc-text">HED</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ground-truth"><span class="toc-text">ground truth</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#监督学习与无监督学习"><span class="toc-text">监督学习与无监督学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多尺度特征"><span class="toc-text">多尺度特征</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VGG"><span class="toc-text">VGG</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#loss"><span class="toc-text">loss</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BCE"><span class="toc-text">BCE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSIM-结构相似性"><span class="toc-text">SSIM(结构相似性)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iou"><span class="toc-text">iou</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络架构分析"><span class="toc-text">网络架构分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Predict-Module"><span class="toc-text">Predict Module</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Encoder"><span class="toc-text">Encoder</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Bridge"><span class="toc-text">Bridge</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Decoder"><span class="toc-text">Decoder</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tensors"><span class="toc-text">Tensors</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Autograd"><span class="toc-text">Autograd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#神经网络"><span class="toc-text">神经网络</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BASNet"><span class="toc-text">BASNet</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础知识"><span class="toc-text">基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度下降"><span class="toc-text">梯度下降</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#softmax"><span class="toc-text">softmax</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BN"><span class="toc-text">BN</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Relu与BN层顺序问题"><span class="toc-text">Relu与BN层顺序问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sigmoid"><span class="toc-text">sigmoid</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关模型"><span class="toc-text">相关模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CNN"><span class="toc-text">CNN</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#网络架构"><span class="toc-text">网络架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#卷积"><span class="toc-text">卷积</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#池化"><span class="toc-text">池化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#卷积与池化的区别"><span class="toc-text">卷积与池化的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#卷积与池化特征图的计算"><span class="toc-text">卷积与池化特征图的计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#high-level与low-level-feature"><span class="toc-text">high-level与low-level feature</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#空洞卷积"><span class="toc-text">空洞卷积</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FCN"><span class="toc-text">FCN</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#上采样-Upsample"><span class="toc-text">上采样(Upsample)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#U-net"><span class="toc-text">U-net</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#skip-connection"><span class="toc-text">skip-connection</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Segnet"><span class="toc-text">Segnet</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#网络架构-1"><span class="toc-text">网络架构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Resnet"><span class="toc-text">Resnet</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BasicBlock和Bottleneck"><span class="toc-text">BasicBlock和Bottleneck</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1卷积核的作用"><span class="toc-text">1*1卷积核的作用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HED"><span class="toc-text">HED</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ground-truth"><span class="toc-text">ground truth</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#监督学习与无监督学习"><span class="toc-text">监督学习与无监督学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多尺度特征"><span class="toc-text">多尺度特征</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#网络架构-2"><span class="toc-text">网络架构</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#loss"><span class="toc-text">loss</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BCE"><span class="toc-text">BCE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSIM-结构相似性"><span class="toc-text">SSIM(结构相似性)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IOU"><span class="toc-text">IOU</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#optimizer"><span class="toc-text">optimizer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#标准动量优化算法（Momentum）"><span class="toc-text">标准动量优化算法（Momentum）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RMSProp算法"><span class="toc-text">RMSProp算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Adam算法"><span class="toc-text">Adam算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络架构分析"><span class="toc-text">网络架构分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Predict-Module"><span class="toc-text">Predict Module</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Encoder"><span class="toc-text">Encoder</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Bridge"><span class="toc-text">Bridge</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Decoder"><span class="toc-text">Decoder</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tensors"><span class="toc-text">Tensors</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Autograd"><span class="toc-text">Autograd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#神经网络"><span class="toc-text">神经网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#处理流程"><span class="toc-text">处理流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据处理"><span class="toc-text">数据处理</span></a></li></ol></li></ol></li></ol></li></ol>
     </div>
   </section>
 
