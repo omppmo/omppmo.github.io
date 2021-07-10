@@ -448,7 +448,7 @@ returners和explorers在传播现象中起着不同量级的作用，他们的�
 <h2 id="Paper-Reading"><a href="#Paper-Reading" class="headerlink" title="Paper Reading"></a>Paper Reading</h2><p>个体移动距离的相当大的变化性和他们未来位置的高度可预测性共存：个体表现出广泛的移动范围但重复每天的日程安排。</p>
 <p>这种看似矛盾的共存性可以通过量化反复运动(recurring movements)对流动性和影响来理解。</p>
 <p>通过对数据(私家车辆产生的GPS轨迹和移动电话的呼叫详情记录)分析，我们可以将个体分为两类:explorers&amp;returners。</p>
-<p>returners在几个首选地点反复运动，他们的移动距离使用旋转半径(radius of gyration)来估计。</p>
+<p>returners在几个首选地点反复运动，他们的移动距离使用回转半径(radius of gyration)来估计。</p>
 <p>explorers少有反复运动，具有在大量不同地点运动的趋向。</p>
 <p>本文指出现有人类移动模型不能解释个体的这两种类别，并提出一个改进模型可以复现出这两种移动模式。</p>
 <p>最后证明returners和explorers在传播中起着不同的作用，个体的移动行为和其社会互动(social interactions)存在强烈相关性。</p>
@@ -480,12 +480,12 @@ returners和explorers在传播现象中起着不同量级的作用，他们的�
 <p>对该数据进行过滤:<br>只关注在单一地区进行的移动，并丢弃在观察时间只去过一个地点或平均每天行程少于一次的车辆数据。</p>
 <p>最终剩余46000+辆车辆组成的数据。</p>
 <p>GPS数据体现出一个月内在意大利某一区域内的移动，而GSM数据覆盖整个欧洲国家并且观察期为三个月。GSM数据包含人口远大于GPS，且通信数据所描述的轨迹包括所有可能的交通方式。</p>
-<h4 id="measures"><a href="#measures" class="headerlink" title="measures"></a>measures</h4><p>使用总旋转半径( the total radius of gyration)$r_g$ 来描述一个个体的移动距离</p>
+<h4 id="measures"><a href="#measures" class="headerlink" title="measures"></a>measures</h4><p>使用总回转半径( the total radius of gyration)$r_g$ 来描述一个个体的移动距离</p>
 <p>$r_g=\sqrt[]{\frac{1}{N}\sum_{i∈L}n_i(r_i-r_{cm})^2}$</p>
 <p>L是个体访问地点的集合，$r_i$是位置i的坐标，$n_i$是个体访问位置i的访问频率或花费时间，$N=\sum_{i∈L}n_i$是个体在各个位置所有访问次数或花费的所有时间，$r_{cm}$是个体的几何中心(质心)坐标。(Question1)</p>
 <p>访问最频繁的位置$L_1$是一个人静止状态时最易被找到的，如他的家。$L_k$指第k个访问最频繁的位置。</p>
 <p>对于GSM数据，我们使用访问频率衡量权重;对于GPS数据，我们使用车辆在某个普查单元中的停留时间来衡量权重。</p>
-<h3 id="Returners-and-explorers"><a href="#Returners-and-explorers" class="headerlink" title="Returners and explorers"></a>Returners and explorers</h3><h4 id="the-k-radius-of-gyration"><a href="#the-k-radius-of-gyration" class="headerlink" title="the k-radius of gyration"></a><strong>the k-radius of gyration</strong></h4><p>为了了解一个个体最常访问的第k个位置对他移动距离的作用，定义k旋转半径( the k-radius of gyration)$r_g^{(k)}$</p>
+<h3 id="Returners-and-explorers"><a href="#Returners-and-explorers" class="headerlink" title="Returners and explorers"></a>Returners and explorers</h3><h4 id="the-k-radius-of-gyration"><a href="#the-k-radius-of-gyration" class="headerlink" title="the k-radius of gyration"></a><strong>the k-radius of gyration</strong></h4><p>为了了解一个个体最常访问的第k个位置对他移动距离的作用，定义k回转半径( the k-radius of gyration)$r_g^{(k)}$</p>
 <p>$r_g^{(k)}=\sqrt[]{\frac{1}{N_k}\sum_{i=1}^kn_i(r_i-r_{cm}^{(k)})^2}$</p>
 <p>$r_{cm}^{(k)}$是计算k个最常访问的位置的几何中心  $N_k$是分配给第k个最常访问位置权值的总和</p>
 <p>$r_g^{(k)}$表示个体的移动范围限制在k个最常访问位置之内</p>
@@ -496,7 +496,7 @@ returners和explorers在传播现象中起着不同量级的作用，他们的�
 <p>黑色圆圈代表$r_g$  红色三角代表$r_g^{(k)}$在GSM数据   蓝色三角代表$r_g^{(k)}$在GPS数据</p>
 <p>所有的分布都可以用截断幂律$P(r_g)=(r_g+r_0)^{(-\alpha)}e^{-\frac{r_g}{r_{cut}}}$来近似拟合</p>
 <p>所有的曲线都是长尾的说明大多数个体移动符合短距离，也有部分个体移动距离较长</p>
-<h4 id="the-correlation-between-recurrent-and-overall-mobility"><a href="#the-correlation-between-recurrent-and-overall-mobility" class="headerlink" title="the correlation between recurrent and overall mobility"></a><strong>the correlation between recurrent and overall mobility</strong></h4><p>总旋转半径和k旋转半径之间的相关性使我们能够量化整体移动和反复移动性之间的相似程度。下图反映了反复移动和整体移动的相关性</p>
+<h4 id="the-correlation-between-recurrent-and-overall-mobility"><a href="#the-correlation-between-recurrent-and-overall-mobility" class="headerlink" title="the correlation between recurrent and overall mobility"></a><strong>the correlation between recurrent and overall mobility</strong></h4><p>总回转半径和k回转半径之间的相关性使我们能够量化整体移动和反复移动性之间的相似程度。下图反映了反复移动和整体移动的相关性</p>
 <p><img src="/2021/07/01/rae/image-20210702152001250.png" alt="image-20210702152001250"></p>
 <p>该散点图表示了$r_g$和$r_g^{(k)}$的关系,k=2,4,8  图a-c为GSM数据 图d-f为GPS数据  颜色表示相应区域内点的密度</p>
 <p>大多数点集中在x轴 对角线和原点周围</p>
@@ -536,10 +536,10 @@ returners和explorers在传播现象中起着不同量级的作用，他们的�
 <p>对于两种类别个体，访问地点都趋向于呈集群并带有一些异常值。</p>
 <p>(1)$r_g$与$d(L_1,L_2)$ </p>
 <p>$r_g$较小时，对于returners和explorers两个最频繁的地点都距离很近。</p>
-<p>随着$r_g$增加，returners和explorers开始不同，对于two-returners两个最频繁的地点开始互相远离，<strong>这两个地点的距离增长与它们的总旋转半径$r_g$ 成正比</strong>;而对于two-explorers,两个最频繁的地点依然保持很近,其他集群远离质心。</p>
+<p>随着$r_g$增加，returners和explorers开始不同，对于two-returners两个最频繁的地点开始互相远离，<strong>这两个地点的距离增长与它们的总回转半径$r_g$ 成正比</strong>;而对于two-explorers,两个最频繁的地点依然保持很近,其他集群远离质心。</p>
 <p>两个最频繁地点之间的距离对于returners随$r_g$增长的更快(相比于explorers)</p>
 <p><img src="/2021/07/01/rae/image-20210702225801689.png" alt="image-20210702225801689"></p>
-<p>该图表示两个最常访问位置之间的距离$d(L_1,L_2)$和总旋转半径$r_g$的相关性。从图中可以看出，2-returners中的相关性远远强于2-explorers。</p>
+<p>该图表示两个最常访问位置之间的距离$d(L_1,L_2)$和总回转半径$r_g$的相关性。从图中可以看出，2-returners中的相关性远远强于2-explorers。</p>
 <p>(2)访问位置关于$L_1$ $L_2$集群</p>
 <p><strong>two-returners访问的地点聚集在他们最常访问的两个地点周围，two-explorers访问的地点更分散</strong></p>
 <p>在Supplementary中 ( Supplementary Note 5, Supplementary Figs 5 and 6)设k个最常访问的位置为k个不同集群($C_1,…,C_k$)的质心。分配其他位置$L_i(i&gt;k)$到距离最近的质心。使用两个评价指标$SSE$(Sum of Squared Errors)和$SSE^*$来评估集群的凝聚性。 </p>
@@ -552,7 +552,7 @@ returners和explorers在传播现象中起着不同量级的作用，他们的�
 <p>该图反映了2-returnrers和2-explorers的$SSE$和${SSE}^*$在GSM和GPS数据上的分布</p>
 <p>我们可以观察到很大一部分2-returners的$SSE$和$SSE^*$较小，说明在$L_1,L_2$周围集群密集</p>
 <p>但2-explorers的凝聚性较差</p>
-<h3 id="Models"><a href="#Models" class="headerlink" title="Models"></a>Models</h3><p>本文使用EPR(the exploration and preferential return)个体流动模型与结果进行比较。EPR模型是可以精准捕捉地点访问频率和旋转半径的分布及其时间增长的sota模型。该模型包括两个相互竞争的机制:探索新的地点和返回以前访问过的地点。该模型没有固定的首选地点的集合，但允许它们在移动的演变过程中自然出现。</p>
+<h3 id="Models"><a href="#Models" class="headerlink" title="Models"></a>Models</h3><p>本文使用EPR(the exploration and preferential return)个体流动模型与结果进行比较。EPR模型是可以精准捕捉地点访问频率和回转半径的分布及其时间增长的sota模型。该模型包括两个相互竞争的机制:探索新的地点和返回以前访问过的地点。该模型没有固定的首选地点的集合，但允许它们在移动的演变过程中自然出现。</p>
 <p>探索是一个具有截断幂律跳跃大小分布的随机移动过程，偏好返回表现出个体回到他们以前经常访问地方的倾向</p>
 <p>本文使用EPR模型模拟67000个个体的移动并计算了每个个体的$r_g$和$r_g^{(k)}$ </p>
 <p>使用原始EPR模型进行模拟:<br>为67000个个体随机产生初始地点(家)，即在100×100平方大小内随机选择点。</p>
@@ -583,21 +583,32 @@ returners和explorers在传播现象中起着不同量级的作用，他们的�
 <p><img src="/2021/07/01/rae/image-20210704180130108.png" alt="image-20210704180130108"></p>
 <p>该图表现出三种模型下$s_k=r_g^{(k)}/r_g$的分布  (k=2,6,10)</p>
 <p><img src="/2021/07/01/rae/image-20210704180413200.png" alt="image-20210704180413200"></p>
-<p>该图反映出在三种模型下对于2-explorers和2-returners总旋转半径$r_g$和两个访问最频繁地点之间距离$d(L_1,L_2)$的相关性。相比于实际数据，在原始EPR模型中无论explorers还是returners没有找到显著的相关性。</p>
+<p>该图反映出在三种模型下对于2-explorers和2-returners总回转半径$r_g$和两个访问最频繁地点之间距离$d(L_1,L_2)$的相关性。相比于实际数据，在原始EPR模型中无论explorers还是returners没有找到显著的相关性。</p>
 <p>实际数据和原始EPR模型的差异为EPR模型中个体可以移动任意长的距离，每次移动都增加$r_g$。为了修正该问题，引入d-EPR模型，该模型与实际数据有更好的吻合。且上面$r_g$和$r_g^{(k)}$相关性的图中，d-EPR模型显示出了分类情况。与原始EPR模型相比，$r_g$和$d(L_1,L_2)$的相关性也显著提高，与实际数据接近。</p>
 <p>因此，d-EPR模型再现了人类在受限地理空间聚集移动模式的关键特征，将个体分为explorers和returners两类。</p>
 <p><strong>模型的机制:当一个个体返回时，他会被之前去过的地方吸引，其吸引力取决于这些地方在个体层面的相关性。</strong></p>
 <p><strong>当一个个体探索时，他会被吸引到新的地方，其吸引力取决于这些地方在集体层面上的相关性。</strong></p>
 <h3 id="the-relevance-of-returners-and-explorers-dichotomy"><a href="#the-relevance-of-returners-and-explorers-dichotomy" class="headerlink" title="the relevance of returners and explorers dichotomy"></a>the relevance of returners and explorers dichotomy</h3><p>该研究成果与流行病的地理传播和社会互动两方面很相关。</p>
 <p>对于流行病传播，为了观察returners和explorers是如何影响传播的，根据个体运动轨迹的时间演变，将个体的移动历史划分为时间周期。</p>
-<p>并用三种方法捕捉到了t时刻的轨迹范围:(1)访问地点的数量  (2)覆盖区域 (3) 总旋转半径$r_g(t)$</p>
-<p>在GSM和GPS数据上，explorers的轨迹相比于returners分布在更大的范围:访问地点数量更多，覆盖区域更广，旋转半径更大</p>
+<p>并用三种方法捕捉到了t时刻的轨迹范围:(1)访问地点的数量  (2)覆盖区域 (3) 总回转半径$r_g(t)$</p>
+<p>在GSM和GPS数据上，explorers的轨迹相比于returners分布在更大的范围:访问地点数量更多，覆盖区域更广，回转半径更大</p>
 <p><img src="/2021/07/01/rae/image-20210704222930783.png" alt="image-20210704222930783"></p>
 <p><img src="/2021/07/01/rae/image-20210704222941701.png" alt="image-20210704222941701"></p>
-<p>该图表现出returners和explorers地理传播的时间演化。将每个个体的移动历史分为十个相同的时间段，该图反映出在各个时间段内GSM/GPS/s-EPR/d-EPR的访问地点、覆盖区域和旋转半径的分布。插图显示了每个时间段的平均分布。(Question3)</p>
+<p>该图表现出returners和explorers地理传播的时间演化。将每个个体的移动历史分为十个相同的时间段，该图反映出在各个时间段内GSM/GPS/s-EPR/d-EPR的访问地点、覆盖区域和回转半径的分布。插图显示了每个时间段的平均分布。(Question3)</p>
 <p>相比之下，s-EPR和d-EPR模型高估了returners的地理传播。</p>
 <p>本文还通过考虑由个人移动产生的全球移动网络来评估returners和explorers在传播和扩散方面发挥的不同作用</p>
 <p>全球移动网络是一个图，它的节点是位置，而边表示两个位置之间至少存在一次行程。具体到一个城区，建立了10个全球移动网络，考虑到10000个随机选择个体的行程。选择不同占比的two-returners和two-explorers(分别为0%,10%,…,100%)</p>
+<p>对每个网络，在大的亚群体和低繁殖数的扩散动力学假设下计算全局入侵阈值$R*$( the global invasion threshold) (和亚群体的流行病阈值接近)</p>
+<p>在复合群体网络中，当$R<em>&gt;1$时，流行病传播和入侵系统，该全局入侵阈值受网络拓扑波动程度的影响:异质性程度越大，$R</em>$就越高，因此传染病在全球范围内侵入复合群体的可能也就越大</p>
+<p>计算每个全球移动网络1000次，随机选择returners和explorers占比不同的10000个体，为每个网络获取1000个入侵阈值。可以观察到平均扩散入侵阈值随随机人群中explorers比例的增加而增加。</p>
+<p>(Question 5)</p>
+<p>returners和explorers倾向于与相同类别的进行社会互动。本文发现two-returners呼叫最多的联系人中同样是returners的比率为$RR\approx0.27$,将这个数字与10万次我们随机指定个体最好的朋友的实验相比，$RR_{rand}\approx0.21$</p>
+<p><img src="/2021/07/01/rae/image-20210705162948378.png" alt="image-20210705162948378"></p>
+<p>该图表示了two-returners和two-explorers最好的朋友的分布。虚线表示最好的朋友类别的实际分数。</p>
+<p>我们可以观察到个体更趋向于和同一移动群体的个体进行交流。(Question 6)</p>
+<p><img src="/2021/07/01/rae/image-20210705165008739.png" alt="image-20210705165008739"></p>
+<p>该图反应了returners和explorers友谊排名(n-th best friend)中的类别情况。</p>
+<p>作者比较在同一分类下个体n-th best friend所占比例，发现在n到15为止，观测到的分数都明显高于(RR和EE)或明显低于(ER和RE)随机得到的分数。(Question7)</p>
 <h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="箱型图"><a href="#箱型图" class="headerlink" title="箱型图"></a>箱型图</h3><p><a href="https://blog.csdn.net/symoriaty/article/details/93978817" target="_blank" rel="noopener">https://blog.csdn.net/symoriaty/article/details/93978817</a></p>
 <p>可以用来反映一组或多组连续型定量数据(在一定区间内可以任意取值的变量叫连续变量，其数值是连续不断的)分布的中心位置和散布范围</p>
 <p><img src="https://pic3.zhimg.com/80/v2-ce5526f050d5a182e279ccaff2c0bc6a_1440w.jpg" alt="img"></p>
@@ -614,11 +625,11 @@ returners和explorers在传播现象中起着不同量级的作用，他们的�
 <p>补充：</p>
 <p>一些柱状图中作者会添加误差线来给数值增加误差范围，看起来和箱线图有点相似。</p>
 <p><img src="http://5b0988e595225.cdn.sohucs.com/images/20180123/d5d395df5c664d43b402d15cd258d0b3.png" alt="img"></p>
-<h3 id="r-g-k-vs-r-g-cm-k"><a href="#r-g-k-vs-r-g-cm-k" class="headerlink" title="$r_{g}^{(k)}$ vs $r_{g,cm}^{(k)}$"></a>$r_{g}^{(k)}$ vs $r_{g,cm}^{(k)}$</h3><p>$r_g^{(k)}$ 是在$r_{cm}^{(k)}$(k个最常访问的位置的几何中心)基础上计算的k旋转半径</p>
-<p>$r_{g,cm}^{(k)}$是在以整体几何中心基础上计算的k旋转半径</p>
+<h3 id="r-g-k-vs-r-g-cm-k"><a href="#r-g-k-vs-r-g-cm-k" class="headerlink" title="$r_{g}^{(k)}$ vs $r_{g,cm}^{(k)}$"></a>$r_{g}^{(k)}$ vs $r_{g,cm}^{(k)}$</h3><p>$r_g^{(k)}$ 是在$r_{cm}^{(k)}$(k个最常访问的位置的几何中心)基础上计算的k回转半径</p>
+<p>$r_{g,cm}^{(k)}$是在以整体几何中心基础上计算的k回转半径</p>
 <p><img src="/2021/07/01/rae/image-20210701224217544.png" alt="image-20210701224217544"></p>
 <p>由图可见，将个体分为2-returners和2-explorers在GSM不清晰 在GPS则不存在分类情况</p>
-<p>不存在分类情况的原因(个人理解):由于计算整体的几何中心，得到的k旋转半径$r_{g,cm}^{(k)}$相比于$r_g^{(k)}$变大，explorers更多被视为returners，向对角线靠近。</p>
+<p>不存在分类情况的原因(个人理解):由于计算整体的几何中心，得到的k回转半径$r_{g,cm}^{(k)}$相比于$r_g^{(k)}$变大，explorers更多被视为returners，向对角线靠近。</p>
 <p>对于2-returners来说 两个几何中心相对接近 但对explorers距离更大，且距离随$r_g$增大</p>
 <p>故对于2-returners来说 $r_{g}^{(k)}$ 与$r_{g,cm}^{(k)}$相似，但对2-explorers则不是如此。</p>
 <h3 id="幂律分布"><a href="#幂律分布" class="headerlink" title="幂律分布"></a>幂律分布</h3><p><a href="https://blog.csdn.net/qq_32499325/article/details/82792937" target="_blank" rel="noopener">https://blog.csdn.net/qq_32499325/article/details/82792937</a></p>
@@ -644,17 +655,42 @@ returners和explorers在传播现象中起着不同量级的作用，他们的�
 <p>具有指数截止的幂律就是幂律乘以一个指数函数:</p>
 <p>$f(x)\propto x^\alpha e^{\beta x}$</p>
 <p><img src="/2021/07/01/rae/image-20210702100318243.png" alt="image-20210702100318243"></p>
-<h3 id="mobility-clusters"><a href="#mobility-clusters" class="headerlink" title="mobility clusters"></a>mobility clusters</h3><p>(Supplementary Note 10, Supplementary Fig. 12)</p>
+<h3 id="mobility-clusters"><a href="#mobility-clusters" class="headerlink" title="mobility clusters"></a>mobility clusters</h3><p>定义集群的k回转半径，<strong>在k-th最常访问的地理集群上计算回转半径</strong>$c-r_g^{(k)}$ </p>
+<p>一个个体的地理集群是一个密集的位置组，代表个体移动的地理单元。</p>
+<p>如果一个个体每周往返于两个不同城市的两个家，那么他就拥有(至少)两个不同的地理集群。</p>
+<p>$c-r_g^{(k)}$是在k-th访问最频繁集群上计算的，<strong>只考虑每个集群中访问次数最多的位置</strong>。</p>
+<p>在上面的例子中，个体的集群回转半径是用两个不同的家计算的</p>
+<p>使用密度聚类算法计算集群，通过输入的两个参数来提取密集的点群:</p>
+<p>eps 最大搜索半径(此处设置为5,10,50,100km);minPts  形成一个集群的最少地点(此处设置为2)</p>
+<p>在集群水平上，explorers和returners二分同样出现了  直到eps=10km时消失(此时集群已经中等城市大小)</p>
+<p>到eps=50,100km时 计算的集群数很小，2-explorers很少</p>
+<p><img src="/2021/07/01/rae/image-20210706000825224.png" alt="image-20210706000825224"></p>
+<p>该图为k=2时 GSM数据上$c-r_g^{(k)}$与$r_g$的相关性。</p>
+<p>因此，returners和explorers在人口中的存在与个体位置的空间粒度无关</p>
 <h3 id="gravity-model"><a href="#gravity-model" class="headerlink" title="gravity model"></a>gravity model</h3><p>牛顿万有引力定律:任何两个物体之间的作用(引力)的大小与它的质量成正比，与它们之间的距离平方成反比。</p>
 <p>引力模型以牛顿经典力学的万有引力公式作为基础，其简化形式为</p>
 <p>$M_y=KY_iY_j/D_{ij}$</p>
 <p>K为常数(通常称为引力系数)，$Y_i$和$Y_j$为内生变量，由模型要求通过的特定条件“平衡”出来，$D_{ij}$为空间距离。</p>
 <p>该模型的特点:基础形式不变，只要对参数和分量的定义作出适当改变，就可以将引力模型应用于不同的问题。</p>
-<h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><p>1.质心的概念,计算，与家的关系，是不是所有访问地点的几何中心</p>
+<h3 id="global-diffusion-invasion-threshold"><a href="#global-diffusion-invasion-threshold" class="headerlink" title="global diffusion invasion threshold"></a>global diffusion invasion threshold</h3><p>关于该全局入侵阈值的计算$R*$</p>
+<p>对于每个网络，计算平均度$\left \langle k \right \rangle$,均方度$\left \langle k^2 \right \rangle$，每个地点的平均居民人数$\overline N$</p>
+<p>在大亚种群低繁殖数扩散动力学的假设下，计算$R*=\overline N\cdot C(\left \langle k^2 \right \rangle-\left \langle k \right \rangle)/\left \langle k \right \rangle^2$</p>
+<p>常数C取决于繁殖数量(the reproductive number)和移动率，两类取值相同</p>
+<p><img src="/2021/07/01/rae/image-20210705231259967.png" alt="image-20210705231259967"></p>
+<p>该图通过误差线(Error bars)反映了returners和explorers占比不同下$R*$的分布 </p>
+<p>我们观察到，随着2-explorers占比增加，平均扩散入侵阈值增加。</p>
+<p>作者同时使用了加权的全球移动网络，使用地点之间车辆的旅程次数作为权值。边权值遵循幂律分布，最大值为30。计算加权的全局入侵阈值$R_*^\omega=\overline N \cdot (\left \langle k^{2+2\theta} \right \rangle-\left \langle k^{1+2\theta} \right \rangle)/\left \langle k^{1+\theta} \right \rangle^2$</p>
+<p>取$\theta=0$  此时$R_<em>^\omega=R</em>$   故不做区分</p>
+<p>(Question8)</p>
+<h3 id="图像矩"><a href="#图像矩" class="headerlink" title="图像矩"></a>图像矩</h3><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><p>1.质心的概念,计算，与家的关系，是不是所有访问地点的几何中心</p>
 <p>2.从$r_g$和$r_g^{(k)}$的数学公式来看 如何理解$s_k&gt;1$  ($r_g^{(k)}&gt;r_g$) 表明(n−k)访问频率较低的位置平均比k个最频繁的位置更接近质心</p>
 <p>3.地理传播的时间演化图中 分成十个等份 为什么访问地点数量 覆盖区域 $r_g(t)$都是递增的</p>
 <p>每个时间段各参数测量是否都是在前面时间段结果基础上的</p>
 <p>4.相反过程是随着k减小 returners变为explorers?  k-explorers和(k-1)-returners的比值代表了什么 比值特别小能说明什么  为什么比值能代表对应个体 且这些个体坐落在平分线   bisector method随k增长分类产生了什么波动</p>
+<p>5.metapopulation network     the global invasion threshold   the global mobility networks   subpopulation       the topological fluctuations of the network’s degree    the degree heterogeneity</p>
+<p>6.该图的纵坐标轴代表什么   P value ($&lt;10^{-5}$ ) </p>
+<p>7.为什么前面说了returners和explorers倾向于与相同类别的进行社会互动，但explorers和returners的best-friend都是explorers居多，这与explorers在人口中占比大于returners是否相关</p>
+<p>8.$\theta$ 的含义  the function between the average weight and the end-point degrees   为什么估计$\theta=0$</p>
 
           
             <div class='article_footer'>
@@ -742,10 +778,10 @@ returners和explorers在传播现象中起着不同量级的作用，他们的�
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-07-05T00:01:20+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-07-07T20:35:13+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Jul 5, 2021</p>
+    <p>更新于：Jul 7, 2021</p>
   </a>
 </div>
 
@@ -928,7 +964,7 @@ window.MathJax = {
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Paper-Reading"><span class="toc-text">Paper Reading</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Results"><span class="toc-text">Results</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Datasets"><span class="toc-text">Datasets</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#measures"><span class="toc-text">measures</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Returners-and-explorers"><span class="toc-text">Returners and explorers</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#the-k-radius-of-gyration"><span class="toc-text">the k-radius of gyration</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#the-distributions-of-k-radii-and-total-radii"><span class="toc-text">the distributions of k-radii and total radii</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#the-correlation-between-recurrent-and-overall-mobility"><span class="toc-text">the correlation between recurrent and overall mobility</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#the-ratio-between-recurrent-and-overall-mobility"><span class="toc-text">the ratio between recurrent and overall mobility</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#the-individual-mobility-networks-of-returners-and-explorers"><span class="toc-text">the individual mobility networks of returners and explorers</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Models"><span class="toc-text">Models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#the-relevance-of-returners-and-explorers-dichotomy"><span class="toc-text">the relevance of returners and explorers dichotomy</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补充"><span class="toc-text">补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#箱型图"><span class="toc-text">箱型图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#r-g-k-vs-r-g-cm-k"><span class="toc-text">$r_{g}^{(k)}$ vs $r_{g,cm}^{(k)}$</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#幂律分布"><span class="toc-text">幂律分布</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#标度不变性"><span class="toc-text">标度不变性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#truncated-power-law"><span class="toc-text">truncated power law</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mobility-clusters"><span class="toc-text">mobility clusters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gravity-model"><span class="toc-text">gravity model</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Question"><span class="toc-text">Question</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Paper-Reading"><span class="toc-text">Paper Reading</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Results"><span class="toc-text">Results</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Datasets"><span class="toc-text">Datasets</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#measures"><span class="toc-text">measures</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Returners-and-explorers"><span class="toc-text">Returners and explorers</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#the-k-radius-of-gyration"><span class="toc-text">the k-radius of gyration</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#the-distributions-of-k-radii-and-total-radii"><span class="toc-text">the distributions of k-radii and total radii</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#the-correlation-between-recurrent-and-overall-mobility"><span class="toc-text">the correlation between recurrent and overall mobility</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#the-ratio-between-recurrent-and-overall-mobility"><span class="toc-text">the ratio between recurrent and overall mobility</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#the-individual-mobility-networks-of-returners-and-explorers"><span class="toc-text">the individual mobility networks of returners and explorers</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Models"><span class="toc-text">Models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#the-relevance-of-returners-and-explorers-dichotomy"><span class="toc-text">the relevance of returners and explorers dichotomy</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补充"><span class="toc-text">补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#箱型图"><span class="toc-text">箱型图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#r-g-k-vs-r-g-cm-k"><span class="toc-text">$r_{g}^{(k)}$ vs $r_{g,cm}^{(k)}$</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#幂律分布"><span class="toc-text">幂律分布</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#标度不变性"><span class="toc-text">标度不变性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#truncated-power-law"><span class="toc-text">truncated power law</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mobility-clusters"><span class="toc-text">mobility clusters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gravity-model"><span class="toc-text">gravity model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#global-diffusion-invasion-threshold"><span class="toc-text">global diffusion invasion threshold</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#图像矩"><span class="toc-text">图像矩</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Question"><span class="toc-text">Question</span></a></li></ol>
     </div>
   </section>
 
