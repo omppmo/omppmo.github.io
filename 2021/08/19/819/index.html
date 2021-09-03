@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta name="renderer" content="webkit">
@@ -18,8 +16,16 @@
 
   <!-- 页面元数据 -->
   
-    <title>Category: Paper reading - omp&#39;s blog</title>
+    <title>Limits of Predictability in Human Mobility - omp&#39;s blog</title>
   
+  
+    <meta name="description" content="
+
+Abstract提出一个问题:人类行为在多大程度上是可预测的?
+通过测量每个个体的轨迹熵，作者发现用户的移动有93%的潜在可预测性
+尽管个体在移动模式上有显著差异，但作者发现可预测性显著缺乏变化，很大程度上与用户定期移动的距离无关。
+ 本文认为，在我们的直觉和当前的建模之间存在着根本性的鸿沟:
+尽管我们很少认...">
   
 
   <!-- feed -->
@@ -332,31 +338,12 @@
     <div class='body-wrapper'>
       
 
-
 <div class='l_main'>
   
-    
-      
-  <section class="post-list ">
-    
-      
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
+
   
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+      
 
 
   <section class='meta'>
@@ -366,11 +353,11 @@
       <div class="meta" id="header-meta">
         
           
-  <h2 class="title">
+  <h1 class="title">
     <a href="/2021/08/19/819/">
       Limits of Predictability in Human Mobility
     </a>
-  </h2>
+  </h1>
 
 
         
@@ -451,10 +438,10 @@
   </section>
 
 
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <meta name="referrer" content="no-referrer">
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          <meta name="referrer" content="no-referrer">
 
 <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>提出一个问题:人类行为在多大程度上是可预测的?</p>
 <p>通过测量每个个体的轨迹熵，作者发现用户的移动有93%的潜在可预测性</p>
@@ -464,405 +451,319 @@
 <p>但是，现在关于人类活动的模型基本上都是随机的。</p>
 <p>在何种程度上，个体的行为是可预测的?</p>
 <p>本文旨在通过人类移动探索可预测性的界限，量化规律(可预测)和随机(不可预测)之间的相互影响。</p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2021/08/19/819/">
-            Read More <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
+<a id="more"></a>
+<h3 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h3><p>观察期为3个月</p>
+<p>从~1kw筛选出5w个体(访问超过两个地点，通话频率$f\ge0.5$)</p>
+<p><img src="/2021/08/19/819/image-20210828004247531.png" alt="image-20210828004247531"></p>
+<p>该图展示了两个移动模式不同用户的轨迹:</p>
+<p>第一个用户在30km内移动了跨越22个信号塔的附近区域</p>
+<p>第二个用户在90km内移动了跨越76个信号塔的附近区域</p>
+<p>灰色线条代表对应塔的信号接收范围</p>
+<p><img src="/2021/08/19/819/image-20210828004602771.png" alt="image-20210828004602771"></p>
+<p>该图展现了上面两个用户的移动网络。</p>
+<p>节点大小代表在该塔附近的通话频率(用户在该塔附近花费时间百分比)，线的宽度与在两塔之间的移动频率成正比。</p>
+<p><img src="/2021/08/19/819/image-20210828082020160.png" alt="image-20210828082020160"></p>
+<p>每个移动网络都有一个相关的动态模式，捕获用户访问塔的时间序列</p>
+<p>该图表示第一个用户在一周内访问位置的时间序列。每一条竖线代表一次通话，颜色代表此次通话所在塔。</p>
+<h1 id="-1"><a href="#-1" class="headerlink" title="#"></a>#</h1><p>熵可能是描述时间序列的可预测性的最基本的量</p>
+<p>本文定义了三个熵测量了每个用户的移动模式:</p>
+<ul>
+<li><p>随机熵: $S_i^{rand}=\log_2 N_i$  $N_i$是user i访问过的不同位置数</p>
+<p>如果访问每个位置的概率相等，得到用户所在位置的可预测性程度</p>
+</li>
+<li><p>时间不相关熵:$S_i^{unc}=-\sum^{N_i}_{j=1}p_i(j)\log_2 p_i(j)$</p>
+<p>$p_i(j)$是user i曾经访问位置j的概率，表现了访问模式的不同性</p>
+</li>
+<li><p>实际熵:$S_i=-\sum_{T_i^{‘}\subset T_i}P(T_i^{‘})\log_2[P(T_i^{‘})]$</p>
+<p>实际熵不仅取决于访问频率，还包括访问节点的顺序和在每个位置花费的时间，故能捕捉到人移动模式的完整时空顺序。</p>
+<p>$T_i=\{X_1,X_2,…,X_L\}$表示在每连续的一小时间隔用户i所在的位置的序列</p>
+<p>$P(T_i)$是在轨迹$T_i$中找到特定时间顺序子序列$T_i^{‘}$的概率</p>
+</li>
+</ul>
+<p>$S_i\le S_i^{unc}\le S_i^{rand}$</p>
+<p>为了计算实际熵，我们需要用户连续的(例如 每小时)位置记录。但用户倾向于在短时间内拨打大部分电话，长时间内不进行通话，在此期间无法获取用户位置。由图C可以观察到间断性与突然爆发。</p>
+<p>参数q描述收集数据的不完整性，表示用户位置未知所占比。</p>
+<p><img src="/2021/08/19/819/image-20210828090257375.png" alt="image-20210828090257375"></p>
+<p>该图为q的数据集中的分布。峰值在q=0.7附近，说明对一个用户，我们有70%的时间间隔没有位置更新，掩盖了用户的实际熵。</p>
+<p>因此本文研究了不完整性的熵S(q),允许推测q=0时的熵。(?)</p>
+<p>作者通过100个每小时都被记录位置的用户测试该方法的准确性，发现q&lt;0.8时表现良好，即数据集的92%。故移除5000个q最高的用户，使剩余用户满足q&lt;0.8<br><img src="/2021/08/19/819/image-20210828094211427.png" alt="image-20210828094211427"></p>
+<p>该图为三个熵在数据集上的分布。$S_{rand}$=6达到峰值，说明<em>：</em>用户位置的每一次更新代表每小时6位的新位置，即用户随机选择他访问新位置的范围是$2^{S^{rand}}=64$ 个。</p>
+<p>但是真实熵在S=0.8达到峰值，说明真实情况不是64个位置的范围，而是$2^{0.8}=1.74$ ,少于两个位置。</p>
+<h3 id="-2"><a href="#-2" class="headerlink" title=" "></a> </h3><p>本文随后表示数据集中用户的回转半径符合胖尾分布，虽然大多数个体活动限制在1-10km，但也有一些用户经常移动覆盖数百千米。</p>
+<p>这些差异表明，用户移动的可预测性也应该符合胖尾分布。即移动少的个体(熵小)应该更容易预测，移动多(回转半径大，熵大)更不容易预测。</p>
+<p>本文使用参数$\Pi$ 来表示适当的预测算法可以正确预测用户未来的位置的可能性。</p>
+<p>如果用户的熵为S,访问了N个位置，则他的$\Pi\le \Pi^{max}(S,N)$ ,$\Pi^{max}$通过以下给出</p>
+<p>$S=H(\Pi_{max}+(1-\Pi^{max})log_2(N-1))$</p>
+<p>$H(\Pi^{max})=-\Pi^{max}log_2(\Pi^{max})-(1-\Pi^{max})log_2(1-\Pi^{max})$</p>
+<p>(二项分布的信息熵)</p>
+<p>如果一个用户的$\Pi^{max}=0.2$ ,说明至少80%的时间下,个体选择地点的方式是随机的，我们仅可以在20%的时间内与预测他的行踪。$\Pi^{max}$代表个体可预测性的基本极限。</p>
+<p>作者对$\Pi^{max}$的分布进行了统计，发现其并没有符合前边所说的胖尾分布，且在$\Pi^{max}=0.93$附近达到了峰值。</p>
+<p><img src="/2021/08/19/819/image-20210828100445186.png" alt="image-20210828100445186"></p>
+<p>这说明尽管这些个体的移动轨迹具有明显的随机性，但用户移动模式的记录隐藏着一种高度潜在可预测性。</p>
+<p>作者还通过时间不相关熵和随机熵计算了对应的可预测性。</p>
+<p>其中，$\Pi^{unc}$的分布表现出覆盖很宽，峰值在0.3左右，这说明如果我们只依赖于不同的空间分布，那么整个人口的预测能力是微不足道的，而且人与人之间差异很大。</p>
+<p>$\Pi^{rand}$在0达到峰值，这说明该参数对预测没有作用。可预测性被加密隐藏在访问模式的时间序列中了。</p>
+<h3 id="-3"><a href="#-3" class="headerlink" title=" "></a> </h3><p>如何使捕获的回转半径的广泛可变性与整个用户群体中观测到的高度可预测性一致?</p>
+<p>本文绘制了$\Pi^{max}$与回转半径$r_g$的相关性</p>
+<p><img src="/2021/08/19/819/image-20210828102136713.png" alt="image-20210828102136713"></p>
+<p>当回转半径≥10km时，可预测性在很大程度上与回转半径无关，在$\Pi^{max}=0.93$左右趋于饱和。这解释了前面提出的假设失败:个体回转半径≥100km,定期覆盖数百千米和回转半径在10km以内的用户同样可以预测。</p>
+<h3 id="-4"><a href="#-4" class="headerlink" title=" "></a> </h3><p>为了了解可预测性在多大程度上取决于移动模式中最常去的位置，作者计算了在给定时刻，用户处于最常访问n个位置之一的概率。因此，$\Pi$代表$\Pi^{max}$的上界。</p>
+<p><img src="/2021/08/19/819/image-20210828102801162.png" alt="image-20210828102801162"></p>
+<p>当n=1,我们可以预测用户的位置在最有可能的位置(“家”)</p>
+<p>当n=2,我们可以预测用户的位置在他最常访问的两个位置之一，家或办公地。仅有60%的可预测性。</p>
+<p>$\Pi$随n近似对数增长，当添加更多位置时，可预测性$\Pi$随之增长。</p>
+<h3 id="-5"><a href="#-5" class="headerlink" title=" "></a> </h3><p>为了理解观察到的潜在可预测性的来源，将每周划分为168小时间隔，在每小时内确定每个用户在该时间内访问最多的位置。</p>
+<p>计算每个用户的规律性R，定义为在用户访问最多位置找到用户的概率。R表示可预测性$\Pi$的下限，因为其忽略了个体移动的时间相关性。</p>
+<p>在整个用户群中，R≈0.7  这说明70%的时间，访问次数最多的位置与用户的实际位置一致。这种模式与时间相关:大多数人晚上待在家里，此时R的峰值为0.9;但在中午到下午1点和下午六七点之间，R有明显的极小值(上下班高峰)。</p>
+<p><img src="/2021/08/19/819/image-20210828103908802.png" alt="image-20210828103908802"></p>
+<p>图A表示在对应的时间间隔内，用户在他最常访问位置的比例(规律性R)。</p>
+<p>图B表示在对应的时间间隔内，用户访问位置数目。</p>
+<p>高的规律性对应着小的数目，当R达到顶峰，N下降。</p>
+<p>如果用户在N个位置之间随机移动，$R^{rand}=1/N$  $1/2^{S^{rand}}≈0.016$，比观测到R≈0.7小一个数量级。</p>
+<p><img src="/2021/08/19/819/image-20210828111954363.png" alt="image-20210828111954363"></p>
+<p>该图表示$R/R^{rand}$与回转半径相比，表现出回转半径大的用户有更高的相关规律性($R/R^{rand}$)。</p>
+<p>也就是说，相反，移动次数多(回转半径大)的用户比在家较多的用户具有更高的相关规律性。</p>
+<p>作者没有观察到$\Pi^{max}$在性别或年龄上有明显的差异，且家庭、语言群体、人口密度、城市与农村环境等因素对可预测性的影响只有微弱差异。与工作日相比，没有发现用户周末出行规律性有显著变化。这些都说明该规律性是人类活动潜在固有的。</p>
+<h3 id="-6"><a href="#-6" class="headerlink" title=" "></a> </h3><p>回转半径大的个体移动并非没有什么可预测性，最大的可预测性变化非常小。$\Pi^{max}$达到93%的峰值，且在数据集中没有任何用户可预测性低于80%。</p>
+<p>虽然明确预测用户的位置超出了我们能力范围，但适当的数据挖掘算法可以将我们研究中确定的可预测性转化为实际的移动预测。</p>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
+          
+            <div class='article_footer'>
+              
+                
+  
+    
+    
+
+
+
   
 
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2021/07/16/scd/">
-      Using Big Data to study the link between human mobility and socio-economic development
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="" rel="nofollow">
-    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
-    <p>omp</p>
-  </a>
-</div>
-
-            
-          
-            
-              
   
-  <div class='new-meta-item category'>
-    <a href='/categories/Paper-reading/' rel="nofollow">
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>Paper reading</p>
-    </a>
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
+  <div class='content'>
+    
+      <blockquote>
+        
+          
+            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+          
+        
+          
+            <p>本文永久链接是：<a href=https://omppppppp.xyz/2021/08/19/819/>https://omppppppp.xyz/2021/08/19/819/</a></p>
+          
+        
+      </blockquote>
+    
   </div>
+</section>
+
+  
+
+  
+    
+    
+
+<section class="widget qrcode  desktop mobile">
+  
+
+  <div class='content article-entry'>
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+  </div>
+</section>
+
+  
 
 
-            
+              
+            </div>
           
-            
-              <div class="new-meta-item date">
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-03T18:49:28+08:00">
   <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jul 16, 2021</p>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Sep 3, 2021</p>
   </a>
 </div>
 
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      <span id="/2021/07/16/scd/" class="leancloud_visitors" data-flag-title="Using Big Data to study the link between human mobility and socio-economic development">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-          
-            
-          
-            
-              
-
-            
-          
-        </div>
         
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
       
-        <meta name="referrer" content="no-referrer">
+        
+          
 
-<h3 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h3><p>大数据提供了创建社会数字神经系统的可能性，实现对社会经济现象相关方面的实时测量、监测和预测。</p>
-<p>本文研究了<strong>人类移动模式和社会经济发展的相关性</strong>。</p>
-<p>测量了每个个体的移动量(mobility volume)和移动多样性(mobility diversity)，并在城市水平( municipality level)上聚合这些测量，研究其和外部社会经济指标( external socio-economic indicator)的相关性。</p>
-<p>该研究发现三个结果:</p>
-<p>①聚合的人类移动模式与社会经济指标相关</p>
-<p>②移动多样性(用个体用户轨迹的熵来定义)与外部社会经济指标的相关性最强</p>
-<p>③移动量和移动多样性与社会经济指标有相反的相关性</p>
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://omppppppp.xyz/2021/08/19/819/&title=Limits of Predictability in Human Mobility - omp's blog&summary=
+
+Abstract提出一个问题:人类行为在多大程度上是可预测的?
+通过测量每个个体的轨迹熵，作者发现用户的移动有93%的潜在可预测性
+尽管个体在移动模式上有显著差异，但作者发现可预测性显著缺乏变化，很大程度上与用户定期移动的距离无关。
+ 本文认为，在我们的直觉和当前的建模之间存在着根本性的鸿沟:
+尽管我们很少认为我们的任何行为是随机的，但从一个不知道我们的动机和计划的外部观察者的角度来看，我们的活动模式很容易显得随机和不可预测。
+但是，现在关于人类活动的模型基本上都是随机的。
+在何种程度上，个体的行为是可预测的?
+本文旨在通过人类移动探索可预测性的界限，量化规律(可预测)和随机(不可预测)之间的相互影响。"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://omppppppp.xyz/2021/08/19/819/&title=Limits of Predictability in Human Mobility - omp's blog&summary=
+
+Abstract提出一个问题:人类行为在多大程度上是可预测的?
+通过测量每个个体的轨迹熵，作者发现用户的移动有93%的潜在可预测性
+尽管个体在移动模式上有显著差异，但作者发现可预测性显著缺乏变化，很大程度上与用户定期移动的距离无关。
+ 本文认为，在我们的直觉和当前的建模之间存在着根本性的鸿沟:
+尽管我们很少认为我们的任何行为是随机的，但从一个不知道我们的动机和计划的外部观察者的角度来看，我们的活动模式很容易显得随机和不可预测。
+但是，现在关于人类活动的模型基本上都是随机的。
+在何种程度上，个体的行为是可预测的?
+本文旨在通过人类移动探索可预测性的界限，量化规律(可预测)和随机(不可预测)之间的相互影响。"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=https://omppppppp.xyz/2021/08/19/819/&title=Limits of Predictability in Human Mobility - omp's blog&summary=
+
+Abstract提出一个问题:人类行为在多大程度上是可预测的?
+通过测量每个个体的轨迹熵，作者发现用户的移动有93%的潜在可预测性
+尽管个体在移动模式上有显著差异，但作者发现可预测性显著缺乏变化，很大程度上与用户定期移动的距离无关。
+ 本文认为，在我们的直觉和当前的建模之间存在着根本性的鸿沟:
+尽管我们很少认为我们的任何行为是随机的，但从一个不知道我们的动机和计划的外部观察者的角度来看，我们的活动模式很容易显得随机和不可预测。
+但是，现在关于人类活动的模型基本上都是随机的。
+在何种程度上，个体的行为是可预测的?
+本文旨在通过人类移动探索可预测性的界限，量化规律(可预测)和随机(不可预测)之间的相互影响。"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
       
     </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2021/07/16/scd/">
-            Read More <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
   </section>
-</article>
 
+
+        
+        
+          <div class="prev-next">
+            
+            
+              <a class='next' href='/2021/07/16/scd/'>
+                <p class='title'>Using Big Data to study the link between human mobility and socio-economic development<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>
+
+Abstract大数据提供了创建社会数字神经系统的可能性，实现对社会经济现象相关方面的实时测量、监测和预测。
+本文研究了人类移动模式和社会经济发展的相关性。
+测量了每个个体的移动量(mobi...</p>
+              </a>
+            
           </div>
         
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
+      </section>
+    </article>
   
 
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2021/07/01/rae/">
-      Returners and explorers dichotomy in human mobility
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="" rel="nofollow">
-    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
-    <p>omp</p>
-  </a>
-</div>
-
-            
-          
-            
-              
   
-  <div class='new-meta-item category'>
-    <a href='/categories/Paper-reading/' rel="nofollow">
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>Paper reading</p>
-    </a>
-  </div>
+    <!-- 显示推荐文章和评论 -->
 
 
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jul 1, 2021</p>
-  </a>
-</div>
 
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      <span id="/2021/07/01/rae/" class="leancloud_visitors" data-flag-title="Returners and explorers dichotomy in human mobility">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-          
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
       
-        <meta name="referrer" content="no-referrer">
-
-<p>个体移动距离的相当大的变化性和他们未来位置的高度可预测性共存。</p>
-<p>通过GPS和移动电话的数据，可以将个体分为两类:explorers&amp;returners。</p>
-<p>returners和explorers在传播现象中起着不同量级的作用，他们的移动模式和社会互动之间存在相关性。</p>
       
-    </div>
-    
       
-        <div class="button readmore">
-          <a href="/2021/07/01/rae/">
-            Read More <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
       
-    
-  </section>
-</article>
-
+      
+      
+        <section id="comments">
+          <div id="valine_container" class="valine_thread">
+            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
           </div>
-        
+        </section>
       
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
+      
+    </section>
+  </article>
+
+
   
 
 
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2021/04/19/SSIM/">
-      SSIM(Structural SIMilarity)
-    </a>
-  </h2>
 
 
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="" rel="nofollow">
-    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
-    <p>omp</p>
-  </a>
-</div>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
 
-            
-          
-            
-              
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/Paper-reading/' rel="nofollow">
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>Paper reading</p>
-    </a>
-  </div>
-
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Apr 19, 2021</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-  <div class="new-meta-item browse valine">
-    <a class='notlink'>
-      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      <span id="/2021/04/19/SSIM/" class="leancloud_visitors" data-flag-title="SSIM(Structural SIMilarity)">
-      <p>
-        <span class="leancloud-visitors-count"></span>
-      </p>
-      </span>
-    </a>
-  </div>
-
-
-            
-          
-            
-          
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <meta name="referrer" content="no-referrer">
-
-<p>SSIM( Structural SIMilarity)即图像质量评估的多尺度结构相似方法</p>
-<p>结构相似性，一种全参考的图像质量评价指标，它分别从亮度、对比度、结构三方面<strong>度量两幅图像相似性</strong>。</p>
-<p><img src="/2021/04/19/SSIM/einstein.png" alt="einstein"></p>
-<p><img src="/2021/04/19/SSIM/max_ssim.gif" alt="max_ssim"></p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2021/04/19/SSIM/">
-            Read More <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-    <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-    
-    
-      <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
 <script>
 window.MathJax = {
@@ -882,167 +783,41 @@ window.MathJax = {
 };
 </script>
 
-    
-
-  
 
 
-    
-  
+
+  <script>
+    window.subData = {
+      title: 'Limits of Predictability in Human Mobility',
+      tools: true
+    }
+  </script>
+
 
 </div>
 <aside class='l_side'>
   
   
-    
-    
-
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box' href='/about/'>
-          <img no-lazy src='https://s3.ax1x.com/2021/01/03/spRpoq.jpg'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">omp's blog</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-          
-            <a href="mailto:me@xaoxuu.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-          
-            <a href="https://github.com/xaoxuu"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-          
-            <a href="https://music.163.com/#/user/home?id=63035382"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
-
-  
 
   
     
     
-  
 
-  <section class="widget category shadow desktop">
+
+  <section class="widget toc-wrapper shadow desktop mobile">
     
   <header>
     
-      <a href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/Paper-reading/" href="/categories/Paper-reading/"
-            id="categoriesPaper-reading"
-            ><div class='name'>Paper reading</div><div class='badge'>(4)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/crypto%E5%88%B7%E9%A2%98/" href="/categories/crypto%E5%88%B7%E9%A2%98/"
-            id="categoriescryptoE588B7E9A298"
-            ><div class='name'>crypto刷题</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/java/" href="/categories/java/"
-            id="categoriesjava"
-            ><div class='name'>java</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/web%E5%88%B7%E9%A2%98/" href="/categories/web%E5%88%B7%E9%A2%98/"
-            id="categorieswebE588B7E9A298"
-            ><div class='name'>web刷题</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%85%B6%E4%BB%96/" href="/categories/%E5%85%B6%E4%BB%96/"
-            id="categoriesE585B6E4BB96"
-            ><div class='name'>其他</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
-            id="categoriesE5ADA6E4B9A0E7AC94E8AEB0"
-            ><div class='name'>学习笔记</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/"
-            id="categoriesE5AF86E7A081E5ADA6"
-            ><div class='name'>密码学</div><div class='badge'>(4)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E6%9D%82%E9%A1%B9/" href="/categories/%E6%9D%82%E9%A1%B9/"
-            id="categoriesE69D82E9A1B9"
-            ><div class='name'>杂项</div><div class='badge'>(3)</div></a></li>
-        
-      </ul>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Abstract"><span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text"> </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Data"><span class="toc-text">Data</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#-1"><span class="toc-text">#</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#-2"><span class="toc-text"> </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-3"><span class="toc-text"> </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-4"><span class="toc-text"> </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-5"><span class="toc-text"> </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-6"><span class="toc-text"> </span></a></li></ol></li></ol>
     </div>
   </section>
 
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/AES/" style="font-size: 17.33px; color: #828282">AES</a> <a href="/tags/DL/" style="font-size: 17.33px; color: #828282">DL</a> <a href="/tags/DLP/" style="font-size: 17.33px; color: #828282">DLP</a> <a href="/tags/ECC/" style="font-size: 14px; color: #999">ECC</a> <a href="/tags/RC4/" style="font-size: 14px; color: #999">RC4</a> <a href="/tags/RSA/" style="font-size: 20.67px; color: #6c6c6c">RSA</a> <a href="/tags/bot/" style="font-size: 14px; color: #999">bot</a> <a href="/tags/crt/" style="font-size: 14px; color: #999">crt</a> <a href="/tags/flask/" style="font-size: 14px; color: #999">flask</a> <a href="/tags/http/" style="font-size: 14px; color: #999">http</a> <a href="/tags/java/" style="font-size: 20.67px; color: #6c6c6c">java</a> <a href="/tags/knapsack/" style="font-size: 14px; color: #999">knapsack</a> <a href="/tags/mt19937/" style="font-size: 14px; color: #999">mt19937</a> <a href="/tags/php%E4%BC%AA%E5%8D%8F%E8%AE%AE/" style="font-size: 14px; color: #999">php伪协议</a> <a href="/tags/php%E5%BC%B1%E7%B1%BB%E5%9E%8B/" style="font-size: 14px; color: #999">php弱类型</a> <a href="/tags/sql%E6%B3%A8%E5%85%A5/" style="font-size: 24px; color: #555">sql注入</a> <a href="/tags/ssti/" style="font-size: 17.33px; color: #828282">ssti</a> <a href="/tags/stream/" style="font-size: 14px; color: #999">stream</a> <a href="/tags/tornado/" style="font-size: 14px; color: #999">tornado</a> <a href="/tags/%E6%89%A9%E5%B1%95CRT/" style="font-size: 14px; color: #999">扩展CRT</a> <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" style="font-size: 14px; color: #999">文件包含</a> <a href="/tags/%E6%9D%82%E9%A1%B9/" style="font-size: 20.67px; color: #6c6c6c">杂项</a> <a href="/tags/%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2/" style="font-size: 14px; color: #999">源码泄露</a> <a href="/tags/%E7%BC%96%E7%A0%81/" style="font-size: 14px; color: #999">编码</a>
-    </div>
-  </section>
-
-
-  
 
   
 
