@@ -408,9 +408,199 @@
         
           
         
+          
+        
       
     
     
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2021/10/05/211005/">
+      Modeling the scaling properties of human mobility
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="" rel="nofollow">
+    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
+    <p>omp</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Paper-reading/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>Paper reading</p>
+    </a>
+  </div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Oct 5, 2021</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      <span id="/2021/10/05/211005/" class="leancloud_visitors" data-flag-title="Modeling the scaling properties of human mobility">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+          
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <meta name="referrer" content="no-referrer">
+
+<h2 id="Abstarct"><a href="#Abstarct" class="headerlink" title="Abstarct"></a>Abstarct</h2><p>个人移动轨迹的jump size($\Delta r$)和waiting time($\Delta t$)符合胖尾分布，这说明<strong>连续时间随机游走模型(CTRW)</strong>与人类移动的相关性。</p>
+<p>我们需要能描述移动轨迹统计特征的定量模型。本文使用人类移动的经验数据(empirical data)来说明CTRW模型的预测与实证结果存在系统性冲突。</p>
+<p><strong>本文介绍控制人类移动的两个准则，建立一个个体移动的统计微观模型。</strong>该模型解释了经验观察到的标度定律(scaling laws)，同时也允许我们分析预测大多数相关的标度指数。</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>即使众多可用数据集在范围和分辨率上有显著不同，但在人类移动的一些定量特征上表现出一致。</p>
+<p>例如，美钞的追踪和移动电话数据都表明描述人类移动轨迹的聚合jump-size($\Delta r$)和waiting-time($\Delta t$)符合胖尾分布，$\Delta r$ 表示连续观察之间个体移动覆盖的距离，$\Delta t$表示个体在同一位置花费的时间。这些发现说明个体移动轨迹可以被莱维飞行(Lévy flights)或CTRW很好地描述。</p>
+<p>本文的目的是说明<strong>通过一系列的直接测量，个体移动轨迹遵循几个高度可复制的标度定律。</strong>然而这些定律中的许多要么不能被CTRW模型解释，要么直接与CTRW预测相矛盾，这说明缺乏一个能捕捉人类移动基础特征的模型框架。</p>
+<p>为了解释观测到标度定律的来源，本文介绍了控制人类移动的两个准则，作为个体移动统计微观模型的起始点。本文提出的模型可以解释实证观测到的标度定律并允许我们分析预测相关的标度指数。</p>
+<h2 id="Scaling-anomalies"><a href="#Scaling-anomalies" class="headerlink" title="Scaling anomalies"></a>Scaling anomalies</h2><p>本文使用两个数据集描述个体移动模式的特征。</p>
+<p>D1记录了一年时间内三百万匿名移动手机用户的移动轨迹(CDR)。</p>
+<p>D2记录了1000名注册基于位置服务的用户的位置，他们的位置在两周内每小时进行记录。</p>
+<p>首先计算每小时位移，发现其符合$P(r)$~$|\Delta r|^{(-1-\alpha)}$并在$\Delta r$~100km处截断。</p>
+<p>使用D2测量$\Delta t$,发现其符合$P(\Delta t)$~$|\Delta t|^{-1-\beta}$并在$\Delta t=17h$处截断。</p>
+<p>以上观测到的分布结果遵循CTRW模型。</p>
+<p><strong>作者提出以下三个实证观测结果，表明人类移动轨迹遵循可复制的标度定律，但也说明了CTRW模型在捕捉观测到的标度性质上的缺点。</strong></p>
+<p><strong>(A)访问的不同位置数</strong></p>
+<p>一个随机移动物体访问不同位置的数目遵循$S(t)$~$t^\mu$</p>
+<p>在莱维飞行中$\mu=1$，在CTRW中$\mu=\beta$</p>
+<p>本实验数据中观测到的$\mu=0.6±0.02$，小于CTRW预测的$\beta=0.8±0.1$</p>
+<p>$\mu&lt;1$说明访问不同位置数在大时间尺度上的减缓，用户访问之前没访问过地点的趋势减少。</p>
+<p><img src="/2021/10/05/211005/image-20211013171004927.png" alt="image-20211013171004927"></p>
+<p>该图表现出不同的回转半径$r_g$对应的访问位置数$S(t)$。</p>
+<p><strong>(B)访问频率</strong></p>
+<p>在莱维飞行和CTRW模型中一个用户访问给定位置的概率是处处渐进(t $\to\infty$)一致的(f~const.)。</p>
+<p>相反，人类访问模式相当不均匀，k-th最常访问位置的访问频率f遵循Zipf’s law</p>
+<p>$f_k$~$k^{-\zeta}$   $\zeta\approx1.2\pm0.1$</p>
+<p>这说明访问频率的分布遵循$P(f)$~$f^{-(1+1/\zeta)}$</p>
+<p><img src="/2021/10/05/211005/image-20211013180010666.png" alt></p>
+<p>该图反映出不同S值下用户访问k-th最常访问位置的访问频率$f_k$，实证数据很好地被$f_k$~$k^{-\zeta}$拟合。</p>
+<p><strong>(C)极慢扩散</strong></p>
+<p>CTRW模型预测均方距离(MSD)渐进符合$\left \langle \Delta x^2(t)  \right \rangle \sim t^\nu$ ($\nu=2\beta/\alpha$)</p>
+<p>和P($\Delta r$)与P($\Delta t$)都有截断相同，MSD在$\nu=1$时收敛为布朗运动</p>
+<p>然而这种收敛在我们的观测时间范围内太慢，不具有相关性。</p>
+<p>CTRW模型预测我们观测个体的移动轨迹时间越长，他就会越偏离初始位置。</p>
+<p>然而，人类每天都有回家的倾向，这说明简单扩散过程在二维空间中不循环，不能提供对人的移动进行描述。</p>
+<p>本文的测量观测到了极慢扩散过程，MSD遵循一个比对数更慢的增长(对数增长:对数增长初期进步速度非常快，后面会越来越慢，最后几乎处于一个平台期)。MSD的极慢增长在扩散中是罕见的。</p>
+<p><img src="/2021/10/05/211005/image-20211014174215813.png" alt="image-20211014174215813"></p>
+<p>该图说明用户组的MSD($\left \langle \Delta x^2 \right \rangle^{\alpha/2}$)在不同的回转半径下的时间演化。使用t=1year的值对MSD值进行归一化。</p>
+<p>橙色曲线表示渐近行为的分析预测，灰色曲线代表CTRW模型的分析预测。</p>
+<p>插图:归一化MSD值在不同回转半径下比访问位置数S。</p>
+<p>A-C的发现说明人类个体移动却是遵循可复制的标度定律，它的起源还有待发现。它们仍然说明莱维飞行和CTRW等空模型预测的系统性差异。本文的主要目标是提出一个不仅能解释异常A-C起源的模型，而且是描绘人类个体移动的自洽统计模型。</p>
+<h2 id="Generic-mechanisms-and-individual-mobility-model"><a href="#Generic-mechanisms-and-individual-mobility-model" class="headerlink" title="Generic mechanisms and individual mobility model"></a>Generic mechanisms and individual mobility model</h2><p>建立模型时，作者遵循一系列模型的结果认为jump-size和waiting-time符合胖尾分布。</p>
+<p>但只符合$\Delta r $和$\Delta t$的分布不足以解释标度定律A-C。</p>
+<p>作者提出造成这种差异的主要原因是<strong>两个生成机制，exploration(探索)和preferential return(偏好返回)。</strong>这两个机制都是人类移动特有的，且在传统随机游走模型(莱维飞行/CTRW)中缺失的。</p>
+<p><strong>(1)Exploration</strong></p>
+<p>随机游走模型假定扩散的下一步独立于之前访问的地点。相反，标度定律A说明探索额外的位置的趋势随时间逐渐减小。</p>
+<p>我们观察一个人的移动轨迹越久，就越难发现在他家/工作地附近还没访问过的位置。</p>
+<p><strong>(2)Preferential return</strong></p>
+<p>与随机游走模型的访问概率在空间中是随机和统一的相反，人类有明显的倾向返回他们之前频繁访问的位置，例如家或工作地。</p>
+<p>本文提出包含以上两个机制的模型，能充分解释异常A-C。</p>
+<p>该模型用来描述个体的移动轨迹。假设t=0时，个体在一些首选位置。经过waiting-time($\Delta t$)后在分布P($\Delta r$)中选择改变他的下一个位置。</p>
+<p>我们假设个体有两个选择:</p>
+<p>(1)Exploration:</p>
+<p>个体移动到一个新位置(不同于他之前去过的S个位置)的概率为$P_{new}=\rho S^{-\gamma}$</p>
+<p>他移动覆盖的距离$\Delta r$在分布P($\Delta r$)中选择， 方向随机选择，移动位置数S+=1。</p>
+<p>(2)Preferiential return:</p>
+<p>个体返回之前访问过的S个位置的概率为$P_{ret}=1-\rho S^{-\gamma}$</p>
+<p>访问位置i的概率$\Pi_i$与该个体之前访问过该位置的次数成正比。</p>
+<p>在网络或社会科学中，这一假设被称为 preferential attachment/ cumulative<br>advantage。</p>
+<p><img src="/2021/10/05/211005/image-20211014155239397.png" alt="image-20211014155239397"></p>
+<p>该图描述了本文提出的个体移动模型。从时间t开始，该用户之前访问过4个不同的位置(访问频率f和每个位置圆的大小成正比)。在时间t+$\Delta t $，该用户可以选择访问离他现在位置$\Delta r$的新位置，也可以返回到他之前访问过的位置，该位置由访问频率f决定。</p>
+<h2 id="Model-predictions"><a href="#Model-predictions" class="headerlink" title="Model predictions"></a>Model predictions</h2><p>本文提到该模型适用于捕捉长期尺度模式，不能再现人类移动短期内的时间顺序和潜在相关性。我们选择关注渐近性质(asymptotic properties)不仅仅是由理论驱动的(旨在重现普遍模式而不是短暂模式)，也是出于实际考虑:许多人类移动驱动过程，从疾病传播到城市规划，都是由人类移动的渐近特征驱动。</p>
+<p>为了实现短期时间更好的还原度，我们加入了人类移动特征的周期调整(24h和7d的周期;个体在晚上很少移动，在早上和傍晚更多移动)，也加入了空间移动的潜在相关性(B地在A和C之间,访问顺序A→B→C或C→B→A)。这些相关性进一步限制了人类的轨迹，在一定程度上是个人移动模式具有高度可预测性的原因。</p>
+<p>提出动态抑制(dynamical quenching)和重复行为是人类轨迹独有的，本文提出的模型代表了对CTRW/Lévy-flight模型的改进，因为它捕捉人类流动性的特性。</p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>1.Zipf’s law</p>
+<p><a href="https://blog.csdn.net/historyasamirror/article/details/3125223" target="_blank" rel="noopener">https://blog.csdn.net/historyasamirror/article/details/3125223</a></p>
+<p>在自然语言的语料库里，一个单词出现的频率与它在频率表里的排名成反比。</p>
+<p>2.MSD</p>
+<p><a href="http://blog.sciencenet.cn/home.php?mod=space&amp;uid=3388193&amp;do=blog&amp;id=1232344" target="_blank" rel="noopener">http://blog.sciencenet.cn/home.php?mod=space&amp;uid=3388193&amp;do=blog&amp;id=1232344</a></p>
+<p>即均方位移(the mean square displacement )   </p>
+<p> 在统计力学中，均方位移（MSD，均方位移或均方波动）是粒子随时间移动后的位置相对于参考位置的偏差的量度。它是随机运动中空间范围的最常见度量，可以被认为是对随机行者“探索”的系统部分进行度量。</p>
+<p>MSD定义为t时刻的系综平均(集平均，某一时间点随机变量的期望)：</p>
+<p><img src="/2021/10/05/211005/image-20211017163225739.png" alt="image-20211017163225739"></p>
+<p>3.渐近分析</p>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
       
         
           <div class='post-wrapper'>
@@ -1397,7 +1587,7 @@ window.MathJax = {
           <li><a class="flat-box"
             title="/categories/Paper-reading/" href="/categories/Paper-reading/"
             id="categoriesPaper-reading"
-            ><div class='name'>Paper reading</div><div class='badge'>(4)</div></a></li>
+            ><div class='name'>Paper reading</div><div class='badge'>(5)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/crypto%E5%88%B7%E9%A2%98/" href="/categories/crypto%E5%88%B7%E9%A2%98/"

@@ -16,16 +16,8 @@
 
   <!-- 页面元数据 -->
   
-    <title>Limits of Predictability in Human Mobility - omp&#39;s blog</title>
+    <title>Modeling the scaling properties of human mobility - omp&#39;s blog</title>
   
-  
-    <meta name="description" content="
-
-Abstract提出一个问题:人类行为在多大程度上是可预测的?
-通过测量每个个体的轨迹熵，作者发现用户的移动有93%的潜在可预测性
-尽管个体在移动模式上有显著差异，但作者发现可预测性显著缺乏变化，很大程度上与用户定期移动的距离无关。
- 本文认为，在我们的直觉和当前的建模之间存在着根本性的鸿沟:
-尽管我们很少认...">
   
 
   <!-- feed -->
@@ -354,8 +346,8 @@ Abstract提出一个问题:人类行为在多大程度上是可预测的?
         
           
   <h1 class="title">
-    <a href="/2021/08/19/819/">
-      Limits of Predictability in Human Mobility
+    <a href="/2021/10/05/211005/">
+      Modeling the scaling properties of human mobility
     </a>
   </h1>
 
@@ -393,7 +385,7 @@ Abstract提出一个问题:人类行为在多大程度上是可预测的?
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Aug 19, 2021</p>
+    <p>发布于：Oct 5, 2021</p>
   </a>
 </div>
 
@@ -409,7 +401,7 @@ Abstract提出一个问题:人类行为在多大程度上是可预测的?
   <div class="new-meta-item browse valine">
     <a class='notlink'>
       <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-      <span id="/2021/08/19/819/" class="leancloud_visitors" data-flag-title="Limits of Predictability in Human Mobility">
+      <span id="/2021/10/05/211005/" class="leancloud_visitors" data-flag-title="Modeling the scaling properties of human mobility">
       <p>
         <span class="leancloud-visitors-count"></span>
       </p>
@@ -443,89 +435,79 @@ Abstract提出一个问题:人类行为在多大程度上是可预测的?
           
           <meta name="referrer" content="no-referrer">
 
-<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>提出一个问题:人类行为在多大程度上是可预测的?</p>
-<p>通过测量每个个体的轨迹熵，作者发现用户的移动有93%的潜在可预测性</p>
-<p>尽管个体在移动模式上有显著差异，但作者发现可预测性显著缺乏变化，很大程度上与用户定期移动的距离无关。</p>
-<h2 id><a href="#" class="headerlink" title=" "></a> </h2><p>本文认为，在我们的直觉和当前的建模之间存在着根本性的鸿沟:</p>
-<p>尽管我们很少认为我们的任何行为是随机的，但从一个不知道我们的动机和计划的外部观察者的角度来看，我们的活动模式很容易显得随机和不可预测。</p>
-<p>但是，现在关于人类活动的模型基本上都是随机的。</p>
-<p>在何种程度上，个体的行为是可预测的?</p>
-<p>本文旨在通过人类移动探索可预测性的界限，量化规律(可预测)和随机(不可预测)之间的相互影响。</p>
-<a id="more"></a>
-<h3 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h3><p>观察期为3个月</p>
-<p>从~1kw筛选出5w个体(访问超过两个地点，通话频率$f\ge0.5$)</p>
-<p><img src="/2021/08/19/819/image-20210828004247531.png" alt="image-20210828004247531"></p>
-<p>该图展示了两个移动模式不同用户的轨迹:</p>
-<p>第一个用户在30km内移动了跨越22个信号塔的附近区域</p>
-<p>第二个用户在90km内移动了跨越76个信号塔的附近区域</p>
-<p>灰色线条代表对应塔的信号接收范围</p>
-<p><img src="/2021/08/19/819/image-20210828004602771.png" alt="image-20210828004602771"></p>
-<p>该图展现了上面两个用户的移动网络。</p>
-<p>节点大小代表在该塔附近的通话频率(用户在该塔附近花费时间百分比)，线的宽度与在两塔之间的移动频率成正比。</p>
-<p><img src="/2021/08/19/819/image-20210828082020160.png" alt="image-20210828082020160"></p>
-<p>每个移动网络都有一个相关的动态模式，捕获用户访问塔的时间序列</p>
-<p>该图表示第一个用户在一周内访问位置的时间序列。每一条竖线代表一次通话，颜色代表此次通话所在塔。</p>
-<h1 id="-1"><a href="#-1" class="headerlink" title="#"></a>#</h1><p>熵可能是描述时间序列的可预测性的最基本的量</p>
-<p>本文定义了三个熵测量了每个用户的移动模式:</p>
-<ul>
-<li><p>随机熵: $S_i^{rand}=\log_2 N_i$  $N_i$是user i访问过的不同位置数</p>
-<p>如果访问每个位置的概率相等，得到用户所在位置的可预测性程度</p>
-</li>
-<li><p>时间不相关熵:$S_i^{unc}=-\sum^{N_i}_{j=1}p_i(j)\log_2 p_i(j)$</p>
-<p>$p_i(j)$是user i曾经访问位置j的概率，表现了访问模式的不同性</p>
-</li>
-<li><p>实际熵:$S_i=-\sum_{T_i^{‘}\subset T_i}P(T_i^{‘})\log_2[P(T_i^{‘})]$</p>
-<p>实际熵不仅取决于访问频率，还包括访问节点的顺序和在每个位置花费的时间，故能捕捉到人移动模式的完整时空顺序。</p>
-<p>$T_i=\{X_1,X_2,…,X_L\}$表示在每连续的一小时间隔用户i所在的位置的序列</p>
-<p>$P(T_i)$是在轨迹$T_i$中找到特定时间顺序子序列$T_i^{‘}$的概率</p>
-</li>
-</ul>
-<p>$S_i\le S_i^{unc}\le S_i^{rand}$</p>
-<p>为了计算实际熵，我们需要用户连续的(例如 每小时)位置记录。但用户倾向于在短时间内拨打大部分电话，长时间内不进行通话，在此期间无法获取用户位置。由图C可以观察到间断性与突然爆发。</p>
-<p>参数q描述收集数据的不完整性，表示用户位置未知所占比。</p>
-<p><img src="/2021/08/19/819/image-20210828090257375.png" alt="image-20210828090257375"></p>
-<p>该图为q的数据集中的分布。峰值在q=0.7附近，说明对一个用户，我们有70%的时间间隔没有位置更新，掩盖了用户的实际熵。</p>
-<p>因此本文研究了不完整性的熵S(q),允许推测q=0时的熵。(?)</p>
-<p>作者通过100个每小时都被记录位置的用户测试该方法的准确性，发现q&lt;0.8时表现良好，即数据集的92%。故移除5000个q最高的用户，使剩余用户满足q&lt;0.8<br><img src="/2021/08/19/819/image-20210828094211427.png" alt="image-20210828094211427"></p>
-<p>该图为三个熵在数据集上的分布。$S_{rand}$=6达到峰值，说明<em>：</em>用户位置的每一次更新代表每小时6位的新位置，即用户随机选择他访问新位置的范围是$2^{S^{rand}}=64$ 个。</p>
-<p>但是真实熵在S=0.8达到峰值，说明真实情况不是64个位置的范围，而是$2^{0.8}=1.74$ ,少于两个位置。</p>
-<h3 id="-2"><a href="#-2" class="headerlink" title=" "></a> </h3><p>本文随后表示数据集中用户的回转半径符合胖尾分布，虽然大多数个体活动限制在1-10km，但也有一些用户经常移动覆盖数百千米。</p>
-<p>这些差异表明，用户移动的可预测性也应该符合胖尾分布。即移动少的个体(熵小)应该更容易预测，移动多(回转半径大，熵大)更不容易预测。</p>
-<p>本文使用参数$\Pi$ 来表示适当的预测算法可以正确预测用户未来的位置的可能性。</p>
-<p>如果用户的熵为S,访问了N个位置，则他的$\Pi\le \Pi^{max}(S,N)$ ,$\Pi^{max}$通过以下给出</p>
-<p>$S=H(\Pi_{max}+(1-\Pi^{max})log_2(N-1))$</p>
-<p>$H(\Pi^{max})=-\Pi^{max}log_2(\Pi^{max})-(1-\Pi^{max})log_2(1-\Pi^{max})$</p>
-<p>(二项分布的信息熵)</p>
-<p>如果一个用户的$\Pi^{max}=0.2$ ,说明至少80%的时间下,个体选择地点的方式是随机的，我们仅可以在20%的时间内与预测他的行踪。$\Pi^{max}$代表个体可预测性的基本极限。</p>
-<p>作者对$\Pi^{max}$的分布进行了统计，发现其并没有符合前边所说的胖尾分布，且在$\Pi^{max}=0.93$附近达到了峰值。</p>
-<p><img src="/2021/08/19/819/image-20210828100445186.png" alt="image-20210828100445186"></p>
-<p>这说明尽管这些个体的移动轨迹具有明显的随机性，但用户移动模式的记录隐藏着一种高度潜在可预测性。</p>
-<p>作者还通过时间不相关熵和随机熵计算了对应的可预测性。</p>
-<p>其中，$\Pi^{unc}$的分布表现出覆盖很宽，峰值在0.3左右，这说明如果我们只依赖于不同的空间分布，那么整个人口的预测能力是微不足道的，而且人与人之间差异很大。</p>
-<p>$\Pi^{rand}$在0达到峰值，这说明该参数对预测没有作用。可预测性被加密隐藏在访问模式的时间序列中了。</p>
-<h3 id="-3"><a href="#-3" class="headerlink" title=" "></a> </h3><p>如何使捕获的回转半径的广泛可变性与整个用户群体中观测到的高度可预测性一致?</p>
-<p>本文绘制了$\Pi^{max}$与回转半径$r_g$的相关性</p>
-<p><img src="/2021/08/19/819/image-20210828102136713.png" alt="image-20210828102136713"></p>
-<p>当回转半径≥10km时，可预测性在很大程度上与回转半径无关，在$\Pi^{max}=0.93$左右趋于饱和。这解释了前面提出的假设失败:个体回转半径≥100km,定期覆盖数百千米和回转半径在10km以内的用户同样可以预测。</p>
-<h3 id="-4"><a href="#-4" class="headerlink" title=" "></a> </h3><p>为了了解可预测性在多大程度上取决于移动模式中最常去的位置，作者计算了在给定时刻，用户处于最常访问n个位置之一的概率。因此，$\Pi$代表$\Pi^{max}$的上界。</p>
-<p><img src="/2021/08/19/819/image-20210828102801162.png" alt="image-20210828102801162"></p>
-<p>当n=1,我们可以预测用户的位置在最有可能的位置(“家”)</p>
-<p>当n=2,我们可以预测用户的位置在他最常访问的两个位置之一，家或办公地。仅有60%的可预测性。</p>
-<p>$\Pi$随n近似对数增长，当添加更多位置时，可预测性$\Pi$随之增长。</p>
-<h3 id="-5"><a href="#-5" class="headerlink" title=" "></a> </h3><p>为了理解观察到的潜在可预测性的来源，将每周划分为168小时间隔，在每小时内确定每个用户在该时间内访问最多的位置。</p>
-<p>计算每个用户的规律性R，定义为在用户访问最多位置找到用户的概率。R表示可预测性$\Pi$的下限，因为其忽略了个体移动的时间相关性。</p>
-<p>在整个用户群中，R≈0.7  这说明70%的时间，访问次数最多的位置与用户的实际位置一致。这种模式与时间相关:大多数人晚上待在家里，此时R的峰值为0.9;但在中午到下午1点和下午六七点之间，R有明显的极小值(上下班高峰)。</p>
-<p><img src="/2021/08/19/819/image-20210828103908802.png" alt="image-20210828103908802"></p>
-<p>图A表示在对应的时间间隔内，用户在他最常访问位置的比例(规律性R)。</p>
-<p>图B表示在对应的时间间隔内，用户访问位置数目。</p>
-<p>高的规律性对应着小的数目，当R达到顶峰，N下降。</p>
-<p>如果用户在N个位置之间随机移动，$R^{rand}=1/N$  $1/2^{S^{rand}}≈0.016$，比观测到R≈0.7小一个数量级。</p>
-<p><img src="/2021/08/19/819/image-20210828111954363.png" alt="image-20210828111954363"></p>
-<p>该图表示$R/R^{rand}$与回转半径相比，表现出回转半径大的用户有更高的相关规律性($R/R^{rand}$)。</p>
-<p>也就是说，相反，移动次数多(回转半径大)的用户比在家较多的用户具有更高的相关规律性。</p>
-<p>作者没有观察到$\Pi^{max}$在性别或年龄上有明显的差异，且家庭、语言群体、人口密度、城市与农村环境等因素对可预测性的影响只有微弱差异。与工作日相比，没有发现用户周末出行规律性有显著变化。这些都说明该规律性是人类活动潜在固有的。</p>
-<h3 id="-6"><a href="#-6" class="headerlink" title=" "></a> </h3><p>回转半径大的个体移动并非没有什么可预测性，最大的可预测性变化非常小。$\Pi^{max}$达到93%的峰值，且在数据集中没有任何用户可预测性低于80%。</p>
-<p>虽然明确预测用户的位置超出了我们能力范围，但适当的数据挖掘算法可以将我们研究中确定的可预测性转化为实际的移动预测。</p>
+<h2 id="Abstarct"><a href="#Abstarct" class="headerlink" title="Abstarct"></a>Abstarct</h2><p>个人移动轨迹的jump size($\Delta r$)和waiting time($\Delta t$)符合胖尾分布，这说明<strong>连续时间随机游走模型(CTRW)</strong>与人类移动的相关性。</p>
+<p>我们需要能描述移动轨迹统计特征的定量模型。本文使用人类移动的经验数据(empirical data)来说明CTRW模型的预测与实证结果存在系统性冲突。</p>
+<p><strong>本文介绍控制人类移动的两个准则，建立一个个体移动的统计微观模型。</strong>该模型解释了经验观察到的标度定律(scaling laws)，同时也允许我们分析预测大多数相关的标度指数。</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>即使众多可用数据集在范围和分辨率上有显著不同，但在人类移动的一些定量特征上表现出一致。</p>
+<p>例如，美钞的追踪和移动电话数据都表明描述人类移动轨迹的聚合jump-size($\Delta r$)和waiting-time($\Delta t$)符合胖尾分布，$\Delta r$ 表示连续观察之间个体移动覆盖的距离，$\Delta t$表示个体在同一位置花费的时间。这些发现说明个体移动轨迹可以被莱维飞行(Lévy flights)或CTRW很好地描述。</p>
+<p>本文的目的是说明<strong>通过一系列的直接测量，个体移动轨迹遵循几个高度可复制的标度定律。</strong>然而这些定律中的许多要么不能被CTRW模型解释，要么直接与CTRW预测相矛盾，这说明缺乏一个能捕捉人类移动基础特征的模型框架。</p>
+<p>为了解释观测到标度定律的来源，本文介绍了控制人类移动的两个准则，作为个体移动统计微观模型的起始点。本文提出的模型可以解释实证观测到的标度定律并允许我们分析预测相关的标度指数。</p>
+<h2 id="Scaling-anomalies"><a href="#Scaling-anomalies" class="headerlink" title="Scaling anomalies"></a>Scaling anomalies</h2><p>本文使用两个数据集描述个体移动模式的特征。</p>
+<p>D1记录了一年时间内三百万匿名移动手机用户的移动轨迹(CDR)。</p>
+<p>D2记录了1000名注册基于位置服务的用户的位置，他们的位置在两周内每小时进行记录。</p>
+<p>首先计算每小时位移，发现其符合$P(r)$~$|\Delta r|^{(-1-\alpha)}$并在$\Delta r$~100km处截断。</p>
+<p>使用D2测量$\Delta t$,发现其符合$P(\Delta t)$~$|\Delta t|^{-1-\beta}$并在$\Delta t=17h$处截断。</p>
+<p>以上观测到的分布结果遵循CTRW模型。</p>
+<p><strong>作者提出以下三个实证观测结果，表明人类移动轨迹遵循可复制的标度定律，但也说明了CTRW模型在捕捉观测到的标度性质上的缺点。</strong></p>
+<p><strong>(A)访问的不同位置数</strong></p>
+<p>一个随机移动物体访问不同位置的数目遵循$S(t)$~$t^\mu$</p>
+<p>在莱维飞行中$\mu=1$，在CTRW中$\mu=\beta$</p>
+<p>本实验数据中观测到的$\mu=0.6±0.02$，小于CTRW预测的$\beta=0.8±0.1$</p>
+<p>$\mu&lt;1$说明访问不同位置数在大时间尺度上的减缓，用户访问之前没访问过地点的趋势减少。</p>
+<p><img src="/2021/10/05/211005/image-20211013171004927.png" alt="image-20211013171004927"></p>
+<p>该图表现出不同的回转半径$r_g$对应的访问位置数$S(t)$。</p>
+<p><strong>(B)访问频率</strong></p>
+<p>在莱维飞行和CTRW模型中一个用户访问给定位置的概率是处处渐进(t $\to\infty$)一致的(f~const.)。</p>
+<p>相反，人类访问模式相当不均匀，k-th最常访问位置的访问频率f遵循Zipf’s law</p>
+<p>$f_k$~$k^{-\zeta}$   $\zeta\approx1.2\pm0.1$</p>
+<p>这说明访问频率的分布遵循$P(f)$~$f^{-(1+1/\zeta)}$</p>
+<p><img src="/2021/10/05/211005/image-20211013180010666.png" alt></p>
+<p>该图反映出不同S值下用户访问k-th最常访问位置的访问频率$f_k$，实证数据很好地被$f_k$~$k^{-\zeta}$拟合。</p>
+<p><strong>(C)极慢扩散</strong></p>
+<p>CTRW模型预测均方距离(MSD)渐进符合$\left \langle \Delta x^2(t)  \right \rangle \sim t^\nu$ ($\nu=2\beta/\alpha$)</p>
+<p>和P($\Delta r$)与P($\Delta t$)都有截断相同，MSD在$\nu=1$时收敛为布朗运动</p>
+<p>然而这种收敛在我们的观测时间范围内太慢，不具有相关性。</p>
+<p>CTRW模型预测我们观测个体的移动轨迹时间越长，他就会越偏离初始位置。</p>
+<p>然而，人类每天都有回家的倾向，这说明简单扩散过程在二维空间中不循环，不能提供对人的移动进行描述。</p>
+<p>本文的测量观测到了极慢扩散过程，MSD遵循一个比对数更慢的增长(对数增长:对数增长初期进步速度非常快，后面会越来越慢，最后几乎处于一个平台期)。MSD的极慢增长在扩散中是罕见的。</p>
+<p><img src="/2021/10/05/211005/image-20211014174215813.png" alt="image-20211014174215813"></p>
+<p>该图说明用户组的MSD($\left \langle \Delta x^2 \right \rangle^{\alpha/2}$)在不同的回转半径下的时间演化。使用t=1year的值对MSD值进行归一化。</p>
+<p>橙色曲线表示渐近行为的分析预测，灰色曲线代表CTRW模型的分析预测。</p>
+<p>插图:归一化MSD值在不同回转半径下比访问位置数S。</p>
+<p>A-C的发现说明人类个体移动却是遵循可复制的标度定律，它的起源还有待发现。它们仍然说明莱维飞行和CTRW等空模型预测的系统性差异。本文的主要目标是提出一个不仅能解释异常A-C起源的模型，而且是描绘人类个体移动的自洽统计模型。</p>
+<h2 id="Generic-mechanisms-and-individual-mobility-model"><a href="#Generic-mechanisms-and-individual-mobility-model" class="headerlink" title="Generic mechanisms and individual mobility model"></a>Generic mechanisms and individual mobility model</h2><p>建立模型时，作者遵循一系列模型的结果认为jump-size和waiting-time符合胖尾分布。</p>
+<p>但只符合$\Delta r $和$\Delta t$的分布不足以解释标度定律A-C。</p>
+<p>作者提出造成这种差异的主要原因是<strong>两个生成机制，exploration(探索)和preferential return(偏好返回)。</strong>这两个机制都是人类移动特有的，且在传统随机游走模型(莱维飞行/CTRW)中缺失的。</p>
+<p><strong>(1)Exploration</strong></p>
+<p>随机游走模型假定扩散的下一步独立于之前访问的地点。相反，标度定律A说明探索额外的位置的趋势随时间逐渐减小。</p>
+<p>我们观察一个人的移动轨迹越久，就越难发现在他家/工作地附近还没访问过的位置。</p>
+<p><strong>(2)Preferential return</strong></p>
+<p>与随机游走模型的访问概率在空间中是随机和统一的相反，人类有明显的倾向返回他们之前频繁访问的位置，例如家或工作地。</p>
+<p>本文提出包含以上两个机制的模型，能充分解释异常A-C。</p>
+<p>该模型用来描述个体的移动轨迹。假设t=0时，个体在一些首选位置。经过waiting-time($\Delta t$)后在分布P($\Delta r$)中选择改变他的下一个位置。</p>
+<p>我们假设个体有两个选择:</p>
+<p>(1)Exploration:</p>
+<p>个体移动到一个新位置(不同于他之前去过的S个位置)的概率为$P_{new}=\rho S^{-\gamma}$</p>
+<p>他移动覆盖的距离$\Delta r$在分布P($\Delta r$)中选择， 方向随机选择，移动位置数S+=1。</p>
+<p>(2)Preferiential return:</p>
+<p>个体返回之前访问过的S个位置的概率为$P_{ret}=1-\rho S^{-\gamma}$</p>
+<p>访问位置i的概率$\Pi_i$与该个体之前访问过该位置的次数成正比。</p>
+<p>在网络或社会科学中，这一假设被称为 preferential attachment/ cumulative<br>advantage。</p>
+<p><img src="/2021/10/05/211005/image-20211014155239397.png" alt="image-20211014155239397"></p>
+<p>该图描述了本文提出的个体移动模型。从时间t开始，该用户之前访问过4个不同的位置(访问频率f和每个位置圆的大小成正比)。在时间t+$\Delta t $，该用户可以选择访问离他现在位置$\Delta r$的新位置，也可以返回到他之前访问过的位置，该位置由访问频率f决定。</p>
+<h2 id="Model-predictions"><a href="#Model-predictions" class="headerlink" title="Model predictions"></a>Model predictions</h2><p>本文提到该模型适用于捕捉长期尺度模式，不能再现人类移动短期内的时间顺序和潜在相关性。我们选择关注渐近性质(asymptotic properties)不仅仅是由理论驱动的(旨在重现普遍模式而不是短暂模式)，也是出于实际考虑:许多人类移动驱动过程，从疾病传播到城市规划，都是由人类移动的渐近特征驱动。</p>
+<p>为了实现短期时间更好的还原度，我们加入了人类移动特征的周期调整(24h和7d的周期;个体在晚上很少移动，在早上和傍晚更多移动)，也加入了空间移动的潜在相关性(B地在A和C之间,访问顺序A→B→C或C→B→A)。这些相关性进一步限制了人类的轨迹，在一定程度上是个人移动模式具有高度可预测性的原因。</p>
+<p>提出动态抑制(dynamical quenching)和重复行为是人类轨迹独有的，本文提出的模型代表了对CTRW/Lévy-flight模型的改进，因为它捕捉人类流动性的特性。</p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>1.Zipf’s law</p>
+<p><a href="https://blog.csdn.net/historyasamirror/article/details/3125223" target="_blank" rel="noopener">https://blog.csdn.net/historyasamirror/article/details/3125223</a></p>
+<p>在自然语言的语料库里，一个单词出现的频率与它在频率表里的排名成反比。</p>
+<p>2.MSD</p>
+<p><a href="http://blog.sciencenet.cn/home.php?mod=space&amp;uid=3388193&amp;do=blog&amp;id=1232344" target="_blank" rel="noopener">http://blog.sciencenet.cn/home.php?mod=space&amp;uid=3388193&amp;do=blog&amp;id=1232344</a></p>
+<p>即均方位移(the mean square displacement )   </p>
+<p> 在统计力学中，均方位移（MSD，均方位移或均方波动）是粒子随时间移动后的位置相对于参考位置的偏差的量度。它是随机运动中空间范围的最常见度量，可以被认为是对随机行者“探索”的系统部分进行度量。</p>
+<p>MSD定义为t时刻的系综平均(集平均，某一时间点随机变量的期望)：</p>
+<p><img src="/2021/10/05/211005/image-20211017163225739.png" alt="image-20211017163225739"></p>
+<p>3.渐近分析</p>
 
           
             <div class='article_footer'>
@@ -562,7 +544,7 @@ Abstract提出一个问题:人类行为在多大程度上是可预测的?
           
         
           
-            <p>本文永久链接是：<a href=https://omppppppp.xyz/2021/08/19/819/>https://omppppppp.xyz/2021/08/19/819/</a></p>
+            <p>本文永久链接是：<a href=https://omppppppp.xyz/2021/10/05/211005/>https://omppppppp.xyz/2021/10/05/211005/</a></p>
           
         
       </blockquote>
@@ -613,10 +595,10 @@ Abstract提出一个问题:人类行为在多大程度上是可预测的?
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-03T18:49:28+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-10-17T16:34:13+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Sep 3, 2021</p>
+    <p>更新于：Oct 17, 2021</p>
   </a>
 </div>
 
@@ -640,16 +622,7 @@ Abstract提出一个问题:人类行为在多大程度上是可预测的?
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://omppppppp.xyz/2021/08/19/819/&title=Limits of Predictability in Human Mobility - omp's blog&summary=
-
-Abstract提出一个问题:人类行为在多大程度上是可预测的?
-通过测量每个个体的轨迹熵，作者发现用户的移动有93%的潜在可预测性
-尽管个体在移动模式上有显著差异，但作者发现可预测性显著缺乏变化，很大程度上与用户定期移动的距离无关。
- 本文认为，在我们的直觉和当前的建模之间存在着根本性的鸿沟:
-尽管我们很少认为我们的任何行为是随机的，但从一个不知道我们的动机和计划的外部观察者的角度来看，我们的活动模式很容易显得随机和不可预测。
-但是，现在关于人类活动的模型基本上都是随机的。
-在何种程度上，个体的行为是可预测的?
-本文旨在通过人类移动探索可预测性的界限，量化规律(可预测)和随机(不可预测)之间的相互影响。"
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://omppppppp.xyz/2021/10/05/211005/&title=Modeling the scaling properties of human mobility - omp's blog&summary="
           
           >
           
@@ -661,16 +634,7 @@ Abstract提出一个问题:人类行为在多大程度上是可预测的?
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://omppppppp.xyz/2021/08/19/819/&title=Limits of Predictability in Human Mobility - omp's blog&summary=
-
-Abstract提出一个问题:人类行为在多大程度上是可预测的?
-通过测量每个个体的轨迹熵，作者发现用户的移动有93%的潜在可预测性
-尽管个体在移动模式上有显著差异，但作者发现可预测性显著缺乏变化，很大程度上与用户定期移动的距离无关。
- 本文认为，在我们的直觉和当前的建模之间存在着根本性的鸿沟:
-尽管我们很少认为我们的任何行为是随机的，但从一个不知道我们的动机和计划的外部观察者的角度来看，我们的活动模式很容易显得随机和不可预测。
-但是，现在关于人类活动的模型基本上都是随机的。
-在何种程度上，个体的行为是可预测的?
-本文旨在通过人类移动探索可预测性的界限，量化规律(可预测)和随机(不可预测)之间的相互影响。"
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://omppppppp.xyz/2021/10/05/211005/&title=Modeling the scaling properties of human mobility - omp's blog&summary="
           
           >
           
@@ -682,16 +646,7 @@ Abstract提出一个问题:人类行为在多大程度上是可预测的?
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://omppppppp.xyz/2021/08/19/819/&title=Limits of Predictability in Human Mobility - omp's blog&summary=
-
-Abstract提出一个问题:人类行为在多大程度上是可预测的?
-通过测量每个个体的轨迹熵，作者发现用户的移动有93%的潜在可预测性
-尽管个体在移动模式上有显著差异，但作者发现可预测性显著缺乏变化，很大程度上与用户定期移动的距离无关。
- 本文认为，在我们的直觉和当前的建模之间存在着根本性的鸿沟:
-尽管我们很少认为我们的任何行为是随机的，但从一个不知道我们的动机和计划的外部观察者的角度来看，我们的活动模式很容易显得随机和不可预测。
-但是，现在关于人类活动的模型基本上都是随机的。
-在何种程度上，个体的行为是可预测的?
-本文旨在通过人类移动探索可预测性的界限，量化规律(可预测)和随机(不可预测)之间的相互影响。"
+          href="http://service.weibo.com/share/share.php?url=https://omppppppp.xyz/2021/10/05/211005/&title=Modeling the scaling properties of human mobility - omp's blog&summary="
           
           >
           
@@ -715,21 +670,14 @@ Abstract提出一个问题:人类行为在多大程度上是可预测的?
         
           <div class="prev-next">
             
-              <a class='prev' href='/2021/10/05/211005/'>
-                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Modeling the scaling properties of human mobility</p>
+            
+              <a class='next' href='/2021/08/19/819/'>
+                <p class='title'>Limits of Predictability in Human Mobility<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
                 <p class='content'>
 
-Abstarct个人移动轨迹的jump size($\Delta r$)和waiting time($\Delta t$)符合胖尾分布，这说明连续时间随机游走模型(CTRW)与人类移动的相关...</p>
-              </a>
-            
-            
-              <a class='next' href='/2021/07/16/scd/'>
-                <p class='title'>Using Big Data to study the link between human mobility and socio-economic development<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-                <p class='content'>
-
-Abstract大数据提供了创建社会数字神经系统的可能性，实现对社会经济现象相关方面的实时测量、监测和预测。
-本文研究了人类移动模式和社会经济发展的相关性。
-测量了每个个体的移动量(mobi...</p>
+Abstract提出一个问题:人类行为在多大程度上是可预测的?
+通过测量每个个体的轨迹熵，作者发现用户的移动有93%的潜在可预测性
+尽管个体在移动模式上有显著差异，但作者发现可预测性显著缺乏...</p>
               </a>
             
           </div>
@@ -795,7 +743,7 @@ window.MathJax = {
 
   <script>
     window.subData = {
-      title: 'Limits of Predictability in Human Mobility',
+      title: 'Modeling the scaling properties of human mobility',
       tools: true
     }
   </script>
@@ -821,7 +769,7 @@ window.MathJax = {
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Abstract"><span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text"> </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Data"><span class="toc-text">Data</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#-1"><span class="toc-text">#</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#-2"><span class="toc-text"> </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-3"><span class="toc-text"> </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-4"><span class="toc-text"> </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-5"><span class="toc-text"> </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-6"><span class="toc-text"> </span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Abstarct"><span class="toc-text">Abstarct</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scaling-anomalies"><span class="toc-text">Scaling anomalies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Generic-mechanisms-and-individual-mobility-model"><span class="toc-text">Generic mechanisms and individual mobility model</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Model-predictions"><span class="toc-text">Model predictions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补充"><span class="toc-text">补充</span></a></li></ol>
     </div>
   </section>
 
