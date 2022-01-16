@@ -445,11 +445,11 @@ Abstract许多精细尺度的城市流动模型都需要繁琐昂贵的出行调
           <meta name="referrer" content="no-referrer">
 
 <p>不需要出行调查的城市流动性建模框架TimeGeo</p>
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>许多精细尺度的城市流动模型都需要繁琐昂贵的出行调查来校准，且这种出行调查成本高采样率低。</p>
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>许多精细尺度的城市流动模型都需要繁琐昂贵的出行调查来校准，且这种出行调查成本高采样率低。</p>
 <p>本模型旨在对通讯技术提供的大量低成本地理标记数据(无法告诉我们用户的详细活动选择)进行根本性的范式转换，以模拟城市流动。</p>
 <p>本文提出的TimeGeo模型可以<strong>在10min时间间隔和百米的分辨率下高效产生城市流动模式，从通信活动中可用的稀疏和不完整的数据中生成完整的城市流动概况。</strong></p>
 <a id="more"></a>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h2><p>手机通信数据具有采样偏差，不能为每个人提供完整的空间和时间旅程。需要一种的范式转换适应这种稀疏数据来模拟城市中个人的日常轨迹。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h3><p>手机通信数据具有采样偏差，不能为每个人提供完整的空间和时间旅程。需要一种的范式转换适应这种稀疏数据来模拟城市中个人的日常轨迹。</p>
 <p>从移动通话数据中提取活动</p>
 <ul>
 <li>CDR data   </li>
@@ -467,7 +467,7 @@ Abstract许多精细尺度的城市流动模型都需要繁琐昂贵的出行调
 <p><img src="/2021/11/02/1102/image-20211105175523819.png" alt="image-20211105175523819"></p>
 <p>该图展示了三天中学生自我收集的移动轨迹中stay的地点和在连续的stay之间发生的移动(即定义为每天的行程)。不同活动类型地点及其之间的连线用颜色区分。</p>
 <p>下图是所有stay地点的访问频率，两图之间的时间条显示了每次stay的开始时间和持续时间。</p>
-<h2 id="Generating-Mechanism"><a href="#Generating-Mechanism" class="headerlink" title="Generating Mechanism"></a>Generating Mechanism</h2><p>该模型整合了人类移动的时间空间选择机制。</p>
+<h3 id="Generating-Mechanism"><a href="#Generating-Mechanism" class="headerlink" title="Generating Mechanism"></a>Generating Mechanism</h3><p>该模型整合了人类移动的时间空间选择机制。</p>
 <p>本文假设个体:</p>
 <ul>
 <li><p>工作活动有固定的位置，开始时间和持续时间</p>
@@ -479,7 +479,7 @@ Abstract许多精细尺度的城市流动模型都需要繁琐昂贵的出行调
 <p>本文提出的框架旨在模拟灵活的空间和时间流动性选择，固定的活动(即工作)的时间被假定为预先确定的。</p>
 <p><img src="/2021/11/02/1102/image-20211111214439699.png" alt="image-20211111214439699"></p>
 <p>TimeGeo模型的流程图</p>
-<h3 id="Temporal-Choices"><a href="#Temporal-Choices" class="headerlink" title="Temporal Choices"></a>Temporal Choices</h3><p>文章使用带有三个参数的time-inhomogeneous(?非齐次)马尔科夫链模型来捕捉个体出行的倾向和在连续序列中进行短时间活动的可能性。</p>
+<h4 id="Temporal-Choices"><a href="#Temporal-Choices" class="headerlink" title="Temporal Choices"></a>Temporal Choices</h4><p>文章使用带有三个参数的time-inhomogeneous(?非齐次)马尔科夫链模型来捕捉个体出行的倾向和在连续序列中进行短时间活动的可能性。</p>
 <p>参数:the weekly home-based tour<br>number($n_w$), the dwell rate($\beta_1$), and the burst rate($\beta_2$). </p>
 <p>考虑两个状态:home和other。Home被认为是一个活跃度较低的状态，因为home状态的平均停留时间显著长于other状态。</p>
 <p>1.个体在home状态出行可能性</p>
@@ -508,13 +508,13 @@ Abstract许多精细尺度的城市流动模型都需要繁琐昂贵的出行调
 <p>假定个体已经决定移动，他访问额外的other位置的概率正比于$\beta_2n_w$。回家或去额外的other位置两个选择的比率为:$\frac{P(O_1\rightarrow O_2)}{P(O_1\rightarrow H)}=\frac{\beta_2n_wP(t)}{1-\beta_2n_wP(t)}$</p>
 <p>对于给定$\beta_2n_w$，当P(t)高时(代表在当前时间段人们倾向出行),人们更有可能访问额外的other位置;当P(t)低时,人们更有可能回家。</p>
 <p>对于给定P(t),$\beta_2n_w$值越高，个体有更高的概率保持访问other位置，故他每天访问地点数N大。</p>
-<h3 id="Spatial-Choices"><a href="#Spatial-Choices" class="headerlink" title="Spatial Choices"></a>Spatial Choices</h3><p> a rank-based exploration and preferential<br>return (r-EPR) mechanism(在原始EPR模型中结合基于空间距离的排名)</p>
+<h4 id="Spatial-Choices"><a href="#Spatial-Choices" class="headerlink" title="Spatial Choices"></a>Spatial Choices</h4><p> a rank-based exploration and preferential<br>return (r-EPR) mechanism(在原始EPR模型中结合基于空间距离的排名)</p>
 <p>原始EPR模型的限制为缺少探索中选择新位置的机制。原始EPR模型随机在实证jump-size($\Delta r$)分布中抽取距离。为了描绘更能反映城市结构的探索机制，在本文中结合对探索新的位置基于排名的选择机制，即r-EPR模型。</p>
 <p>选择机制:基于距移动始发地的距离，给每个可选目的地排名。在所有潜在的新目的地中，离现在位置最近的k=1…</p>
 <p><strong>将第k个位置作为目的地的概率被量化为$P(k)\sim k^{-\alpha}$</strong></p>
 <p><img src="/2021/11/02/1102/image-20211112144732374.png" alt="image-20211112144732374"></p>
 <p>该图为对r-EPR模型的图示。可能的目的地使用颜色对不同选择概率进行区分。  地点距始发地越近，它被选择的概率越高。每个点代表从CDR数据中提取的进行other活动的位置。点的高度代表在附近区域可选目的地的密度。</p>
-<h2 id="Role-of-Land-Use-on-Travel-Distance"><a href="#Role-of-Land-Use-on-Travel-Distance" class="headerlink" title="Role of Land Use on Travel Distance"></a>Role of Land Use on Travel Distance</h2><p>为了解释和量化土地利用(land use)对出行的影响，本文提出<strong>a hierarchical multiplicative cascade(层次乘法级联模型)</strong>进行分析。 </p>
+<h3 id="Role-of-Land-Use-on-Travel-Distance"><a href="#Role-of-Land-Use-on-Travel-Distance" class="headerlink" title="Role of Land Use on Travel Distance"></a>Role of Land Use on Travel Distance</h3><p>为了解释和量化土地利用(land use)对出行的影响，本文提出<strong>a hierarchical multiplicative cascade(层次乘法级联模型)</strong>进行分析。 </p>
 <p>TimeGeo将位置的空间分布(在CDR数据中观测到的)作为输入。</p>
 <p><img src="/2021/11/02/1102/image-20211112151048619.png" alt="image-20211112151048619"></p>
 <p>该图展示了不同类型的位置(home/other)在两个尺度下的分布。AB图是home位置在不同分辨率下的分布，CD图释other位置在不同分辨率下的分布。</p>
@@ -550,10 +550,10 @@ Abstract许多精细尺度的城市流动模型都需要繁琐昂贵的出行调
 <p>$P_{00}$ at $(0,0)$  $P_{D0}$ at $(1/P_D,0)$  $P_{0S}$ at $(0,1/P_S)$ $P_{DS}$ at $(1/P_D,1/P_S)$</p>
 <p>在一个给定的区域内，用层次乘法级联分析框架来描述人口和场所设施分布的协方差，考虑了区域特定空间结构对个体出行距离的影响。</p>
 <p>这使得我们能够对城市土地利用的变化如何影响微观层面的个人出行行为和宏观层面的OD矩阵进行情景测试。</p>
-<h2 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h2><h3 id="Extracted-Mobility-Features-from-Mobile-Phone-Data"><a href="#Extracted-Mobility-Features-from-Mobile-Phone-Data" class="headerlink" title="Extracted Mobility Features from Mobile Phone Data"></a>Extracted Mobility Features from Mobile Phone Data</h3><p>对每个个体，$n_w$直接从数据中提取，$\beta_1$和$\beta_2$使用时间马尔科夫模型进行标定(<strong>calibrate</strong>)。其余参数如排名选择机制的参数$\alpha$，偏好返回机制的参数$\gamma$,$\rho$在全部人口的聚合数据中提取。</p>
+<h3 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h3><h4 id="Extracted-Mobility-Features-from-Mobile-Phone-Data"><a href="#Extracted-Mobility-Features-from-Mobile-Phone-Data" class="headerlink" title="Extracted Mobility Features from Mobile Phone Data"></a>Extracted Mobility Features from Mobile Phone Data</h4><p>对每个个体，$n_w$直接从数据中提取，$\beta_1$和$\beta_2$使用时间马尔科夫模型进行标定(<strong>calibrate</strong>)。其余参数如排名选择机制的参数$\alpha$，偏好返回机制的参数$\gamma$,$\rho$在全部人口的聚合数据中提取。</p>
 <p><img src="/2021/11/02/1102/image-20211116174011928.png" alt="image-20211116174011928"></p>
 <p>该图为$\beta_1n_w,\beta_2n_w,n_w$的联合分布。绿点为最可能的参数组合$n_w=6.1,\beta_1n_w=22.4,\beta_2n_w=508.0$</p>
-<h3 id="Simulated-Mobility-Features"><a href="#Simulated-Mobility-Features" class="headerlink" title="Simulated Mobility Features"></a>Simulated Mobility Features</h3><p>有了上述观测到的特征参数，TimeGeo模型可以在城市尺度产生长时间内个体每日移动轨迹。</p>
+<h4 id="Simulated-Mobility-Features"><a href="#Simulated-Mobility-Features" class="headerlink" title="Simulated Mobility Features"></a>Simulated Mobility Features</h4><p>有了上述观测到的特征参数，TimeGeo模型可以在城市尺度产生长时间内个体每日移动轨迹。</p>
 <p>以学生自愿收集的14-mo数据为例，固定家和工作地(学校)。使用模型框架来模拟灵活的Other活动的时空选择和家活动的时间选择。</p>
 <p>计算该学生的个人参数，发现其burst rate$\beta_2$小于人口平均水平，说明其有更小的可能性产生连续的短时间活动。</p>
 <p><img src="/2021/11/02/1102/image-20211116174956650.png" alt="image-20211116174956650"></p>
@@ -585,9 +585,9 @@ Abstract许多精细尺度的城市流动模型都需要繁琐昂贵的出行调
 <p>P(N)的分布相比较好，KS检验值为0.07和0.23。</p>
 <p><img src="/2021/11/02/1102/image-20211119165132169.png" alt="image-20211119165132169"></p>
 <p>$P(\Delta r)$模拟数据相比于MTS数据,KS检验值为0.24。<br>因为模型在选择选择返回地点时没有考虑行程距离，高估了长距离的行程。此处没有和NHTS进行比较是因为出行的空间层面取决于城市的特定扩展，在全国区域不同。</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>TimeGeo模型可以根据任何城市的人口密度和场所设施分布灵活适应到不同应用场景。最低要求是要有人口和场所设施分布。</p>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>TimeGeo模型可以根据任何城市的人口密度和场所设施分布灵活适应到不同应用场景。最低要求是要有人口和场所设施分布。</p>
 <p>在目前的结果中，模型的探索和返回参数($\alpha,\rho,\gamma$)在人口中假定是相同的，个体的时间流动率假定独立于实际位置。在未来的研究中，随着更多的高频率和长时间的数据可用，有可能学习到提出参数个体层面的不同。以及在不同城市区域,不同人口结构和生活方式中模型参数的不同。</p>
-<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><h3 id="Markov-Chain"><a href="#Markov-Chain" class="headerlink" title="Markov Chain"></a>Markov Chain</h3><p><a href="https://zhuanlan.zhihu.com/p/26453269" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/26453269</a></p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="Markov-Chain"><a href="#Markov-Chain" class="headerlink" title="Markov Chain"></a>Markov Chain</h3><p><a href="https://zhuanlan.zhihu.com/p/26453269" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/26453269</a></p>
 <p><a href="https://www.zhihu.com/question/37588564" target="_blank" rel="noopener">https://www.zhihu.com/question/37588564</a></p>
 <p>随机过程:随机过程使用一些统计模型，利用这些统计模型可以对自然界的一些事物进行预测和处理。</p>
 <p>马尔科夫链是随机过程的一种，每个时刻具有状态分布。每个状态的转移是有概率的，即转移概率矩阵P，且它是保持不变。有了转移概率矩阵和初始状态分布，就可以推算出后续时刻的状态分布。</p>
@@ -688,7 +688,7 @@ Abstract许多精细尺度的城市流动模型都需要繁琐昂贵的出行调
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-01-16T18:05:44+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-01-16T18:18:06+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：Jan 16, 2022</p>
@@ -886,7 +886,7 @@ window.MathJax = {
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Abstract"><span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#正文"><span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Data"><span class="toc-text">Data</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Generating-Mechanism"><span class="toc-text">Generating Mechanism</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Temporal-Choices"><span class="toc-text">Temporal Choices</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spatial-Choices"><span class="toc-text">Spatial Choices</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Role-of-Land-Use-on-Travel-Distance"><span class="toc-text">Role of Land Use on Travel Distance</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Results"><span class="toc-text">Results</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Extracted-Mobility-Features-from-Mobile-Phone-Data"><span class="toc-text">Extracted Mobility Features from Mobile Phone Data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Simulated-Mobility-Features"><span class="toc-text">Simulated Mobility Features</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-text">Conclusion</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#补充"><span class="toc-text">补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Markov-Chain"><span class="toc-text">Markov Chain</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#KS检验"><span class="toc-text">KS检验</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Abstract"><span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正文"><span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Data"><span class="toc-text">Data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generating-Mechanism"><span class="toc-text">Generating Mechanism</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Temporal-Choices"><span class="toc-text">Temporal Choices</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Spatial-Choices"><span class="toc-text">Spatial Choices</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Role-of-Land-Use-on-Travel-Distance"><span class="toc-text">Role of Land Use on Travel Distance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Results"><span class="toc-text">Results</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Extracted-Mobility-Features-from-Mobile-Phone-Data"><span class="toc-text">Extracted Mobility Features from Mobile Phone Data</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Simulated-Mobility-Features"><span class="toc-text">Simulated Mobility Features</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Conclusion"><span class="toc-text">Conclusion</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补充"><span class="toc-text">补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Markov-Chain"><span class="toc-text">Markov Chain</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#KS检验"><span class="toc-text">KS检验</span></a></li></ol></li></ol>
     </div>
   </section>
 

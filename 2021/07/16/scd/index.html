@@ -18,6 +18,8 @@
   
     <title>Using Big Data to study the link between human mobility and socio-economic development - omp&#39;s blog</title>
   
+    <meta name="keywords" content="human mobility,entropy,socio-economic">
+  
   
     <meta name="description" content="
 
@@ -441,7 +443,7 @@ Abstract大数据提供了创建社会数字神经系统的可能性，实现对
           
           <meta name="referrer" content="no-referrer">
 
-<h3 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h3><p>大数据提供了创建社会数字神经系统的可能性，实现对社会经济现象相关方面的实时测量、监测和预测。</p>
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>大数据提供了创建社会数字神经系统的可能性，实现对社会经济现象相关方面的实时测量、监测和预测。</p>
 <p>本文研究了<strong>人类移动模式和社会经济发展的相关性</strong>。</p>
 <p>测量了每个个体的移动量(mobility volume)和移动多样性(mobility diversity)，并在城市水平( municipality level)上聚合这些测量，研究其和外部社会经济指标( external socio-economic indicator)的相关性。</p>
 <p>该研究发现三个结果:</p>
@@ -635,10 +637,10 @@ Abstract大数据提供了创建社会数字神经系统的可能性，实现对
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-07-16T22:36:33+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-01-16T18:16:30+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Jul 16, 2021</p>
+    <p>更新于：Jan 16, 2022</p>
   </a>
 </div>
 
@@ -646,6 +648,9 @@ Abstract大数据提供了创建社会数字神经系统的可能性，实现对
       
         
           
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/human-mobility/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>human mobility</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/entropy/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>entropy</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/socio-economic/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>socio-economic</p></a></div>
+
 
         
       
@@ -842,7 +847,7 @@ window.MathJax = {
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Abstract"><span class="toc-text">Abstract</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Paper-Reading"><span class="toc-text">Paper Reading</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mobile-Phone-Data"><span class="toc-text">Mobile Phone Data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Socio-Economic-Data"><span class="toc-text">Socio-Economic Data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Measuring-Human-Mobility"><span class="toc-text">Measuring Human Mobility</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#the-volume-of-mobility"><span class="toc-text">the volume of mobility</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#the-diversity-of-mobility"><span class="toc-text">the diversity of mobility</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Correlation-Analysis"><span class="toc-text">Correlation Analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Discussion-Of-The-Results"><span class="toc-text">Discussion Of The Results</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Conclusion"><span class="toc-text">Conclusion</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补充"><span class="toc-text">补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#重尾分布"><span class="toc-text">重尾分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#香农熵"><span class="toc-text">香农熵</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Question"><span class="toc-text">Question</span></a>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Abstract"><span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Paper-Reading"><span class="toc-text">Paper Reading</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mobile-Phone-Data"><span class="toc-text">Mobile Phone Data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Socio-Economic-Data"><span class="toc-text">Socio-Economic Data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Measuring-Human-Mobility"><span class="toc-text">Measuring Human Mobility</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#the-volume-of-mobility"><span class="toc-text">the volume of mobility</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#the-diversity-of-mobility"><span class="toc-text">the diversity of mobility</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Correlation-Analysis"><span class="toc-text">Correlation Analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Discussion-Of-The-Results"><span class="toc-text">Discussion Of The Results</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Conclusion"><span class="toc-text">Conclusion</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补充"><span class="toc-text">补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#重尾分布"><span class="toc-text">重尾分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#香农熵"><span class="toc-text">香农熵</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Question"><span class="toc-text">Question</span></a></li></ol>
     </div>
   </section>
 
