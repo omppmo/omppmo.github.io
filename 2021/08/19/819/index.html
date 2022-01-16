@@ -18,14 +18,14 @@
   
     <title>Limits of Predictability in Human Mobility - omp&#39;s blog</title>
   
+    <meta name="keywords" content="human mobility,predictability,entropy">
+  
   
     <meta name="description" content="
 
 Abstract提出一个问题:人类行为在多大程度上是可预测的?
 通过测量每个个体的轨迹熵，作者发现用户的移动有93%的潜在可预测性
-尽管个体在移动模式上有显著差异，但作者发现可预测性显著缺乏变化，很大程度上与用户定期移动的距离无关。
- 本文认为，在我们的直觉和当前的建模之间存在着根本性的鸿沟:
-尽管我们很少认...">
+尽管个体在移动模式上有显著差异，但作者发现可预测性显著缺乏变化，很大程度上与用户定期移动的距离无关。">
   
 
   <!-- feed -->
@@ -446,12 +446,12 @@ Abstract提出一个问题:人类行为在多大程度上是可预测的?
 <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>提出一个问题:人类行为在多大程度上是可预测的?</p>
 <p>通过测量每个个体的轨迹熵，作者发现用户的移动有93%的潜在可预测性</p>
 <p>尽管个体在移动模式上有显著差异，但作者发现可预测性显著缺乏变化，很大程度上与用户定期移动的距离无关。</p>
-<h2 id><a href="#" class="headerlink" title=" "></a> </h2><p>本文认为，在我们的直觉和当前的建模之间存在着根本性的鸿沟:</p>
+<a id="more"></a>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>本文认为，在我们的直觉和当前的建模之间存在着根本性的鸿沟:</p>
 <p>尽管我们很少认为我们的任何行为是随机的，但从一个不知道我们的动机和计划的外部观察者的角度来看，我们的活动模式很容易显得随机和不可预测。</p>
 <p>但是，现在关于人类活动的模型基本上都是随机的。</p>
 <p>在何种程度上，个体的行为是可预测的?</p>
 <p>本文旨在通过人类移动探索可预测性的界限，量化规律(可预测)和随机(不可预测)之间的相互影响。</p>
-<a id="more"></a>
 <h3 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h3><p>观察期为3个月</p>
 <p>从~1kw筛选出5w个体(访问超过两个地点，通话频率$f\ge0.5$)</p>
 <p><img src="/2021/08/19/819/image-20210828004247531.png" alt="image-20210828004247531"></p>
@@ -465,7 +465,7 @@ Abstract提出一个问题:人类行为在多大程度上是可预测的?
 <p><img src="/2021/08/19/819/image-20210828082020160.png" alt="image-20210828082020160"></p>
 <p>每个移动网络都有一个相关的动态模式，捕获用户访问塔的时间序列</p>
 <p>该图表示第一个用户在一周内访问位置的时间序列。每一条竖线代表一次通话，颜色代表此次通话所在塔。</p>
-<h1 id="-1"><a href="#-1" class="headerlink" title="#"></a>#</h1><p>熵可能是描述时间序列的可预测性的最基本的量</p>
+<h3 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h3><h4 id="Entropy-pt1"><a href="#Entropy-pt1" class="headerlink" title="Entropy(pt1.)"></a>Entropy(pt1.)</h4><p>熵可能是描述时间序列的可预测性的最基本的量</p>
 <p>本文定义了三个熵测量了每个用户的移动模式:</p>
 <ul>
 <li><p>随机熵: $S_i^{rand}=\log_2 N_i$  $N_i$是user i访问过的不同位置数</p>
@@ -489,7 +489,7 @@ Abstract提出一个问题:人类行为在多大程度上是可预测的?
 <p>作者通过100个每小时都被记录位置的用户测试该方法的准确性，发现q&lt;0.8时表现良好，即数据集的92%。故移除5000个q最高的用户，使剩余用户满足q&lt;0.8<br><img src="/2021/08/19/819/image-20210828094211427.png" alt="image-20210828094211427"></p>
 <p>该图为三个熵在数据集上的分布。$S_{rand}$=6达到峰值，说明<em>：</em>用户位置的每一次更新代表每小时6位的新位置，即用户随机选择他访问新位置的范围是$2^{S^{rand}}=64$ 个。</p>
 <p>但是真实熵在S=0.8达到峰值，说明真实情况不是64个位置的范围，而是$2^{0.8}=1.74$ ,少于两个位置。</p>
-<h3 id="-2"><a href="#-2" class="headerlink" title=" "></a> </h3><p>本文随后表示数据集中用户的回转半径符合胖尾分布，虽然大多数个体活动限制在1-10km，但也有一些用户经常移动覆盖数百千米。</p>
+<h4 id="pt2"><a href="#pt2" class="headerlink" title="pt2."></a>pt2.</h4><p>本文随后表示数据集中用户的回转半径符合胖尾分布，虽然大多数个体活动限制在1-10km，但也有一些用户经常移动覆盖数百千米。</p>
 <p>这些差异表明，用户移动的可预测性也应该符合胖尾分布。即移动少的个体(熵小)应该更容易预测，移动多(回转半径大，熵大)更不容易预测。</p>
 <p>本文使用参数$\Pi$ 来表示适当的预测算法可以正确预测用户未来的位置的可能性。</p>
 <p>如果用户的熵为S,访问了N个位置，则他的$\Pi\le \Pi^{max}(S,N)$ ,$\Pi^{max}$通过以下给出</p>
@@ -503,16 +503,16 @@ Abstract提出一个问题:人类行为在多大程度上是可预测的?
 <p>作者还通过时间不相关熵和随机熵计算了对应的可预测性。</p>
 <p>其中，$\Pi^{unc}$的分布表现出覆盖很宽，峰值在0.3左右，这说明如果我们只依赖于不同的空间分布，那么整个人口的预测能力是微不足道的，而且人与人之间差异很大。</p>
 <p>$\Pi^{rand}$在0达到峰值，这说明该参数对预测没有作用。可预测性被加密隐藏在访问模式的时间序列中了。</p>
-<h3 id="-3"><a href="#-3" class="headerlink" title=" "></a> </h3><p>如何使捕获的回转半径的广泛可变性与整个用户群体中观测到的高度可预测性一致?</p>
+<h4 id="pt3"><a href="#pt3" class="headerlink" title="pt3."></a>pt3.</h4><p>如何使捕获的回转半径的广泛可变性与整个用户群体中观测到的高度可预测性一致?</p>
 <p>本文绘制了$\Pi^{max}$与回转半径$r_g$的相关性</p>
 <p><img src="/2021/08/19/819/image-20210828102136713.png" alt="image-20210828102136713"></p>
 <p>当回转半径≥10km时，可预测性在很大程度上与回转半径无关，在$\Pi^{max}=0.93$左右趋于饱和。这解释了前面提出的假设失败:个体回转半径≥100km,定期覆盖数百千米和回转半径在10km以内的用户同样可以预测。</p>
-<h3 id="-4"><a href="#-4" class="headerlink" title=" "></a> </h3><p>为了了解可预测性在多大程度上取决于移动模式中最常去的位置，作者计算了在给定时刻，用户处于最常访问n个位置之一的概率。因此，$\Pi$代表$\Pi^{max}$的上界。</p>
+<h4 id="pt4"><a href="#pt4" class="headerlink" title="pt4."></a>pt4.</h4><p>为了了解可预测性在多大程度上取决于移动模式中最常去的位置，作者计算了在给定时刻，用户处于最常访问n个位置之一的概率。因此，$\Pi$代表$\Pi^{max}$的上界。</p>
 <p><img src="/2021/08/19/819/image-20210828102801162.png" alt="image-20210828102801162"></p>
 <p>当n=1,我们可以预测用户的位置在最有可能的位置(“家”)</p>
 <p>当n=2,我们可以预测用户的位置在他最常访问的两个位置之一，家或办公地。仅有60%的可预测性。</p>
 <p>$\Pi$随n近似对数增长，当添加更多位置时，可预测性$\Pi$随之增长。</p>
-<h3 id="-5"><a href="#-5" class="headerlink" title=" "></a> </h3><p>为了理解观察到的潜在可预测性的来源，将每周划分为168小时间隔，在每小时内确定每个用户在该时间内访问最多的位置。</p>
+<h4 id="pt5"><a href="#pt5" class="headerlink" title="pt5."></a>pt5.</h4><p>为了理解观察到的潜在可预测性的来源，将每周划分为168小时间隔，在每小时内确定每个用户在该时间内访问最多的位置。</p>
 <p>计算每个用户的规律性R，定义为在用户访问最多位置找到用户的概率。R表示可预测性$\Pi$的下限，因为其忽略了个体移动的时间相关性。</p>
 <p>在整个用户群中，R≈0.7  这说明70%的时间，访问次数最多的位置与用户的实际位置一致。这种模式与时间相关:大多数人晚上待在家里，此时R的峰值为0.9;但在中午到下午1点和下午六七点之间，R有明显的极小值(上下班高峰)。</p>
 <p><img src="/2021/08/19/819/image-20210828103908802.png" alt="image-20210828103908802"></p>
@@ -524,7 +524,7 @@ Abstract提出一个问题:人类行为在多大程度上是可预测的?
 <p>该图表示$R/R^{rand}$与回转半径相比，表现出回转半径大的用户有更高的相关规律性($R/R^{rand}$)。</p>
 <p>也就是说，相反，移动次数多(回转半径大)的用户比在家较多的用户具有更高的相关规律性。</p>
 <p>作者没有观察到$\Pi^{max}$在性别或年龄上有明显的差异，且家庭、语言群体、人口密度、城市与农村环境等因素对可预测性的影响只有微弱差异。与工作日相比，没有发现用户周末出行规律性有显著变化。这些都说明该规律性是人类活动潜在固有的。</p>
-<h3 id="-6"><a href="#-6" class="headerlink" title=" "></a> </h3><p>回转半径大的个体移动并非没有什么可预测性，最大的可预测性变化非常小。$\Pi^{max}$达到93%的峰值，且在数据集中没有任何用户可预测性低于80%。</p>
+<h4 id="pt6"><a href="#pt6" class="headerlink" title="pt6."></a>pt6.</h4><p>回转半径大的个体移动并非没有什么可预测性，最大的可预测性变化非常小。$\Pi^{max}$达到93%的峰值，且在数据集中没有任何用户可预测性低于80%。</p>
 <p>虽然明确预测用户的位置超出了我们能力范围，但适当的数据挖掘算法可以将我们研究中确定的可预测性转化为实际的移动预测。</p>
 
           
@@ -613,10 +613,10 @@ Abstract提出一个问题:人类行为在多大程度上是可预测的?
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-03T18:49:28+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-01-16T18:01:54+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Sep 3, 2021</p>
+    <p>更新于：Jan 16, 2022</p>
   </a>
 </div>
 
@@ -624,6 +624,9 @@ Abstract提出一个问题:人类行为在多大程度上是可预测的?
       
         
           
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/human-mobility/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>human mobility</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/predictability/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>predictability</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/entropy/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>entropy</p></a></div>
+
 
         
       
@@ -644,12 +647,7 @@ Abstract提出一个问题:人类行为在多大程度上是可预测的?
 
 Abstract提出一个问题:人类行为在多大程度上是可预测的?
 通过测量每个个体的轨迹熵，作者发现用户的移动有93%的潜在可预测性
-尽管个体在移动模式上有显著差异，但作者发现可预测性显著缺乏变化，很大程度上与用户定期移动的距离无关。
- 本文认为，在我们的直觉和当前的建模之间存在着根本性的鸿沟:
-尽管我们很少认为我们的任何行为是随机的，但从一个不知道我们的动机和计划的外部观察者的角度来看，我们的活动模式很容易显得随机和不可预测。
-但是，现在关于人类活动的模型基本上都是随机的。
-在何种程度上，个体的行为是可预测的?
-本文旨在通过人类移动探索可预测性的界限，量化规律(可预测)和随机(不可预测)之间的相互影响。"
+尽管个体在移动模式上有显著差异，但作者发现可预测性显著缺乏变化，很大程度上与用户定期移动的距离无关。"
           
           >
           
@@ -665,12 +663,7 @@ Abstract提出一个问题:人类行为在多大程度上是可预测的?
 
 Abstract提出一个问题:人类行为在多大程度上是可预测的?
 通过测量每个个体的轨迹熵，作者发现用户的移动有93%的潜在可预测性
-尽管个体在移动模式上有显著差异，但作者发现可预测性显著缺乏变化，很大程度上与用户定期移动的距离无关。
- 本文认为，在我们的直觉和当前的建模之间存在着根本性的鸿沟:
-尽管我们很少认为我们的任何行为是随机的，但从一个不知道我们的动机和计划的外部观察者的角度来看，我们的活动模式很容易显得随机和不可预测。
-但是，现在关于人类活动的模型基本上都是随机的。
-在何种程度上，个体的行为是可预测的?
-本文旨在通过人类移动探索可预测性的界限，量化规律(可预测)和随机(不可预测)之间的相互影响。"
+尽管个体在移动模式上有显著差异，但作者发现可预测性显著缺乏变化，很大程度上与用户定期移动的距离无关。"
           
           >
           
@@ -686,12 +679,7 @@ Abstract提出一个问题:人类行为在多大程度上是可预测的?
 
 Abstract提出一个问题:人类行为在多大程度上是可预测的?
 通过测量每个个体的轨迹熵，作者发现用户的移动有93%的潜在可预测性
-尽管个体在移动模式上有显著差异，但作者发现可预测性显著缺乏变化，很大程度上与用户定期移动的距离无关。
- 本文认为，在我们的直觉和当前的建模之间存在着根本性的鸿沟:
-尽管我们很少认为我们的任何行为是随机的，但从一个不知道我们的动机和计划的外部观察者的角度来看，我们的活动模式很容易显得随机和不可预测。
-但是，现在关于人类活动的模型基本上都是随机的。
-在何种程度上，个体的行为是可预测的?
-本文旨在通过人类移动探索可预测性的界限，量化规律(可预测)和随机(不可预测)之间的相互影响。"
+尽管个体在移动模式上有显著差异，但作者发现可预测性显著缺乏变化，很大程度上与用户定期移动的距离无关。"
           
           >
           
@@ -821,7 +809,7 @@ window.MathJax = {
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Abstract"><span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text"> </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Data"><span class="toc-text">Data</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#-1"><span class="toc-text">#</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#-2"><span class="toc-text"> </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-3"><span class="toc-text"> </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-4"><span class="toc-text"> </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-5"><span class="toc-text"> </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-6"><span class="toc-text"> </span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Abstract"><span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正文"><span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Data"><span class="toc-text">Data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Results"><span class="toc-text">Results</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Entropy-pt1"><span class="toc-text">Entropy(pt1.)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pt2"><span class="toc-text">pt2.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pt3"><span class="toc-text">pt3.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pt4"><span class="toc-text">pt4.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pt5"><span class="toc-text">pt5.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pt6"><span class="toc-text">pt6.</span></a></li></ol></li></ol></li></ol>
     </div>
   </section>
 
