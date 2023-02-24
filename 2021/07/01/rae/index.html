@@ -1,307 +1,447 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+<html>
+<head hexo-theme='https://volantis.js.org/#2.6.5'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
   
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="">
-  <meta name="keywords" content="">
+    
   
-    <meta name="description" content="个体移动距离的相当大的变化性和他们未来位置的高度可预测性共存。 通过GPS和移动电话的数据，可以将个体分为两类:explorers&amp;returners。 returners和explorers在传播现象中起着不同量级的作用，他们的移动模式和社会互动之间存在相关性。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Returners and explorers dichotomy in human mobility">
-<meta property="og:url" content="https://y4ny4n.cn/2021/07/01/rae/index.html">
-<meta property="og:site_name" content="y4ny4n&#39;s blog">
-<meta property="og:description" content="个体移动距离的相当大的变化性和他们未来位置的高度可预测性共存。 通过GPS和移动电话的数据，可以将个体分为两类:explorers&amp;returners。 returners和explorers在传播现象中起着不同量级的作用，他们的移动模式和社会互动之间存在相关性。">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/01/rae/image-20210701150241384.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/01/rae/image-20210701161628889.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/01/rae/image-20210702101214115.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/01/rae/image-20210702152001250.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/01/rae/image-20210704231616178.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/01/rae/image-20210702164310685.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/01/rae/image-20210702174806994.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/01/rae/image-20210702220751763.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/01/rae/image-20210702225801689.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/01/rae/image-20210703135129853.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/01/rae/image-20210704180942791.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/01/rae/image-20210704175734568.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/01/rae/image-20210704180130108.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/01/rae/image-20210704180413200.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/01/rae/image-20210704222930783.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/01/rae/image-20210704222941701.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/01/rae/image-20210705162948378.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/01/rae/image-20210705165008739.png">
-<meta property="og:image" content="https://pic3.zhimg.com/80/v2-ce5526f050d5a182e279ccaff2c0bc6a_1440w.jpg">
-<meta property="og:image" content="http://5b0988e595225.cdn.sohucs.com/images/20180123/d5d395df5c664d43b402d15cd258d0b3.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/01/rae/image-20210701224217544.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/01/rae/image-20210702094557317.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/01/rae/image-20210702095513545.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/01/rae/image-20210702100318243.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/01/rae/image-20210706000825224.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/01/rae/image-20210705231259967.png">
-<meta property="article:published_time" content="2021-07-01T05:40:49.000Z">
-<meta property="article:modified_time" content="2022-01-16T10:09:44.719Z">
-<meta property="article:tag" content="human mobility">
-<meta property="article:tag" content="dichotomy">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://y4ny4n.cn/2021/07/01/rae/image-20210701150241384.png">
+  <!-- 渲染优化 -->
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+    <title>Returners and explorers dichotomy in human mobility - y4ny4n&#39;s blog</title>
+  
+    <meta name="keywords" content="human mobility,dichotomy">
   
   
-  
-  <title>Returners and explorers dichotomy in human mobility - y4ny4n&#39;s blog</title>
+    <meta name="description" content="
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+个体移动距离的相当大的变化性和他们未来位置的高度可预测性共存。
+通过GPS和移动电话的数据，可以将个体分为两类:explorers&amp;returners。
+returners和explorers在传播现象中起着不同量级的作用，他们的移动模式和社会互动之间存在相关性。">
   
 
+  <!-- feed -->
+  
 
+  <!-- import meta -->
+  
 
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13/css/all.min.css">
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
 
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"y4ny4n.cn","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
 
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
 
   
-<meta name="generator" content="Hexo 4.2.0"></head>
-
+  
+</head>
 
 <body>
+<script src="https://cdn.jsdelivr.net/gh/zyoushuo/Blog/hexo/js/mouse_click.js"></script>
+
   
-
-  <header>
-    
-
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+<header class="l_header shadow blur">
+  <div class='container'>
+  <div class='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h'>
+        <li><a class="s-comment fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
         
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                <span>分类</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
+          <li><a class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
         
       </ul>
     </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
           
-            <span id="subtitle" data-typed-text="Returners and explorers dichotomy in human mobility"></span>
           
-        </div>
-
-        
           
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2021-07-01 13:40" pubdate>
-          2021年7月1日 下午
-        </time>
-      </span>
-    
-  </div>
+            omp's blog
+          
+          
+        </a>
+      
 
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          13k 字
-        
-      </span>
-    
+			<div class='menu navigation'>
+				<ul class='nav-list-h'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
 
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          108 分钟
-        
-      </span>
-    
-
-    
-    
-  </div>
-
-
-        
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
       </div>
 
-      
-    </div>
+			<ul class='switcher nav-list-h'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
   </div>
-</div>
+</header>
 
-</div>
+<script>setLoadingBarProgress(40);</script>
 
-  </header>
 
-  <main>
+
+  <div class="l_body nocover">
+    <div class='body-wrapper'>
+      
+
+<div class='l_main'>
+  
+
+  
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
     
       
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
       
+      <div class="meta" id="header-meta">
+        
+          
+  <h1 class="title">
+    <a href="/2021/07/01/rae/">
+      Returners and explorers dichotomy in human mobility
+    </a>
+  </h1>
 
-    </div>
 
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">Returners and explorers dichotomy in human mobility</h1>
+        
+        <div class='new-meta-box'>
+          
             
+          
             
-              <div class="markdown-body">
-                
-                <meta name="referrer" content="no-referrer">
+              
+<div class='new-meta-item author'>
+  <a href="" rel="nofollow">
+    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
+    <p>omp</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Paper-reading/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>Paper reading</p>
+    </a>
+  </div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年7月1日</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      <span id="/2021/07/01/rae/" class="leancloud_visitors" data-flag-title="Returners and explorers dichotomy in human mobility">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+          
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          <meta name="referrer" content="no-referrer">
 
 <p>个体移动距离的相当大的变化性和他们未来位置的高度可预测性共存。</p>
 <p>通过GPS和移动电话的数据，可以将个体分为两类:explorers&amp;returners。</p>
@@ -315,7 +455,7 @@
 <p>本文指出现有人类移动模型不能解释个体的这两种类别，并提出一个改进模型可以复现出这两种移动模式。</p>
 <p>最后证明returners和explorers在传播中起着不同的作用，个体的移动行为和其社会互动(social interactions)存在强烈相关性。</p>
 <h3 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h3><h4 id="Datasets"><a href="#Datasets" class="headerlink" title="Datasets"></a>Datasets</h4><h5 id="GSM"><a href="#GSM" class="headerlink" title="GSM"></a>GSM</h5><p>第一份数据为匿名的3个月全球移动通信系统(GSM: Global System for Mobile Communications)记录。它包含67000个个体的通话记录。</p>
-<p><img src="/2021/07/01/rae/image-20210701150241384.png" srcset="/img/loading.gif" lazyload alt="image-20210701150241384"></p>
+<p><img src="/2021/07/01/rae/image-20210701150241384.png" alt="image-20210701150241384"></p>
 <p>该CDR(Call Detail Records)数据包括通信时间，发射塔所在坐标，通信双方与通信方式(通话/短信SMS)。</p>
 <p>在观察期间访问至少2个以上地点的大约三百万用户中选择，经过过滤剩余67000+个体</p>
 <p>对该数据进行过滤:</p>
@@ -332,7 +472,7 @@
 </ul>
 <p>根据用户拨打电话的手机发射塔的时间顺序来重建用户的移动</p>
 <h5 id="GPS"><a href="#GPS" class="headerlink" title="GPS"></a>GPS</h5><p>第二份数据为一份GPS数据集，存储了在一个月中经过意大利中部250平方千米的约46000辆汽车的行动轨迹。</p>
-<p><img src="/2021/07/01/rae/image-20210701161628889.png" srcset="/img/loading.gif" lazyload alt="image-20210701161628889"></p>
+<p><img src="/2021/07/01/rae/image-20210701161628889.png" alt="image-20210701161628889"></p>
 <p>每当车辆停车超过20分钟，我们就将时间戳，始发地和目的地坐标及车辆标识记录在数据集中。</p>
 <p>该数据集存储了来自159000车辆980万次不同的行程(在一个月中经过意大利中部250平方千米)</p>
 <p>设备每30秒通过GPRS连接向服务器发送的GPS点序列形成了车辆的全球轨迹。</p>
@@ -353,13 +493,13 @@
 <p>$r_g^{(k)}$表示个体的移动范围限制在k个最常访问位置之内</p>
 <p>如果一个个体的$r_g^{(2)}\simeq r_g$ 说明他的移动主要由两个最常访问位置决定</p>
 <p>如果一个个体的$r_g^{(2)}$比$r_g$小很多， 说明两个位置并不能准确地描述该个体的移动方式</p>
-<h4 id="the-distributions-of-k-radii-and-total-radii"><a href="#the-distributions-of-k-radii-and-total-radii" class="headerlink" title="the distributions of k-radii and total radii"></a><strong>the distributions of k-radii and total radii</strong></h4><p><img src="/2021/07/01/rae/image-20210702101214115.png" srcset="/img/loading.gif" lazyload alt="image-20210702101214115"></p>
+<h4 id="the-distributions-of-k-radii-and-total-radii"><a href="#the-distributions-of-k-radii-and-total-radii" class="headerlink" title="the distributions of k-radii and total radii"></a><strong>the distributions of k-radii and total radii</strong></h4><p><img src="/2021/07/01/rae/image-20210702101214115.png" alt="image-20210702101214115"></p>
 <p>k=2,6,10时$r_g$与$r_g^{(k)}$的分布   图(a-c)为GSM数据  图(d-f)为GPS数据</p>
 <p>黑色圆圈代表$r_g$  红色三角代表$r_g^{(k)}$在GSM数据   蓝色三角代表$r_g^{(k)}$在GPS数据</p>
 <p>所有的分布都可以用截断幂律$P(r_g)=(r_g+r_0)^{(-\alpha)}e^{-\frac{r_g}{r_{cut}}}$来近似拟合</p>
 <p>所有的曲线都是长尾的说明大多数个体移动符合短距离，也有部分个体移动距离较长</p>
 <h4 id="the-correlation-between-recurrent-and-overall-mobility"><a href="#the-correlation-between-recurrent-and-overall-mobility" class="headerlink" title="the correlation between recurrent and overall mobility"></a><strong>the correlation between recurrent and overall mobility</strong></h4><p>总回转半径和k回转半径之间的相关性使我们能够量化整体移动和反复移动性之间的相似程度。下图反映了反复移动和整体移动的相关性</p>
-<p><img src="/2021/07/01/rae/image-20210702152001250.png" srcset="/img/loading.gif" lazyload alt="image-20210702152001250"></p>
+<p><img src="/2021/07/01/rae/image-20210702152001250.png" alt="image-20210702152001250"></p>
 <p>该散点图表示了$r_g$和$r_g^{(k)}$的关系,k=2,4,8  图a-c为GSM数据 图d-f为GPS数据  颜色表示相应区域内点的密度</p>
 <p>大多数点集中在x轴 对角线和原点周围</p>
 <p>随着k增大，越来越多的explorers开始变为returners。这种转变在GPS数据上更快，这与车辆移动访问的是经过地点和行程的子集的特点一致。</p>
@@ -370,7 +510,7 @@
 <p>虽然随k增大， explorers变为returners，但相反的过程却十分少见。</p>
 <p>对于k=3,..,10 计算$\overline n$  k-exploers和(k-1)-returners的比值,$\overline n$ 随着k的增大而减小，并且非常小</p>
 <p>(Question4)</p>
-<p><img src="/2021/07/01/rae/image-20210704231616178.png" srcset="/img/loading.gif" lazyload alt="image-20210704231616178"></p>
+<p><img src="/2021/07/01/rae/image-20210704231616178.png" alt="image-20210704231616178"></p>
 <p>该图表示returners向explorers的转化过程,画出了上述个体$r_g$和$r_g^{(2)}$的相关性，并发现个体坐落在平分线上。</p>
 <p>左边是GSM数据，右边是GPS数据。虚线表示$r_g^{(k)}=r_g/2$ ，根据the bisector method区分returners和explorers。the bisector method未能正确分类个体，并随着k的增加产生了两个类别之间的波动</p>
 <p>因为他们在平分线上，他们既不是2-returners也不是2-explorers。</p>
@@ -379,7 +519,7 @@
 <h4 id="the-ratio-between-recurrent-and-overall-mobility"><a href="#the-ratio-between-recurrent-and-overall-mobility" class="headerlink" title="the ratio between recurrent and overall mobility"></a>the ratio between recurrent and overall mobility</h4><p>比率$s_k=r_g^{(k)}/r_g$反映了个体的反复移动对其所有移动的影响</p>
 <p>$s_k$值越高，个体移动轨迹中k个最常访问的位置所占权重越大</p>
 <p>下图反映了反复移动和整体移动的比率</p>
-<p><img src="/2021/07/01/rae/image-20210702164310685.png" srcset="/img/loading.gif" lazyload alt="image-20210702164310685"></p>
+<p><img src="/2021/07/01/rae/image-20210702164310685.png" alt="image-20210702164310685"></p>
 <p>图a-c为在GSM数据上$s_k$的分布(k=2,4,8)   $s_k=0$对应explorers  $s_k=1$对应returners</p>
 <p>在k=4时 returners和explorers数量达到均衡</p>
 <p>图d-f为GPS数据上$s_k$的分布 对于所有k,returners一直占据多数</p>
@@ -388,11 +528,11 @@
 <p>Supplementary中进行了证明，设$\mu_k=1/k\sum_{i=1}^k(r_i-r_{cm})$为k个最常访问位置到整体质心$r_{cm}$的平均距离</p>
 <p>$\mu_{n-k}=1/(n-k)\sum_{i=k+1}^n(r_i-r_{cm})$为其他n-k个位置到整体质心的平均距离</p>
 <p>下图表示了$\mu_k$和$\mu_{n-k}$的比值在k=2时</p>
-<p><img src="/2021/07/01/rae/image-20210702174806994.png" srcset="/img/loading.gif" lazyload alt="image-20210702174806994"></p>
+<p><img src="/2021/07/01/rae/image-20210702174806994.png" alt="image-20210702174806994"></p>
 <p>其中红色方块代表$s_k&gt;1$的数据   $\mu_k≥\mu_{(n-k)}$</p>
 <h4 id="the-individual-mobility-networks-of-returners-and-explorers"><a href="#the-individual-mobility-networks-of-returners-and-explorers" class="headerlink" title="the individual mobility networks of returners and explorers"></a><strong>the individual mobility networks of returners and explorers</strong></h4><p>returners和explorers访问地点的空间分布也不同。</p>
 <p>访问地点的空间分布是区分returners和explorers的一个特征。</p>
-<p><img src="/2021/07/01/rae/image-20210702220751763.png" srcset="/img/loading.gif" lazyload alt="image-20210702220751763"></p>
+<p><img src="/2021/07/01/rae/image-20210702220751763.png" alt="image-20210702220751763"></p>
 <p>该图反映了returners和explorers的个体移动网络(k=2时)。</p>
 <p>其中node表示个体访问过的地理位置，link表示表示在两个地点之间观察到的移动。</p>
 <p>对于两种类别个体，访问地点都趋向于呈集群并带有一些异常值。</p>
@@ -400,7 +540,7 @@
 <p>$r_g$较小时，对于returners和explorers两个最频繁的地点都距离很近。</p>
 <p>随着$r_g$增加，returners和explorers开始不同，对于two-returners两个最频繁的地点开始互相远离，<strong>这两个地点的距离增长与它们的总回转半径$r_g$ 成正比</strong>;而对于two-explorers,两个最频繁的地点依然保持很近,其他集群远离质心。</p>
 <p>两个最频繁地点之间的距离对于returners随$r_g$增长的更快(相比于explorers)</p>
-<p><img src="/2021/07/01/rae/image-20210702225801689.png" srcset="/img/loading.gif" lazyload alt="image-20210702225801689"></p>
+<p><img src="/2021/07/01/rae/image-20210702225801689.png" alt="image-20210702225801689"></p>
 <p>该图表示两个最常访问位置之间的距离$d(L_1,L_2)$和总回转半径$r_g$的相关性。从图中可以看出，2-returners中的相关性远远强于2-explorers。</p>
 <p>(2)访问位置关于$L_1$ $L_2$集群</p>
 <p><strong>two-returners访问的地点聚集在他们最常访问的两个地点周围，two-explorers访问的地点更分散</strong></p>
@@ -410,7 +550,7 @@
 <p>$SSE^*=SSE/\overline {SSE}$</p>
 <p>$\overline{SSE}$集群内地点到其他集群的质心的平方距离的总和</p>
 <p>$\overline{SSE}=\sum_{i=1}^k\sum_{x\in C_i}\sum_{j=1,j\ne k}^kdist(c_j,x)^2$</p>
-<p><img src="/2021/07/01/rae/image-20210703135129853.png" srcset="/img/loading.gif" lazyload alt="image-20210703135129853"></p>
+<p><img src="/2021/07/01/rae/image-20210703135129853.png" alt="image-20210703135129853"></p>
 <p>该图反映了2-returnrers和2-explorers的$SSE$和${SSE}^*$在GSM和GPS数据上的分布</p>
 <p>我们可以观察到很大一部分2-returners的$SSE$和$SSE^*$较小，说明在$L_1,L_2$周围集群密集</p>
 <p>但2-explorers的凝聚性较差</p>
@@ -436,15 +576,15 @@
 <p>如果个体现在在位置i访问新地点，则该地点通过引力模型选择(<strong>引力模型分配任意两个地点之间的移动概率，自动限制个体在国家的边界内</strong>)，概率$P_{ij}=\frac{1}{N}\frac{n_in_j}{r_{ij}^2}$</p>
 <p>$n_{i(j)}$为所有用户在该位置发出的通信(电话/信息)  $r_{ij}$为i和j之间的地理距离  $N=\sum_{i,j\ne i}p_{ij}$是归一化常数</p>
 <p>访问不同的地点，S增加1</p>
-<p><img src="/2021/07/01/rae/image-20210704180942791.png" srcset="/img/loading.gif" lazyload alt="image-20210704180942791"></p>
+<p><img src="/2021/07/01/rae/image-20210704180942791.png" alt="image-20210704180942791"></p>
 <p>该图反映出k=2时EPR模型对returners和explorers的预测。</p>
 <p>使用原始EPR模型模拟(a,b,c)，explorers占主导地位，当k=60时，explorers和returners才达到平衡。而上述在实际数据中在k=4时达到平衡。点聚集在对角线只有微弱的趋势,在该模型中不存在returners和explorers的分类。</p>
 <p>使用d-EPR数据模拟(d,e,f)，explorers站主导地位，当k=9时达到平衡，更接近于实际数据。</p>
-<p><img src="/2021/07/01/rae/image-20210704175734568.png" srcset="/img/loading.gif" lazyload alt="image-20210704175734568"></p>
+<p><img src="/2021/07/01/rae/image-20210704175734568.png" alt="image-20210704175734568"></p>
 <p>该图表现了三种模型下 $r_g$和$r_g^{(k)}$的相关性 (k=2,6,10)</p>
-<p><img src="/2021/07/01/rae/image-20210704180130108.png" srcset="/img/loading.gif" lazyload alt="image-20210704180130108"></p>
+<p><img src="/2021/07/01/rae/image-20210704180130108.png" alt="image-20210704180130108"></p>
 <p>该图表现出三种模型下$s_k=r_g^{(k)}/r_g$的分布  (k=2,6,10)</p>
-<p><img src="/2021/07/01/rae/image-20210704180413200.png" srcset="/img/loading.gif" lazyload alt="image-20210704180413200"></p>
+<p><img src="/2021/07/01/rae/image-20210704180413200.png" alt="image-20210704180413200"></p>
 <p>该图反映出在三种模型下对于2-explorers和2-returners总回转半径$r_g$和两个访问最频繁地点之间距离$d(L_1,L_2)$的相关性。相比于实际数据，在原始EPR模型中无论explorers还是returners没有找到显著的相关性。</p>
 <p>实际数据和原始EPR模型的差异为EPR模型中个体可以移动任意长的距离，每次移动都增加$r_g$。为了修正该问题，引入d-EPR模型，该模型与实际数据有更好的吻合。且上面$r_g$和$r_g^{(k)}$相关性的图中，d-EPR模型显示出了分类情况。与原始EPR模型相比，$r_g$和$d(L_1,L_2)$的相关性也显著提高，与实际数据接近。</p>
 <p>因此，d-EPR模型再现了人类在受限地理空间聚集移动模式的关键特征，将个体分为explorers和returners两类。</p>
@@ -454,8 +594,8 @@
 <p>对于流行病传播，为了观察returners和explorers是如何影响传播的，根据个体运动轨迹的时间演变，将个体的移动历史划分为时间周期。</p>
 <p>并用三种方法捕捉到了t时刻的轨迹范围:(1)访问地点的数量  (2)覆盖区域 (3) 总回转半径$r_g(t)$</p>
 <p>在GSM和GPS数据上，explorers的轨迹相比于returners分布在更大的范围:访问地点数量更多，覆盖区域更广，回转半径更大</p>
-<p><img src="/2021/07/01/rae/image-20210704222930783.png" srcset="/img/loading.gif" lazyload alt="image-20210704222930783"></p>
-<p><img src="/2021/07/01/rae/image-20210704222941701.png" srcset="/img/loading.gif" lazyload alt="image-20210704222941701"></p>
+<p><img src="/2021/07/01/rae/image-20210704222930783.png" alt="image-20210704222930783"></p>
+<p><img src="/2021/07/01/rae/image-20210704222941701.png" alt="image-20210704222941701"></p>
 <p>该图表现出returners和explorers地理传播的时间演化。将每个个体的移动历史分为十个相同的时间段，该图反映出在各个时间段内GSM/GPS/s-EPR/d-EPR的访问地点、覆盖区域和回转半径的分布。插图显示了每个时间段的平均分布。(Question3)</p>
 <p>相比之下，s-EPR和d-EPR模型高估了returners的地理传播。</p>
 <p>本文还通过考虑由个人移动产生的全球移动网络来评估returners和explorers在传播和扩散方面发挥的不同作用</p>
@@ -465,15 +605,15 @@
 <p>计算每个全球移动网络1000次，随机选择returners和explorers占比不同的10000个体，为每个网络获取1000个入侵阈值。可以观察到平均扩散入侵阈值随随机人群中explorers比例的增加而增加。</p>
 <p>(Question 5)</p>
 <p>returners和explorers倾向于与相同类别的进行社会互动。本文发现two-returners呼叫最多的联系人中同样是returners的比率为$RR\approx0.27$,将这个数字与10万次我们随机指定个体最好的朋友的实验相比，$RR_{rand}\approx0.21$</p>
-<p><img src="/2021/07/01/rae/image-20210705162948378.png" srcset="/img/loading.gif" lazyload alt="image-20210705162948378"></p>
+<p><img src="/2021/07/01/rae/image-20210705162948378.png" alt="image-20210705162948378"></p>
 <p>该图表示了two-returners和two-explorers最好的朋友的分布。虚线表示最好的朋友类别的实际分数。</p>
 <p>我们可以观察到个体更趋向于和同一移动群体的个体进行交流。(Question 6)</p>
-<p><img src="/2021/07/01/rae/image-20210705165008739.png" srcset="/img/loading.gif" lazyload alt="image-20210705165008739"></p>
+<p><img src="/2021/07/01/rae/image-20210705165008739.png" alt="image-20210705165008739"></p>
 <p>该图反应了returners和explorers友谊排名(n-th best friend)中的类别情况。</p>
 <p>作者比较在同一分类下个体n-th best friend所占比例，发现在n到15为止，观测到的分数都明显高于(RR和EE)或明显低于(ER和RE)随机得到的分数。(Question7)</p>
 <h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="箱型图"><a href="#箱型图" class="headerlink" title="箱型图"></a>箱型图</h3><p><a href="https://blog.csdn.net/symoriaty/article/details/93978817" target="_blank" rel="noopener">https://blog.csdn.net/symoriaty/article/details/93978817</a></p>
 <p>可以用来反映一组或多组连续型定量数据(在一定区间内可以任意取值的变量叫连续变量，其数值是连续不断的)分布的中心位置和散布范围</p>
-<p><img src="https://pic3.zhimg.com/80/v2-ce5526f050d5a182e279ccaff2c0bc6a_1440w.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://pic3.zhimg.com/80/v2-ce5526f050d5a182e279ccaff2c0bc6a_1440w.jpg" alt="img"></p>
 <p>箱体包含了50%的数据。<strong>箱子的高度在一定程度上反映了数据的波动程度</strong>。</p>
 <blockquote>
 <p>偏态:与正态分布相对，指的是非对称分布的偏斜状态。在统计学上，众数和平均数之差可作为分配偏态的指标之一：如平均数大于众数，称为正偏态（或右偏态）；相反，则称为负偏态（或左偏态）。</p>
@@ -486,10 +626,10 @@
 </ul>
 <p>补充：</p>
 <p>一些柱状图中作者会添加误差线来给数值增加误差范围，看起来和箱线图有点相似。</p>
-<p><img src="http://5b0988e595225.cdn.sohucs.com/images/20180123/d5d395df5c664d43b402d15cd258d0b3.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="http://5b0988e595225.cdn.sohucs.com/images/20180123/d5d395df5c664d43b402d15cd258d0b3.png" alt="img"></p>
 <h3 id="r-g-k-vs-r-g-cm-k"><a href="#r-g-k-vs-r-g-cm-k" class="headerlink" title="$r_{g}^{(k)}$ vs $r_{g,cm}^{(k)}$"></a>$r_{g}^{(k)}$ vs $r_{g,cm}^{(k)}$</h3><p>$r_g^{(k)}$ 是在$r_{cm}^{(k)}$(k个最常访问的位置的几何中心)基础上计算的k回转半径</p>
 <p>$r_{g,cm}^{(k)}$是在以整体几何中心基础上计算的k回转半径</p>
-<p><img src="/2021/07/01/rae/image-20210701224217544.png" srcset="/img/loading.gif" lazyload alt="image-20210701224217544"></p>
+<p><img src="/2021/07/01/rae/image-20210701224217544.png" alt="image-20210701224217544"></p>
 <p>由图可见，将个体分为2-returners和2-explorers在GSM不清晰 在GPS则不存在分类情况</p>
 <p>不存在分类情况的原因(个人理解):由于计算整体的几何中心，得到的k回转半径$r_{g,cm}^{(k)}$相比于$r_g^{(k)}$变大，explorers更多被视为returners，向对角线靠近。</p>
 <p>对于2-returners来说 两个几何中心相对接近 但对explorers距离更大，且距离随$r_g$增大</p>
@@ -505,18 +645,18 @@
 <p>对该函数两边取对数</p>
 <p>$lnf(x)=lnC-\alpha lnx$</p>
 <p>故幂律函数在双对数坐标下呈负斜率的直线</p>
-<p><img src="/2021/07/01/rae/image-20210702094557317.png" srcset="/img/loading.gif" lazyload alt="image-20210702094557317"></p>
+<p><img src="/2021/07/01/rae/image-20210702094557317.png" alt="image-20210702094557317"></p>
 <p>对于实际数据，这种线性是幂律关系数据的必要条件，但并不是充分条件。</p>
 <h4 id="标度不变性"><a href="#标度不变性" class="headerlink" title="标度不变性"></a>标度不变性</h4><p>观察不同尺度的总体， 对应的高概率和低概率的结构关系是不变的，即对应的f(x)只是系数上有差别，函数性质不变。</p>
 <p><strong>用一个放大镜观察这个分布，无论看什么细节，放大多少倍数，所得到的性质是一样的，这种现象被称为无特征尺度</strong>，而正态分布是有的，必须整体上看是一个钟的形状，放大任何局部都不会得到钟形的图案。</p>
-<p><img src="/2021/07/01/rae/image-20210702095513545.png" srcset="/img/loading.gif" lazyload alt="image-20210702095513545"></p>
+<p><img src="/2021/07/01/rae/image-20210702095513545.png" alt="image-20210702095513545"></p>
 <blockquote>
 <p>拿帕累托80/20法则来说，80/20法则说20%的人口掌握了80%的财富。而在这个掌握的80%财富的的20%人口中，又有20%掌握了其中的80%，而在穷人部分随便划出一部分，也会发现20%的较为富有的占有了这部分穷人总财富的80%。当看任何财富的区间，都会有同样的规律，这个规律和所划定的区间无关。</p>
 </blockquote>
 <h4 id="truncated-power-law"><a href="#truncated-power-law" class="headerlink" title="truncated power law"></a>truncated power law</h4><p>指数截断的幂律分布</p>
 <p>具有指数截止的幂律就是幂律乘以一个指数函数:</p>
 <p>$f(x)\propto x^\alpha e^{\beta x}$</p>
-<p><img src="/2021/07/01/rae/image-20210702100318243.png" srcset="/img/loading.gif" lazyload alt="image-20210702100318243"></p>
+<p><img src="/2021/07/01/rae/image-20210702100318243.png" alt="image-20210702100318243"></p>
 <h3 id="mobility-clusters"><a href="#mobility-clusters" class="headerlink" title="mobility clusters"></a>mobility clusters</h3><p>定义集群的k回转半径，<strong>在k-th最常访问的地理集群上计算回转半径</strong>$c-r_g^{(k)}$ </p>
 <p>一个个体的地理集群是一个密集的位置组，代表个体移动的地理单元。</p>
 <p>如果一个个体每周往返于两个不同城市的两个家，那么他就拥有(至少)两个不同的地理集群。</p>
@@ -526,7 +666,7 @@
 <p>eps 最大搜索半径(此处设置为5,10,50,100km);minPts  形成一个集群的最少地点(此处设置为2)</p>
 <p>在集群水平上，explorers和returners二分同样出现了  直到eps=10km时消失(此时集群已经中等城市大小)</p>
 <p>到eps=50,100km时 计算的集群数很小，2-explorers很少</p>
-<p><img src="/2021/07/01/rae/image-20210706000825224.png" srcset="/img/loading.gif" lazyload alt="image-20210706000825224"></p>
+<p><img src="/2021/07/01/rae/image-20210706000825224.png" alt="image-20210706000825224"></p>
 <p>该图为k=2时 GSM数据上$c-r_g^{(k)}$与$r_g$的相关性。</p>
 <p>因此，returners和explorers在人口中的存在与个体位置的空间粒度无关</p>
 <h3 id="gravity-model"><a href="#gravity-model" class="headerlink" title="gravity model"></a>gravity model</h3><p>牛顿万有引力定律:任何两个物体之间的作用(引力)的大小与它的质量成正比，与它们之间的距离平方成反比。</p>
@@ -538,7 +678,7 @@
 <p>对于每个网络，计算平均度$\left \langle k \right \rangle$,均方度$\left \langle k^2 \right \rangle$，每个地点的平均居民人数$\overline N$</p>
 <p>在大亚种群低繁殖数扩散动力学的假设下，计算$R*=\overline N\cdot C(\left \langle k^2 \right \rangle-\left \langle k \right \rangle)/\left \langle k \right \rangle^2$</p>
 <p>常数C取决于繁殖数量(the reproductive number)和移动率，两类取值相同</p>
-<p><img src="/2021/07/01/rae/image-20210705231259967.png" srcset="/img/loading.gif" lazyload alt="image-20210705231259967"></p>
+<p><img src="/2021/07/01/rae/image-20210705231259967.png" alt="image-20210705231259967"></p>
 <p>该图通过误差线(Error bars)反映了returners和explorers占比不同下$R*$的分布 </p>
 <p>我们观察到，随着2-explorers占比增加，平均扩散入侵阈值增加。</p>
 <p>作者同时使用了加权的全球移动网络，使用地点之间车辆的旅程次数作为权值。边权值遵循幂律分布，最大值为30。计算加权的全局入侵阈值$R_*^\omega=\overline N \cdot (\left \langle k^{2+2\theta} \right \rangle-\left \langle k^{1+2\theta} \right \rangle)/\left \langle k^{1+\theta} \right \rangle^2$</p>
@@ -554,370 +694,670 @@
 <p>7.为什么前面说了returners和explorers倾向于与相同类别的进行社会互动，但explorers和returners的best-friend都是explorers居多，这与explorers在人口中占比大于returners是否相关</p>
 <p>8.$\theta$ 的含义  the function between the average weight and the end-point degrees   为什么估计$\theta=0$</p>
 
+          
+            <div class='article_footer'>
+              
                 
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
   
     
-      <span class="category-chain">
+    
+
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
+  <div class='content'>
+    
+      <blockquote>
         
-  <a href="/categories/Paper-reading/" class="category-chain-item">Paper reading</a>
-  
-  
+          
+            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
 
-      </span>
+          
+        
+          
+            <p>本文永久链接是：<a href=https://y4ny4n.cn/2021/07/01/rae/>https://y4ny4n.cn/2021/07/01/rae/</a></p>
+          
+        
+      </blockquote>
     
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/human-mobility/">#human mobility</a>
-      
-        <a href="/tags/dichotomy/">#dichotomy</a>
-      
-    </div>
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>Returners and explorers dichotomy in human mobility</div>
-      <div>https://y4ny4n.cn/2021/07/01/rae/</div>
-    </div>
-    <div class="license-meta">
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2021年7月1日</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
-            
-              
-              
-                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
   </div>
+</section>
+
+  
+
+  
+    
+    
+
+<section class="widget qrcode  desktop mobile">
+  
+
+  <div class='content article-entry'>
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+  </div>
+</section>
+
+  
 
 
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2021/07/16/scd/" title="Using Big Data to study the link between human mobility and socio-economic development">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Using Big Data to study the link between human mobility and socio-economic development</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2021/06/06/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2/" title="网络攻防">
-                        <span class="hidden-mobile">网络攻防</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
-
-            
-          </article>
+          
         </div>
-      </div>
-    </div>
+        
+          
 
-    <div class="side-col d-none d-lg-block col-lg-2">
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>目录</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-01-16T18:09:44+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2022年1月16日</p>
+  </a>
 </div>
 
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/human-mobility/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>human mobility</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/dichotomy/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>dichotomy</p></a></div>
 
 
-  </aside>
+        
+      
+        
+          
 
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://y4ny4n.cn/2021/07/01/rae/&title=Returners and explorers dichotomy in human mobility - y4ny4n's blog&summary=
 
-    </div>
+个体移动距离的相当大的变化性和他们未来位置的高度可预测性共存。
+通过GPS和移动电话的数据，可以将个体分为两类:explorers&amp;returners。
+returners和explorers在传播现象中起着不同量级的作用，他们的移动模式和社会互动之间存在相关性。"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://y4ny4n.cn/2021/07/01/rae/&title=Returners and explorers dichotomy in human mobility - y4ny4n's blog&summary=
+
+个体移动距离的相当大的变化性和他们未来位置的高度可预测性共存。
+通过GPS和移动电话的数据，可以将个体分为两类:explorers&amp;returners。
+returners和explorers在传播现象中起着不同量级的作用，他们的移动模式和社会互动之间存在相关性。"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=https://y4ny4n.cn/2021/07/01/rae/&title=Returners and explorers dichotomy in human mobility - y4ny4n's blog&summary=
+
+个体移动距离的相当大的变化性和他们未来位置的高度可预测性共存。
+通过GPS和移动电话的数据，可以将个体分为两类:explorers&amp;returners。
+returners和explorers在传播现象中起着不同量级的作用，他们的移动模式和社会互动之间存在相关性。"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
+          
+        </a>
+      
+    
   </div>
 </div>
 
 
 
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+              <a class='prev' href='/2021/07/16/scd/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Using Big Data to study the link between human mobility and socio-economic development</p>
+                <p class='content'>
+
+Abstract大数据提供了创建社会数字神经系统的可能性，实现对社会经济现象相关方面的实时测量、监测和预测。
+本文研究了人类移动模式和社会经济发展的相关性。
+测量了每个个体的移动量(mobi...</p>
+              </a>
+            
+            
+              <a class='next' href='/2021/06/06/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2/'>
+                <p class='title'>网络攻防<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>前几次上课的笔记，方便期末考试查阅。
+渗透测试流程、信息收集、WEB挖掘分析、网络隐身、网络扫描、Burp使用…
+
+class1
+vWeb安全资料§https://pan.baidu.com/s...</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
+      
+      
+      
+      
+      
+      
+        <section id="comments">
+          <div id="valine_container" class="valine_thread">
+            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
 
 
   
 
 
 
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    processEscapes: true,
+    tags: "ams",
+    macros: {
+      href: "{}"
+    }
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|dno",
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  }
+};
+</script>
+
+
+
+
+  <script>
+    window.subData = {
+      title: 'Returners and explorers dichotomy in human mobility',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
   
 
-
-
   
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
+    
     
 
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
 
+  <section class="widget toc-wrapper shadow desktop mobile">
     
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Paper-Reading"><span class="toc-text">Paper Reading</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Results"><span class="toc-text">Results</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Datasets"><span class="toc-text">Datasets</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#measures"><span class="toc-text">measures</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Returners-and-explorers"><span class="toc-text">Returners and explorers</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#the-k-radius-of-gyration"><span class="toc-text">the k-radius of gyration</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#the-distributions-of-k-radii-and-total-radii"><span class="toc-text">the distributions of k-radii and total radii</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#the-correlation-between-recurrent-and-overall-mobility"><span class="toc-text">the correlation between recurrent and overall mobility</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#the-ratio-between-recurrent-and-overall-mobility"><span class="toc-text">the ratio between recurrent and overall mobility</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#the-individual-mobility-networks-of-returners-and-explorers"><span class="toc-text">the individual mobility networks of returners and explorers</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Models"><span class="toc-text">Models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#the-relevance-of-returners-and-explorers-dichotomy"><span class="toc-text">the relevance of returners and explorers dichotomy</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补充"><span class="toc-text">补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#箱型图"><span class="toc-text">箱型图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#r-g-k-vs-r-g-cm-k"><span class="toc-text">$r_{g}^{(k)}$ vs $r_{g,cm}^{(k)}$</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#幂律分布"><span class="toc-text">幂律分布</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#标度不变性"><span class="toc-text">标度不变性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#truncated-power-law"><span class="toc-text">truncated power law</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mobility-clusters"><span class="toc-text">mobility clusters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gravity-model"><span class="toc-text">gravity model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#global-diffusion-invasion-threshold"><span class="toc-text">global diffusion invasion threshold</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#图像矩"><span class="toc-text">图像矩</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Question"><span class="toc-text">Question</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+  
+  <footer class="clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='340px'
+      server='netease'
+      type='playlist'
+      id='5004192906'
+      list-folded='true'>
+    </meting-js>
+  
+
+
         </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
+      
     
-
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+              <a href="/atom.xml"
+                class="social fas fa-rss flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="mailto:me@xaoxuu.com"
+                class="social fas fa-envelope flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://github.com/xaoxuu"
+                class="social fab fa-github flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://music.163.com/#/user/home?id=63035382"
+                class="social fas fa-headphones-alt flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+        </div>
+      
     
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
+      
+        <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
 </div>
+      
+    
+      
+        本站使用
+        <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
+        作为主题，总访问量为
+          <span id="busuanzi_value_site_pv"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+          次
+        
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="https://xaoxuu.com" target="_blank" rel="noopener">Copyright © 2017-2020 Mr. X</a></p>
 
+        </div>
+      
+    
   </footer>
 
-  <!-- Scripts -->
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
   
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4/dist/jquery.min.js"></script>
+
 
   <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
+    
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/" || "/";
+    if (!ROOT.endsWith('/')) ROOT += '/';
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/instant_page.js" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
 
 
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      ScrollReveal().reveal('.l_main .reveal', {
+        distance: '8px',
+        duration: '800',
+        interval: '100',
+        scale: '1'
+      });
+    });
+  </script>
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+      $(function(){
+        var imgs=["https://gitee.com/wallpapers/minimalist/raw/master/2020/001.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/002.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/003.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/004.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/005.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/006.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/007.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/008.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/009.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/010.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/011.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/012.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/013.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/014.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/015.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/016.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/017.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/018.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/019.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/020.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/021.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/022.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/023.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/024.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/025.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/026.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/027.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/028.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/029.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/030.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/031.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/032.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/033.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/034.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/035.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/036.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/037.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/038.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/039.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/040.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/041.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/042.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/043.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/044.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/045.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/046.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/047.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/048.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/049.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/050.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/051.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/052.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/053.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/054.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/055.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/056.jpg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+        if ('') {
+          $('').backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        } else {
+          $.backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js"></script>
+
+  
   <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
+  var GUEST_INFO = ['nick','mail','link'];
+  var meta = 'nick,mail,link'.split(',').filter(function(item){
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick','mail','link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function(item){
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+  var valine = new Valine();
+  function emoji(path, idx, ext) {
+      return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  valine.init({
+    el: '#valine_container',
+    meta: meta,
+    
+    appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
+    appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
+    placeholder: "快来评论吧~",
+    pageSize:'10',
+    avatar:'robohash',
+    lang:'zh-cn',
+    visitor: 'true',
+    highlight: 'true',
+    mathJax: 'true',
+    enableQQ: 'true',
+    requiredFields: requiredFields,
+    emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
+    emojiMaps: emojiMaps
+  })
   </script>
 
 
 
 
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
 
   
+<script src="/js/app.js"></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2.6.5/js/search.js"></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/comment_typing.js"></script>
+
+
+
+
+
+
+<!-- 复制 -->
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('fa-copy');
+        $icon.addClass('fa-check-circle');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('fa-check-circle');
+          $icon.addClass('fa-copy');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('fa-copy');
+        $icon.addClass('fa-times-circle');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('fa-times-circle');
+          $icon.addClass('fa-copy');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
     }
+    initCopyCode();
+  }(window, document);
+</script>
 
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
+
+
+
+<!-- fancybox -->
+
+  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("div.fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
   });
 </script>
 
 
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
 
 
 
 
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
+  <script>setLoadingBarProgress(100);</script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
