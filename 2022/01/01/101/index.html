@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html>
+<head hexo-theme='https://volantis.js.org/#2.6.5'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+    <title>Emergence of urban growth patterns from human mobility behavior - y4ny4n&#39;s blog</title>
+  
+    <meta name="keywords" content="mobility model,human mobility,urban">
+  
+  
+    <meta name="description" content="
+
+Abstract城市自下向上的增长方式导致了用标度律描述的碎形/分形(fractal-like)城市结构。相关渗流模型(percolation model)
+通过施加强空间相关性成功建模出城市的几何形状(urban geometries)。然而，在空间相关的城市增长背后的潜在机制的起源仍然很大程度未知。
+本文...">
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13/css/all.min.css">
+  
+    
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+</head>
+
+<body>
+<script src="https://cdn.jsdelivr.net/gh/zyoushuo/Blog/hexo/js/mouse_click.js"></script>
+
+  
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+<header class="l_header shadow blur">
+  <div class='container'>
+  <div class='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h'>
+        <li><a class="s-comment fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+            omp's blog
+          
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+<script>setLoadingBarProgress(40);</script>
+
+
+
+  <div class="l_body nocover">
+    <div class='body-wrapper'>
+      
+
+<div class='l_main'>
+  
+
+  
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h1 class="title">
+    <a href="/2022/01/01/101/">
+      Emergence of urban growth patterns from human mobility behavior
+    </a>
+  </h1>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="" rel="nofollow">
+    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
+    <p>omp</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Paper-reading/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>Paper reading</p>
+    </a>
+  </div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2022年1月1日</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      <span id="/2022/01/01/101/" class="leancloud_visitors" data-flag-title="Emergence of urban growth patterns from human mobility behavior">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+          
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          <meta name="referrer" content="no-referrer">
+
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>城市自下向上的增长方式导致了用标度律描述的<strong>碎形/分形</strong>(fractal-like)城市结构。相关<strong>渗流模型</strong>(percolation model)</p>
+<p>通过施加强空间相关性成功建模出城市的<strong>几何形状</strong>(urban geometries)。然而，在空间相关的城市增长背后的潜在机制的起源仍然很大程度未知。</p>
+<p>本文介绍了一个计算城市增长模型，在人类移动行为的微观基础上捕捉城市增长的空间相关性。本文将提出的模型与三个实证数据集进行对比，发现人类移动中<strong>强社会联系</strong>和<strong>长时记忆</strong>是碎形城市形态的两个基本原则，以及三个重要的三个城市增长的定律。该模型联系了城市增长模式的实证发现与人类移动行为。</p>
+<a id="more"></a>
+<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>曾有研究学者提出，由于旨在优化城市发展中城市功能和空间利用的可达性的自上向下严格的城市规划规定，城市应该具有对称和规则的形态。</p>
+<p>然而，越来越多的城市数据表明，城市是以自下而上的方式发展的，需要理解其微观基础。</p>
+<p>发现三条基本的实证定律:</p>
+<ul>
+<li>城市大小的分布符合指数在-2.0左右的标度律</li>
+<li>城市人口随区域面积超线性增长</li>
+<li>城市占据区域随距城市中心径向距离指数递减</li>
+</ul>
+<p>相关渗流模型的重要发现是在城市增长中需要<strong>强烈的空间相关性</strong>来再现标度关系。</p>
+<p>所以研究人员提出把城市增长分为两个方面进行建模:新簇的出现和存在簇的增长。</p>
+<p>先前的模型虽然成功解释了城市形态，但都把城市增长建模为物理粒子的随机过程，遗留了人类移动在微观基础上很大程度未知的问题。</p>
+<h2 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h2><h3 id="Human-movement-models"><a href="#Human-movement-models" class="headerlink" title="Human movement models"></a>Human movement models</h3><p>现存的人类移动模型基于社会联系和长时记忆可以被分为四类。</p>
+<p><img src="/2022/01/01/101/image-20220111121548488.png" alt="image-20220111121548488"></p>
+<p>社会联系指个体的移动会影响其他人。</p>
+<p>长时记忆指个体未来的移动行为受他历史移动的影响。</p>
+<p>(1)Catergory-1</p>
+<p>Category-1将人类移动看作没有社会联系的粒子随机移动。</p>
+<p>布朗运动中个体的位移正态分布，与物理粒子不同，实证数据中人类移动符合胖尾分布(幂律)。</p>
+<p><img src="/2022/01/01/101/image-20220111141556842.png" alt="image-20220111141556842"></p>
+<p>转移概率随距离(即移动花费的距离)减少,即大部分时间人们短距离移动，偶尔长距离移动。</p>
+<p>忽略社会关系和长时记忆，该式表明人类移动遵循莱维飞行模型，但莱维飞行和布朗运动在时间t接近无穷时都预测均匀的人口分布，与实证观测相反。</p>
+<p>(2)Catergory-2</p>
+<p>Category-2中辐射模型和引力模型都起源于对迁移的研究，两地之间的移动流取决于他们的人口。</p>
+<p>引力模型的转移概率如下</p>
+<p><img src="/2022/01/01/101/image-20220111141611399.png" alt="image-20220111141611399"></p>
+<p>其中$\rho_0$是一个耦合常数。除了(1)式中的胖尾分布，引力模型的转移概率还与位置$\overrightarrow{v}$的人口呈线性关系增长。该机制解释了在平均场背景下在社会联系中存在的吸引力，例如人口密集的地方通常提供更多的社会机会。</p>
+<p>但是引力模型遵循与莱维飞行相同的扩散过程，在t很大值下预测均匀的城市人口分布。</p>
+<p>(3)Catergory-3</p>
+<p>Category-1/2中的个体随意地进行移动，但实证数据中发现显著的周期性访问模式。为了解释这些观测，个体移动模型(IMM)将人类移动行为看作两个阶段:return/exporation来解释长时记忆效应。</p>
+<p>提出偏好返回机制，即返回先前访问过得位置$\overrightarrow{v_i}$的概率是</p>
+<p><img src="/2022/01/01/101/image-20220111142813407.png" alt="image-20220111142813407"></p>
+<p>与历史访问频率成正比，这样的长时记忆返回过程大大减缓了人类的扩散过程。</p>
+<p>IMM预测典型移动距离$l_t$符合对数增长:</p>
+<p><img src="/2022/01/01/101/image-20220111142941559.png" alt="image-20220111142941559"></p>
+<p>其中A是访问位置的总体数目。对数增长是人类移动的关键特征，描述了异常的极慢扩散和活动范围的影响。</p>
+<p>d-EPR模型对IMM模型进行了推广，个体探索新位置的概率与其人口密度呈正比。</p>
+<p>即使d-EPR和IMM模型都成功捕捉了日常个体的移动，但个体独立的移动并且不与其他个体相互作用，是静态的且不随时间演变。这个模型不能捕捉个体之间的动态交互，也不能再现城市增长模式。</p>
+<p>(4)Category-4</p>
+<p>既包含社会关系也包含长时记忆的模型很大程度上是没被探索的。最近提出的GeoSim模型将社会网络(每个个体更倾向于探索他们朋友访问的位置)与有记忆的IMM模型结合，然而社会网络需要根据实证数据提前确定，不随时间演化，也无法长时间追踪城市增长。</p>
+<h3 id="The-collective-mobility-model"><a href="#The-collective-mobility-model" class="headerlink" title="The collective mobility model"></a>The collective mobility model</h3><p>为了结合长时记忆与动态交互关系，本文提出群体移动模型(CMM)，提供了将人类移动与城市增长联系的最小原则。</p>
+<p><img src="/2022/01/01/101/image-20220111145028628.png" alt="image-20220111145028628"></p>
+<p>该图为CMM模型的图示。在时间$t_1$，个体位于位置$v_0$且他已经访问四个位置(S=4)。结点大小代表位置的人口大小，结点颜色的程度代表该地点的访问频次。</p>
+<p>在该模型中，个体的移动依照IMM模型中return-exploration过程，个体决定返回到先前访问过的地点的概率为$P_{ret}=1-\delta S^{-\gamma}$,其中S是先前访问地点数目，$\delta$控制初始返回概率，$\gamma$控制返回概率怎样随S变化。返回选择位置的概率正比于他先前访问位置的频次。</p>
+<p>个体同样具有互补的探索概率$P_{exp}=\delta S^{-\gamma}$。在探索的过程中，个体将选择<strong>在人口和距离基础上先前没访问过的地点，满足(3)式中的引力定律。其中人口$\rho(\overrightarrow{v})$在t时刻所有个体的位置的基础上瞬时计算。</strong>$\rho_0^{-1}$可以看做是平滑常数，控制人口的吸引强度，增加该值降低了探索无人居住位置的概率，加强了社会联系。</p>
+<p>受具有强空间相关性的相关渗流模型的影响，本文对具有强耦合$\rho_0^{-1}\rightarrow\infty$感兴趣。IMM被视作CMM的特殊情况，$\rho_0^{-1}\rightarrow0$。</p>
+<p>CMM模型可以在任意时间尺度下以自组织的方式模拟城市增长并且不依赖任何外部参数。</p>
+<h3 id="Experimental-settings"><a href="#Experimental-settings" class="headerlink" title="Experimental settings"></a>Experimental settings</h3><p>本文使用三个包含人口的城市区域的公开数据集（US/GB(英国)/柏林）</p>
+<p>为了对比，本文使用category1-4的模型(莱维飞行，引力模型，IMM,CMM)进行人类移动的模拟。</p>
+<p>该模拟在一个l×l的二维仿真空间中进行的，模拟的居民初始位于城市中心，即仿真空间的中心点。随后在每个时间步迭代他们的下一个位置直到模拟收敛。</p>
+<h3 id="Urban-morphology"><a href="#Urban-morphology" class="headerlink" title="Urban morphology"></a>Urban morphology</h3><p><img src="/2022/01/01/101/image-20220111155450225.png" alt="image-20220111155450225"></p>
+<p>该图画出人口分布图来比较模拟城市系统和实证观测的城市形态。图a-d分别由莱维飞行、引力模型、IMM、CMM生成，图e为伦敦城市的实证数据。</p>
+<p><strong>实证数据中表现出显著的特征:紧凑的城市中心和碎形的周边。</strong></p>
+<p>莱维飞行和引力模型模拟的城市人口分布遵循分数阶扩散过程(the fractional diffusion process),都意味着随着时间推移，个体会逐渐远离他们的初始位置。模拟结果证实这两种模型不能再现紧凑而稳定的城市中心，收敛时人口在城市空间中均匀分布。</p>
+<p>IMM预测城市系统在边缘同质增长，模拟结果显示城市区域的周边是标准的圆形，距离城市中心相同的径向距离有相同的人口密度。IMM模型不能再现城市区域的碎形形态。</p>
+<p>CMM成功再现了城市系统中紧凑的城市中心，人口密度大幅度高于城市周边。此外，城市周边具有明显的碎形几何特征，并在其周围形成了大量的子群，这些观测与实证数据一致。</p>
+<h3 id="Urban-growth-patterns"><a href="#Urban-growth-patterns" class="headerlink" title="Urban growth patterns"></a>Urban growth patterns</h3><p>本文通过三个基本的实证定律检验模型再现城市增长模式的能力:</p>
+<p>(1)城市规模分布: 城市数目N(A)随他们的面积减小符合标度律</p>
+<p><img src="/2022/01/01/101/image-20220111162103301.png" alt="image-20220111162103301"></p>
+<p><img src="/2022/01/01/101/image-20220111162859402.png" alt="image-20220111162859402"></p>
+<p>指数在2.0左右。</p>
+<p>该图为实证数据中城市大小的分布。在三个数据集中的估计指数分别为1.94,2.01,2.08，这些发现与<strong>位置渗透理论(site percolation theory)的理论预测</strong>相一致。。</p>
+<p>渗透理论是描述这一观测结果的普遍框架，其产生某个位置被占用为城市区域的概率。它预测了(6)式的标度律指数在2.0-2.5左右，其中指数为2对应不同位置之间的强相关，指数为2.5对应平均场理论。</p>
+<p>莱维飞行将移动描述为个体的扩散过程，城市系统达到稳态时，城市人口在空间中均匀分布。与莱维飞行相同，当t趋近于正无穷时，人口也会均匀分布。<strong>因此，莱维飞行和引力模型预计将在不相关渗流(uncorrelated percolation)中生成指数为2.5左右的标度律</strong>。</p>
+<p><img src="/2022/01/01/101/image-20220111165245336.png" alt="image-20220111165245336"></p>
+<p><img src="/2022/01/01/101/image-20220111165323078.png" alt="image-20220111165323078"></p>
+<p>该图展示了莱维飞行和引力模型再现幂律城市大小分布，指数为2.55和2.58，与渗透理论一致。</p>
+<p>模拟的IMM符合指数为2.98的标度律。这个较大指数意味着人们只局限于他们的活动范围。</p>
+<p>相反，CMM展现出强相关性，其再现了指数为2.02的标度律，与理论预测和实际数据一致。本文发现CMM是唯一一个在95%置信区间内包含实证观察到的普遍指数为2.0的模型。</p>
+<p>(2)人口和城市规模的超线性相关:</p>
+<p>大城市往往有较高的城市人口密度，定义为$\rho_A \equiv N(A)/A$。</p>
+<p>(N(A)代表区域A中城市的数量)</p>
+<p>研究人员认为因为在大城市的空间竞争更激烈，故有更多的高层建筑来应对更密集的人口。</p>
+<p>最近的研究表明，城市区域集中人口收支之间的平衡可以解释观测到的超线性增长。这个社会经济假说包含两条假设:</p>
+<ul>
+<li><p>从强烈的社会互动中获得的平均收入与人口密度$\rho_A$成正比</p>
+<p>(与(3)式中社会互动一致)</p>
+</li>
+<li><p>平均生活支出与探索城市的典型移动距离$l_t$成正比</p>
+<p>(与(4)式中长时记忆效应一致)</p>
+</li>
+</ul>
+<p>收支平衡时有$\rho_A \approx l_t $</p>
+<p>代入等式(5)(典型移动距离$l_t$随访问位置数A对数增长)得到</p>
+<p><img src="/2022/01/01/101/image-20220112162319444.png" alt="image-20220112162319444"></p>
+<p><img src="/2022/01/01/101/image-20220112162958493.png" alt="image-20220112162958493"></p>
+<p>该图绘制了在US和GB不同城市中$\rho_A$随A的变化，发现实证观测与式(7)预测的对数律一致。</p>
+<p>值得注意的是，之前的研究显示，大多数城市遵循小指数$\delta \approx 0.04 \sim 0.3$的标度律$\rho_A \approx A^{\delta}$，但在实证数据的幅度范围内，无法区分对数关系和小指数标度律。</p>
+<p>式(7)中指出的对数关系为人口增长模式的起源提供了另一种解释，它源于人类移动行为。</p>
+<p><img src="/2022/01/01/101/image-20220112204510221.png" alt="image-20220112204510221"></p>
+<p>该图为四个模型模拟的城市人口密度与城市规模之间的关系。</p>
+<p>本文提出的CMM模型再现了对数律，其他三个模型用系数为0的直线进行拟合，说明它们预测人口密度独立于城市规模。</p>
+<p>(3)指数的城市占有概况(occupation profile)</p>
+<p>城市占有概况 $\phi(r) $定义为在距城市中心距离为r找到人口密集区域的概率。在先前研究中观察到的指数概况:</p>
+<p><img src="/2022/01/01/101/image-20220112210406139.png" alt="image-20220112210406139"></p>
+<p><img src="/2022/01/01/101/image-20220112210457499.png" alt="image-20220112210457499"></p>
+<p>该图为在三个实证数据集中对该模式的检验，其中$\lambda$分别为0.3,0.3,0.4。该图说明城市中心吸引了大多数人口，占有概率随r快速递减。</p>
+<p><img src="/2022/01/01/101/image-20220112211313906.png" alt="image-20220112211313906"></p>
+<p>该图为四种模型模拟的城市占有概况。莱维飞行与引力模型不能再现城市中心，预测的$\phi(r)$不随距离r变化。缺乏社会互动的IMM模型不能再现城市边缘地区的大子群，导致城市边缘区域人口密度急剧下降。而CMM模型符合式(8)提出的指数律。</p>
+<p>此外，下降率$\lambda$ 应随城市边界不断扩大的时间演化而降低。</p>
+<p><img src="/2022/01/01/101/image-20220113013915070.png" alt="image-20220113013915070"></p>
+<p>该图展示了实证数据柏林的城市占有概况的时间演化。从图中可以看出，随年份增加，降低速率逐渐变缓。</p>
+<p><img src="/2022/01/01/101/image-20220113014624493.png" alt="image-20220113014624493"></p>
+<p>CMM模型的模拟结果再现了城市发展中占用概况的时间演化。</p>
+<h3 id="Impact-of-simulation-parameters"><a href="#Impact-of-simulation-parameters" class="headerlink" title="Impact of simulation parameters"></a>Impact of simulation parameters</h3><p>有三个重要的参数可能影响城市系统的模拟</p>
+<p><img src="/2022/01/01/101/image-20220112235939752.png" alt="image-20220112235939752"></p>
+<ul>
+<li><p>(3)式中的$\alpha$ </p>
+<p>描述主要移动距离成本，控制每个位移的距离分布</p>
+</li>
+<li><p>(3)式中的$\rho_0$</p>
+<p>主要控制社会互动的重要性，它决定个体探索更多人口密集地区的概率，$\rho_0^{-1}\rightarrow \infin$ 时再现强互动性的城市系统。</p>
+</li>
+<li><p>$\omega$ 平均人口密度</p>
+<p>定义为居民人数与位置数的比率，即$\omega=M/l^2$</p>
+<p>它代表个体在每个单位空间中社会互动的数量。</p>
+</li>
+</ul>
+<p><img src="/2022/01/01/101/image-20220113001147276.png" alt="image-20220113001147276"></p>
+<p>该图为CMM模型不同参数数值再现城市形态的比较。</p>
+<p>标准参数设置为$\omega=1/3,\alpha=0.55,\rho_0=0$</p>
+<p>在图a-f中对模拟中单个参数值进行修改，其中</p>
+<p>(a)$\omega=1/6$   (b)$\omega=1/2$  </p>
+<p>(c)$\alpha=-0.45$   (d)$\alpha=1.55$</p>
+<p>(e)$\rho_0=10^{-6}$  (f)$\rho_0=1$ </p>
+<p>(1)$\omega$ </p>
+<p>图ab表明$\omega$没有显著影响城市系统的碎形形态。</p>
+<p><img src="/2022/01/01/101/image-20220113015227045.png" alt="image-20220113015227045"></p>
+<p>该图为设置不同$\omega$值对再现城市增长模式的影响。</p>
+<p>城市规模分布，人口增长模式和城市占有概况在不同$\omega$设置下都与实证观测一致。</p>
+<p>这个结果表明城市的增长模式在不同$\omega$下是稳定的。</p>
+<p>(2)$\alpha$</p>
+<p>$\alpha$对模拟城市的紧凑性有重要的影响，这可能是因为它控制式(1)中每次探索的jump-size步长大小的分布。</p>
+<p>当$\alpha$比实证数据小，探索将有较大的步长。图c中表示城市系统的占据区域将更分散，分布更远离城市中心。</p>
+<p>当$\alpha$比实证数据大，如图d所示，模拟的城市系统更聚合，产生更大的子群。</p>
+<p><img src="/2022/01/01/101/image-20220113020819708.png" alt="image-20220113020819708"></p>
+<p>该图为设置不同$\alpha$值对再现城市增长模式的影响。</p>
+<p>当$\alpha$值不同时，城市规模分布 、人口增长模式、城市占有概况都背离实证规则。这些结果表明，$\alpha$ 在城市形态和城市增长模式中均有重要作用。因此，$\alpha$ 不仅是人类移动行为的重要参数，也是影响城市增长的重要因素。</p>
+<p>(3)$\rho_0$</p>
+<p>该参数很大程度上影响了城市区域的形态。</p>
+<p>图e展示出显著的碎形形态($\rho_0=10^{-6}$)</p>
+<p>当将$\rho_0$增加到1，如图f所示，不能再现碎形的城市形态，并且 其在城市边缘展现出同质增长。</p>
+<p><img src="/2022/01/01/101/image-20220113022002649.png" alt="image-20220113022002649"></p>
+<p>g图表示城市规模分布的指数随$\rho_0$增加而逐渐增加。(?)</p>
+<p>h,i表示当$\rho_0$从0增加到1时，人口增长模式和城市占用概况也偏离了实证规则。</p>
+<p>这些结果说明参数$\alpha$和$\rho_0$在CMM模型中对城市系统的紧密性和碎形形态有重要影响。</p>
+<h2 id="Disscusion"><a href="#Disscusion" class="headerlink" title="Disscusion"></a>Disscusion</h2><p>本文试图建立城市增长与人类移动之间的关系。</p>
+<p>值得注意的是，尽管大多数人类移动模型都基于以日常移动为主的活动性移动行为，但城市增长与居住移动(即居住迁移)的关系更为密切。尽管这两种移动是<strong>在不同时间尺度下</strong>的人类移动，但是它们在表现模式上有相同特征。CMM模型通过不同的参数设置为活动性移动和居住性移动提供框架(例:居住性移动有更小的转移率)。</p>
+<h2 id="Supplementary"><a href="#Supplementary" class="headerlink" title="Supplementary"></a>Supplementary</h2><p>留坑了……</p>
+<h3 id="标度律"><a href="#标度律" class="headerlink" title="标度律"></a>标度律</h3><p>研究模型内的各个物理量是如何随着规模的变化而变化的</p>
+<h3 id="平均场"><a href="#平均场" class="headerlink" title="平均场"></a>平均场</h3><p>mean-field</p>
+<h3 id="渗透理论"><a href="#渗透理论" class="headerlink" title="渗透理论"></a>渗透理论</h3><p>percolation theory</p>
+<p>强相关性与不相关(uncorrelated percolation)  平均场</p>
+<h2 id="总结及理解"><a href="#总结及理解" class="headerlink" title="总结及理解"></a>总结及理解</h2><h3 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h3><p>1.d-EPR模型虽然包含个体探索正比人口密度的机制，但仅限于个体层面，是静态的且不随时间演化，故与社会关系无关。</p>
+<p>涉及引力模型中提到的平均场与背景场概念。</p>
+<p>2.$\rho_0^{-1}\rightarrow\infty$说明模型的人口吸引强度极强，有强烈的社会关系。而$\rho_0^{-1}\rightarrow0$说明模型的人口吸引强度极弱，人口密度与探索概率基本无关，不具有社会关系。</p>
+<p>3.IMM模型在标度定律(1)中指数较大说明假设在同等面积下，所具有的城市数量越少，这与其模型机制只包括个体，不具有社会关系有关，故个体更局限于自己的活动范围。</p>
+<p>4.城市占有概况的指数律说明大部分人集中在城市中心，周边聚集情况大幅度递减，而式(1)中提出人类移动符合胖尾分布，即人类有可能到达远离初始位置的区域，这两点是相矛盾的。故在模拟实验中莱维飞行和引力模型不能再现该指数律。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>本文从社会和记忆两个角度对之前提出的人类移动模型进行分类，并提出同时具有社会互动和长时记忆机制的群体移动模型(CMM)。随后从城市形态(人口分布)和增长规律模式两个方面，对原有模型/提出模型/实证数据进行对比，并设置不同参数来观察对CMM模型的影响。</p>
+<p>组会结束之后对该文有了更深层次的理解。该模型是对基于个体移动模型的改进(原EPR模型)，主要的改进是探索机制中使用引力模型相关距离和人口的转移概率，特点是进行实时的动态人口计算。</p>
+<p>其中组会提出的问题：城市周边分形出现的原因?</p>
+<p>与动态的人口计算有关。假设在模拟过程中，下一个位置探索选择的概率与此时各位置所在人口有关。如果该位置此时没有人口，则不会有个体选择该位置。所以可以说选择的概率二分了，要不有要不没有，所以城市周边会产生碎形(即小子群)。若是静态输入人口密度，采取累加的方法，则每个位置至少有一定探索概率，不会出现完全没有的情况。</p>
+<p>该模型同时存在缺点:只考虑时步，没考虑stay</p>
+
+          
+            <div class='article_footer'>
+              
+                
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
+  <div class='content'>
+    
+      <blockquote>
+        
+          
+            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+          
+        
+          
+            <p>本文永久链接是：<a href=https://y4ny4n.cn/2022/01/01/101/>https://y4ny4n.cn/2022/01/01/101/</a></p>
+          
+        
+      </blockquote>
+    
+  </div>
+</section>
+
+  
+
+  
+    
+    
+
+<section class="widget qrcode  desktop mobile">
+  
+
+  <div class='content article-entry'>
+    
+      
+        <div class='fancybox'><img src='https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+      
+        <div class='fancybox'><img src='https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+  </div>
+</section>
+
+  
+
+
+              
+            </div>
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-01-16T18:07:41+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2022年1月16日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/mobility-model/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>mobility model</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/human-mobility/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>human mobility</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/urban/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>urban</p></a></div>
+
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://y4ny4n.cn/2022/01/01/101/&title=Emergence of urban growth patterns from human mobility behavior - y4ny4n's blog&summary=
+
+Abstract城市自下向上的增长方式导致了用标度律描述的碎形/分形(fractal-like)城市结构。相关渗流模型(percolation model)
+通过施加强空间相关性成功建模出城市的几何形状(urban geometries)。然而，在空间相关的城市增长背后的潜在机制的起源仍然很大程度未知。
+本文介绍了一个计算城市增长模型，在人类移动行为的微观基础上捕捉城市增长的空间相关性。本文将提出的模型与三个实证数据集进行对比，发现人类移动中强社会联系和长时记忆是碎形城市形态的两个基本原则，以及三个重要的三个城市增长的定律。该模型联系了城市增长模式的实证发现与人类移动行为。"
+          
+          >
+          
+            <img src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://y4ny4n.cn/2022/01/01/101/&title=Emergence of urban growth patterns from human mobility behavior - y4ny4n's blog&summary=
+
+Abstract城市自下向上的增长方式导致了用标度律描述的碎形/分形(fractal-like)城市结构。相关渗流模型(percolation model)
+通过施加强空间相关性成功建模出城市的几何形状(urban geometries)。然而，在空间相关的城市增长背后的潜在机制的起源仍然很大程度未知。
+本文介绍了一个计算城市增长模型，在人类移动行为的微观基础上捕捉城市增长的空间相关性。本文将提出的模型与三个实证数据集进行对比，发现人类移动中强社会联系和长时记忆是碎形城市形态的两个基本原则，以及三个重要的三个城市增长的定律。该模型联系了城市增长模式的实证发现与人类移动行为。"
+          
+          >
+          
+            <img src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=https://y4ny4n.cn/2022/01/01/101/&title=Emergence of urban growth patterns from human mobility behavior - y4ny4n's blog&summary=
+
+Abstract城市自下向上的增长方式导致了用标度律描述的碎形/分形(fractal-like)城市结构。相关渗流模型(percolation model)
+通过施加强空间相关性成功建模出城市的几何形状(urban geometries)。然而，在空间相关的城市增长背后的潜在机制的起源仍然很大程度未知。
+本文介绍了一个计算城市增长模型，在人类移动行为的微观基础上捕捉城市增长的空间相关性。本文将提出的模型与三个实证数据集进行对比，发现人类移动中强社会联系和长时记忆是碎形城市形态的两个基本原则，以及三个重要的三个城市增长的定律。该模型联系了城市增长模式的实证发现与人类移动行为。"
+          
+          >
+          
+            <img src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+            
+              <a class='next' href='/2021/12/16/1216/'>
+                <p class='title'>Mobility patterns are associated with experienced income segregation in large US cities<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>
+
+Abstract收入隔离不只是基于粗粒度的静态居住模式，移动行为也对经历性的收入隔离(experienced income segregation)的产生起着重要作用。
+本文指出经历性的收入...</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
+      
+      
+      
+      
+      
+      
+        <section id="comments">
+          <div id="valine_container" class="valine_thread">
+            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+  <script async src="https://gcore.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    processEscapes: true,
+    tags: "ams",
+    macros: {
+      href: "{}"
+    }
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|dno",
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  }
+};
+</script>
+
+
+
+
+  <script>
+    window.subData = {
+      title: 'Emergence of urban growth patterns from human mobility behavior',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+  
+
+  
+    
+    
+
+
+  <section class="widget toc-wrapper shadow desktop mobile">
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Abstract"><span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Results"><span class="toc-text">Results</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Human-movement-models"><span class="toc-text">Human movement models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-collective-mobility-model"><span class="toc-text">The collective mobility model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Experimental-settings"><span class="toc-text">Experimental settings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Urban-morphology"><span class="toc-text">Urban morphology</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Urban-growth-patterns"><span class="toc-text">Urban growth patterns</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Impact-of-simulation-parameters"><span class="toc-text">Impact of simulation parameters</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Disscusion"><span class="toc-text">Disscusion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Supplementary"><span class="toc-text">Supplementary</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#标度律"><span class="toc-text">标度律</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#平均场"><span class="toc-text">平均场</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#渗透理论"><span class="toc-text">渗透理论</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结及理解"><span class="toc-text">总结及理解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#理解"><span class="toc-text">理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+  
+  <footer class="clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='340px'
+      server='netease'
+      type='playlist'
+      id='5004192906'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+              <a href="/atom.xml"
+                class="social fas fa-rss flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="mailto:me@xaoxuu.com"
+                class="social fas fa-envelope flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://github.com/xaoxuu"
+                class="social fab fa-github flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://music.163.com/#/user/home?id=63035382"
+                class="social fas fa-headphones-alt flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+        </div>
+      
+    
+      
+        <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+      
+    
+      
+        本站使用
+        <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
+        作为主题，总访问量为
+          <span id="busuanzi_value_site_pv"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+          次
+        
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="https://xaoxuu.com" target="_blank" rel="noopener">Copyright © 2017-2020 Mr. X</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4/dist/jquery.min.js"></script>
+
+
+  <script>
+    
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/" || "/";
+    if (!ROOT.endsWith('/')) ROOT += '/';
+  </script>
+
+
+  <script async src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/instant_page.js" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+
+
+  <script src="https://gcore.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      ScrollReveal().reveal('.l_main .reveal', {
+        distance: '8px',
+        duration: '800',
+        interval: '100',
+        scale: '1'
+      });
+    });
+  </script>
+
+
+  
+<script src="https://gcore.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+  
+  
+  
+    
+<script src="https://gcore.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+      $(function(){
+        var imgs=["https://gitee.com/wallpapers/minimalist/raw/master/2020/001.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/002.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/003.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/004.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/005.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/006.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/007.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/008.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/009.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/010.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/011.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/012.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/013.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/014.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/015.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/016.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/017.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/018.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/019.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/020.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/021.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/022.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/023.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/024.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/025.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/026.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/027.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/028.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/029.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/030.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/031.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/032.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/033.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/034.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/035.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/036.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/037.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/038.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/039.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/040.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/041.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/042.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/043.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/044.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/045.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/046.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/047.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/048.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/049.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/050.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/051.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/052.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/053.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/054.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/055.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/056.jpg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+        if ('') {
+          $('').backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        } else {
+          $.backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+  
+    
+<script src="https://gcore.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+
+  
+    
+<script src="https://gcore.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+  
+    
+<script src="https://gcore.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js"></script>
+
+  
+  <script>
+  var GUEST_INFO = ['nick','mail','link'];
+  var meta = 'nick,mail,link'.split(',').filter(function(item){
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick','mail','link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function(item){
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+  var valine = new Valine();
+  function emoji(path, idx, ext) {
+      return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  valine.init({
+    el: '#valine_container',
+    meta: meta,
+    
+    appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
+    appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
+    placeholder: "快来评论吧~",
+    pageSize:'10',
+    avatar:'robohash',
+    lang:'zh-cn',
+    visitor: 'true',
+    highlight: 'true',
+    mathJax: 'true',
+    enableQQ: 'true',
+    requiredFields: requiredFields,
+    emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
+    emojiMaps: emojiMaps
+  })
+  </script>
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+  
+<script src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-volantis@2.6.5/js/search.js"></script>
+
+
+
+  
+<script src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/comment_typing.js"></script>
+
+
+
+
+
+
+<!-- 复制 -->
+
+  <script src="https://gcore.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('fa-copy');
+        $icon.addClass('fa-check-circle');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('fa-check-circle');
+          $icon.addClass('fa-copy');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('fa-copy');
+        $icon.addClass('fa-times-circle');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('fa-times-circle');
+          $icon.addClass('fa-copy');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+
+<!-- fancybox -->
+
+  <script src="https://gcore.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("div.fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>

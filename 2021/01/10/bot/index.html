@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html>
+<head hexo-theme='https://volantis.js.org/#2.6.5'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+    <title>基于mirai和graia框架的机器人搭建 - y4ny4n&#39;s blog</title>
+  
+    <meta name="keywords" content="bot">
+  
+  
+    <meta name="description" content="一直想搭建一个bot实现一些功能，该bot基于mirai机器人框架和graia搭建，参考sagiri-bot功能实现。自己随便写写，这篇文章主要记录一下报错信息和心路历程。">
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13/css/all.min.css">
+  
+    
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+</head>
+
+<body>
+<script src="https://cdn.jsdelivr.net/gh/zyoushuo/Blog/hexo/js/mouse_click.js"></script>
+
+  
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+<header class="l_header shadow blur">
+  <div class='container'>
+  <div class='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h'>
+        <li><a class="s-comment fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+            omp's blog
+          
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+<script>setLoadingBarProgress(40);</script>
+
+
+
+  <div class="l_body nocover">
+    <div class='body-wrapper'>
+      
+
+<div class='l_main'>
+  
+
+  
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h1 class="title">
+    <a href="/2021/01/10/bot/">
+      基于mirai和graia框架的机器人搭建
+    </a>
+  </h1>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="" rel="nofollow">
+    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
+    <p>omp</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/%E5%85%B6%E4%BB%96/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>其他</p>
+    </a>
+  </div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年1月10日</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      <span id="/2021/01/10/bot/" class="leancloud_visitors" data-flag-title="基于mirai和graia框架的机器人搭建">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+          
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          <p>一直想搭建一个bot实现一些功能，该bot基于mirai机器人框架和graia搭建，参考sagiri-bot功能实现。自己随便写写，这篇文章主要记录一下报错信息和心路历程。</p>
+<a id="more"></a>
+<h2 id="基本搭建"><a href="#基本搭建" class="headerlink" title="基本搭建"></a>基本搭建</h2><p>首先找到了 sagiri-bot框架</p>
+<p>服务器pip换源  pip3 install -r requirements.txt</p>
+<p>创建数据库文件同名数据库(这边之前自己没操作服务器，之间修改配置文件把mysql登录跳过了)</p>
+<p>source 数据库文件的绝对路径 执行数据库文件</p>
+<div class="note bug red">mysql报错:ERROR 1273 (HY000): Unknown collation: 'utf8mb4_0900_ai_ci'</div>
+
+<p>版本原因：生成转储文件的数据库版本为8.0,要导入sql文件的数据库版本为5.6,因为是高版本导入到低版本，引起1273错误</p>
+<p>解决方法：<br> 打开sql文件，将文件中的所有<br> <code>utf8mb4_0900_ai_ci</code>替换为<code>utf8_general_ci</code><br> <code>utf8mb4</code>替换为<code>utf8</code><br> 保存后再次运行sql文件，运行成功</p>
+<hr>
+<p>以上做的都没什么用，事实上sagiri-bot不能用，魔改了源码采用部分功能重写了</p>
+<h3 id="mirai部分"><a href="#mirai部分" class="headerlink" title="mirai部分"></a>mirai部分</h3><p>基于mirai框架，需要下mirai-console和配置mirai-api-http</p>
+<p>启动mirai-console需要装自启动mirai-console-loader</p>
+<div class="note idea green"><p><strong>优化</strong></p><p>这边github太慢了，直接导入gitee仓库</p></div>
+
+<p>给服务器装一下Java环境</p>
+<div class="note bug red">启动console报错: java.lang.UnsupportedClassVersionError</div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.UnsupportedClassVersionError: org&#x2F;zjh&#x2F;openlayersdemo&#x2F;OpenlayersdemoApplication has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime only recognizes class file versions up to 52.0</span><br></pre></td></tr></table></figure>
+<p>这边装的java8..  需要重装java11</p>
+<div class="note bug red">启动console报错: java.lang.NoSuchMethodError</div>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.NoSuchMethodError: net.mamoe.mirai.utils.MiraiLogger$Companion.setDefaultLoggerCreator(Lkotlin/jvm/functions/Function1;)V</span><br></pre></td></tr></table></figure>
+<p>解决:.\mcl —update-package net.mamoe:mirai-core-all —channel nightly</p>
+<p>重新运行mcl 启动mirai-console<br>将mirai-api-http的jar文件拖入plugins</p>
+<p>配置生成的setting.yml 文件</p>
+<p>authkey 1234567890  </p>
+<p>重新启动console</p>
+<p>配置sagiri-bot个人信息</p>
+<div class="note bug red">java报错: JCE cannot authenticate the provider BC</div>
+
+<p>报错原因：在使用oracle的JDK时，JAR包必须签署特殊的证书才能使用。</p>
+<p>使用openJDK或者非oracle的JDK，这样就可以绕开证书的限制。</p>
+<p>所以重装了java环境，卸载了原有java11环境，使用yum安装了openjdk,将/etc/profile配置文件中的环境变量更改为openjdk安装目录/usr/lib/jvm/xxx，source使之生效</p>
+<p>虽然报错解决了，但对登录不上去这个问题没什么改变…</p>
+<div class="note bug red">console登录报错</div>
+
+<p>在mirai-console登录qq报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2021-01-01 16:26:05 E&#x2F;main: Failed to init MiraiConsole.</span><br><span class="line"></span><br><span class="line">net.mamoe.mirai.network.WrongPasswordException: Error(title&#x3D;温馨提示, message&#x3D;当前版本过低，请先升级到手机QQ最新版本。, errorInfo&#x3D;)</span><br></pre></td></tr></table></figure>
+<p>最开始报错是不支持滑动验证，根据文档提示修改协议为PAD后</p>
+<p>输入验证码登录，若账号密码验证码不正确则报错网络环境问题；若都正确报错以上信息…问题772</p>
+<p>已解决，更改协议为WATCH后，验证登录即可</p>
+<p>至此mirai部分配置完成，启动需要graia</p>
+<h3 id="graia部分"><a href="#graia部分" class="headerlink" title="graia部分"></a>graia部分</h3><div class="note bug red">启动bot报错: TypeError('Expected maxsize to be an integer or None')</div>
+
+<p>python3 sagiri_bot.py报错</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">File <span class="string">"/usr/lib64/python3.6/functools.py"</span>, line <span class="number">477</span>, <span class="keyword">in</span> lru_cache     <span class="keyword">raise</span> TypeError(<span class="string">'Expected maxsize to be an integer or None'</span>) TypeError: Expected maxsize to be an integer <span class="keyword">or</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+<p> 装了SDK</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install graia-application-mirai</span><br><span class="line">pip install graia-broadcast --upgrade</span><br></pre></td></tr></table></figure>
+<p>发现不仅是import graia.broadcast产生的报错,后边调库的时候还有很多别的报错，经过很久很久的搜索，终于在graia project的issue下面找到了原因所在</p>
+<p>由于pip使用阿里源的问题，直接下载了graia-application-mirai 0.0.6的版本 会出现很多报错</p>
+<p><code>$ pip install -i https://pypi.python.org/simple graia-application-mirai==0.1.0</code></p>
+<p>更改为0.1.0版本不再报错</p>
+<div class="note bug red">启动bot报错: SyntaxError: future feature annotations is not defined </div>
+
+<p>这次又有了船新报错</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">from</span> __future__ <span class="keyword">import</span> annotations</span><br><span class="line">    ^</span><br><span class="line">SyntaxError: future feature annotations <span class="keyword">is</span> <span class="keyword">not</span> defined</span><br></pre></td></tr></table></figure>
+<p>从<code>Python 3.7</code>才可以开始导入<code>__future__``annotations</code></p>
+<p>服务器centos自带3.6 重装3.7….. 之前给ubuntu做过升级</p>
+<p>装好后更改软连接，使pip3与python3指向3.7</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -s &#x2F;usr&#x2F;local&#x2F;python3&#x2F;bin&#x2F;python3 &#x2F;usr&#x2F;local&#x2F;bin&#x2F;python3</span><br><span class="line">ln -s &#x2F;usr&#x2F;local&#x2F;python3&#x2F;bin&#x2F;pip3 &#x2F;usr&#x2F;local&#x2F;bin&#x2F;pip3</span><br></pre></td></tr></table></figure>
+<p>重装第三方库</p>
+<div class="note bug red">启动bot报错: AttributeError: 'ApplicationLaunched' object has no attribute 'app'</div>
+
+<p>好家伙，还有什么报错是我没遇到的…</p>
+<p>报错原因:问题出在pydantic包，graia.broadcast.entities.event.EventMeta类继承自pydantic中的ModelMetaclass类，在pydantic版本是1.7.1的情况下该类貌似添加了一个空的<strong>slots</strong>属性，导致子类都无法进行self的赋值。把pydantic包回退到1.6.1版本问题解决。</p>
+<p><code>pip3 install pydantic-1.6.1</code></p>
+<p>重新运行bot.py</p>
+<p>至此，机器人实现了第一次会话  芜湖~</p>
+<p><img src="/2021/01/10/bot/image-20210102175545239.png" alt="image-20210102175545239"></p>
+<p><img src="/2021/01/10/bot/image-20210102175556793.png" alt="image-20210102175556793"></p>
+<div class="note idea green"><p><strong>优化</strong></p><p>
+    编写代码再用winscp上传到服务器太过费劲(关键是老断，vim也比较麻烦。装了vscode的插件sftp,服务器建立相同文件名文件夹,右键直接upload即可。芜湖~
+    </p></div>
+
+
+
+<div class="note bug red">scheduler与application不兼容报错</div>
+
+<p>运行sagiri_bot.py  报错无graia.scheduler模块</p>
+<p>装后broadcast版本问题发生冲突…</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">graia-application-mirai <span class="number">0.1</span><span class="number">.0</span> has requirement graia-broadcast&lt;<span class="number">0.0</span><span class="number">.6</span>,&gt;=<span class="number">0.0</span><span class="number">.5</span>, but yo<span class="string">u'll have graia-broadcast 0.5.3 which is incompatible.</span></span><br></pre></td></tr></table></figure>
+<p>graia-application-mirai 0.1.0 需要 broadcast<0.0.6,>=0.0.5</0.0.6,></p>
+<p>但graia-scheduler需要broadcast<0.6.0,>=0.5.3</0.6.0,></p>
+<p>安装scheduler后broadcast版本为0.5.3</p>
+<p>解决:搜索后发现文档更新</p>
+<p><img src="/2021/01/10/bot/image-20210103225327439.png" alt="image-20210103225327439"></p>
+<p>更新到graia-application-mirai==0.1.1后，broadcast版本可以兼容</p>
+<p>但是佩奇不能回复了….</p>
+<blockquote>
+<p>现在服务器软连接都快乱了..记录一下</p>
+<p>cd usr/bin</p>
+<p>ls -al *python*</p>
+<p>python3-&gt;python3.7.0   pip3-&gt;python3.7.0</p>
+<p>python3.6-&gt;python3.6.8  pip3.6-&gt; python3.6.8</p>
+</blockquote>
+<p>最终解决: 看github上作者commit的历史版本找了个合适的graia-application-mirai 0.11.0 ,可以兼容并运行(突然发现graia-application-mirai 都更到0.14.0了</p>
+<p>耶斯莫拉，今天佩奇被冻结了呜呜呜呜，又是拼命解冻的一天</p>
+<h2 id="bot编写"><a href="#bot编写" class="headerlink" title="bot编写"></a>bot编写</h2><p>async与await</p>
+<p>def name(x:’str’)-&gt;’int’:</p>
+<p>服务器服务后台悬挂(关闭终端不影响)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nohup python xxx.py &amp;  </span><br><span class="line">ps -ef|grep xxx</span><br><span class="line">kill -9 pid</span><br></pre></td></tr></table></figure>
+<h3 id="钉钉接口"><a href="#钉钉接口" class="headerlink" title="钉钉接口"></a>钉钉接口</h3><p>可以实现从后台导出日报数据，但必须是企业管理员权限</p>
+<p>分析河北师大的组织架构与我创建的APItest映射</p>
+<p>河北师范大学(APItest)</p>
+<p>2019级群(子部门)</p>
+<p>辅导员(子部门群主test)</p>
+<p>班长(子部门管理员)</p>
+<p>经测试，所有人都可创建表，并对自己创建的表有管理权限</p>
+<p>子部门群主和管理员都没有权限登录后台(估计要河北师范大学的管理员</p>
+<p>所以不考虑从后台导出表格，可以考虑下ocr…哎</p>
+<h3 id="疫情模块"><a href="#疫情模块" class="headerlink" title="疫情模块"></a>疫情模块</h3><p>调用新浪接口</p>
+<p><a href="https://interface.sina.cn/news/wap/fymap2020_data.d.json" target="_blank" rel="noopener">https://interface.sina.cn/news/wap/fymap2020_data.d.json</a></p>
+<p>返回数据后decode 此时为json格式的字符串</p>
+<p>json.loads() 将<code>json</code>格式数据解码为<code>python</code>对象(即字典)，再对数据进行处理</p>
+<h3 id="六级词汇模块"><a href="#六级词汇模块" class="headerlink" title="六级词汇模块"></a>六级词汇模块</h3><p>六级词汇字典上传到服务器后中文乱码</p>
+<p>开始以为是vim编码的问题，但是py的问题</p>
+<p>读文件r读字符串utf8无法解码，rb以二进制形式读进来后需要再解码进行转换成str 解码用gbk就可以显示了(不知道为啥utf8不行 菜鸡の迷惑</p>
+<p>奥  txt是ANSI编码的，GBK属于ANSI之中的，在ANSI的国际通用集，GBK是专门来解决中文编码的，那没事了TnT</p>
+<h3 id="bilibili推送模块"><a href="#bilibili推送模块" class="headerlink" title="bilibili推送模块"></a>bilibili推送模块</h3><p>三个思路</p>
+<p>× 1.搞了bilibili的json</p>
+<p>哔哩哔哩小程序 最终分享地址为url参数中的内容，需要每日分享获取其url 较难自动实现(后面的随机值应该为哔哩哔哩小程序自动生成)</p>
+<p>手机端不能显示 PC端可以</p>
+<p><img src="/2021/01/10/bot/image-20210117181941668.png" alt="image-20210117181941668"></p>
+<p>这个格式是Bilibili小程序的 url问题解决不了 呜呜呜呜</p>
+<p>× 2.申请自己的小程序 最终直接访问 bilibili.com 涉及开发了 草</p>
+<p>√ 3.找其他小程序的跳转功能 json源码 试了几个跳不了 草</p>
+<p>歪日 终于成了 google永远滴神 找了一个可跳转的小程序 唯二不足就是图片白搞了&amp;BV号得手动输入（待优化）</p>
+<p>然后设成定时了</p>
+<h3 id="论文推送"><a href="#论文推送" class="headerlink" title="论文推送"></a>论文推送</h3><p>知乎的非官方api都用不了了，增加了反爬机制。</p>
+<p>最初使用requests包请求界面，报403..原来是因为没加headers(没有设置headers请求头，被服务器拦截，一般情况下设置user-agent即可。)</p>
+<p>后来使用selenium库 模拟打开浏览器，寻找元素并定位</p>
+<p>一直报错找不到元素，很疑惑  加个sleep就好了 一部分没加载出来</p>
+<p>找到对应标题的超链接 获取元素属性get_attribute()</p>
+<p>定位使用的是find_element_by_link_text</p>
+<p>得到对应文章url  推送即可</p>
+<p>问题是如何部署在centos上，服务器无GUI使用selenium</p>
+<p>参考链接:<a href="https://blog.csdn.net/shilaike2/article/details/102595228" target="_blank" rel="noopener">https://blog.csdn.net/shilaike2/article/details/102595228</a></p>
+<p>安装xvfb  Xvfb是一个实现了X11显示服务协议的显示服务器。 不同于其他显示服务器，Xvfb在内存中执行所有的图形操作，不需要借助任何显示设备</p>
+<p>还需增加几个options</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">chrome_options =webdriver.Options()</span><br><span class="line"></span><br><span class="line">chrome_options.add_argument(<span class="string">'--no-sandbox'</span>) <span class="comment">#让Chrome在root权限运行</span></span><br><span class="line"></span><br><span class="line">chrome_options.add_argument(<span class="string">'--disable-dev-shm-usage'</span>) <span class="comment">#不打开图形界面</span></span><br><span class="line"></span><br><span class="line">chrome_options.add_argument(<span class="string">'--headless'</span>) <span class="comment">#浏览器不提供可视化页面</span></span><br><span class="line"></span><br><span class="line">chrome_options.add_argument(<span class="string">'blink-settings=imagesEnabled=false'</span>) <span class="comment">#不加载图片, 提升速度</span></span><br><span class="line"></span><br><span class="line">chrome_options.add_argument(<span class="string">'--disable-gpu'</span>) <span class="comment">#谷歌文档提到需要加上这个属性来规避bug</span></span><br></pre></td></tr></table></figure>
+<p>又是面向百度编程的一天</p>
+
+          
+            <div class='article_footer'>
+              
+                
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
+  <div class='content'>
+    
+      <blockquote>
+        
+          
+            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+          
+        
+          
+            <p>本文永久链接是：<a href=https://y4ny4n.cn/2021/01/10/bot/>https://y4ny4n.cn/2021/01/10/bot/</a></p>
+          
+        
+      </blockquote>
+    
+  </div>
+</section>
+
+  
+
+  
+    
+    
+
+<section class="widget qrcode  desktop mobile">
+  
+
+  <div class='content article-entry'>
+    
+      
+        <div class='fancybox'><img src='https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+      
+        <div class='fancybox'><img src='https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+  </div>
+</section>
+
+  
+
+
+              
+            </div>
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-02-06T08:57:12+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2021年2月6日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/bot/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>bot</p></a></div>
+
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://y4ny4n.cn/2021/01/10/bot/&title=基于mirai和graia框架的机器人搭建 - y4ny4n's blog&summary=一直想搭建一个bot实现一些功能，该bot基于mirai机器人框架和graia搭建，参考sagiri-bot功能实现。自己随便写写，这篇文章主要记录一下报错信息和心路历程。"
+          
+          >
+          
+            <img src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://y4ny4n.cn/2021/01/10/bot/&title=基于mirai和graia框架的机器人搭建 - y4ny4n's blog&summary=一直想搭建一个bot实现一些功能，该bot基于mirai机器人框架和graia搭建，参考sagiri-bot功能实现。自己随便写写，这篇文章主要记录一下报错信息和心路历程。"
+          
+          >
+          
+            <img src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=https://y4ny4n.cn/2021/01/10/bot/&title=基于mirai和graia框架的机器人搭建 - y4ny4n's blog&summary=一直想搭建一个bot实现一些功能，该bot基于mirai机器人框架和graia搭建，参考sagiri-bot功能实现。自己随便写写，这篇文章主要记录一下报错信息和心路历程。"
+          
+          >
+          
+            <img src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+              <a class='prev' href='/2021/01/19/BASNet/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>BASNet</p>
+                <p class='content'>
+
+Boundary-Aware Salient Object Detection 即边界感知显著目标检测
+
+根据放假以来的学习，简单画了下理解网络所需要理解掌握的知识。自己还没有摸太清，只是目...</p>
+              </a>
+            
+            
+              <a class='next' href='/2020/11/30/sql%E6%B3%A8%E5%85%A5%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/'>
+                <p class='title'>sql注入学习<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>sql注入学习笔记，感谢好朋友月夜见提供的学习资料。包含union注入、布尔盲注、时间盲注、报错注入、堆叠注入、二次注入、宽字节注入、UserAgent/Referer/Cookie注入、sql...</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
+      
+      
+      
+      
+      
+      
+        <section id="comments">
+          <div id="valine_container" class="valine_thread">
+            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: '基于mirai和graia框架的机器人搭建',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+  
+
+  
+    
+    
+
+
+  <section class="widget toc-wrapper shadow desktop mobile">
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本搭建"><span class="toc-text">基本搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mirai部分"><span class="toc-text">mirai部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#graia部分"><span class="toc-text">graia部分</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bot编写"><span class="toc-text">bot编写</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#钉钉接口"><span class="toc-text">钉钉接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#疫情模块"><span class="toc-text">疫情模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六级词汇模块"><span class="toc-text">六级词汇模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bilibili推送模块"><span class="toc-text">bilibili推送模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#论文推送"><span class="toc-text">论文推送</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+  
+  <footer class="clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='340px'
+      server='netease'
+      type='playlist'
+      id='5004192906'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+              <a href="/atom.xml"
+                class="social fas fa-rss flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="mailto:me@xaoxuu.com"
+                class="social fas fa-envelope flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://github.com/xaoxuu"
+                class="social fab fa-github flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://music.163.com/#/user/home?id=63035382"
+                class="social fas fa-headphones-alt flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+        </div>
+      
+    
+      
+        <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+      
+    
+      
+        本站使用
+        <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
+        作为主题，总访问量为
+          <span id="busuanzi_value_site_pv"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+          次
+        
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="https://xaoxuu.com" target="_blank" rel="noopener">Copyright © 2017-2020 Mr. X</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4/dist/jquery.min.js"></script>
+
+
+  <script>
+    
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/" || "/";
+    if (!ROOT.endsWith('/')) ROOT += '/';
+  </script>
+
+
+  <script async src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/instant_page.js" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+
+
+  <script src="https://gcore.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      ScrollReveal().reveal('.l_main .reveal', {
+        distance: '8px',
+        duration: '800',
+        interval: '100',
+        scale: '1'
+      });
+    });
+  </script>
+
+
+  
+<script src="https://gcore.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+  
+  
+  
+    
+<script src="https://gcore.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+      $(function(){
+        var imgs=["https://gitee.com/wallpapers/minimalist/raw/master/2020/001.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/002.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/003.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/004.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/005.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/006.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/007.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/008.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/009.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/010.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/011.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/012.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/013.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/014.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/015.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/016.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/017.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/018.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/019.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/020.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/021.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/022.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/023.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/024.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/025.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/026.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/027.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/028.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/029.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/030.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/031.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/032.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/033.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/034.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/035.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/036.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/037.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/038.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/039.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/040.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/041.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/042.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/043.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/044.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/045.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/046.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/047.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/048.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/049.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/050.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/051.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/052.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/053.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/054.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/055.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/056.jpg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+        if ('') {
+          $('').backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        } else {
+          $.backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+  
+    
+<script src="https://gcore.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+
+  
+    
+<script src="https://gcore.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+  
+    
+<script src="https://gcore.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js"></script>
+
+  
+  <script>
+  var GUEST_INFO = ['nick','mail','link'];
+  var meta = 'nick,mail,link'.split(',').filter(function(item){
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick','mail','link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function(item){
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+  var valine = new Valine();
+  function emoji(path, idx, ext) {
+      return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  valine.init({
+    el: '#valine_container',
+    meta: meta,
+    
+    appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
+    appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
+    placeholder: "快来评论吧~",
+    pageSize:'10',
+    avatar:'robohash',
+    lang:'zh-cn',
+    visitor: 'true',
+    highlight: 'true',
+    mathJax: 'true',
+    enableQQ: 'true',
+    requiredFields: requiredFields,
+    emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
+    emojiMaps: emojiMaps
+  })
+  </script>
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+  
+<script src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-volantis@2.6.5/js/search.js"></script>
+
+
+
+  
+<script src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/comment_typing.js"></script>
+
+
+
+
+
+
+<!-- 复制 -->
+
+  <script src="https://gcore.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('fa-copy');
+        $icon.addClass('fa-check-circle');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('fa-check-circle');
+          $icon.addClass('fa-copy');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('fa-copy');
+        $icon.addClass('fa-times-circle');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('fa-times-circle');
+          $icon.addClass('fa-copy');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+
+<!-- fancybox -->
+
+  <script src="https://gcore.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("div.fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>
