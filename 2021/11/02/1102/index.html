@@ -1,430 +1,300 @@
+
+
 <!DOCTYPE html>
-<html>
-<head hexo-theme='https://volantis.js.org/#2.6.5'>
-  <meta charset="utf-8">
-  <!-- SEO相关 -->
-  
-    
-  
-  <!-- 渲染优化 -->
-  <meta name="renderer" content="webkit">
-  <meta name="force-rendering" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-  <meta name="HandheldFriendly" content="True" >
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<html lang="zh-CN" data-default-color-scheme=auto>
 
-  <!-- 页面元数据 -->
-  
-    <title>The TimeGeo modeling framework for urban motility without travel surveys - y4ny4n&#39;s blog</title>
-  
-    <meta name="keywords" content="mobility model,human mobility">
-  
-  
-    <meta name="description" content="
 
-不需要出行调查的城市流动性建模框架TimeGeo
-Abstract许多精细尺度的城市流动模型都需要繁琐昂贵的出行调查来校准，且这种出行调查成本高采样率低。
-本模型旨在对通讯技术提供的大量低成本地理标记数据(无法告诉我们用户的详细活动选择)进行根本性的范式转换，以模拟城市流动。
-本文提出的TimeGeo模型可以...">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="不需要出行调查的城市流动性建模框架TimeGeo Abstract许多精细尺度的城市流动模型都需要繁琐昂贵的出行调查来校准，且这种出行调查成本高采样率低。 本模型旨在对通讯技术提供的大量低成本地理标记数据(无法告诉我们用户的详细活动选择)进行根本性的范式转换，以模拟城市流动。 本文提出的TimeGeo模型可以在10min时间间隔和百米的分辨率下高效产生城市流动模式，从通信活动中可用的稀疏和不完">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The TimeGeo modeling framework for urban motility without travel surveys">
+<meta property="og:url" content="https://y4ny4n.cn/2021/11/02/1102/index.html">
+<meta property="og:site_name" content="y4ny4n&#39;s blog">
+<meta property="og:description" content="不需要出行调查的城市流动性建模框架TimeGeo Abstract许多精细尺度的城市流动模型都需要繁琐昂贵的出行调查来校准，且这种出行调查成本高采样率低。 本模型旨在对通讯技术提供的大量低成本地理标记数据(无法告诉我们用户的详细活动选择)进行根本性的范式转换，以模拟城市流动。 本文提出的TimeGeo模型可以在10min时间间隔和百米的分辨率下高效产生城市流动模式，从通信活动中可用的稀疏和不完">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://y4ny4n.cn/2021/11/02/1102/image-20211105175523819.png">
+<meta property="og:image" content="https://y4ny4n.cn/2021/11/02/1102/image-20211111214439699.png">
+<meta property="og:image" content="https://y4ny4n.cn/2021/11/02/1102/image-20211111203522748.png">
+<meta property="og:image" content="https://y4ny4n.cn/2021/11/02/1102/image-20211112144732374.png">
+<meta property="og:image" content="https://y4ny4n.cn/2021/11/02/1102/image-20211112151048619.png">
+<meta property="og:image" content="https://y4ny4n.cn/2021/11/02/1102/image-20211116164858893.png">
+<meta property="og:image" content="https://y4ny4n.cn/2021/11/02/1102/image-20211116165145462.png">
+<meta property="og:image" content="https://y4ny4n.cn/2021/11/02/1102/image-20211116173305962.png">
+<meta property="og:image" content="https://y4ny4n.cn/2021/11/02/1102/image-20211119203226257.png">
+<meta property="og:image" content="https://y4ny4n.cn/2021/11/02/1102/image-20211116174011928.png">
+<meta property="og:image" content="https://y4ny4n.cn/2021/11/02/1102/image-20211116174956650.png">
+<meta property="og:image" content="https://y4ny4n.cn/2021/11/02/1102/image-20211116175329672.png">
+<meta property="og:image" content="https://y4ny4n.cn/2021/11/02/1102/image-20211117155712292.png">
+<meta property="og:image" content="https://y4ny4n.cn/2021/11/02/1102/image-20211117155946701.png">
+<meta property="og:image" content="https://y4ny4n.cn/2021/11/02/1102/image-20211119162259558.png">
+<meta property="og:image" content="https://y4ny4n.cn/2021/11/02/1102/image-20211119163026348.png">
+<meta property="og:image" content="https://y4ny4n.cn/2021/11/02/1102/image-20211119164505567.png">
+<meta property="og:image" content="https://y4ny4n.cn/2021/11/02/1102/image-20211119164937417.png">
+<meta property="og:image" content="https://y4ny4n.cn/2021/11/02/1102/image-20211119165132169.png">
+<meta property="article:published_time" content="2021-11-02T08:01:55.000Z">
+<meta property="article:modified_time" content="2022-01-16T10:18:06.638Z">
+<meta property="article:tag" content="mobility model">
+<meta property="article:tag" content="human mobility">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://y4ny4n.cn/2021/11/02/1102/image-20211105175523819.png">
+  
+  
+  
+  <title>The TimeGeo modeling framework for urban motility without travel surveys - y4ny4n&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
-  <!-- feed -->
-  
 
-  <!-- import meta -->
-  
 
-  <!-- link -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13/css/all.min.css">
-  
-    
-<link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
 
-  
-  
-    
-<link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"y4ny4n.cn","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
-  
-
-  
-
-  
-
-  
-
-  <!-- import link -->
-  
-
-  
-  
-    
-<link rel="stylesheet" href="/css/style.css">
-
-  
-
-  <script>
-    function setLoadingBarProgress(num) {
-      document.getElementById('loading-bar').style.width=num+"%";
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
 
   
-  
-</head>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
 
 <body>
-<script src="https://cdn.jsdelivr.net/gh/zyoushuo/Blog/hexo/js/mouse_click.js"></script>
-
   
-  <div id="loading-bar-wrapper">
-  <div id="loading-bar"></div>
-</div>
-<header class="l_header shadow blur">
-  <div class='container'>
-  <div class='wrapper'>
-    <div class='nav-sub'>
-      <p class="title"></p>
-      <ul class='switcher nav-list-h'>
-        <li><a class="s-comment fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
-          <li><a class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
         
       </ul>
     </div>
-		<div class="nav-main">
-      
-        
-        <a class="title flat-box" target="_self" href='/'>
-          
-          
-          
-            omp's blog
-          
-          
-        </a>
-      
-
-			<div class='menu navigation'>
-				<ul class='nav-list-h'>
-          
-          
-          
-            
-            
-              <li>
-                <a class="flat-box" href=/
-                  
-                  
-                  
-                    id="home"
-                  >
-                  <i class='fas fa-rss fa-fw'></i>博客
-                </a>
-                
-              </li>
-            
-          
-          
-            
-            
-              <li>
-                <a class="flat-box" href=/categories/
-                  
-                  
-                  
-                    id="categories"
-                  >
-                  <i class='fas fa-folder-open fa-fw'></i>分类
-                </a>
-                
-              </li>
-            
-          
-          
-            
-            
-              <li>
-                <a class="flat-box" href=/tags/
-                  
-                  
-                  
-                    id="tags"
-                  >
-                  <i class='fas fa-tags fa-fw'></i>标签
-                </a>
-                
-              </li>
-            
-          
-          
-            
-            
-              <li>
-                <a class="flat-box" href=/archives/
-                  
-                  
-                  
-                    id="archives"
-                  >
-                  <i class='fas fa-archive fa-fw'></i>归档
-                </a>
-                
-              </li>
-            
-          
-          
-            
-            
-              <li>
-                <a class="flat-box" href=/friends/
-                  
-                  
-                  
-                    id="friends"
-                  >
-                  <i class='fas fa-link fa-fw'></i>友链
-                </a>
-                
-              </li>
-            
-          
-          
-            
-            
-              <li>
-                <a class="flat-box" href=/about/
-                  
-                  
-                  
-                    id="about"
-                  >
-                  <i class='fas fa-info-circle fa-fw'></i>关于
-                </a>
-                
-              </li>
-            
-          
-          
-				</ul>
-			</div>
-
-      <div class="m_search">
-        <form name="searchform" class="form u-search-form">
-          <i class="icon fas fa-search fa-fw"></i>
-          <input type="text" class="input u-search-input" placeholder="Search..." />
-        </form>
-      </div>
-
-			<ul class='switcher nav-list-h'>
-				
-					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
-				
-				<li>
-          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
-          <ul class="menu-phone list-v navigation white-box">
-            
-              
-            
-              <li>
-                <a class="flat-box" href=/
-                  
-                  
-                  
-                    id="home"
-                  >
-                  <i class='fas fa-rss fa-fw'></i>博客
-                </a>
-                
-              </li>
-            
-          
-            
-              
-            
-              <li>
-                <a class="flat-box" href=/categories/
-                  
-                  
-                  
-                    id="categories"
-                  >
-                  <i class='fas fa-folder-open fa-fw'></i>分类
-                </a>
-                
-              </li>
-            
-          
-            
-              
-            
-              <li>
-                <a class="flat-box" href=/tags/
-                  
-                  
-                  
-                    id="tags"
-                  >
-                  <i class='fas fa-tags fa-fw'></i>标签
-                </a>
-                
-              </li>
-            
-          
-            
-              
-            
-              <li>
-                <a class="flat-box" href=/archives/
-                  
-                  
-                  
-                    id="archives"
-                  >
-                  <i class='fas fa-archive fa-fw'></i>归档
-                </a>
-                
-              </li>
-            
-          
-            
-              
-            
-              <li>
-                <a class="flat-box" href=/friends/
-                  
-                  
-                  
-                    id="friends"
-                  >
-                  <i class='fas fa-link fa-fw'></i>友链
-                </a>
-                
-              </li>
-            
-          
-            
-              
-            
-              <li>
-                <a class="flat-box" href=/about/
-                  
-                  
-                  
-                    id="about"
-                  >
-                  <i class='fas fa-info-circle fa-fw'></i>关于
-                </a>
-                
-              </li>
-            
-          
-            
-          </ul>
-        </li>
-			</ul>
-		</div>
-	</div>
   </div>
-</header>
-
-<script>setLoadingBarProgress(40);</script>
-
-
-
-  <div class="l_body nocover">
-    <div class='body-wrapper'>
-      
-
-<div class='l_main'>
-  
+</nav>
 
   
-    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
-      
 
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-  <h1 class="title">
-    <a href="/2021/11/02/1102/">
-      The TimeGeo modeling framework for urban motility without travel surveys
-    </a>
-  </h1>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="" rel="nofollow">
-    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
-    <p>y4ny4n</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/Paper-reading/' rel="nofollow">
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>Paper reading</p>
-    </a>
-  </div>
-
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2021年11月2日</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-          
-            
-          
-            
-              
-
-            
+            <span id="subtitle" data-typed-text="The TimeGeo modeling framework for urban motility without travel surveys"></span>
           
         </div>
+
         
-          <hr>
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-11-02 16:01" pubdate>
+          2021年11月2日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          60 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
         
       </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
     
-  </section>
+      
 
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
 
-      <section class="article typo">
-        <div class="article-entry" itemprop="articleBody">
-          
-          <meta name="referrer" content="no-referrer">
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">The TimeGeo modeling framework for urban motility without travel surveys</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer">
 
 <p>不需要出行调查的城市流动性建模框架TimeGeo</p>
 <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>许多精细尺度的城市流动模型都需要繁琐昂贵的出行调查来校准，且这种出行调查成本高采样率低。</p>
@@ -446,7 +316,7 @@ Abstract许多精细尺度的城市流动模型都需要繁琐昂贵的出行调
 <p>对于每个用户，根据开始时间和访问每个stay地点的频率，推断stay地点类型为家(H)、工作(W)或其他(O)。</p>
 <p>在数据集中过滤活跃用户:提取数据集中原始用户75%的家坐标，并过滤总stay超过50次并至少在家stay10次的用户。这些活跃用户用来提取TimeGeo模型的参数。</p>
 <p>作者将这些用户分为通勤者(有往返工作地的出行)和非通勤者(没有往返工作地的出行)两类。</p>
-<p><img src="/2021/11/02/1102/image-20211105175523819.png" alt="image-20211105175523819"></p>
+<p><img src="/2021/11/02/1102/image-20211105175523819.png" srcset="/img/loading.gif" lazyload alt="image-20211105175523819"></p>
 <p>该图展示了三天中学生自我收集的移动轨迹中stay的地点和在连续的stay之间发生的移动(即定义为每天的行程)。不同活动类型地点及其之间的连线用颜色区分。</p>
 <p>下图是所有stay地点的访问频率，两图之间的时间条显示了每次stay的开始时间和持续时间。</p>
 <h3 id="Generating-Mechanism"><a href="#Generating-Mechanism" class="headerlink" title="Generating Mechanism"></a>Generating Mechanism</h3><p>该模型整合了人类移动的时间空间选择机制。</p>
@@ -459,7 +329,7 @@ Abstract许多精细尺度的城市流动模型都需要繁琐昂贵的出行调
 <li>其他活动的位置，开始时间 ，持续时间都是灵活的</li>
 </ul>
 <p>本文提出的框架旨在模拟灵活的空间和时间流动性选择，固定的活动(即工作)的时间被假定为预先确定的。</p>
-<p><img src="/2021/11/02/1102/image-20211111214439699.png" alt="image-20211111214439699"></p>
+<p><img src="/2021/11/02/1102/image-20211111214439699.png" srcset="/img/loading.gif" lazyload alt="image-20211111214439699"></p>
 <p>TimeGeo模型的流程图</p>
 <h4 id="Temporal-Choices"><a href="#Temporal-Choices" class="headerlink" title="Temporal Choices"></a>Temporal Choices</h4><p>文章使用带有三个参数的time-inhomogeneous(?非齐次)马尔科夫链模型来捕捉个体出行的倾向和在连续序列中进行短时间活动的可能性。</p>
 <p>参数:the weekly home-based tour<br>number($n_w$), the dwell rate($\beta_1$), and the burst rate($\beta_2$). </p>
@@ -473,7 +343,7 @@ Abstract许多精细尺度的城市流动模型都需要繁琐昂贵的出行调
 <p>对通勤者和非通勤者来说，P(t)不同:</p>
 <ul>
 <li><p>非通勤者:在一周内的时间间隔t所有人口的出行数占所有出行的比例。(即$\sum_{t=1}^{1008}P(t)=1,t=1,2…,1008$)，捕捉了在一周内不同时间出行的预期变化。</p>
-<p><img src="/2021/11/02/1102/image-20211111203522748.png" alt="image-20211111203522748"></p>
+<p><img src="/2021/11/02/1102/image-20211111203522748.png" srcset="/img/loading.gif" lazyload alt="image-20211111203522748"></p>
 </li>
 <li><p>通勤者:P(t)不包括往返工作地的出行(工作被看作是固定的活动)</p>
 </li>
@@ -494,20 +364,20 @@ Abstract许多精细尺度的城市流动模型都需要繁琐昂贵的出行调
 <p>原始EPR模型的限制为缺少探索中选择新位置的机制。原始EPR模型随机在实证jump-size($\Delta r$)分布中抽取距离。为了描绘更能反映城市结构的探索机制，在本文中结合对探索新的位置基于排名的选择机制，即r-EPR模型。</p>
 <p>选择机制:基于距移动始发地的距离，给每个可选目的地排名。在所有潜在的新目的地中，离现在位置最近的k=1…</p>
 <p><strong>将第k个位置作为目的地的概率被量化为$P(k)\sim k^{-\alpha}$</strong></p>
-<p><img src="/2021/11/02/1102/image-20211112144732374.png" alt="image-20211112144732374"></p>
+<p><img src="/2021/11/02/1102/image-20211112144732374.png" srcset="/img/loading.gif" lazyload alt="image-20211112144732374"></p>
 <p>该图为对r-EPR模型的图示。可能的目的地使用颜色对不同选择概率进行区分。  地点距始发地越近，它被选择的概率越高。每个点代表从CDR数据中提取的进行other活动的位置。点的高度代表在附近区域可选目的地的密度。</p>
 <h3 id="Role-of-Land-Use-on-Travel-Distance"><a href="#Role-of-Land-Use-on-Travel-Distance" class="headerlink" title="Role of Land Use on Travel Distance"></a>Role of Land Use on Travel Distance</h3><p>为了解释和量化土地利用(land use)对出行的影响，本文提出<strong>a hierarchical multiplicative cascade(层次乘法级联模型)</strong>进行分析。 </p>
 <p>TimeGeo将位置的空间分布(在CDR数据中观测到的)作为输入。</p>
-<p><img src="/2021/11/02/1102/image-20211112151048619.png" alt="image-20211112151048619"></p>
+<p><img src="/2021/11/02/1102/image-20211112151048619.png" srcset="/img/loading.gif" lazyload alt="image-20211112151048619"></p>
 <p>该图展示了不同类型的位置(home/other)在两个尺度下的分布。AB图是home位置在不同分辨率下的分布，CD图释other位置在不同分辨率下的分布。</p>
 <p>在较大网格尺度下，home和other位置在空间上是混合的，表现出高度的空间相关。在较小网格尺度下，home和other类型的土地利用分离变得清晰。</p>
 <p><strong>层次乘法级联将感兴趣的区域划分为不同粒度的网格，量化不同尺度下各类土地利用的空间相关性。</strong></p>
 <p>当前框架结合了影响探索机制空间选择的两个特征:<strong>(i)活动位置的空间分布 (ii)基于排名的位置选择</strong>。</p>
 <p>为了量化家到Other位置(H-O)的出行距离，作者提出将家位置作为需求方D，other位置作为提供方S。</p>
 <p>需要分析的整个区域为$\Omega_0$，作者渐进地使用边长$2^{-1},2^{-2},…,2^{-n}$将其分为$4^{1},4^{2},…,4^{n}$块。每次一个父块$\Omega_{i-1}$（分辨率i-1层）分为四个子块$\Omega_{i}$（分辨率i层）。</p>
-<p>示意图如下:<br><img src="/2021/11/02/1102/image-20211116164858893.png" alt="image-20211116164858893"></p>
+<p>示意图如下:<br><img src="/2021/11/02/1102/image-20211116164858893.png" srcset="/img/loading.gif" lazyload alt="image-20211116164858893"></p>
 <p><strong>在分辨率为i层时，一次出行走出其所在起始块的概率</strong>为$P_&gt;(i)$</p>
-<p><img src="/2021/11/02/1102/image-20211116165145462.png" alt="image-20211116165145462"></p>
+<p><img src="/2021/11/02/1102/image-20211116165145462.png" srcset="/img/loading.gif" lazyload alt="image-20211116165145462"></p>
 <p>起始块超出概率$P_&gt;(i)$在不同块分辨率产生移动距离的分布。</p>
 <p>其中</p>
 <ul>
@@ -516,7 +386,7 @@ Abstract许多精细尺度的城市流动模型都需要繁琐昂贵的出行调
 <li><p>$P_&gt;(k)$是k个在起始块的提供方不被选择的概率，代表基于排名的地点选择机制。</p>
 </li>
 <li><p>$f_{S_i,trip}(k)$是在起始块内找到k个提供方的概率，代表位置的地理分布。计算方式如下:</p>
-<p><img src="/2021/11/02/1102/image-20211116173305962.png" alt="image-20211116173305962"></p>
+<p><img src="/2021/11/02/1102/image-20211116173305962.png" srcset="/img/loading.gif" lazyload alt="image-20211116173305962"></p>
 <p>$f_{D_i,trip}(D)$是给定D需求在分辨率水平为i从起始块移动的条件概率。$f_{S_i|D_i}$是给定需求后供应的条件概率。Q是在整个研究区域中需求数。</p>
 </li>
 </ul>
@@ -527,45 +397,45 @@ Abstract许多精细尺度的城市流动模型都需要繁琐昂贵的出行调
 <p>首先在初始块$\Omega_0$均匀测量供需密度$D^{‘}_0$和$S^{‘}_0$，然后逐步将初始块划分为$4^1,4^2,…,4^n$。在子块中的供需密度需乘以非负的随机因子$W_{D_i}$和$W_{S_i}$(平均值为1)，随机因子组成的向量$W_i=[W_{D_i},W_{S_i}]$是级联的生成器。</p>
 <p>即使级联生成器在不同分辨率i下有独立取值，但它们的分量$W_{D_i}$和$W_{S_i}$在给定i中可能是互相依赖的。</p>
 <p>在分辨率i−1和i下测量的密度关系式为</p>
-<p><img src="/2021/11/02/1102/image-20211119203226257.png" alt="image-20211119203226257"></p>
+<p><img src="/2021/11/02/1102/image-20211119203226257.png" srcset="/img/loading.gif" lazyload alt="image-20211119203226257"></p>
 <p>在更小尺寸的块中，空块不能被忽略。在这种情况下，最好将生成器建模为β级联，块要么为满，要么为空。二元β级联的生成器$W(i)=[W_{D(i)},W_{S(i)}]$具有一个离散分布，其概率质量集中在四个($W_D,W_S$)点:</p>
 <p>$P_{00}$ at $(0,0)$  $P_{D0}$ at $(1/P_D,0)$  $P_{0S}$ at $(0,1/P_S)$ $P_{DS}$ at $(1/P_D,1/P_S)$</p>
 <p>在一个给定的区域内，用层次乘法级联分析框架来描述人口和场所设施分布的协方差，考虑了区域特定空间结构对个体出行距离的影响。</p>
 <p>这使得我们能够对城市土地利用的变化如何影响微观层面的个人出行行为和宏观层面的OD矩阵进行情景测试。</p>
 <h3 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h3><h4 id="Extracted-Mobility-Features-from-Mobile-Phone-Data"><a href="#Extracted-Mobility-Features-from-Mobile-Phone-Data" class="headerlink" title="Extracted Mobility Features from Mobile Phone Data"></a>Extracted Mobility Features from Mobile Phone Data</h4><p>对每个个体，$n_w$直接从数据中提取，$\beta_1$和$\beta_2$使用时间马尔科夫模型进行标定(<strong>calibrate</strong>)。其余参数如排名选择机制的参数$\alpha$，偏好返回机制的参数$\gamma$,$\rho$在全部人口的聚合数据中提取。</p>
-<p><img src="/2021/11/02/1102/image-20211116174011928.png" alt="image-20211116174011928"></p>
+<p><img src="/2021/11/02/1102/image-20211116174011928.png" srcset="/img/loading.gif" lazyload alt="image-20211116174011928"></p>
 <p>该图为$\beta_1n_w,\beta_2n_w,n_w$的联合分布。绿点为最可能的参数组合$n_w=6.1,\beta_1n_w=22.4,\beta_2n_w=508.0$</p>
 <h4 id="Simulated-Mobility-Features"><a href="#Simulated-Mobility-Features" class="headerlink" title="Simulated Mobility Features"></a>Simulated Mobility Features</h4><p>有了上述观测到的特征参数，TimeGeo模型可以在城市尺度产生长时间内个体每日移动轨迹。</p>
 <p>以学生自愿收集的14-mo数据为例，固定家和工作地(学校)。使用模型框架来模拟灵活的Other活动的时空选择和家活动的时间选择。</p>
 <p>计算该学生的个人参数，发现其burst rate$\beta_2$小于人口平均水平，说明其有更小的可能性产生连续的短时间活动。</p>
-<p><img src="/2021/11/02/1102/image-20211116174956650.png" alt="image-20211116174956650"></p>
+<p><img src="/2021/11/02/1102/image-20211116174956650.png" srcset="/img/loading.gif" lazyload alt="image-20211116174956650"></p>
 <p>该图为模拟该学生三天移动的结果。他每天主要在H-O(home-work)间进行移动，只有一些去Other位置的移动。该模型不仅捕捉到每天个体访问地点的数量，还捕捉了每天行程链更详细的构造。</p>
-<p><img src="/2021/11/02/1102/image-20211116175329672.png" alt="image-20211116175329672"></p>
+<p><img src="/2021/11/02/1102/image-20211116175329672.png" srcset="/img/loading.gif" lazyload alt="image-20211116175329672"></p>
 <p>该图展示了该学生每日移动的<strong>模体(motif)</strong>，作者使用结点代表位置，边代表位置之间发生的移动，并统计模体的分布。主导的模体是在一天中在两个位置之间移动。</p>
 <p>TimeGeo模型的关键在于使用ICT记录产生个体移动轨迹。对于数据稀疏的个体(在30天中只有4 个不同的位置)，作者模拟他时空完整的移动轨迹:<br>在联合分布中选择两组参数$\beta_1,\beta_2,n_w$来产生这个用户的两组合成轨迹。</p>
-<p><img src="/2021/11/02/1102/image-20211117155712292.png" alt="image-20211117155712292"></p>
+<p><img src="/2021/11/02/1102/image-20211117155712292.png" srcset="/img/loading.gif" lazyload alt="image-20211117155712292"></p>
 <p>左图使用参数$n_w=6,\beta_1=4,\beta_2=23$</p>
 <p>右图使用参数$n_w=6,\beta_1=10,\beta_2=73$</p>
 <p>较大的$\beta_1$和$\beta_2$产生更多连续的out-of-home活动，访问更多地点。</p>
-<p><img src="/2021/11/02/1102/image-20211117155946701.png" alt="image-20211117155946701"></p>
+<p><img src="/2021/11/02/1102/image-20211117155946701.png" srcset="/img/loading.gif" lazyload alt="image-20211117155946701"></p>
 <p>该图展示了该用户通过这两组参数模拟的每日移动的模体，较小的参数更倾向于简单的模体，较大的参数有更复杂的活动链。</p>
 <p>作者通过绘制三种不同参数个体(频繁移动/不太频繁移动/中值)停留时间($\Delta t$)和访问地点数(N)的分布发现不太频繁移动的个体明显有更长的停留时间和更少的位置访问。</p>
 <p>为了量化模型模拟和实证数据分布之间的差异,作者使用KS检验( Kolmogorov–Smirnov test)。</p>
 <p>两种极端个体(频繁移动/不太频繁移动)实证和模拟P($\Delta t$)的KS统计值为0.12和0.11,如果将他们的实证数据和中值个体模拟进行比较，KS值增加。同样，作者也计算了P(N)实证和模拟的KS值。<strong>这证实了包含个人特定参数来模拟时间选择的重要性。</strong></p>
 <p>随后作者做了类似于消融实验的分析，来证明模型中的每个机制($n_w,\beta_1,\beta_2$,r-EPR)都是至关重要的。</p>
 <p>对于dwell rate$\beta_1$,如果使之都为1，该模型不区分家和other活动的移动倾向，结果导致$P(\Delta t)$低估了短时间的出行，KS检验统计值从0.04增加至0.27。</p>
-<p><img src="/2021/11/02/1102/image-20211119162259558.png" alt="image-20211119162259558"></p>
+<p><img src="/2021/11/02/1102/image-20211119162259558.png" srcset="/img/loading.gif" lazyload alt="image-20211119162259558"></p>
 <p>对于burst rate$\beta_2$，模型是否带有这个参数P(N)分布的KS统计值为0.03和0.22。</p>
-<p><img src="/2021/11/02/1102/image-20211119163026348.png" alt="image-20211119163026348"></p>
+<p><img src="/2021/11/02/1102/image-20211119163026348.png" srcset="/img/loading.gif" lazyload alt="image-20211119163026348"></p>
 <p>$\beta_1$和$\beta_2$捕捉了灵活活动的爆发 ，来确保停留时间$P(\Delta t)$和访问地点的数目P(N)。</p>
 <p>EF两图展示了有无偏好返回机制个体L-th位置访问频率对比和有无基于排名选择机制个体出行距离$\Delta r$对比来说明机制的重要性。</p>
 <p>作者扩展用户(通勤者和非通勤者)到人群(年龄超过16岁)，并产生一个工作日的移动轨迹。作者<strong>使用模拟产生的移动轨迹和传统出行调查数据进行对比</strong>。</p>
 <p>分别使用MTS(一个州的出行调查)和NHTS(国家家庭出行调查)</p>
-<p><img src="/2021/11/02/1102/image-20211119164505567.png" alt="image-20211119164505567"></p>
+<p><img src="/2021/11/02/1102/image-20211119164505567.png" srcset="/img/loading.gif" lazyload alt="image-20211119164505567"></p>
 <p>$P(\Delta t)$分布的KS检验值分别为0.23和0.59。发现调查数据和模拟数据之间的停留时间分布显著不同，这主要是因为在一天的调查中人们很少报告停留时间超过12小时的活动，而模拟使用的信息由活跃的手机用户的数据记录提供。</p>
-<p><img src="/2021/11/02/1102/image-20211119164937417.png" alt="image-20211119164937417"></p>
+<p><img src="/2021/11/02/1102/image-20211119164937417.png" srcset="/img/loading.gif" lazyload alt="image-20211119164937417"></p>
 <p>P(N)的分布相比较好，KS检验值为0.07和0.23。</p>
-<p><img src="/2021/11/02/1102/image-20211119165132169.png" alt="image-20211119165132169"></p>
+<p><img src="/2021/11/02/1102/image-20211119165132169.png" srcset="/img/loading.gif" lazyload alt="image-20211119165132169"></p>
 <p>$P(\Delta r)$模拟数据相比于MTS数据,KS检验值为0.24。<br>因为模型在选择选择返回地点时没有考虑行程距离，高估了长距离的行程。此处没有和NHTS进行比较是因为出行的空间层面取决于城市的特定扩展，在全国区域不同。</p>
 <h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>TimeGeo模型可以根据任何城市的人口密度和场所设施分布灵活适应到不同应用场景。最低要求是要有人口和场所设施分布。</p>
 <p>在目前的结果中，模型的探索和返回参数($\alpha,\rho,\gamma$)在人口中假定是相同的，个体的时间流动率假定独立于实际位置。在未来的研究中，随着更多的高频率和长时间的数据可用，有可能学习到提出参数个体层面的不同。以及在不同城市区域,不同人口结构和生活方式中模型参数的不同。</p>
@@ -584,639 +454,370 @@ Abstract许多精细尺度的城市流动模型都需要繁琐昂贵的出行调
 <p>KS检验不需要知道数据的分布情况，可以算是一种非参数检验方法。</p>
 <p>KS值越大，说明样本间差异越大。</p>
 
-          
-            <div class='article_footer'>
-              
                 
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
   
     
-    
-
-
-
-  
-
-  
-    
-    
-
-
-
-  
-
-  
-    
-    
-
-<section class="widget copyright  desktop mobile">
-  <div class='content'>
-    
-      <blockquote>
+      <span class="category-chain">
         
-          
-            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+  <a href="/categories/Paper-reading/" class="category-chain-item">Paper reading</a>
+  
+  
 
-          
-        
-          
-            <p>本文永久链接是：<a href=https://y4ny4n.cn/2021/11/02/1102/>https://y4ny4n.cn/2021/11/02/1102/</a></p>
-          
-        
-      </blockquote>
+      </span>
     
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/mobility-model/">#mobility model</a>
+      
+        <a href="/tags/human-mobility/">#human mobility</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>The TimeGeo modeling framework for urban motility without travel surveys</div>
+      <div>https://y4ny4n.cn/2021/11/02/1102/</div>
+    </div>
+    <div class="license-meta">
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年11月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
   </div>
-</section>
-
-  
-
-  
-    
-    
-
-<section class="widget qrcode  desktop mobile">
-  
-
-  <div class='content article-entry'>
-    
-      
-        <div class='fancybox'><img src='https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
-        
-          height='64px'
-        ></div>
-      
-    
-      
-        <div class='fancybox'><img src='https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
-        
-          height='64px'
-        ></div>
-      
-    
-  </div>
-</section>
-
-  
 
 
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/16/1216/" title="Mobility patterns are associated with experienced income segregation in large US cities">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Mobility patterns are associated with experienced income segregation in large US cities</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/05/211005/" title="Modeling the scaling properties of human mobility">
+                        <span class="hidden-mobile">Modeling the scaling properties of human mobility</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
               
             </div>
-          
+
+            
+          </article>
         </div>
-        
-          
+      </div>
+    </div>
 
-
-  <section class='meta' id="footer-meta">
-    <div class='new-meta-box'>
+    <div class="side-col d-none d-lg-block col-lg-2">
       
-        
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-01-16T18:18:06+08:00">
-  <a class='notlink'>
-    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2022年1月16日</p>
-  </a>
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
-        
-      
-        
-          
-  
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/mobility-model/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>mobility model</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/human-mobility/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>human mobility</p></a></div>
 
 
-        
-      
-        
-          
+  </aside>
 
-        
-      
-        
-          
-  <div class="new-meta-item share -mob-share-list">
-  <div class="-mob-share-list share-body">
-    
-      
-        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
-          
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://y4ny4n.cn/2021/11/02/1102/&title=The TimeGeo modeling framework for urban motility without travel surveys - y4ny4n's blog&summary=
 
-不需要出行调查的城市流动性建模框架TimeGeo
-Abstract许多精细尺度的城市流动模型都需要繁琐昂贵的出行调查来校准，且这种出行调查成本高采样率低。
-本模型旨在对通讯技术提供的大量低成本地理标记数据(无法告诉我们用户的详细活动选择)进行根本性的范式转换，以模拟城市流动。
-本文提出的TimeGeo模型可以在10min时间间隔和百米的分辨率下高效产生城市流动模式，从通信活动中可用的稀疏和不完整的数据中生成完整的城市流动概况。"
-          
-          >
-          
-            <img src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
-          
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://y4ny4n.cn/2021/11/02/1102/&title=The TimeGeo modeling framework for urban motility without travel surveys - y4ny4n's blog&summary=
-
-不需要出行调查的城市流动性建模框架TimeGeo
-Abstract许多精细尺度的城市流动模型都需要繁琐昂贵的出行调查来校准，且这种出行调查成本高采样率低。
-本模型旨在对通讯技术提供的大量低成本地理标记数据(无法告诉我们用户的详细活动选择)进行根本性的范式转换，以模拟城市流动。
-本文提出的TimeGeo模型可以在10min时间间隔和百米的分辨率下高效产生城市流动模式，从通信活动中可用的稀疏和不完整的数据中生成完整的城市流动概况。"
-          
-          >
-          
-            <img src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
-          
-          href="http://service.weibo.com/share/share.php?url=https://y4ny4n.cn/2021/11/02/1102/&title=The TimeGeo modeling framework for urban motility without travel surveys - y4ny4n's blog&summary=
-
-不需要出行调查的城市流动性建模框架TimeGeo
-Abstract许多精细尺度的城市流动模型都需要繁琐昂贵的出行调查来校准，且这种出行调查成本高采样率低。
-本模型旨在对通讯技术提供的大量低成本地理标记数据(无法告诉我们用户的详细活动选择)进行根本性的范式转换，以模拟城市流动。
-本文提出的TimeGeo模型可以在10min时间间隔和百米的分辨率下高效产生城市流动模式，从通信活动中可用的稀疏和不完整的数据中生成完整的城市流动概况。"
-          
-          >
-          
-            <img src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
-          
-        </a>
-      
-    
+    </div>
   </div>
 </div>
 
 
 
-        
-      
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
-  </section>
-
-
-        
-        
-          <div class="prev-next">
-            
-              <a class='prev' href='/2021/12/16/1216/'>
-                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Mobility patterns are associated with experienced income segregation in large US cities</p>
-                <p class='content'>
-
-Abstract收入隔离不只是基于粗粒度的静态居住模式，移动行为也对经历性的收入隔离(experienced income segregation)的产生起着重要作用。
-本文指出经历性的收入...</p>
-              </a>
-            
-            
-              <a class='next' href='/2021/10/05/211005/'>
-                <p class='title'>Modeling the scaling properties of human mobility<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-                <p class='content'>
-
-Abstarct个人移动轨迹的jump size($\Delta r$)和waiting time($\Delta t$)符合胖尾分布，这说明连续时间随机游走模型(CTRW)与人类移动的相关...</p>
-              </a>
-            
-          </div>
-        
-      </section>
-    </article>
-  
-
-  
-    <!-- 显示推荐文章和评论 -->
-
-
-
-  <article class="post white-box reveal comments shadow">
-    <section class="article typo">
-      <p ct><i class='fas fa-comments'></i> 评论</p>
-      
-      
-      
-      
-      
-      
-        <section id="comments">
-          <div id="valine_container" class="valine_thread">
-            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
-          </div>
-        </section>
-      
-      
-    </section>
-  </article>
-
-
-  
-
-
-
-
-<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
-
-  <script async src="https://gcore.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<!-- MathJax配置，可通过单美元符号书写行内公式等 -->
-<script>
-window.MathJax = {
-  tex: {
-    inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
-    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-    processEscapes: true,
-    tags: "ams",
-    macros: {
-      href: "{}"
-    }
-  },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|dno",
-    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-  }
-};
-</script>
-
-
-
-
-  <script>
-    window.subData = {
-      title: 'The TimeGeo modeling framework for urban motility without travel surveys',
-      tools: true
-    }
-  </script>
-
-
+  </div>
 </div>
-<aside class='l_side'>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
   
-  
-
-  
-    
-    
-
-
-  <section class="widget toc-wrapper shadow desktop mobile">
-    
-  <header>
-    
-      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
-    
-  </header>
-
-
-    <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Abstract"><span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正文"><span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Data"><span class="toc-text">Data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generating-Mechanism"><span class="toc-text">Generating Mechanism</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Temporal-Choices"><span class="toc-text">Temporal Choices</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Spatial-Choices"><span class="toc-text">Spatial Choices</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Role-of-Land-Use-on-Travel-Distance"><span class="toc-text">Role of Land Use on Travel Distance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Results"><span class="toc-text">Results</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Extracted-Mobility-Features-from-Mobile-Phone-Data"><span class="toc-text">Extracted Mobility Features from Mobile Phone Data</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Simulated-Mobility-Features"><span class="toc-text">Simulated Mobility Features</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Conclusion"><span class="toc-text">Conclusion</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补充"><span class="toc-text">补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Markov-Chain"><span class="toc-text">Markov Chain</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#KS检验"><span class="toc-text">KS检验</span></a></li></ol></li></ol>
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
-  </section>
-
-
   
-
-
-</aside>
-
-
   
-  <footer class="clearfix">
-    <br><br>
-    
-      
-        <div class="aplayer-container">
-          
-
-
-        </div>
-      
-    
-      
-        <br>
-        <div class="social-wrapper">
-          
-            
-              <a href="/atom.xml"
-                class="social fas fa-rss flat-btn"
-                target="_blank"
-                rel="external nofollow noopener noreferrer">
-              </a>
-            
-          
-            
-              <a href="mailto:me@xaoxuu.com"
-                class="social fas fa-envelope flat-btn"
-                target="_blank"
-                rel="external nofollow noopener noreferrer">
-              </a>
-            
-          
-            
-              <a href="https://github.com/xaoxuu"
-                class="social fab fa-github flat-btn"
-                target="_blank"
-                rel="external nofollow noopener noreferrer">
-              </a>
-            
-          
-            
-              <a href="https://music.163.com/#/user/home?id=63035382"
-                class="social fas fa-headphones-alt flat-btn"
-                target="_blank"
-                rel="external nofollow noopener noreferrer">
-              </a>
-            
-          
-        </div>
-      
-    
-      
-        <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+  
+  
 </div>
-      
-    
-      
-        本站使用
-        <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
-        作为主题
-      
-    
-      
-        <div class='copyright'>
-        <p><a href="https://xaoxuu.com" target="_blank" rel="noopener">Copyright © 2017-2020 Mr. X</a></p>
 
-        </div>
-      
-    
   </footer>
 
-<script>setLoadingBarProgress(80);</script>
-
-
-      <script>setLoadingBarProgress(60);</script>
-    </div>
-    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
-  </div>
+  <!-- Scripts -->
   
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.4/dist/jquery.min.js"></script>
-
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
   <script>
-    
-    var SEARCH_SERVICE = "hexo" || "hexo";
-    var ROOT = "/" || "/";
-    if (!ROOT.endsWith('/')) ROOT += '/';
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
   </script>
 
 
-  <script async src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/instant_page.js" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 
-  <script src="https://gcore.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js"></script>
-  <script type="text/javascript">
-    $(function() {
-      ScrollReveal().reveal('.l_main .reveal', {
-        distance: '8px',
-        duration: '800',
-        interval: '100',
-        scale: '1'
-      });
-    });
-  </script>
-
-
-  
-<script src="https://gcore.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
-
-  <script type="text/javascript">
-    $(function() {
-      Waves.attach('.flat-btn', ['waves-button']);
-      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
-      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
-      Waves.attach('.flat-box', ['waves-block']);
-      Waves.attach('.float-box', ['waves-block', 'waves-float']);
-      Waves.attach('.waves-image');
-      Waves.init();
-    });
-  </script>
-
-
-
-
-  
-  
-  
-    
-<script src="https://gcore.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
-
-    <script type="text/javascript">
-      $(function(){
-        var imgs=["https://gitee.com/wallpapers/minimalist/raw/master/2020/001.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/002.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/003.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/004.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/005.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/006.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/007.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/008.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/009.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/010.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/011.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/012.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/013.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/014.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/015.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/016.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/017.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/018.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/019.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/020.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/021.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/022.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/023.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/024.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/025.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/026.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/027.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/028.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/029.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/030.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/031.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/032.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/033.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/034.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/035.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/036.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/037.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/038.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/039.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/040.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/041.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/042.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/043.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/044.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/045.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/046.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/047.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/048.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/049.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/050.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/051.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/052.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/053.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/054.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/055.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/056.jpg"];
-        if ('true' == 'true') {
-          function shuffle(arr){
-            /*From countercurrent-time*/
-            var n = arr.length;
-            while(n--) {
-              var index = Math.floor(Math.random() * n);
-              var temp = arr[index];
-              arr[index] = arr[n];
-              arr[n] = temp;
-            }
-          }
-          shuffle(imgs);
-        }
-        if ('') {
-          $('').backstretch(
-            imgs,
-          {
-            duration: "20000",
-            fade: "1500"
-          });
-        } else {
-          $.backstretch(
-            imgs,
-          {
-            duration: "20000",
-            fade: "1500"
-          });
-        }
-      });
-    </script>
-  
-
-
-
-
-
-
-
-
-
-
-
-  
-    
-<script src="https://gcore.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js"></script>
-
-  
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
   <script>
-  var GUEST_INFO = ['nick','mail','link'];
-  var meta = 'nick,mail,link'.split(',').filter(function(item){
-    return GUEST_INFO.indexOf(item) > -1
-  });
-  var REQUIRED_FIELDS = ['nick','mail','link'];
-  var requiredFields = 'nick,mail'.split(',').filter(function(item){
-    return REQUIRED_FIELDS.indexOf(item) > -1
-  });
-  var valine = new Valine();
-  function emoji(path, idx, ext) {
-      return path + "/" + path + "-" + idx + "." + ext;
-  }
-  var emojiMaps = {};
-  for (var i = 1; i <= 54; i++) {
-    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
-  }
-  for (var i = 1; i <= 101; i++) {
-    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
-  }
-  for (var i = 1; i <= 116; i++) {
-    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
-  }
-  for (var i = 1; i <= 125; i++) {
-    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
-  }
-  for (var i = 1; i <= 4; i++) {
-    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
-  }
-  valine.init({
-    el: '#valine_container',
-    meta: meta,
-    
-    appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
-    appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
-    placeholder: "快来评论吧~",
-    pageSize:'10',
-    avatar:'robohash',
-    lang:'zh-cn',
-    visitor: 'true',
-    highlight: 'true',
-    mathJax: 'true',
-    enableQQ: 'true',
-    requiredFields: requiredFields,
-    emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
-    emojiMaps: emojiMaps
-  })
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
   </script>
 
 
 
 
-
   
-<script src="/js/app.js"></script>
-
-
-
+    <script  src="/js/img-lazyload.js" ></script>
   
-<script src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-volantis@2.6.5/js/search.js"></script>
+
 
 
 
   
-<script src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/comment_typing.js"></script>
-
-
-
-
-
-
-<!-- 复制 -->
-
-  <script src="https://gcore.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
-  function wait(callback, seconds) {
-    var timelag = null;
-    timelag = window.setTimeout(callback, seconds);
-  }
-  !function (e, t, a) {
-    var initCopyCode = function(){
-      var copyHtml = '';
-      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
-      copyHtml += '</button>';
-      $(".highlight .code pre").before(copyHtml);
-      $(".article pre code").before(copyHtml);
-      var clipboard = new ClipboardJS('.btn-copy', {
-        target: function(trigger) {
-          return trigger.nextElementSibling;
-        }
-      });
-      clipboard.on('success', function(e) {
-        let $btn = $(e.trigger);
-        $btn.addClass('copied');
-        let $icon = $($btn.find('i'));
-        $icon.removeClass('fa-copy');
-        $icon.addClass('fa-check-circle');
-        let $span = $($btn.find('span'));
-        $span[0].innerText = 'COPIED';
-        
-        wait(function () { // 等待两秒钟后恢复
-          $icon.removeClass('fa-check-circle');
-          $icon.addClass('fa-copy');
-          $span[0].innerText = 'COPY';
-        }, 2000);
-      });
-      clipboard.on('error', function(e) {
-        e.clearSelection();
-        let $btn = $(e.trigger);
-        $btn.addClass('copy-failed');
-        let $icon = $($btn.find('i'));
-        $icon.removeClass('fa-copy');
-        $icon.addClass('fa-times-circle');
-        let $span = $($btn.find('span'));
-        $span[0].innerText = 'COPY FAILED';
-        
-        wait(function () { // 等待两秒钟后恢复
-          $icon.removeClass('fa-times-circle');
-          $icon.addClass('fa-copy');
-          $span[0].innerText = 'COPY';
-        }, 2000);
-      });
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
     }
-    initCopyCode();
-  }(window, document);
-</script>
 
-
-
-
-<!-- fancybox -->
-
-  <script src="https://gcore.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-<script>
-  let LAZY_LOAD_IMAGE = "";
-  $(".article-entry").find("div.fancybox").find("img").each(function () {
-      var element = document.createElement("a");
-      $(element).attr("data-fancybox", "gallery");
-      $(element).attr("href", $(this).attr("src"));
-      /* 图片采用懒加载处理时,
-       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
-       * 那么此处将原本的属性名src替换为对应属性名data-original,
-       * 修改如下
-       */
-       if (LAZY_LOAD_IMAGE) {
-         $(element).attr("href", $(this).attr("data-original"));
-       }
-      $(this).wrap(element);
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
   });
 </script>
 
 
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
-  <script>setLoadingBarProgress(100);</script>
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
