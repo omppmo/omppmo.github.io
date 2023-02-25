@@ -1,294 +1,429 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+<html>
+<head hexo-theme='https://volantis.js.org/#2.6.5'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
   
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="">
-  <meta name="keywords" content="">
+    
   
-    <meta name="description" content="Abstract大数据提供了创建社会数字神经系统的可能性，实现对社会经济现象相关方面的实时测量、监测和预测。 本文研究了人类移动模式和社会经济发展的相关性。 测量了每个个体的移动量(mobility volume)和移动多样性(mobility diversity)，并在城市水平( municipality level)上聚合这些测量，研究其和外部社会经济指标( external socio-">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Using Big Data to study the link between human mobility and socio-economic development">
-<meta property="og:url" content="https://y4ny4n.cn/2021/07/16/scd/index.html">
-<meta property="og:site_name" content="y4ny4n&#39;s blog">
-<meta property="og:description" content="Abstract大数据提供了创建社会数字神经系统的可能性，实现对社会经济现象相关方面的实时测量、监测和预测。 本文研究了人类移动模式和社会经济发展的相关性。 测量了每个个体的移动量(mobility volume)和移动多样性(mobility diversity)，并在城市水平( municipality level)上聚合这些测量，研究其和外部社会经济指标( external socio-">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/16/scd/image-20210716111016750.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/16/scd/image-20210716160617181.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/16/scd/image-20210716161156009.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/16/scd/image-20210716164152084.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/16/scd/image-20210716165112850.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/16/scd/image-20210716172449311.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/16/scd/image-20210716173356447.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/16/scd/image-20210716184144878.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/16/scd/image-20210716184858005.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/16/scd/image-20210716201820421.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/16/scd/image-20210716201900760.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/07/16/scd/image-20210716214013842.png">
-<meta property="article:published_time" content="2021-07-16T14:28:30.000Z">
-<meta property="article:modified_time" content="2022-01-16T10:16:30.378Z">
-<meta property="article:tag" content="human mobility">
-<meta property="article:tag" content="entropy">
-<meta property="article:tag" content="socio-economic">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://y4ny4n.cn/2021/07/16/scd/image-20210716111016750.png">
+  <!-- 渲染优化 -->
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+    <title>Using Big Data to study the link between human mobility and socio-economic development - y4ny4n&#39;s blog</title>
+  
+    <meta name="keywords" content="human mobility,entropy,socio-economic">
   
   
-  
-  <title>Using Big Data to study the link between human mobility and socio-economic development - y4ny4n&#39;s blog</title>
+    <meta name="description" content="
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+Abstract大数据提供了创建社会数字神经系统的可能性，实现对社会经济现象相关方面的实时测量、监测和预测。
+本文研究了人类移动模式和社会经济发展的相关性。
+测量了每个个体的移动量(mobility volume)和移动多样性(mobility diversity)，并在城市水平( municipality ...">
   
 
+  <!-- feed -->
+  
 
+  <!-- import meta -->
+  
 
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13/css/all.min.css">
+  
+    
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
 
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"y4ny4n.cn","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  
+  
+    
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
 
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+  
+
+  
+
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
 
   
-<meta name="generator" content="Hexo 4.2.0"></head>
-
+  
+</head>
 
 <body>
+<script src="https://cdn.jsdelivr.net/gh/zyoushuo/Blog/hexo/js/mouse_click.js"></script>
+
   
-
-  <header>
-    
-
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+<header class="l_header shadow blur">
+  <div class='container'>
+  <div class='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h'>
+        <li><a class="s-comment fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
         
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                <span>分类</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
+          <li><a class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
         
       </ul>
     </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
           
-            <span id="subtitle" data-typed-text="Using Big Data to study the link between human mobility and socio-economic development"></span>
           
-        </div>
-
-        
           
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2021-07-16 22:28" pubdate>
-          2021年7月16日 晚上
-        </time>
-      </span>
-    
-  </div>
+            omp's blog
+          
+          
+        </a>
+      
 
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          4.5k 字
-        
-      </span>
-    
+			<div class='menu navigation'>
+				<ul class='nav-list-h'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
 
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          38 分钟
-        
-      </span>
-    
-
-    
-    
-  </div>
-
-
-        
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
       </div>
 
-      
-    </div>
+			<ul class='switcher nav-list-h'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
   </div>
-</div>
+</header>
 
-</div>
+<script>setLoadingBarProgress(40);</script>
 
-  </header>
 
-  <main>
+
+  <div class="l_body nocover">
+    <div class='body-wrapper'>
+      
+
+<div class='l_main'>
+  
+
+  
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
     
       
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
       
+      <div class="meta" id="header-meta">
+        
+          
+  <h1 class="title">
+    <a href="/2021/07/16/scd/">
+      Using Big Data to study the link between human mobility and socio-economic development
+    </a>
+  </h1>
 
-    </div>
 
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">Using Big Data to study the link between human mobility and socio-economic development</h1>
+        
+        <div class='new-meta-box'>
+          
             
+          
             
-              <div class="markdown-body">
-                
-                <meta name="referrer" content="no-referrer">
+              
+<div class='new-meta-item author'>
+  <a href="" rel="nofollow">
+    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
+    <p>y4ny4n</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Paper-reading/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>Paper reading</p>
+    </a>
+  </div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年7月16日</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+          
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          <meta name="referrer" content="no-referrer">
 
 <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>大数据提供了创建社会数字神经系统的可能性，实现对社会经济现象相关方面的实时测量、监测和预测。</p>
 <p>本文研究了<strong>人类移动模式和社会经济发展的相关性</strong>。</p>
@@ -313,44 +448,44 @@
 <p>②研究揭示了大数据在提供具有代表性、相对廉价和现成的度量作为社会经济发展的代理的高潜力。可以定义新的统计指标来描述一个地区的幸福指数(这类测量不能使用传统的普查和调查)</p>
 <h3 id="Mobile-Phone-Data"><a href="#Mobile-Phone-Data" class="headerlink" title="Mobile Phone Data"></a>Mobile Phone Data</h3><p>记录了法国45天内2000w匿名用户的2亿次通话数据(CDR)</p>
 <p>该数据格式:</p>
-<p><img src="/2021/07/16/scd/image-20210716111016750.png" srcset="/img/loading.gif" lazyload alt="image-20210716111016750"></p>
+<p><img src="/2021/07/16/scd/image-20210716111016750.png" alt="image-20210716111016750"></p>
 <p>经过筛选后剩余600万活跃用户的移动轨迹</p>
 <h3 id="Socio-Economic-Data"><a href="#Socio-Economic-Data" class="headerlink" title="Socio-Economic Data"></a>Socio-Economic Data</h3><p>本文使用了法国INSEE提供的2007年所有官方居民超过1000人城市的社会经济指标数据集。</p>
 <p>主要分为四个方面:</p>
 <p>①个人平均收入:某一城市的平均收入</p>
 <p>②教育率:城市中只有初等教育的居民占全市人口的比例</p>
 <p>③失业率:失业人口与全市人口的比率</p>
-<p>④匮乏/贫困指数:通过选择反映个体贫困的变量，将其与具体的系数进行线性组合形成单个指标,具体如下:<br><img src="/2021/07/16/scd/image-20210716160617181.png" srcset="/img/loading.gif" lazyload alt="image-20210716160617181"></p>
+<p>④匮乏/贫困指数:通过选择反映个体贫困的变量，将其与具体的系数进行线性组合形成单个指标,具体如下:<br><img src="/2021/07/16/scd/image-20210716160617181.png" alt="image-20210716160617181"></p>
 <p>初步验证表明，该贫困指数与各城市的收入和教育存在高度关联。下图反映了法国城市水平上这四个指标的分布，每个分布都有明显的峰值，突出了典型的社会经济价值(socio-economic values)在整个法国城市的存在。</p>
-<p><img src="/2021/07/16/scd/image-20210716161156009.png" srcset="/img/loading.gif" lazyload alt="image-20210716161156009"></p>
+<p><img src="/2021/07/16/scd/image-20210716161156009.png" alt="image-20210716161156009"></p>
 <h3 id="Measuring-Human-Mobility"><a href="#Measuring-Human-Mobility" class="headerlink" title="Measuring Human Mobility"></a>Measuring Human Mobility</h3><h4 id="the-volume-of-mobility"><a href="#the-volume-of-mobility" class="headerlink" title="the volume of mobility"></a>the volume of mobility</h4><p>回转半径$r_g$度量移动量，表示个体移动的特征距离。</p>
 <p>它描述了个体u从他的质心出发访问的信号塔的空间扩散过程。</p>
 <p>$r_g(u)=\sqrt{\frac{1}{N}\sum_{i\in L}n_i(r_i-r_{cm})^2}$</p>
-<p><img src="/2021/07/16/scd/image-20210716164152084.png" srcset="/img/loading.gif" lazyload alt="image-20210716164152084"></p>
+<p><img src="/2021/07/16/scd/image-20210716164152084.png" alt="image-20210716164152084"></p>
 <p>该图描绘了两名用户的回转半径。其中圆圈的分布代表到访信号塔的空间分布，圆圈的大小与他们的访问频率成正比。</p>
 <p>红色的圆圈代表最常访问的位置$L_1$(在静止状态下,个体u在此位置概率最高,很可能是他的家),十字代表质心，黑色的虚线代表回转半径。</p>
 <p>UserA的回转半径较小，因为他访问的地点彼此接近</p>
 <p>UserB的回转半径较大，因为他访问的地点互相远离</p>
-<p><img src="/2021/07/16/scd/image-20210716165112850.png" srcset="/img/loading.gif" lazyload alt="image-20210716165112850"></p>
+<p><img src="/2021/07/16/scd/image-20210716165112850.png" alt="image-20210716165112850"></p>
 <p>该图反映了回转半径在数据集中的分布，该分布很好地近似于一个重尾(heavy-tail)分布，表明回转半径有很大的可变性。</p>
 <h4 id="the-diversity-of-mobility"><a href="#the-diversity-of-mobility" class="headerlink" title="the diversity of mobility"></a>the diversity of mobility</h4><p>使用Shannon熵来度量个体u的移动多样性</p>
 <p>$S(u)=-\frac{\sum_{e\in E}p(e)\log p(e)}{\log N}$</p>
 <p>其中e=(a,b)代表始出发信号塔和目标信号塔之间的一次移动，E是所有可能的出发地-目的地对的集合,p(e)是信号塔a和b之间发生移动的可能性，N是个体u移动轨迹的总数。</p>
 <p>当个体从不同的起点和目的地进行许多不同的移动时，移动熵是高的;当个体表现出少数反复移动时,移动熵是低的。</p>
 <p>通过回转半径测量，人类移动模式有惊人的异质性。通过移动熵测量，人类移动也同时具有高度的可预测性。</p>
-<p><img src="/2021/07/16/scd/image-20210716172449311.png" srcset="/img/loading.gif" lazyload alt="image-20210716172449311"></p>
+<p><img src="/2021/07/16/scd/image-20210716172449311.png" alt="image-20210716172449311"></p>
 <p>该图展示了数据集中两个个体移动熵的可视化网络。图中的结点代表信号塔，边代表两座信号塔之间发生的移动。结点的大小表明该用户在该信号塔发出呼叫次数，边的大小与该用户在边上行程次数成正比。</p>
 <p>UserX具有较低的移动熵，因为他的行程分布在几个较大的首选边上</p>
 <p>UserY具有较高的移动熵，因为他的行程分布在许多等大小的边上</p>
 <p>移动熵还量化了预测个体未来行踪的可能性。具有非常规律的移动模式的个体拥有接近于零的移动熵，他们的行踪是相当可预测的；相反高移动熵的个体更不可预测。</p>
-<p><img src="/2021/07/16/scd/image-20210716173356447.png" srcset="/img/loading.gif" lazyload alt="image-20210716173356447"></p>
+<p><img src="/2021/07/16/scd/image-20210716173356447.png" alt="image-20210716173356447"></p>
 <p>该图反映了移动熵在数据集上的分布，表示人类移动模式的较高的平均可预测性。(Question1)</p>
 <h3 id="Correlation-Analysis"><a href="#Correlation-Analysis" class="headerlink" title="Correlation Analysis"></a>Correlation Analysis</h3><p>在CDR数据集上计算这两种移动度量后，本文在城市水平对个体数据进行聚合:<br>①将每个用户访问最频繁位置$L_1$分配为他的家</p>
 <p>②基于这些家的位置，将这些用户分配给相应的城市</p>
 <p>通过计算分配到该城市的用户的平均值、均值和标准差来聚合回转半径和移动熵。</p>
 <p>计算得到5100个城市的集合，其中每个城市包括这两个聚合的指标。</p>
 <p>下表反映出聚合的移动度量与社会经济指标的相关性</p>
-<p><img src="/2021/07/16/scd/image-20210716184144878.png" srcset="/img/loading.gif" lazyload alt="image-20210716184144878"></p>
+<p><img src="/2021/07/16/scd/image-20210716184144878.png" alt="image-20210716184144878"></p>
 <p>从该表中，可以得到以下结论:</p>
 <p>①移动多样性比移动量更能预测社会经济发展(无论以怎样的方式聚合，移动多样性有更强的相关性)(Fig5)</p>
 <p>②人均收入、初等教育程度和贫困指数与移动度量的相关性强于失业率</p>
@@ -366,11 +501,11 @@
 <p>空模型的结果与所有社会经济指标没有相关性，证实了这一结论。</p>
 <h3 id="Discussion-Of-The-Results"><a href="#Discussion-Of-The-Results" class="headerlink" title="Discussion Of The Results"></a>Discussion Of The Results</h3><p>该研究中最显著的结果是<strong>观察到人类移动，特别是移动多样性在城市尺度与社会经济指标相关。</strong></p>
 <p>特别的是，<strong>在城市水平，移动熵与人均收入正相关，与贫困指数、初等教育率、失业率呈负相关。</strong></p>
-<p><img src="/2021/07/16/scd/image-20210716184858005.png" srcset="/img/loading.gif" lazyload alt="image-20210716184858005"></p>
+<p><img src="/2021/07/16/scd/image-20210716184858005.png" alt="image-20210716184858005"></p>
 <p>该图反映了人类移动度量与社会经济指标的相关性。通过x轴上测量的十分位数，将城市分为十等份。对于每个分组，在y轴上计算测量值的平均值和标准偏差，并通过黑色的误差条将它们绘制出来。可以观察到，<strong>移动熵与社会经济指标的相关性比旋转半径更强。</strong></p>
 <p>本文指出<strong>人类移动的更多样化与更高的总体财富、更受教育的地区和更低水平的贫困有关。</strong></p>
-<p><img src="/2021/07/16/scd/image-20210716201820421.png" srcset="/img/loading.gif" lazyload alt="image-20210716201820421"></p>
-<p><img src="/2021/07/16/scd/image-20210716201900760.png" srcset="/img/loading.gif" lazyload alt="image-20210716201900760"></p>
+<p><img src="/2021/07/16/scd/image-20210716201820421.png" alt="image-20210716201820421"></p>
+<p><img src="/2021/07/16/scd/image-20210716201900760.png" alt="image-20210716201900760"></p>
 <p>该图反映出移动熵在贫困指数不同十分位数的分布。</p>
 <p>根据贫困指数的十分位数将城市划分为十个等大小的组。对于每个组，分别画出该组移动熵的分布。</p>
 <p>蓝色虚线代表分布的拟合，红色虚线代表分布的平均值。</p>
@@ -382,7 +517,7 @@
 <p>例如:由Fig5可以看出，聚合的移动量越高，社会经济发展水平越低;而聚合的移动多样性越高，社会经济发展水平越高。</p>
 <p>假设人类移动是由日常活动驱动的，一个可能的解释是<strong>生活在发达城市的人们有广泛的活动，导致高度移动多样性;而生活在发展程度较低城市的人(比如在农村中)，被迫地去寻找在他的城市中找不到的活动，造成很大的移动量。</strong></p>
 <p>为了研究这一假设，计算了聚合移动多样性与聚合移动量的相关性。</p>
-<p><img src="/2021/07/16/scd/image-20210716214013842.png" srcset="/img/loading.gif" lazyload alt="image-20210716214013842"></p>
+<p><img src="/2021/07/16/scd/image-20210716214013842.png" alt="image-20210716214013842"></p>
 <p>该图反映了聚合移动多样性和聚合移动量的相关性。根据平均熵的十分位数将城市分为十份等大小的组，对每组计算回转半径的平均值和标准差，并通过黑色的误差条将它们绘制出来。可以观察到，<strong>移动多样性和移动量之间呈负相关。</strong></p>
 <h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>本文作者打算在三个方向上扩展本研究。</p>
 <p>①社会多样性与移动多样性哪个更能代表社会经济发展以及它们在社会经济发展中所起的不同作用。</p>
@@ -398,372 +533,651 @@
 <p>当越不可能的事件发生了，我们获取到的信息量就越大。越可能发生的事件发生了，我们获取到的信息量就越小。信息量和事件发生的概率有关。而熵用来表示所有信息量的期望，n代表n种可能性。</p>
 <h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><p>1.到底可不可预测 Fig3图释表示人类移动模式的高度不可预测性，正文中表示个体的移动模式具有较高的平均可预测性。引用文章Limits of Predictability in Human Mobility中abstract提到:通过测量每个个体的移动熵，我们发现整个用户群的用户移动有93%的潜在可预测性。回头去深挖一下这篇文章，我觉得从我目前读过的角度来看，应该是高度的可预测性，但从移动熵的分布来看，高移动熵的人分布居多，明显更不可预测。</p>
 
+          
+            <div class='article_footer'>
+              
                 
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
   
     
-      <span class="category-chain">
+    
+
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
+  <div class='content'>
+    
+      <blockquote>
         
-  <a href="/categories/Paper-reading/" class="category-chain-item">Paper reading</a>
-  
-  
+          
+            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
 
-      </span>
+          
+        
+          
+            <p>本文永久链接是：<a href=https://y4ny4n.cn/2021/07/16/scd/>https://y4ny4n.cn/2021/07/16/scd/</a></p>
+          
+        
+      </blockquote>
     
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/human-mobility/">#human mobility</a>
-      
-        <a href="/tags/entropy/">#entropy</a>
-      
-        <a href="/tags/socio-economic/">#socio-economic</a>
-      
-    </div>
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>Using Big Data to study the link between human mobility and socio-economic development</div>
-      <div>https://y4ny4n.cn/2021/07/16/scd/</div>
-    </div>
-    <div class="license-meta">
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2021年7月16日</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
-            
-              
-              
-                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
   </div>
+</section>
+
+  
+
+  
+    
+    
+
+<section class="widget qrcode  desktop mobile">
+  
+
+  <div class='content article-entry'>
+    
+      
+        <div class='fancybox'><img src='https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+      
+        <div class='fancybox'><img src='https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+  </div>
+</section>
+
+  
 
 
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2021/08/19/819/" title="Limits of Predictability in Human Mobility">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Limits of Predictability in Human Mobility</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2021/07/01/rae/" title="Returners and explorers dichotomy in human mobility">
-                        <span class="hidden-mobile">Returners and explorers dichotomy in human mobility</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
-
-            
-          </article>
+          
         </div>
-      </div>
-    </div>
+        
+          
 
-    <div class="side-col d-none d-lg-block col-lg-2">
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>目录</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-01-16T18:16:30+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2022年1月16日</p>
+  </a>
 </div>
 
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/human-mobility/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>human mobility</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/entropy/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>entropy</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/socio-economic/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>socio-economic</p></a></div>
 
 
-  </aside>
+        
+      
+        
+          
 
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://y4ny4n.cn/2021/07/16/scd/&title=Using Big Data to study the link between human mobility and socio-economic development - y4ny4n's blog&summary=
 
-    </div>
+Abstract大数据提供了创建社会数字神经系统的可能性，实现对社会经济现象相关方面的实时测量、监测和预测。
+本文研究了人类移动模式和社会经济发展的相关性。
+测量了每个个体的移动量(mobility volume)和移动多样性(mobility diversity)，并在城市水平( municipality level)上聚合这些测量，研究其和外部社会经济指标( external socio-economic indicator)的相关性。
+该研究发现三个结果:
+①聚合的人类移动模式与社会经济指标相关
+②移动多样性(用个体用户轨迹的熵来定义)与外部社会经济指标的相关性最强
+③移动量和移动多样性与社会经济指标有相反的相关性"
+          
+          >
+          
+            <img src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://y4ny4n.cn/2021/07/16/scd/&title=Using Big Data to study the link between human mobility and socio-economic development - y4ny4n's blog&summary=
+
+Abstract大数据提供了创建社会数字神经系统的可能性，实现对社会经济现象相关方面的实时测量、监测和预测。
+本文研究了人类移动模式和社会经济发展的相关性。
+测量了每个个体的移动量(mobility volume)和移动多样性(mobility diversity)，并在城市水平( municipality level)上聚合这些测量，研究其和外部社会经济指标( external socio-economic indicator)的相关性。
+该研究发现三个结果:
+①聚合的人类移动模式与社会经济指标相关
+②移动多样性(用个体用户轨迹的熵来定义)与外部社会经济指标的相关性最强
+③移动量和移动多样性与社会经济指标有相反的相关性"
+          
+          >
+          
+            <img src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=https://y4ny4n.cn/2021/07/16/scd/&title=Using Big Data to study the link between human mobility and socio-economic development - y4ny4n's blog&summary=
+
+Abstract大数据提供了创建社会数字神经系统的可能性，实现对社会经济现象相关方面的实时测量、监测和预测。
+本文研究了人类移动模式和社会经济发展的相关性。
+测量了每个个体的移动量(mobility volume)和移动多样性(mobility diversity)，并在城市水平( municipality level)上聚合这些测量，研究其和外部社会经济指标( external socio-economic indicator)的相关性。
+该研究发现三个结果:
+①聚合的人类移动模式与社会经济指标相关
+②移动多样性(用个体用户轨迹的熵来定义)与外部社会经济指标的相关性最强
+③移动量和移动多样性与社会经济指标有相反的相关性"
+          
+          >
+          
+            <img src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
+          
+        </a>
+      
+    
   </div>
 </div>
 
 
 
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+              <a class='prev' href='/2021/08/19/819/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Limits of Predictability in Human Mobility</p>
+                <p class='content'>
+
+Abstract提出一个问题:人类行为在多大程度上是可预测的?
+通过测量每个个体的轨迹熵，作者发现用户的移动有93%的潜在可预测性
+尽管个体在移动模式上有显著差异，但作者发现可预测性显著缺乏...</p>
+              </a>
+            
+            
+              <a class='next' href='/2021/07/01/rae/'>
+                <p class='title'>Returners and explorers dichotomy in human mobility<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>
+
+个体移动距离的相当大的变化性和他们未来位置的高度可预测性共存。
+通过GPS和移动电话的数据，可以将个体分为两类:explorers&amp;returners。
+returners和expl...</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
+      
+      
+      
+      
+      
+      
+        <section id="comments">
+          <div id="valine_container" class="valine_thread">
+            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
 
 
   
 
 
 
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+  <script async src="https://gcore.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    processEscapes: true,
+    tags: "ams",
+    macros: {
+      href: "{}"
+    }
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|dno",
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  }
+};
+</script>
+
+
+
+
+  <script>
+    window.subData = {
+      title: 'Using Big Data to study the link between human mobility and socio-economic development',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
   
 
-
-
   
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
+    
     
 
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
 
+  <section class="widget toc-wrapper shadow desktop mobile">
     
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Abstract"><span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Paper-Reading"><span class="toc-text">Paper Reading</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mobile-Phone-Data"><span class="toc-text">Mobile Phone Data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Socio-Economic-Data"><span class="toc-text">Socio-Economic Data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Measuring-Human-Mobility"><span class="toc-text">Measuring Human Mobility</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#the-volume-of-mobility"><span class="toc-text">the volume of mobility</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#the-diversity-of-mobility"><span class="toc-text">the diversity of mobility</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Correlation-Analysis"><span class="toc-text">Correlation Analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Discussion-Of-The-Results"><span class="toc-text">Discussion Of The Results</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Conclusion"><span class="toc-text">Conclusion</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补充"><span class="toc-text">补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#重尾分布"><span class="toc-text">重尾分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#香农熵"><span class="toc-text">香农熵</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Question"><span class="toc-text">Question</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+  
+  <footer class="clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+
         </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
+      
     
-
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+              <a href="/atom.xml"
+                class="social fas fa-rss flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="mailto:me@xaoxuu.com"
+                class="social fas fa-envelope flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://github.com/xaoxuu"
+                class="social fab fa-github flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://music.163.com/#/user/home?id=63035382"
+                class="social fas fa-headphones-alt flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+        </div>
+      
     
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
+      
+        <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
 </div>
+      
+    
+      
+        本站使用
+        <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
+        作为主题
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="https://xaoxuu.com" target="_blank" rel="noopener">Copyright © 2017-2020 Mr. X</a></p>
 
+        </div>
+      
+    
   </footer>
 
-  <!-- Scripts -->
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
   
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4/dist/jquery.min.js"></script>
+
 
   <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
+    
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/" || "/";
+    if (!ROOT.endsWith('/')) ROOT += '/';
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+  <script async src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/instant_page.js" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
 
 
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
+  <script src="https://gcore.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      ScrollReveal().reveal('.l_main .reveal', {
+        distance: '8px',
+        duration: '800',
+        interval: '100',
+        scale: '1'
+      });
+    });
+  </script>
+
+
+  
+<script src="https://gcore.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
   </script>
 
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+  
+  
+    
+<script src="https://gcore.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+      $(function(){
+        var imgs=["https://gitee.com/wallpapers/minimalist/raw/master/2020/001.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/002.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/003.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/004.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/005.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/006.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/007.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/008.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/009.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/010.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/011.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/012.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/013.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/014.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/015.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/016.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/017.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/018.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/019.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/020.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/021.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/022.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/023.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/024.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/025.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/026.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/027.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/028.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/029.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/030.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/031.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/032.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/033.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/034.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/035.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/036.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/037.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/038.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/039.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/040.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/041.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/042.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/043.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/044.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/045.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/046.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/047.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/048.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/049.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/050.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/051.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/052.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/053.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/054.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/055.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/056.jpg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+        if ('') {
+          $('').backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        } else {
+          $.backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        }
+      });
+    </script>
   
 
 
 
 
+
+
+
+
+
+
+
   
+    
+<script src="https://gcore.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js"></script>
+
+  
+  <script>
+  var GUEST_INFO = ['nick','mail','link'];
+  var meta = 'nick,mail,link'.split(',').filter(function(item){
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick','mail','link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function(item){
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+  var valine = new Valine();
+  function emoji(path, idx, ext) {
+      return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  valine.init({
+    el: '#valine_container',
+    meta: meta,
+    
+    appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
+    appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
+    placeholder: "快来评论吧~",
+    pageSize:'10',
+    avatar:'robohash',
+    lang:'zh-cn',
+    visitor: 'true',
+    highlight: 'true',
+    mathJax: 'true',
+    enableQQ: 'true',
+    requiredFields: requiredFields,
+    emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
+    emojiMaps: emojiMaps
+  })
+  </script>
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+  
+<script src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-volantis@2.6.5/js/search.js"></script>
+
+
+
+  
+<script src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/comment_typing.js"></script>
+
+
+
+
+
+
+<!-- 复制 -->
+
+  <script src="https://gcore.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('fa-copy');
+        $icon.addClass('fa-check-circle');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('fa-check-circle');
+          $icon.addClass('fa-copy');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('fa-copy');
+        $icon.addClass('fa-times-circle');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('fa-times-circle');
+          $icon.addClass('fa-copy');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
     }
+    initCopyCode();
+  }(window, document);
+</script>
 
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
+
+
+
+<!-- fancybox -->
+
+  <script src="https://gcore.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("div.fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
   });
 </script>
 
 
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
 
 
 
 
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
+  <script>setLoadingBarProgress(100);</script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {

@@ -1,301 +1,435 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+<html>
+<head hexo-theme='https://volantis.js.org/#2.6.5'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
   
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="">
-  <meta name="keywords" content="">
+    
   
-    <meta name="description" content="SSIM( Structural SIMilarity)即图像质量评估的多尺度结构相似方法 结构相似性，一种全参考的图像质量评价指标，它分别从亮度、对比度、结构三方面度量两幅图像相似性。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="SSIM(Structural SIMilarity)">
-<meta property="og:url" content="https://y4ny4n.cn/2021/04/19/SSIM/index.html">
-<meta property="og:site_name" content="y4ny4n&#39;s blog">
-<meta property="og:description" content="SSIM( Structural SIMilarity)即图像质量评估的多尺度结构相似方法 结构相似性，一种全参考的图像质量评价指标，它分别从亮度、对比度、结构三方面度量两幅图像相似性。">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://y4ny4n.cn/2021/04/19/SSIM/einstein.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/04/19/SSIM/max_ssim.gif">
-<meta property="og:image" content="https://y4ny4n.cn/2021/04/19/SSIM/image-20210414212351813.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/04/19/SSIM/image-20210417164559480.png">
-<meta property="og:image" content="https://pic4.zhimg.com/80/v2-08872799ca644db63ea540816591a4eb_1440w.jpg">
-<meta property="og:image" content="https://img-blog.csdn.net/20150624000406734">
-<meta property="og:image" content="https://img-blog.csdn.net/20160928082700352">
-<meta property="og:image" content="https://img-blog.csdn.net/20160928083711092">
-<meta property="og:image" content="https://img-blog.csdn.net/20160928092115332">
-<meta property="og:image" content="https://y4ny4n.cn/2021/04/19/SSIM/image-20210418204609055.png">
-<meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/201211/bg2012110708.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/04/19/SSIM/image-20210418211118130.png">
-<meta property="og:image" content="https://y4ny4n.cn/2021/04/19/SSIM/image-20210418211212490.png">
-<meta property="og:image" content="https://img-blog.csdn.net/20171101104851410?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2VpeGluXzM5MTI0Nzc4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="https://img-blog.csdn.net/20171101105023638?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2VpeGluXzM5MTI0Nzc4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="https://pic2.zhimg.com/80/v2-9ea517ef15c1a0f17417a614627de039_720w.jpg?source=1940ef5c">
-<meta property="article:published_time" content="2021-04-19T12:39:32.000Z">
-<meta property="article:modified_time" content="2021-07-01T05:56:54.972Z">
-<meta property="article:tag" content="DL">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://y4ny4n.cn/2021/04/19/SSIM/einstein.png">
+  <!-- 渲染优化 -->
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+    <title>SSIM(Structural SIMilarity) - y4ny4n&#39;s blog</title>
+  
+    <meta name="keywords" content="DL">
   
   
-  
-  <title>SSIM(Structural SIMilarity) - y4ny4n&#39;s blog</title>
+    <meta name="description" content="
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+SSIM( Structural SIMilarity)即图像质量评估的多尺度结构相似方法
+结构相似性，一种全参考的图像质量评价指标，它分别从亮度、对比度、结构三方面度量两幅图像相似性。
 
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+">
   
 
+  <!-- feed -->
+  
 
+  <!-- import meta -->
+  
 
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13/css/all.min.css">
+  
+    
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
 
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"y4ny4n.cn","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  
+  
+    
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
 
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+  
+
+  
+
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
 
   
-<meta name="generator" content="Hexo 4.2.0"></head>
-
+  
+</head>
 
 <body>
+<script src="https://cdn.jsdelivr.net/gh/zyoushuo/Blog/hexo/js/mouse_click.js"></script>
+
   
-
-  <header>
-    
-
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+<header class="l_header shadow blur">
+  <div class='container'>
+  <div class='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h'>
+        <li><a class="s-comment fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
         
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                <span>分类</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
+          <li><a class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
         
       </ul>
     </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
           
-            <span id="subtitle" data-typed-text="SSIM(Structural SIMilarity)"></span>
           
-        </div>
-
-        
           
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2021-04-19 20:39" pubdate>
-          2021年4月19日 晚上
-        </time>
-      </span>
-    
-  </div>
+            omp's blog
+          
+          
+        </a>
+      
 
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          7.8k 字
-        
-      </span>
-    
+			<div class='menu navigation'>
+				<ul class='nav-list-h'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
 
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          66 分钟
-        
-      </span>
-    
-
-    
-    
-  </div>
-
-
-        
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
       </div>
 
-      
-    </div>
+			<ul class='switcher nav-list-h'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
   </div>
-</div>
+</header>
 
-</div>
+<script>setLoadingBarProgress(40);</script>
 
-  </header>
 
-  <main>
+
+  <div class="l_body nocover">
+    <div class='body-wrapper'>
+      
+
+<div class='l_main'>
+  
+
+  
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
     
       
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
       
+      <div class="meta" id="header-meta">
+        
+          
+  <h1 class="title">
+    <a href="/2021/04/19/SSIM/">
+      SSIM(Structural SIMilarity)
+    </a>
+  </h1>
 
-    </div>
 
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">SSIM(Structural SIMilarity)</h1>
+        
+        <div class='new-meta-box'>
+          
             
+          
             
-              <div class="markdown-body">
-                
-                <meta name="referrer" content="no-referrer">
+              
+<div class='new-meta-item author'>
+  <a href="" rel="nofollow">
+    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
+    <p>y4ny4n</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Paper-reading/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>Paper reading</p>
+    </a>
+  </div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年4月19日</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+          
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          <meta name="referrer" content="no-referrer">
 
 <p>SSIM( Structural SIMilarity)即图像质量评估的多尺度结构相似方法</p>
 <p>结构相似性，一种全参考的图像质量评价指标，它分别从亮度、对比度、结构三方面<strong>度量两幅图像相似性</strong>。</p>
-<p><img src="/2021/04/19/SSIM/einstein.png" srcset="/img/loading.gif" lazyload alt="einstein"></p>
-<p><img src="/2021/04/19/SSIM/max_ssim.gif" srcset="/img/loading.gif" lazyload alt="max_ssim"></p>
+<p><img src="/2021/04/19/SSIM/einstein.png" alt="einstein"></p>
+<p><img src="/2021/04/19/SSIM/max_ssim.gif" alt="max_ssim"></p>
 <a id="more"></a>
 <p>图源:<a href="https://github.com/Po-Hsun-Su/pytorch-ssim" target="_blank" rel="noopener">https://github.com/Po-Hsun-Su/pytorch-ssim</a></p>
 <p>paper:<a href="https://www.researchgate.net/publication/4071876_Multiscale_structural_similarity_for_image_quality_assessment" target="_blank" rel="noopener">https://www.researchgate.net/publication/4071876_Multiscale_structural_similarity_for_image_quality_assessment</a></p>
@@ -329,7 +463,7 @@
 <p>最后，利用质量图的均值SSIM对图像的整体质量进行评价。</p>
 <h2 id="MULTI-SCALE-STRUCTURAL-SIMILARITY"><a href="#MULTI-SCALE-STRUCTURAL-SIMILARITY" class="headerlink" title="MULTI-SCALE STRUCTURAL SIMILARITY"></a>MULTI-SCALE STRUCTURAL SIMILARITY</h2><p>多尺度结构相似</p>
 <h3 id="Multi-scale-SSIM-index"><a href="#Multi-scale-SSIM-index" class="headerlink" title="Multi-scale SSIM index"></a>Multi-scale SSIM index</h3><p>图像细节的可感知性取决于图像信号的采样密度，图像平面到观测者的距离以及观测者视觉系统的感知能力。当这些因素不同时，对给定图像的主观评估也会不同。上一部分描述的单一尺度方法可能只适用于特定设置。多尺度方法是一种便利的方法来整合不同分辨率的图像细节。</p>
-<p><img src="/2021/04/19/SSIM/image-20210414212351813.png" srcset="/img/loading.gif" lazyload alt="image-20210414212351813"></p>
+<p><img src="/2021/04/19/SSIM/image-20210414212351813.png" alt="image-20210414212351813"></p>
 <p>以参考图像和失真图像信号作为输入，迭代地应用低通滤波器并对滤波后的图像进行2倍的下采样。规定原始图像为Scale 1,最后输出的图像为Scale M,进行了M-1次迭代。在第j个尺度，对比度和结构对比计算为$c_j(x,y)$和$s_j(x,y)$。亮度对比$l_M(x,y)$只在Scale M计算。</p>
 <p>SSIM是将不同尺度的测量结果结合起来得到的</p>
 <p>$SSIM(x,y)=[l_M(x,y)]^{\alpha_M}\prod_{j=1}^M[c_j(x,y)]^{\beta_j}[s_j(x,y)]^{\gamma_j}$</p>
@@ -345,7 +479,7 @@
 <p>数理统计中均方误差是指参数估计值与参数真值之差平方的期望值，记为MSE。MSE是衡量“平均误差”的一种较方便的方法，MSE可以评价数据的变化程度，MSE的值越小，说明预测模型描述实验数据具有更好的精确度。 </p>
 </blockquote>
 <p>论文中给出对于一张给定8位/像素灰度测试图像，进行合成的失真图像表。</p>
-<p><img src="/2021/04/19/SSIM/image-20210417164559480.png" srcset="/img/loading.gif" lazyload alt="image-20210417164559480"></p>
+<p><img src="/2021/04/19/SSIM/image-20210417164559480.png" alt="image-20210417164559480"></p>
 <p>每张失真图像通过迭代过程生成，初始图像随机添加了高斯白噪音，迭代的过程使用了约束梯度下降方法(constrained gradient descent)在SSIM测量下寻找最坏图像，同时约束MSE是固定的，并限制失真仅在指定的尺度内发生。</p>
 <p>实验中使用了5个尺度和12个失真等级，即使每行图片具有相同的MSE，它们的视觉质量也是很明显不同的，所以失真在不同尺度有很大差异。</p>
 <p>实验使用了10张不同类型内容的图像(人脸，自然景观，植物，人造物品..)并创建10组失真图像。收集了八名受试者的数据，每名受试者一次看到一组测试图像，视野距离限制在每度视角32像素。受试者需要比较不同尺度的图片质量，并从每个尺度中选择认为具有相同质量的图像。例如，一个受试者选择了上图中圈出的认为具有相同质量的图像，记录在每个尺度被选择图片的位置并对所有测试图像和受试者进行平均计算。总的来说，受试者互相同意相比于自己选择的图像更多。</p>
@@ -359,22 +493,22 @@
 <p>又面向百度补充了一些数学芝士以及相关代码</p>
 <h3 id="为什么使用均值-标准差-协方差"><a href="#为什么使用均值-标准差-协方差" class="headerlink" title="为什么使用均值/标准差/协方差"></a>为什么使用均值/标准差/协方差</h3><p><a href="https://zhuanlan.zhihu.com/p/93649342" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/93649342</a></p>
 <p><strong>用均值作为亮度的估计，标准差作为对比度的估计，协方差作为结构相似程度的度量。</strong> </p>
-<p><img src="https://pic4.zhimg.com/80/v2-08872799ca644db63ea540816591a4eb_1440w.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://pic4.zhimg.com/80/v2-08872799ca644db63ea540816591a4eb_1440w.jpg" alt="img"></p>
 <p><a href="https://blog.csdn.net/qq_36387683/article/details/108048693" target="_blank" rel="noopener">https://blog.csdn.net/qq_36387683/article/details/108048693</a></p>
 <p>把与物体结构相关的亮度和对比度作为图像中结构信息的定义。因为一个场景中的亮度和对比度总是在变化的，所以我们可以通过分别对局部的处理来得到更精确的结果。</p>
-<p><img src="https://img-blog.csdn.net/20150624000406734" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://img-blog.csdn.net/20150624000406734" alt="img"></p>
 <h3 id="高斯函数"><a href="#高斯函数" class="headerlink" title="高斯函数"></a>高斯函数</h3><p><a href="https://blog.csdn.net/qinglongzhan/article/details/82348153" target="_blank" rel="noopener">https://blog.csdn.net/qinglongzhan/article/details/82348153</a></p>
 <p><strong>一维</strong></p>
-<p><img src="https://img-blog.csdn.net/20160928082700352" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://img-blog.csdn.net/20160928082700352" alt="img"></p>
 <p>高斯函数广泛应用于统计学领域，用于表述正态分布，在信号处理领域，用于定义高斯滤波器，在图像处理领域，二维高斯核函数常用于高斯模糊Gaussian Blur。</p>
-<p><img src="https://img-blog.csdn.net/20160928083711092" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://img-blog.csdn.net/20160928083711092" alt="img"></p>
 <p>高斯的一维图是特征对称“bell curve”形状，a是曲线尖峰的高度，b是尖峰中心的坐标，c称为标准方差，表征的是bell钟状的宽度。</p>
 <p><strong>二维</strong></p>
-<p><img src="https://img-blog.csdn.net/20160928092115332" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://img-blog.csdn.net/20160928092115332" alt="img"></p>
 <p>A是幅值，x~0~ y~0~是中心点坐标，σ<em>x</em> σ<em>y</em>是方差</p>
 <p>以(0,0)为中心点</p>
-<p><img src="/2021/04/19/SSIM/image-20210418204609055.png" srcset="/img/loading.gif" lazyload alt="image-20210418204609055"></p>
-<p><img src="http://www.ruanyifeng.com/blogimg/asset/201211/bg2012110708.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/2021/04/19/SSIM/image-20210418204609055.png" alt="image-20210418204609055"></p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/201211/bg2012110708.png" alt="img"></p>
 <h3 id="高斯模糊"><a href="#高斯模糊" class="headerlink" title="高斯模糊"></a>高斯模糊</h3><p><a href="http://www.ruanyifeng.com/blog/2012/11/gaussian_blur.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2012/11/gaussian_blur.html</a></p>
 <p>高斯模糊将正态分布(高斯分布)用于图像处理，它是一种<a href="http://en.wikipedia.org/wiki/Smoothing" target="_blank" rel="noopener">数据平滑技术</a>（data smoothing）</p>
 <p><strong>原理</strong></p>
@@ -396,16 +530,16 @@
 <h3 id="高斯核与卷积"><a href="#高斯核与卷积" class="headerlink" title="高斯核与卷积"></a>高斯核与卷积</h3><p><a href="https://blog.csdn.net/weixin_39124778/article/details/78411314" target="_blank" rel="noopener">https://blog.csdn.net/weixin_39124778/article/details/78411314</a></p>
 <p>卷积可以帮助实现平滑算法。</p>
 <p> 有噪点的原图，可以把它转为一个矩阵：</p>
-<p><img src="/2021/04/19/SSIM/image-20210418211118130.png" srcset="/img/loading.gif" lazyload alt="image-20210418211118130"></p>
-<p><img src="/2021/04/19/SSIM/image-20210418211212490.png" srcset="/img/loading.gif" lazyload alt="image-20210418211212490"></p>
+<p><img src="/2021/04/19/SSIM/image-20210418211118130.png" alt="image-20210418211118130"></p>
+<p><img src="/2021/04/19/SSIM/image-20210418211212490.png" alt="image-20210418211212490"></p>
 <p>在图像平滑处理时，函数g通常取高斯核函数(高斯核函数的由来可以参考上面高斯模糊链接中的过程)。</p>
 <p><strong>高斯核函数关于中心对称，所以直接对应相乘与旋转180°相乘效果一样</strong></p>
-<p><img src="https://img-blog.csdn.net/20171101104851410?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2VpeGluXzM5MTI0Nzc4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://img-blog.csdn.net/20171101104851410?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2VpeGluXzM5MTI0Nzc4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
 <p>这样相当于实现了g矩阵在原来图像上的划动</p>
-<p><img src="https://img-blog.csdn.net/20171101105023638?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2VpeGluXzM5MTI0Nzc4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://img-blog.csdn.net/20171101105023638?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2VpeGluXzM5MTI0Nzc4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
 <h3 id="生成高斯核"><a href="#生成高斯核" class="headerlink" title="生成高斯核"></a>生成高斯核</h3><p><a href="https://blog.csdn.net/qq_16013649/article/details/78784791" target="_blank" rel="noopener">https://blog.csdn.net/qq_16013649/article/details/78784791</a></p>
 <h4 id="通过一维生成二维"><a href="#通过一维生成二维" class="headerlink" title="通过一维生成二维"></a>通过一维生成二维</h4><p>由于高斯滤波器是可分的(G(x,y)=G(x)*G(y))，所以可以用一维高斯核得到二维高斯核</p>
-<p><img src="https://pic2.zhimg.com/80/v2-9ea517ef15c1a0f17417a614627de039_720w.jpg?source=1940ef5c" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://pic2.zhimg.com/80/v2-9ea517ef15c1a0f17417a614627de039_720w.jpg?source=1940ef5c" alt="img"></p>
 <p>先获取两个一维高斯核，而后对后一个高斯核进行转置，而后第一个高斯核和第二个高斯核通过矩阵相乘就可以得到一个二维高斯核了。</p>
 <h4 id="直接生成二维"><a href="#直接生成二维" class="headerlink" title="直接生成二维"></a>直接生成二维</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(gaussian_kernel_width):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(gaussian_kernel_width):</span><br><span class="line">        gaussian_kernel[i,j]=\</span><br><span class="line">        (<span class="number">1</span>/(<span class="number">2</span>*pi*(gaussian_kernel_sigma**<span class="number">2</span>)))*\</span><br><span class="line">        exp(-(((i<span class="number">-5</span>)**<span class="number">2</span>)+((j<span class="number">-5</span>)**<span class="number">2</span>))/(<span class="number">2</span>*(gaussian_kernel_sigma**<span class="number">2</span>)))</span><br></pre></td></tr></table></figure>
 <h3 id="计算细节"><a href="#计算细节" class="headerlink" title="计算细节"></a>计算细节</h3><p><a href="https://blog.csdn.net/qq_36387683/article/details/108048693" target="_blank" rel="noopener">https://blog.csdn.net/qq_36387683/article/details/108048693</a></p>
@@ -425,368 +559,642 @@
 <p><a href="https://blog.csdn.net/demo_jie/article/details/107197809" target="_blank" rel="noopener">https://blog.csdn.net/demo_jie/article/details/107197809</a></p>
 <p>代码注释和论文解读可能有错，凑合着看TnT</p>
 
+          
+            <div class='article_footer'>
+              
                 
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
   
     
-      <span class="category-chain">
+    
+
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
+  <div class='content'>
+    
+      <blockquote>
         
-  <a href="/categories/Paper-reading/" class="category-chain-item">Paper reading</a>
-  
-  
+          
+            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
 
-      </span>
+          
+        
+          
+            <p>本文永久链接是：<a href=https://y4ny4n.cn/2021/04/19/SSIM/>https://y4ny4n.cn/2021/04/19/SSIM/</a></p>
+          
+        
+      </blockquote>
     
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/DL/">#DL</a>
-      
-    </div>
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>SSIM(Structural SIMilarity)</div>
-      <div>https://y4ny4n.cn/2021/04/19/SSIM/</div>
-    </div>
-    <div class="license-meta">
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2021年4月19日</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
-            
-              
-              
-                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
   </div>
+</section>
+
+  
+
+  
+    
+    
+
+<section class="widget qrcode  desktop mobile">
+  
+
+  <div class='content article-entry'>
+    
+      
+        <div class='fancybox'><img src='https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+      
+        <div class='fancybox'><img src='https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+  </div>
+</section>
+
+  
 
 
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2021/06/06/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2/" title="网络攻防">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">网络攻防</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2021/01/19/BASNet/" title="BASNet">
-                        <span class="hidden-mobile">BASNet</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
-
-            
-          </article>
+          
         </div>
-      </div>
-    </div>
+        
+          
 
-    <div class="side-col d-none d-lg-block col-lg-2">
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>目录</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-07-01T13:56:54+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2021年7月1日</p>
+  </a>
 </div>
 
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/DL/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>DL</p></a></div>
 
 
-  </aside>
+        
+      
+        
+          
 
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://y4ny4n.cn/2021/04/19/SSIM/&title=SSIM(Structural SIMilarity) - y4ny4n's blog&summary=
 
-    </div>
+SSIM( Structural SIMilarity)即图像质量评估的多尺度结构相似方法
+结构相似性，一种全参考的图像质量评价指标，它分别从亮度、对比度、结构三方面度量两幅图像相似性。
+
+"
+          
+          >
+          
+            <img src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://y4ny4n.cn/2021/04/19/SSIM/&title=SSIM(Structural SIMilarity) - y4ny4n's blog&summary=
+
+SSIM( Structural SIMilarity)即图像质量评估的多尺度结构相似方法
+结构相似性，一种全参考的图像质量评价指标，它分别从亮度、对比度、结构三方面度量两幅图像相似性。
+
+"
+          
+          >
+          
+            <img src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=https://y4ny4n.cn/2021/04/19/SSIM/&title=SSIM(Structural SIMilarity) - y4ny4n's blog&summary=
+
+SSIM( Structural SIMilarity)即图像质量评估的多尺度结构相似方法
+结构相似性，一种全参考的图像质量评价指标，它分别从亮度、对比度、结构三方面度量两幅图像相似性。
+
+"
+          
+          >
+          
+            <img src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
+          
+        </a>
+      
+    
   </div>
 </div>
 
 
 
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+              <a class='prev' href='/2021/06/06/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>网络攻防</p>
+                <p class='content'>前几次上课的笔记，方便期末考试查阅。
+渗透测试流程、信息收集、WEB挖掘分析、网络隐身、网络扫描、Burp使用…
+
+class1
+vWeb安全资料§https://pan.baidu.com/s...</p>
+              </a>
+            
+            
+              <a class='next' href='/2021/01/19/BASNet/'>
+                <p class='title'>BASNet<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>
+
+Boundary-Aware Salient Object Detection 即边界感知显著目标检测
+
+根据放假以来的学习，简单画了下理解网络所需要理解掌握的知识。自己还没有摸太清，只是目...</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
+      
+      
+      
+      
+      
+      
+        <section id="comments">
+          <div id="valine_container" class="valine_thread">
+            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
 
 
   
 
 
 
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+  <script async src="https://gcore.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    processEscapes: true,
+    tags: "ams",
+    macros: {
+      href: "{}"
+    }
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|dno",
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  }
+};
+</script>
+
+
+
+
+  <script>
+    window.subData = {
+      title: 'SSIM(Structural SIMilarity)',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
   
 
-
-
   
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
+    
     
 
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
 
+  <section class="widget toc-wrapper shadow desktop mobile">
     
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Abstract"><span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SINGLE-SCALE-STRUCTURAL-SIMILARITY"><span class="toc-text">SINGLE-SCALE STRUCTURAL SIMILARITY</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MULTI-SCALE-STRUCTURAL-SIMILARITY"><span class="toc-text">MULTI-SCALE STRUCTURAL SIMILARITY</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Multi-scale-SSIM-index"><span class="toc-text">Multi-scale SSIM index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cross-scale-calibration"><span class="toc-text">Cross-scale calibration</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补充"><span class="toc-text">补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么使用均值-标准差-协方差"><span class="toc-text">为什么使用均值&#x2F;标准差&#x2F;协方差</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高斯函数"><span class="toc-text">高斯函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高斯模糊"><span class="toc-text">高斯模糊</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高斯核与卷积"><span class="toc-text">高斯核与卷积</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生成高斯核"><span class="toc-text">生成高斯核</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#通过一维生成二维"><span class="toc-text">通过一维生成二维</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#直接生成二维"><span class="toc-text">直接生成二维</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计算细节"><span class="toc-text">计算细节</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#边界点的处理"><span class="toc-text">边界点的处理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#低通滤波"><span class="toc-text">低通滤波</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#生成一维高斯核"><span class="toc-text">生成一维高斯核</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生成二维高斯核"><span class="toc-text">生成二维高斯核</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计算SSIM"><span class="toc-text">计算SSIM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义类"><span class="toc-text">定义类</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+  
+  <footer class="clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+
         </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
+      
     
-
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+              <a href="/atom.xml"
+                class="social fas fa-rss flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="mailto:me@xaoxuu.com"
+                class="social fas fa-envelope flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://github.com/xaoxuu"
+                class="social fab fa-github flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://music.163.com/#/user/home?id=63035382"
+                class="social fas fa-headphones-alt flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+        </div>
+      
     
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
+      
+        <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
 </div>
+      
+    
+      
+        本站使用
+        <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
+        作为主题
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="https://xaoxuu.com" target="_blank" rel="noopener">Copyright © 2017-2020 Mr. X</a></p>
 
+        </div>
+      
+    
   </footer>
 
-  <!-- Scripts -->
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
   
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4/dist/jquery.min.js"></script>
+
 
   <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
+    
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/" || "/";
+    if (!ROOT.endsWith('/')) ROOT += '/';
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+  <script async src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/instant_page.js" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
 
 
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
+  <script src="https://gcore.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      ScrollReveal().reveal('.l_main .reveal', {
+        distance: '8px',
+        duration: '800',
+        interval: '100',
+        scale: '1'
+      });
+    });
+  </script>
+
+
+  
+<script src="https://gcore.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
   </script>
 
 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+  
+  
+    
+<script src="https://gcore.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+      $(function(){
+        var imgs=["https://gitee.com/wallpapers/minimalist/raw/master/2020/001.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/002.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/003.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/004.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/005.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/006.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/007.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/008.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/009.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/010.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/011.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/012.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/013.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/014.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/015.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/016.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/017.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/018.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/019.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/020.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/021.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/022.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/023.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/024.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/025.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/026.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/027.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/028.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/029.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/030.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/031.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/032.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/033.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/034.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/035.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/036.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/037.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/038.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/039.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/040.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/041.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/042.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/043.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/044.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/045.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/046.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/047.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/048.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/049.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/050.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/051.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/052.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/053.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/054.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/055.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/056.jpg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+        if ('') {
+          $('').backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        } else {
+          $.backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        }
+      });
+    </script>
   
 
 
 
 
+
+
+
+
+
+
+
   
+    
+<script src="https://gcore.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js"></script>
+
+  
+  <script>
+  var GUEST_INFO = ['nick','mail','link'];
+  var meta = 'nick,mail,link'.split(',').filter(function(item){
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick','mail','link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function(item){
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+  var valine = new Valine();
+  function emoji(path, idx, ext) {
+      return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  valine.init({
+    el: '#valine_container',
+    meta: meta,
+    
+    appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
+    appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
+    placeholder: "快来评论吧~",
+    pageSize:'10',
+    avatar:'robohash',
+    lang:'zh-cn',
+    visitor: 'true',
+    highlight: 'true',
+    mathJax: 'true',
+    enableQQ: 'true',
+    requiredFields: requiredFields,
+    emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
+    emojiMaps: emojiMaps
+  })
+  </script>
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+  
+<script src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-volantis@2.6.5/js/search.js"></script>
+
+
+
+  
+<script src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/comment_typing.js"></script>
+
+
+
+
+
+
+<!-- 复制 -->
+
+  <script src="https://gcore.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('fa-copy');
+        $icon.addClass('fa-check-circle');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('fa-check-circle');
+          $icon.addClass('fa-copy');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('fa-copy');
+        $icon.addClass('fa-times-circle');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('fa-times-circle');
+          $icon.addClass('fa-copy');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
     }
+    initCopyCode();
+  }(window, document);
+</script>
 
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
+
+
+
+<!-- fancybox -->
+
+  <script src="https://gcore.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("div.fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
   });
 </script>
 
 
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
 
 
 
 
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
+  <script>setLoadingBarProgress(100);</script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
