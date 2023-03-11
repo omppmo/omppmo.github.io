@@ -1,429 +1,381 @@
 <!DOCTYPE html>
-<html>
-<head hexo-theme='https://volantis.js.org/#2.6.5'>
-  <meta charset="utf-8">
-  <!-- SEO相关 -->
-  
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    <meta name="description" content="Hexo Theme Redefine">
+    <meta name="author" content="y4ny4n">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-redefine.png">
     
-  
-  <!-- 渲染优化 -->
-  <meta name="renderer" content="webkit">
-  <meta name="force-rendering" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-  <meta name="HandheldFriendly" content="True" >
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <!-- 页面元数据 -->
-  
-    <title>Emergence of urban growth patterns from human mobility behavior - y4ny4n&#39;s blog</title>
-  
-    <meta name="keywords" content="mobility model,human mobility,urban">
-  
-  
-    <meta name="description" content="
-
-Abstract城市自下向上的增长方式导致了用标度律描述的碎形/分形(fractal-like)城市结构。相关渗流模型(percolation model)
-通过施加强空间相关性成功建模出城市的几何形状(urban geometries)。然而，在空间相关的城市增长背后的潜在机制的起源仍然很大程度未知。
-本文...">
-  
-
-  <!-- feed -->
-  
-
-  <!-- import meta -->
-  
-
-  <!-- link -->
-  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-  
+    <!--- Seo Part-->
     
-<link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
-
-  
-  
+    <link rel="canonical" href="https://y4ny4n.cn/2022/01/01/101/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Emergence of urban growth patterns from human mobility behavior">
+    <meta property="og:description" content="Hexo Theme Redefine">
+    <meta property="og:url" content="https://y4ny4n.cn2022/01/01/101/">
     
-<link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
-
-  
-
-  
-
-  
-
-  
-
-  <!-- import link -->
-  
-
-  
-  
+    <meta property="og:site_name" content="y4ny4n&#39;s blog">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Emergence of urban growth patterns from human mobility behavior">
+    <meta name="twitter:description" content="Hexo Theme Redefine">
+    <meta name="twitter:image" content="/images/logo1.png">
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/logo1.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo1.png">
+    <meta name="theme-color" content="#005080">
+    <link rel="shortcut icon" href="/images/logo1.png">
+    
+    <title>
+        
+            Emergence of urban growth patterns from human mobility behavior -
+        
+        y4ny4n&#39;s blog
+    </title>
     
 <link rel="stylesheet" href="/css/style.css">
 
-  
+    
+<link rel="stylesheet" href="/assets/fonts.css">
 
-  <script>
-    function setLoadingBarProgress(num) {
-      document.getElementById('loading-bar').style.width=num+"%";
-    }
+    
+    
+    
+    <script id="hexo-configurations">
+    let REDEFINE = window.REDEFINE || {};
+    REDEFINE.hexo_config = {"hostname":"y4ny4n.cn","root":"/","language":"zh-CN"};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/y4ny4n.jpg","favicon":"/images/logo1.png","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/images/back_evol/星星软糖[1].jpg","dark":"/images/back_evol/羁影[1].jpg"},"title_color":{"light":"#fff","dark":"#fff"},"description":"Let me think that there is one among those stars that guides my life through the dark unknown.","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.2.0","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":false,"audio":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]}}};
+    REDEFINE.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
   </script>
+    
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
 
-  
-  
-</head>
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.0.0"></head>
+
 
 <body>
-<script src="https://cdn.jsdelivr.net/gh/zyoushuo/Blog/hexo/js/mouse_click.js"></script>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
 
-  
-  <div id="loading-bar-wrapper">
-  <div id="loading-bar"></div>
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
 </div>
-<header class="l_header shadow blur">
-  <div class='container'>
-  <div class='wrapper'>
-    <div class='nav-sub'>
-      <p class="title"></p>
-      <ul class='switcher nav-list-h'>
-        <li><a class="s-comment fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
-        
-          <li><a class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
-        
-      </ul>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="menu-wrapper">
+    
+    <div class="menu-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                y4ny4n&#39;s blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                        首页
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                        归档
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/categories"  >
+                                    
+                                        
+                                        分类
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/tags"  >
+                                    
+                                        
+                                        标签
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/about"  >
+                                    
+                                        
+                                        关于
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
     </div>
-		<div class="nav-main">
-      
-        
-        <a class="title flat-box" target="_self" href='/'>
-          
-          
-          
-            omp's blog
-          
-          
-        </a>
-      
 
-			<div class='menu navigation'>
-				<ul class='nav-list-h'>
-          
-          
-          
+    <!-- Mobile drawer -->
+    <div class="menu-drawer">
+        <ul class="drawer-menu-list">
             
-            
-              <li>
-                <a class="flat-box" href=/
-                  
-                  
-                  
-                    id="home"
-                  >
-                  <i class='fas fa-rss fa-fw'></i>博客
-                </a>
                 
-              </li>
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                首页
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
             
-          
-          
-            
-            
-              <li>
-                <a class="flat-box" href=/categories/
-                  
-                  
-                  
-                    id="categories"
-                  >
-                  <i class='fas fa-folder-open fa-fw'></i>分类
-                </a>
                 
-              </li>
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/archives"  >
+                             
+                                
+                                归档
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
             
-          
-          
-            
-            
-              <li>
-                <a class="flat-box" href=/tags/
-                  
-                  
-                  
-                    id="tags"
-                  >
-                  <i class='fas fa-tags fa-fw'></i>标签
-                </a>
                 
-              </li>
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/categories"  >
+                             
+                                
+                                分类
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
             
-          
-          
-            
-            
-              <li>
-                <a class="flat-box" href=/archives/
-                  
-                  
-                  
-                    id="archives"
-                  >
-                  <i class='fas fa-archive fa-fw'></i>归档
-                </a>
                 
-              </li>
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/tags"  >
+                             
+                                
+                                标签
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
             
-          
-          
-            
-            
-              <li>
-                <a class="flat-box" href=/friends/
-                  
-                  
-                  
-                    id="friends"
-                  >
-                  <i class='fas fa-link fa-fw'></i>友链
-                </a>
                 
-              </li>
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/about"  >
+                             
+                                
+                                关于
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
             
-          
-          
-            
-            
-              <li>
-                <a class="flat-box" href=/about/
-                  
-                  
-                  
-                    id="about"
-                  >
-                  <i class='fas fa-info-circle fa-fw'></i>关于
-                </a>
-                
-              </li>
-            
-          
-          
-				</ul>
-			</div>
 
-      <div class="m_search">
-        <form name="searchform" class="form u-search-form">
-          <i class="icon fas fa-search fa-fw"></i>
-          <input type="text" class="input u-search-input" placeholder="Search..." />
-        </form>
-      </div>
+        </ul>
+    </div>
 
-			<ul class='switcher nav-list-h'>
-				
-					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
-				
-				<li>
-          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
-          <ul class="menu-phone list-v navigation white-box">
-            
-              
-            
-              <li>
-                <a class="flat-box" href=/
-                  
-                  
-                  
-                    id="home"
-                  >
-                  <i class='fas fa-rss fa-fw'></i>博客
-                </a>
-                
-              </li>
-            
-          
-            
-              
-            
-              <li>
-                <a class="flat-box" href=/categories/
-                  
-                  
-                  
-                    id="categories"
-                  >
-                  <i class='fas fa-folder-open fa-fw'></i>分类
-                </a>
-                
-              </li>
-            
-          
-            
-              
-            
-              <li>
-                <a class="flat-box" href=/tags/
-                  
-                  
-                  
-                    id="tags"
-                  >
-                  <i class='fas fa-tags fa-fw'></i>标签
-                </a>
-                
-              </li>
-            
-          
-            
-              
-            
-              <li>
-                <a class="flat-box" href=/archives/
-                  
-                  
-                  
-                    id="archives"
-                  >
-                  <i class='fas fa-archive fa-fw'></i>归档
-                </a>
-                
-              </li>
-            
-          
-            
-              
-            
-              <li>
-                <a class="flat-box" href=/friends/
-                  
-                  
-                  
-                    id="friends"
-                  >
-                  <i class='fas fa-link fa-fw'></i>友链
-                </a>
-                
-              </li>
-            
-          
-            
-              
-            
-              <li>
-                <a class="flat-box" href=/about/
-                  
-                  
-                  
-                    id="about"
-                  >
-                  <i class='fas fa-info-circle fa-fw'></i>关于
-                </a>
-                
-              </li>
-            
-          
-            
-          </ul>
-        </li>
-			</ul>
-		</div>
-	</div>
-  </div>
+    <div class="window-mask"></div>
+
 </header>
 
-<script>setLoadingBarProgress(40);</script>
 
-
-
-  <div class="l_body nocover">
-    <div class='body-wrapper'>
-      
-
-<div class='l_main'>
-  
-
-  
-    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
-      
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h1 class="title">
-    <a href="/2022/01/01/101/">
-      Emergence of urban growth patterns from human mobility behavior
-    </a>
-  </h1>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="" rel="nofollow">
-    <img src="https://ae01.alicdn.com/kf/H68ac7f1be81b4260813ba8136aef8160J.jpg">
-    <p>y4ny4n</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/Paper-reading/' rel="nofollow">
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>Paper reading</p>
-    </a>
-  </div>
-
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2022年1月1日</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-          
-            
-          
-            
-              
-
-            
-          
         </div>
-        
-          <hr>
-        
-      </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">Emergence of urban growth patterns from human mobility behavior</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/y4ny4n.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">y4ny4n</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="pc">2022-01-01 12:55:05</span>
+        <span class="mobile">2022-01-01 12:55</span>
+        <span class="hover-info">创建</span>
+    </span>
     
-  </section>
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="pc">2022-01-16 18:07:41</span>
+            <span class="mobile">2022-01-16 18:07</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
 
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Paper-reading/">Paper reading</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/mobility-model/">mobility model</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/human-mobility/">human mobility</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/urban/">urban</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
 
-      <section class="article typo">
-        <div class="article-entry" itemprop="articleBody">
-          
-          <meta name="referrer" content="no-referrer">
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-file-word"></i>&nbsp;<span>5k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>17 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <meta name="referrer" content="no-referrer">
 
 <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>城市自下向上的增长方式导致了用标度律描述的<strong>碎形/分形</strong>(fractal-like)城市结构。相关<strong>渗流模型</strong>(percolation model)</p>
 <p>通过施加强空间相关性成功建模出城市的<strong>几何形状</strong>(urban geometries)。然而，在空间相关的城市增长背后的潜在机制的起源仍然很大程度未知。</p>
@@ -592,629 +544,344 @@ Abstract城市自下向上的增长方式导致了用标度律描述的碎形/�
 <p>与动态的人口计算有关。假设在模拟过程中，下一个位置探索选择的概率与此时各位置所在人口有关。如果该位置此时没有人口，则不会有个体选择该位置。所以可以说选择的概率二分了，要不有要不没有，所以城市周边会产生碎形(即小子群)。若是静态输入人口密度，采取累加的方法，则每个位置至少有一定探索概率，不会出现完全没有的情况。</p>
 <p>该模型同时存在缺点:只考虑时步，没考虑stay</p>
 
-          
-            <div class='article_footer'>
-              
-                
-  
-    
-    
-
-
-
-  
-
-  
-    
-    
-
-
-
-  
-
-  
-    
-    
-
-<section class="widget copyright  desktop mobile">
-  <div class='content'>
-    
-      <blockquote>
-        
-          
-            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
-
-          
-        
-          
-            <p>本文永久链接是：<a href=https://y4ny4n.cn/2022/01/01/101/>https://y4ny4n.cn/2022/01/01/101/</a></p>
-          
-        
-      </blockquote>
-    
-  </div>
-</section>
-
-  
-
-  
-    
-    
-
-<section class="widget qrcode  desktop mobile">
-  
-
-  <div class='content article-entry'>
-    
-      
-        <div class='fancybox'><img src='https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
-        
-          height='64px'
-        ></div>
-      
-    
-      
-        <div class='fancybox'><img src='https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
-        
-          height='64px'
-        ></div>
-      
-    
-  </div>
-</section>
-
-  
-
-
-              
             </div>
-          
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：Emergence of urban growth patterns from human mobility behavior</li>
+        <li>本文作者：y4ny4n</li>
+        <li>创建时间：2022-01-01 12:55:05</li>
+        <li>
+            本文链接：https://y4ny4n.cn/2022/01/01/101/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/mobility-model/">#mobility model</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/human-mobility/">#human mobility</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/urban/">#urban</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2023/02/25/blog%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">blog速度优化</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2021/12/16/1216/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Mobility patterns are associated with experienced income segregation in large US cities</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">Emergence of urban growth patterns from human mobility behavior</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Intro"><span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Results"><span class="nav-text">Results</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Human-movement-models"><span class="nav-text">Human movement models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-collective-mobility-model"><span class="nav-text">The collective mobility model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Experimental-settings"><span class="nav-text">Experimental settings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Urban-morphology"><span class="nav-text">Urban morphology</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Urban-growth-patterns"><span class="nav-text">Urban growth patterns</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Impact-of-simulation-parameters"><span class="nav-text">Impact of simulation parameters</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Disscusion"><span class="nav-text">Disscusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Supplementary"><span class="nav-text">Supplementary</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E5%BA%A6%E5%BE%8B"><span class="nav-text">标度律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E5%9D%87%E5%9C%BA"><span class="nav-text">平均场</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%97%E9%80%8F%E7%90%86%E8%AE%BA"><span class="nav-text">渗透理论</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E5%8F%8A%E7%90%86%E8%A7%A3"><span class="nav-text">总结及理解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%90%86%E8%A7%A3"><span class="nav-text">理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-regular fa-computer-classic"></i>&nbsp;&nbsp;<a href="/">y4ny4n</a>
         </div>
         
-          
-
-
-  <section class='meta' id="footer-meta">
-    <div class='new-meta-box'>
-      
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-01-16T18:07:41+08:00">
-  <a class='notlink'>
-    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2022年1月16日</p>
-  </a>
-</div>
-
+        <div class="theme-info info-item">
+            <span class="powered-by-container">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 驱动</span>
+                <br> 
+            <span class="theme-version-container">主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v1.2.0</a>
+        </div>
         
-      
         
-          
-  
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/mobility-model/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>mobility model</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/human-mobility/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>human mobility</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/urban/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>urban</p></a></div>
-
-
         
-      
+            <div id="start_time_div" style="display:none">
+                2022/8/17 11:45:14
+            </div>
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
         
-          
-
         
-      
         
-          
-  <div class="new-meta-item share -mob-share-list">
-  <div class="-mob-share-list share-body">
-    
-      
-        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
-          
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://y4ny4n.cn/2022/01/01/101/&title=Emergence of urban growth patterns from human mobility behavior - y4ny4n's blog&summary=
-
-Abstract城市自下向上的增长方式导致了用标度律描述的碎形/分形(fractal-like)城市结构。相关渗流模型(percolation model)
-通过施加强空间相关性成功建模出城市的几何形状(urban geometries)。然而，在空间相关的城市增长背后的潜在机制的起源仍然很大程度未知。
-本文介绍了一个计算城市增长模型，在人类移动行为的微观基础上捕捉城市增长的空间相关性。本文将提出的模型与三个实证数据集进行对比，发现人类移动中强社会联系和长时记忆是碎形城市形态的两个基本原则，以及三个重要的三个城市增长的定律。该模型联系了城市增长模式的实证发现与人类移动行为。"
-          
-          >
-          
-            <img src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
-          
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://y4ny4n.cn/2022/01/01/101/&title=Emergence of urban growth patterns from human mobility behavior - y4ny4n's blog&summary=
-
-Abstract城市自下向上的增长方式导致了用标度律描述的碎形/分形(fractal-like)城市结构。相关渗流模型(percolation model)
-通过施加强空间相关性成功建模出城市的几何形状(urban geometries)。然而，在空间相关的城市增长背后的潜在机制的起源仍然很大程度未知。
-本文介绍了一个计算城市增长模型，在人类移动行为的微观基础上捕捉城市增长的空间相关性。本文将提出的模型与三个实证数据集进行对比，发现人类移动中强社会联系和长时记忆是碎形城市形态的两个基本原则，以及三个重要的三个城市增长的定律。该模型联系了城市增长模式的实证发现与人类移动行为。"
-          
-          >
-          
-            <img src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
-          
-          href="http://service.weibo.com/share/share.php?url=https://y4ny4n.cn/2022/01/01/101/&title=Emergence of urban growth patterns from human mobility behavior - y4ny4n's blog&summary=
-
-Abstract城市自下向上的增长方式导致了用标度律描述的碎形/分形(fractal-like)城市结构。相关渗流模型(percolation model)
-通过施加强空间相关性成功建模出城市的几何形状(urban geometries)。然而，在空间相关的城市增长背后的潜在机制的起源仍然很大程度未知。
-本文介绍了一个计算城市增长模型，在人类移动行为的微观基础上捕捉城市增长的空间相关性。本文将提出的模型与三个实证数据集进行对比，发现人类移动中强社会联系和长时记忆是碎形城市形态的两个基本原则，以及三个重要的三个城市增长的定律。该模型联系了城市增长模式的实证发现与人类移动行为。"
-          
-          >
-          
-            <img src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
-          
-        </a>
-      
-    
-  </div>
-</div>
-
-
-
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
         
-      
+        
+        
+    </div>  
+</footer>
+        </div>
     </div>
-  </section>
 
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="unfolded-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
 
         
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="fa-regular fa-arrow-up"></i>
+            </li>
         
-          <div class="prev-next">
-            
-            
-              <a class='next' href='/2021/12/16/1216/'>
-                <p class='title'>Mobility patterns are associated with experienced income segregation in large US cities<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-                <p class='content'>
 
-Abstract收入隔离不只是基于粗粒度的静态居住模式，移动行为也对经历性的收入隔离(experienced income segregation)的产生起着重要作用。
-本文指出经历性的收入...</p>
-              </a>
-            
-          </div>
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="folded-tools-list">
+        <li class="right-bottom-tools tool-toggle-show flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
         
-      </section>
-    </article>
-  
+    </ul>
+</div>
 
-  
-    <!-- 显示推荐文章和评论 -->
+    </div>
 
-
-
-  <article class="post white-box reveal comments shadow">
-    <section class="article typo">
-      <p ct><i class='fas fa-comments'></i> 评论</p>
-      
-      
-      
-      
-      
-      
-        <section id="comments">
-          <div id="valine_container" class="valine_thread">
-            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
-          </div>
-        </section>
-      
-      
-    </section>
-  </article>
+    <div class="image-viewer-container">
+    <img src="">
+</div>
 
 
-  
+    
+
+
+</main>
 
 
 
 
-<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+<script src="/js/utils.js"></script>
 
-  <script async src="https://gcore.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/menu-shrink.js"></script>
+
+<script src="/js/tools/go-top-bottom.js"></script>
+
+<script src="/js/tools/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/toc-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
 <script>
-window.MathJax = {
-  tex: {
-    inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
-    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-    processEscapes: true,
-    tags: "ams",
-    macros: {
-      href: "{}"
-    }
-  },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|dno",
-    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-  }
-};
-</script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
 
+        document.addEventListener('pjax:send', () => {
+            REDEFINE.utils.pjaxProgressBarStart();
+        });
 
-
-
-  <script>
-    window.subData = {
-      title: 'Emergence of urban growth patterns from human mobility behavior',
-      tools: true
-    }
-  </script>
-
-
-</div>
-<aside class='l_side'>
-  
-  
-
-  
-    
-    
-
-
-  <section class="widget toc-wrapper shadow desktop mobile">
-    
-  <header>
-    
-      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
-    
-  </header>
-
-
-    <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Abstract"><span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Results"><span class="toc-text">Results</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Human-movement-models"><span class="toc-text">Human movement models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-collective-mobility-model"><span class="toc-text">The collective mobility model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Experimental-settings"><span class="toc-text">Experimental settings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Urban-morphology"><span class="toc-text">Urban morphology</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Urban-growth-patterns"><span class="toc-text">Urban growth patterns</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Impact-of-simulation-parameters"><span class="toc-text">Impact of simulation parameters</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Disscusion"><span class="toc-text">Disscusion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Supplementary"><span class="toc-text">Supplementary</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#标度律"><span class="toc-text">标度律</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#平均场"><span class="toc-text">平均场</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#渗透理论"><span class="toc-text">渗透理论</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结及理解"><span class="toc-text">总结及理解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#理解"><span class="toc-text">理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol></li></ol>
-    </div>
-  </section>
-
-
-  
-
-
-</aside>
-
-
-  
-  <footer class="clearfix">
-    <br><br>
-    
-      
-        <div class="aplayer-container">
-          
-
-
-        </div>
-      
-    
-      
-        <br>
-        <div class="social-wrapper">
-          
-            
-              <a href="/atom.xml"
-                class="social fas fa-rss flat-btn"
-                target="_blank"
-                rel="external nofollow noopener noreferrer">
-              </a>
-            
-          
-            
-              <a href="mailto:me@xaoxuu.com"
-                class="social fas fa-envelope flat-btn"
-                target="_blank"
-                rel="external nofollow noopener noreferrer">
-              </a>
-            
-          
-            
-              <a href="https://github.com/xaoxuu"
-                class="social fab fa-github flat-btn"
-                target="_blank"
-                rel="external nofollow noopener noreferrer">
-              </a>
-            
-          
-            
-              <a href="https://music.163.com/#/user/home?id=63035382"
-                class="social fas fa-headphones-alt flat-btn"
-                target="_blank"
-                rel="external nofollow noopener noreferrer">
-              </a>
-            
-          
-        </div>
-      
-    
-      
-        <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
-</div>
-      
-    
-      
-        本站使用
-        <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
-        作为主题
-      
-    
-      
-        <div class='copyright'>
-        <p><a href="https://xaoxuu.com" target="_blank" rel="noopener">Copyright © 2017-2020 Mr. X</a></p>
-
-        </div>
-      
-    
-  </footer>
-
-<script>setLoadingBarProgress(80);</script>
-
-
-      <script>setLoadingBarProgress(60);</script>
-    </div>
-    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
-  </div>
-  
-<script src="https://cdn.dearxuan.com/website/libs/jquery/dist/jquery.min.js"></script>
-
-
-  <script>
-    
-    var SEARCH_SERVICE = "hexo" || "hexo";
-    var ROOT = "/" || "/";
-    if (!ROOT.endsWith('/')) ROOT += '/';
-  </script>
-
-
-  <script async src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/instant_page.js" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
-
-
-  <script src="https://gcore.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js"></script>
-  <script type="text/javascript">
-    $(function() {
-      ScrollReveal().reveal('.l_main .reveal', {
-        distance: '8px',
-        duration: '800',
-        interval: '100',
-        scale: '1'
-      });
+        document.addEventListener('pjax:complete', () => {
+            REDEFINE.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            REDEFINE.refresh();
+        });
     });
-  </script>
-
-
-  
-<script src="https://gcore.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
-
-  <script type="text/javascript">
-    $(function() {
-      Waves.attach('.flat-btn', ['waves-button']);
-      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
-      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
-      Waves.attach('.flat-box', ['waves-block']);
-      Waves.attach('.float-box', ['waves-block', 'waves-float']);
-      Waves.attach('.waves-image');
-      Waves.init();
-    });
-  </script>
-
-
-
-
-  
-  
-  
-    
-<script src="https://gcore.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
-
-    <script type="text/javascript">
-      $(function(){
-        var imgs=["https://gitee.com/wallpapers/minimalist/raw/master/2020/001.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/002.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/003.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/004.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/005.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/006.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/007.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/008.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/009.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/010.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/011.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/012.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/013.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/014.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/015.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/016.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/017.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/018.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/019.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/020.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/021.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/022.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/023.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/024.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/025.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/026.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/027.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/028.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/029.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/030.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/031.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/032.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/033.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/034.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/035.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/036.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/037.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/038.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/039.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/040.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/041.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/042.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/043.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/044.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/045.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/046.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/047.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/048.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/049.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/050.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/051.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/052.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/053.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/054.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/055.jpg", "https://gitee.com/wallpapers/minimalist/raw/master/2020/056.jpg"];
-        if ('true' == 'true') {
-          function shuffle(arr){
-            /*From countercurrent-time*/
-            var n = arr.length;
-            while(n--) {
-              var index = Math.floor(Math.random() * n);
-              var temp = arr[index];
-              arr[index] = arr[n];
-              arr[n] = temp;
-            }
-          }
-          shuffle(imgs);
-        }
-        if ('') {
-          $('').backstretch(
-            imgs,
-          {
-            duration: "20000",
-            fade: "1500"
-          });
-        } else {
-          $.backstretch(
-            imgs,
-          {
-            duration: "20000",
-            fade: "1500"
-          });
-        }
-      });
-    </script>
-  
-
-
-
-
-
-
-
-
-
-
-
-  
-    
-<script src="https://gcore.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js"></script>
-
-  
-  <script>
-  var GUEST_INFO = ['nick','mail','link'];
-  var meta = 'nick,mail,link'.split(',').filter(function(item){
-    return GUEST_INFO.indexOf(item) > -1
-  });
-  var REQUIRED_FIELDS = ['nick','mail','link'];
-  var requiredFields = 'nick,mail'.split(',').filter(function(item){
-    return REQUIRED_FIELDS.indexOf(item) > -1
-  });
-  var valine = new Valine();
-  function emoji(path, idx, ext) {
-      return path + "/" + path + "-" + idx + "." + ext;
-  }
-  var emojiMaps = {};
-  for (var i = 1; i <= 54; i++) {
-    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
-  }
-  for (var i = 1; i <= 101; i++) {
-    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
-  }
-  for (var i = 1; i <= 116; i++) {
-    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
-  }
-  for (var i = 1; i <= 125; i++) {
-    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
-  }
-  for (var i = 1; i <= 4; i++) {
-    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
-  }
-  valine.init({
-    el: '#valine_container',
-    meta: meta,
-    
-    appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
-    appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
-    placeholder: "快来评论吧~",
-    pageSize:'10',
-    avatar:'robohash',
-    lang:'zh-cn',
-    visitor: 'true',
-    highlight: 'true',
-    mathJax: 'true',
-    enableQQ: 'true',
-    requiredFields: requiredFields,
-    emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
-    emojiMaps: emojiMaps
-  })
-  </script>
-
-
-
-
-
-  
-<script src="/js/app.js"></script>
-
-
-
-  
-<script src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-volantis@2.6.5/js/search.js"></script>
-
-
-
-  
-<script src="https://gcore.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/comment_typing.js"></script>
-
-
-
-
-
-
-<!-- 复制 -->
-
-  <script src="https://gcore.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
-<script>
-  function wait(callback, seconds) {
-    var timelag = null;
-    timelag = window.setTimeout(callback, seconds);
-  }
-  !function (e, t, a) {
-    var initCopyCode = function(){
-      var copyHtml = '';
-      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
-      copyHtml += '</button>';
-      $(".highlight .code pre").before(copyHtml);
-      $(".article pre code").before(copyHtml);
-      var clipboard = new ClipboardJS('.btn-copy', {
-        target: function(trigger) {
-          return trigger.nextElementSibling;
-        }
-      });
-      clipboard.on('success', function(e) {
-        let $btn = $(e.trigger);
-        $btn.addClass('copied');
-        let $icon = $($btn.find('i'));
-        $icon.removeClass('fa-copy');
-        $icon.addClass('fa-check-circle');
-        let $span = $($btn.find('span'));
-        $span[0].innerText = 'COPIED';
-        
-        wait(function () { // 等待两秒钟后恢复
-          $icon.removeClass('fa-check-circle');
-          $icon.addClass('fa-copy');
-          $span[0].innerText = 'COPY';
-        }, 2000);
-      });
-      clipboard.on('error', function(e) {
-        e.clearSelection();
-        let $btn = $(e.trigger);
-        $btn.addClass('copy-failed');
-        let $icon = $($btn.find('i'));
-        $icon.removeClass('fa-copy');
-        $icon.addClass('fa-times-circle');
-        let $span = $($btn.find('span'));
-        $span[0].innerText = 'COPY FAILED';
-        
-        wait(function () { // 等待两秒钟后恢复
-          $icon.removeClass('fa-times-circle');
-          $icon.addClass('fa-copy');
-          $span[0].innerText = 'COPY';
-        }, 2000);
-      });
-    }
-    initCopyCode();
-  }(window, document);
 </script>
 
 
 
 
-<!-- fancybox -->
-
-  <script src="https://gcore.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-<script>
-  let LAZY_LOAD_IMAGE = "";
-  $(".article-entry").find("div.fancybox").find("img").each(function () {
-      var element = document.createElement("a");
-      $(element).attr("data-fancybox", "gallery");
-      $(element).attr("href", $(this).attr("src"));
-      /* 图片采用懒加载处理时,
-       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
-       * 那么此处将原本的属性名src替换为对应属性名data-original,
-       * 修改如下
-       */
-       if (LAZY_LOAD_IMAGE) {
-         $(element).attr("href", $(this).attr("data-original"));
-       }
-      $(this).wrap(element);
-  });
-</script>
-
-
-
-
-
-
-  <script>setLoadingBarProgress(100);</script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {

@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    <meta name="description" content="Hexo Theme Redefine">
+    <meta name="author" content="y4ny4n">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-redefine.png">
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://y4ny4n.cn/2023/03/10/vits/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="vits语音合成">
+    <meta property="og:description" content="Hexo Theme Redefine">
+    <meta property="og:url" content="https://y4ny4n.cn2023/03/10/vits/">
+    
+    <meta property="og:site_name" content="y4ny4n&#39;s blog">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="vits语音合成">
+    <meta name="twitter:description" content="Hexo Theme Redefine">
+    <meta name="twitter:image" content="/images/logo1.png">
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/logo1.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo1.png">
+    <meta name="theme-color" content="#005080">
+    <link rel="shortcut icon" href="/images/logo1.png">
+    
+    <title>
+        
+            vits语音合成 -
+        
+        y4ny4n&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    
+    
+    
+    <script id="hexo-configurations">
+    let REDEFINE = window.REDEFINE || {};
+    REDEFINE.hexo_config = {"hostname":"y4ny4n.cn","root":"/","language":"zh-CN"};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/y4ny4n.jpg","favicon":"/images/logo1.png","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/images/back_evol/星星软糖[1].jpg","dark":"/images/back_evol/羁影[1].jpg"},"title_color":{"light":"#fff","dark":"#fff"},"description":"Let me think that there is one among those stars that guides my life through the dark unknown.","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.2.0","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":false,"audio":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]}}};
+    REDEFINE.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+    
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="menu-wrapper">
+    
+    <div class="menu-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                y4ny4n&#39;s blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                        首页
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                        归档
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/categories"  >
+                                    
+                                        
+                                        分类
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/tags"  >
+                                    
+                                        
+                                        标签
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/about"  >
+                                    
+                                        
+                                        关于
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="menu-drawer">
+        <ul class="drawer-menu-list">
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                首页
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/archives"  >
+                             
+                                
+                                归档
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/categories"  >
+                             
+                                
+                                分类
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/tags"  >
+                             
+                                
+                                标签
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/about"  >
+                             
+                                
+                                关于
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">vits语音合成</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/y4ny4n.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">y4ny4n</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="pc">2023-03-10 11:47:31</span>
+        <span class="mobile">2023-03-10 11:47</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="pc">2023-03-12 01:41:37</span>
+            <span class="mobile">2023-03-12 01:41</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/QQBot/">QQBot</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/DL/">DL</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-file-word"></i>&nbsp;<span>3.8k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>15 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <meta name="referrer" content="no-referrer">
+
+<p>记录一次vits模型训练并部署到qq-bot的踩坑历程</p>
+<p><img lazyload src="/images/loading.svg" data-src="vits/image-20230305020742556.png" alt="image-20230305020742556"></p>
+<span id="more"></span>
+<h1 id="lab1"><a href="#lab1" class="headerlink" title="lab1"></a>lab1</h1><p>梦开始的地方:<a class="link" target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1w84y1n7Ei/">https://www.bilibili.com/video/BV1w84y1n7Ei/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>VITS原版：<a class="link" target="_blank" rel="noopener" href="https://github.com/jaywalnut310/vits">https://github.com/jaywalnut310/vits <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>VITS（CjangCjengh版）：<a class="link" target="_blank" rel="noopener" href="https://github.com/CjangCjengh/vits">https://github.com/CjangCjengh/vits <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> </p>
+<p>详细教程:<a class="link" target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv21153903">https://www.bilibili.com/read/cv21153903 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>符华模型:<a class="link" target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1zy4y197Tz/">https://www.bilibili.com/video/BV1zy4y197Tz/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>派蒙模型：<a class="link" target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV16G4y1B7Ey/">https://www.bilibili.com/video/BV16G4y1B7Ey/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>加载预训练模型:<a class="link" target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yj411N7rt/">https://www.bilibili.com/video/BV1yj411N7rt/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>零基础炼丹秘籍 - 为自己喜爱的角色训练TTS（文字转语音）模型：<a class="link" target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv17826415">https://www.bilibili.com/read/cv17826415 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>零基础炼丹 - vits版补充: <a class="link" target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv18357171">https://www.bilibili.com/read/cv18357171 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>预设加载预训练模型的vits:<a class="link" target="_blank" rel="noopener" href="https://github.com/rotten-work/vits-mandarin-windows">https://github.com/rotten-work/vits-mandarin-windows <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>MoeTTS:<a class="link" target="_blank" rel="noopener" href="https://github.com/luoyily/MoeTTS">https://github.com/luoyily/MoeTTS <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>MoeGoe:</p>
+<h2 id="数据集准备"><a href="#数据集准备" class="headerlink" title="数据集准备"></a>数据集准备</h2><p>格式处理</p>
+<p>wave查看采样率</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> wave</span><br><span class="line"><span class="keyword">for</span> file_name <span class="keyword">in</span> os.listdir(file_path):</span><br><span class="line">    <span class="comment">#wave查看采样率</span></span><br><span class="line">    <span class="keyword">with</span> wave.<span class="built_in">open</span>(file_path+file_name, <span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> wave_file:</span><br><span class="line">        frame_rate = wave_file.getframerate()</span><br><span class="line">    <span class="built_in">print</span>(frame_rate)</span><br></pre></td></tr></table></figure></div>
+<p>scipy查看采样率、声道数、pcm位</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> scipy.io.wavfile</span><br><span class="line"><span class="keyword">for</span> file_name <span class="keyword">in</span> os.listdir(file_path):</span><br><span class="line">    rate, data = scipy.io.wavfile.read(file_path+file_name)</span><br><span class="line">    <span class="comment"># 打印采样率和数据的形状</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Sample rate:&quot;</span>, rate)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Data shape:&quot;</span>, data.shape)</span><br><span class="line">    <span class="comment"># 检查数据的维度，如果是1，说明是单声道，如果是2，说明是立体声</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(data.shape) == <span class="number">1</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;The wav file is mono.&quot;</span>)</span><br><span class="line">    <span class="keyword">elif</span> <span class="built_in">len</span>(data.shape) == <span class="number">2</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;The wav file is stereo.&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;The wav file is invalid.&quot;</span>)</span><br><span class="line">    <span class="comment"># 检查dtype属性来确定它的位数。如果dtype是int16，那么wav文件就是16位pcm的</span></span><br><span class="line">    <span class="keyword">if</span> data.dtype == <span class="string">&#x27;int16&#x27;</span>:</span><br><span class="line">    	<span class="built_in">print</span>(<span class="string">&#x27;The wav file is 16 bit pcm.&#x27;</span>)</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">    	<span class="built_in">print</span>(<span class="string">&#x27;The wav file is not 16 bit pcm.&#x27;</span>)</span><br><span class="line">    </span><br></pre></td></tr></table></figure></div>
+<p>pydub 修改声道数和采样率</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pydub <span class="keyword">import</span> AudioSegment</span><br><span class="line"><span class="comment"># 读取wav文件，返回一个AudioSegment对象</span></span><br><span class="line">sound = AudioSegment.from_wav(<span class="string">&quot;/path/to/file.wav&quot;</span>)</span><br><span class="line"><span class="comment"># 将声道数设置为1，即单声道</span></span><br><span class="line">sound = sound.set_channels(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># 将采样率调整为16000</span></span><br><span class="line">sound = sound.set_frame_rate(<span class="number">16000</span>)</span><br><span class="line"><span class="comment"># 导出新的wav文件</span></span><br><span class="line">sound.export(<span class="string">&quot;/output/path.wav&quot;</span>, <span class="built_in">format</span>=<span class="string">&quot;wav&quot;</span>)</span><br></pre></td></tr></table></figure></div>
+<p>整理所有音频数据符合单声道、22050Hz，PCM 16bit。</p>
+<p>文本整理</p>
+<p>提前使用腾讯云的接口实现了语音转文字  这里只需整理为固定输入格式</p>
+<p>将数据集分为测试集和训练集分别整理</p>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p><img lazyload src="/images/loading.svg" data-src="vits/image-20230302224501385.png" alt="image-20230302224501385"></p>
+<p>租好gpu后安装requirements中的依赖</p>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>生成config.json</p>
+<p>根据租的服务器显存选择合适的batch</p>
+<p>修改cleaner为chinese_cleaner</p>
+<p>进行预处理</p>
+<p><img lazyload src="/images/loading.svg" data-src="vits/image-20230302234847771.png" alt="image-20230302234847771"></p>
+<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p>首先进行预训练</p>
+<p>使用中文女声标贝进行预训练300个epoch，再在该权重模型基础上进行微调</p>
+<p>只需按原方法将标贝的语音数据集和文本进行替换(并重新预处理生成cleaned文件)开始训练即可</p>
+<p><img lazyload src="/images/loading.svg" data-src="vits/image-20230303012745585.png" alt="image-20230303012745585"></p>
+<p>RTX 3080 10GB 开始设置batch为16后内存不足 改为8</p>
+<p>训练一个epoch大概5min </p>
+<p>训练过程中发现2200个epoch的标贝预训练模型也无法正常说话？并且模型参数不匹配，怀疑是预训练模型的版本与MoeTTS及后面训练的模型版本冲突，故又租了个服务器，打算自己训练300epoch的标贝试试。(money—</p>
+<h2 id="TTS推理"><a href="#TTS推理" class="headerlink" title="TTS推理"></a>TTS推理</h2><h3 id="MoeGoe"><a href="#MoeGoe" class="headerlink" title="MoeGoe"></a>MoeGoe</h3><p>开始使用MoeGoe后报错，修改全英路径和删除config文件后无果，改用MoeTTS。</p>
+<p><img lazyload src="/images/loading.svg" data-src="vits/image-20230304180937189.png" alt="image-20230304180937189"></p>
+<h3 id="MoeTTS"><a href="#MoeTTS" class="headerlink" title="MoeTTS"></a>MoeTTS</h3><p>可以加载kilo的模型，不能加载预训练的标贝模型</p>
+<p>RuntimeError: Error(s) in loading state_dict for SynthesizerTrn:<br>        size mismatch for enc_p.emb.weight: copying a param with shape torch.Size([50, 192]) from checkpoint, the shape in current model is torch.Size([78, 192]).</p>
+<h3 id="vits-gradio"><a href="#vits-gradio" class="headerlink" title="vits-gradio"></a>vits-gradio</h3><p>kilo和标贝都参数不匹配  </p>
+<p>RuntimeError: Error(s) in loading state_dict for SynthesizerTrn:<br>        size mismatch for enc_p.emb.weight: copying a param with shape torch.Size([78, 192]) from checkpoint, the shape in current model is torch.Size([43, 192]).</p>
+<p>类似报错:<a class="link" target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1be4y1V7g6/">https://www.bilibili.com/video/BV1be4y1V7g6/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>使用说明:<a class="link" target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1DT41127wr/">https://www.bilibili.com/video/BV1DT41127wr/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="MoeSS"><a href="#MoeSS" class="headerlink" title="MoeSS"></a>MoeSS</h3><p>教程专栏:<a class="link" target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv22051145">https://www.bilibili.com/read/cv22051145 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>需要把pth转为onxx文件 先不尝试了</p>
+<h3 id="co-lab在线推理"><a href="#co-lab在线推理" class="headerlink" title="co-lab在线推理"></a>co-lab在线推理</h3><p>github项目:<a class="link" target="_blank" rel="noopener" href="https://github.com/rotten-work/vits-mandarin-windows">https://github.com/rotten-work/vits-mandarin-windows <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://colab.research.google.com/drive/1VWBOp3PDGNO77_xOm20yRtc4CSmsbqtb#scrollTo=2z_JvLmivPEf">https://colab.research.google.com/drive/1VWBOp3PDGNO77_xOm20yRtc4CSmsbqtb#scrollTo=2z_JvLmivPEf <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>突然发现前几个tts貌似都打开错方式了….</p>
+<p>同一个模型我放到唯一能用的MoeTTS中只能发出单音节词但是上传到colab上发现500epoch已经可以说话了且效果非常好(但是标贝模型还是会出参数不匹配的error)</p>
+<p>尝试拉到本地试一下</p>
+<p>本地windows环境需要安装MSVC和win10SDK</p>
+<p>然后就可以推理了</p>
+<h2 id="服务器部署"><a href="#服务器部署" class="headerlink" title="服务器部署"></a>服务器部署</h2><p>部署踩坑</p>
+<p>1.poetry安装pytorch问题</p>
+<p><a class="link" target="_blank" rel="noopener" href="https://stackoverflow.com/questions/59158044/poetry-and-pytorch">https://stackoverflow.com/questions/59158044/poetry-and-pytorch <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>在pyproject.toml中添加以下后并poetry install</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">torch = &#123;url = &quot;https://download.pytorch.org/whl/cpu/torch-1.8.0%2Bcpu-cp38-cp38-linux_x86_64.whl&quot;, markers = &quot;sys_platform == &#x27;linux&#x27;&quot;&#125;</span><br><span class="line">torchvision = &#123;url = &quot;https://download.pytorch.org/whl/cpu/torchvision-0.9.0%2Bcpu-cp38-cp38-linux_x86_64.whl&quot;, markers = &quot;sys_platform == &#x27;linux&#x27;&quot;&#125;</span><br></pre></td></tr></table></figure></div>
+<p>2.重新build monotonic alignment search </p>
+<p>3.OSError: cannot load library ‘libsndfile.so’: libsndfile.so: cannot open shared object file: No such file or directory</p>
+<p>依赖库librosa报错 执行<code>yum install libsndfile</code></p>
+<p>4.No module named ..</p>
+<p>路径问题  参考引用不同文件夹下的模块 <a class="link" target="_blank" rel="noopener" href="https://www.jb51.net/article/269579.htm">https://www.jb51.net/article/269579.htm <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>5.依旧是ImportError</p>
+<p><img lazyload src="/images/loading.svg" data-src="vits/image-20230305020444178.png" alt="image-20230305020444178"></p>
+<p>这个一眼看出是vits模型里的文件夹和saya模块的文件夹重名了(犯过太多次错</p>
+<p>改bot主程序saya加载部分和文件夹名</p>
+<p>至此 可以实现vits模型tts推理接入qq-bot的模块 效果如图</p>
+<p>并且可以随时上传新训练好的模型进行替换~</p>
+<h2 id="tensorboard"><a href="#tensorboard" class="headerlink" title="tensorboard"></a>tensorboard</h2><p>在autodl中使用tensorboard查看模型收敛情况</p>
+<p>autodl默认的tensorboard的event文件保存路径为/root/tf-logs/</p>
+<p>修改tf logs目录为模型文件夹下生成event的路径  再重启tensorboard</p>
+<p><img lazyload src="/images/loading.svg" data-src="vits/image-20230306132346778.png" alt="image-20230306132346778"></p>
+<p>在autopanel中查看loss曲线</p>
+<h3 id="模型的收敛条件"><a href="#模型的收敛条件" class="headerlink" title="模型的收敛条件"></a>模型的收敛条件</h3><p>参考： <a class="link" target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv6372536/">https://www.bilibili.com/read/cv6372536/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> </p>
+<p>通常模型的收敛条件可以有以下3个：</p>
+<ul>
+<li><p>loss小于某个预先设定的较小的值</p>
+<p>模型的训练目的就是为了减少loss值，那么我们可以设定一个比较小的数值，每一次训练的时候我们都同时计算一下loss值的大小，当loss值小于某个预先设定的阈值，就可以认为模型收敛了。那么就可以结束训练。</p>
+</li>
+<li><p>两次迭代之间权值的变化已经很小了</p>
+<p>每一次训练我们可以记录模型权值的变化，如果我们发现两次迭代之间模型的权值变化已经很小，那么说明模型已经几乎不需要做权值地调整了，那么就可以认为模型收敛，可以结束训练。</p>
+</li>
+<li><p>设定最大迭代次数，当迭代超过最大次数就停止<br>用得最多的方式。我们可以预先设定一个比较大的模型迭代周期，比如迭代100次，或者10000次，或者1000000次等（需要根据实际情况来选择）。模型完成规定次数的训练之后我们就可以认为模型训练完毕。如果达到我们设置的训练次数以后我们发现模型还没有训练好的话，我们可以继续增加训练次数，让模型继续训练就可以了。 </p>
+</li>
+</ul>
+<p>tensorboard给出的loss曲线过多 一时没看懂</p>
+<p><img lazyload src="/images/loading.svg" data-src="vits/image-20230308213404345.png" alt="image-20230308213404345"></p>
+<p> 只能翻一下vits中使用的loss学习一下</p>
+<h3 id="vits损失函数"><a href="#vits损失函数" class="headerlink" title="vits损失函数"></a>vits损失函数</h3><p><a class="link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/419883319">https://zhuanlan.zhihu.com/p/419883319 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/zzfive/article/details/127503913">https://blog.csdn.net/zzfive/article/details/127503913 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>VITS可以看作是VAE和GAN的联合训练，因此总体损失为：</p>
+<p><img lazyload src="/images/loading.svg" data-src="vits/image-20230306161858486.png" alt="image-20230306161858486"></p>
+<p><code>loss_gen_all = loss_gen + loss_fm + loss_mel + loss_dur + loss_kl</code></p>
+<p>对抗训练过程中，判别器是常规的判别器损失结构，但是使用的是多周期判别器，由多个子判别器组成。生成器的损失，包括mel重建损失、KL散度、时长预测器损失、对抗训练生成损失以及特征图损失。</p>
+<p>1.重建损失</p>
+<p><img lazyload src="/images/loading.svg" data-src="vits/image-20230306162112238.png" alt="image-20230306162112238"></p>
+<p><code>loss_mel = F.l1_loss(y_mel, y_hat_mel) * hps.train.c_mel</code></p>
+<ol>
+<li><p>KL散度</p>
+<p><img lazyload src="/images/loading.svg" data-src="vits/image-20230306162237066.png" alt="image-20230306162237066"></p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先验分布和后验分布之间的KL散度</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">kl_loss</span>(<span class="params">z_p, logs_q, m_p, logs_p, z_mask</span>):</span><br><span class="line">  <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">  z_p, logs_q: [b, h, t_t]</span></span><br><span class="line"><span class="string">  m_p, logs_p: [b, h, t_t]</span></span><br><span class="line"><span class="string">  &quot;&quot;&quot;</span></span><br><span class="line">  z_p = z_p.<span class="built_in">float</span>()</span><br><span class="line">  logs_q = logs_q.<span class="built_in">float</span>()</span><br><span class="line">  m_p = m_p.<span class="built_in">float</span>()</span><br><span class="line">  logs_p = logs_p.<span class="built_in">float</span>()</span><br><span class="line">  z_mask = z_mask.<span class="built_in">float</span>()</span><br><span class="line"></span><br><span class="line">  kl = logs_p - logs_q - <span class="number">0.5</span></span><br><span class="line">  kl += <span class="number">0.5</span> * ((z_p - m_p)**<span class="number">2</span>) * torch.exp(-<span class="number">2.</span> * logs_p)</span><br><span class="line">  kl = torch.<span class="built_in">sum</span>(kl * z_mask)</span><br><span class="line">  l = kl / torch.<span class="built_in">sum</span>(z_mask)</span><br><span class="line">  <span class="keyword">return</span> l</span><br></pre></td></tr></table></figure></div>
+<p><code>loss_kl = kl_loss(z_p, logs_q, m_p, logs_p, z_mask) * hps.train.c_kl</code></p>
+</li>
+</ol>
+<p>3.对抗训练</p>
+<p><img lazyload src="/images/loading.svg" data-src="vits/image-20230306164629488.png" alt="image-20230306164629488"></p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成器的对抗损失，就是将生成器生成的波形经过判别器后的输出与1计算距离损失，L2损失</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">generator_loss</span>(<span class="params">disc_outputs</span>):</span><br><span class="line">  loss = <span class="number">0</span></span><br><span class="line">  gen_losses = []</span><br><span class="line">  <span class="keyword">for</span> dg <span class="keyword">in</span> disc_outputs:</span><br><span class="line">    dg = dg.<span class="built_in">float</span>()</span><br><span class="line">    l = torch.mean((<span class="number">1</span>-dg)**<span class="number">2</span>)</span><br><span class="line">    gen_losses.append(l)</span><br><span class="line">    loss += l</span><br><span class="line">  <span class="keyword">return</span> loss, gen_losses</span><br></pre></td></tr></table></figure></div>
+<p><code>loss_gen, losses_gen = generator_loss(y_d_hat_g)</code></p>
+<p><img lazyload src="/images/loading.svg" data-src="vits/image-20230306164758952.png" alt="image-20230306164758952"></p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 计算对抗训练中生成波形和真实波形在判别器中间特征之间的距离损失</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">feature_loss</span>(<span class="params">fmap_r, fmap_g</span>):</span><br><span class="line">  loss = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> dr, dg <span class="keyword">in</span> <span class="built_in">zip</span>(fmap_r, fmap_g):</span><br><span class="line">    <span class="keyword">for</span> rl, gl <span class="keyword">in</span> <span class="built_in">zip</span>(dr, dg):</span><br><span class="line">      rl = rl.<span class="built_in">float</span>().detach()</span><br><span class="line">      gl = gl.<span class="built_in">float</span>()</span><br><span class="line">      loss += torch.mean(torch.<span class="built_in">abs</span>(rl - gl))</span><br><span class="line">  <span class="keyword">return</span> loss * <span class="number">2</span> </span><br></pre></td></tr></table></figure></div>
+<p><code>loss_fm = feature_loss(fmap_r, fmap_g)</code></p>
+<p>4.时长预测器损失</p>
+<p>时长预测器损失在模型forward函数中直接计算</p>
+<p><code>loss_dur = torch.sum(l_length.float())</code></p>
+<p>至此 可以根据tensorboard中给出的loss曲线分析模型的收敛情况</p>
+<hr>
+<p>看到github vits下相关issue对loss的讨论</p>
+<p><a class="link" target="_blank" rel="noopener" href="https://github.com/jaywalnut310/vits/issues/14">https://github.com/jaywalnut310/vits/issues/14 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>找了别的佬训练vits时的loss参考</p>
+<p>1.<a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39182815/article/details/126312069">https://blog.csdn.net/qq_39182815/article/details/126312069 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>500条 57k步收敛</p>
+<p><img lazyload src="/images/loading.svg" data-src="vits/image-20230308213045539.png" alt="image-20230308213045539"></p>
+<p>2.<a class="link" target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1dY411Q7q1/">https://www.bilibili.com/video/BV1dY411Q7q1/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>300条 1500个epoch</p>
+<p><img lazyload src="/images/loading.svg" data-src="vits/image-20230308212904615.png" alt="image-20230308212904615"></p>
+<p>3.<a class="link" target="_blank" rel="noopener" href="https://github.com/jaywalnut310/vits/issues/14">https://github.com/jaywalnut310/vits/issues/14 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="心路历程"><a href="#心路历程" class="headerlink" title="心路历程"></a>心路历程</h2><p>记录一下在训练过程中模型合成效果不好采取的一系列措施:</p>
+<p>解决方案:</p>
+<p>1.等机器1的2000个epoch跑完继续训练2000个(保存当前镜像</p>
+<p>2.修改训练程序使之可以在更大显存机器上恢复训练 调高batch(打包vits文件夹</p>
+<p>目前怀疑模型不收敛的原因是 </p>
+<ul>
+<li>batch太小，epoch还不够</li>
+<li>看Loss的方式有问题 了解GAN的loss变化趋势和收敛</li>
+</ul>
+<hr>
+<p>2000epoch已跑完，效果还不是很好。租了一台3090 24G,调高了batch。但是出现了新的问题，由于我修改了bacth，global_step的值减小。模型保存文件的机制是根据global_step的值大小比较模型的新旧，导致新训练出的权重一直无法保存，且tensorboard中以global_step为横轴的折线图发生错误。</p>
+<p>解决方案:</p>
+<p><del>1.修改权重模型保存文件名，继续小batch时的计算方式保持一致(有点自欺欺人，不知道引发什么报错</del></p>
+<p>2.修改参数<code>should_auto_delete_old_checkpoints</code>为False，保存适量的大batch模型后删除原有的(但tensorboard无法正常显示更新模型的效果，需要拉到本地进行tts推理</p>
+<p>了解到tensorboard通过events.out.tfevents文件绘制图表。events.out.tfevents文件是训练时生成的日志文件，用于记录训练过程中的各种信息，如损失函数、准确率、图结构等。使用TensorBoard工具来可视化这些信息，分析训练效果和模型性能。</p>
+<p>发现其命名方式中包含容器名，尝试分类之前机器和现在机器训练产生的文件后，果然更新后的折线图可以正常显示。同理新建文件夹存放之前机器的测试结果，并只在eval文件夹下存放当前机器的测试结果，测试音频也可以播放。</p>
+<p><img lazyload src="/images/loading.svg" data-src="vits/image-20230312013936188.png" alt="image-20230312013936188"></p>
+<p>就是两个batch的global step会有重叠而非延续，不过可以凑合着看，毕竟不会改源码T^T</p>
+<p><img lazyload src="/images/loading.svg" data-src="vits/image-20230312014052008.png" alt="image-20230312014052008"></p>
+<h2 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h2><p>由于原版vits没有加载预训练权重模型的模块</p>
+<p>更换为<a class="link" target="_blank" rel="noopener" href="https://github.com/rotten-work/vits-mandarin-windows">https://github.com/rotten-work/vits-mandarin-windows <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>需要在config.json里增加一些字段如data_loader</p>
+<ol>
+<li>keyerror </li>
+</ol>
+<p><img lazyload src="/images/loading.svg" data-src="vits/image-20230303045551666.png" alt="image-20230303045551666"></p>
+<p>文本数据真的要好好处理，我哭死。从报错一层一层溯源发现是我的文本数据里由于包含阿拉伯数字没有解析所以出现Keyerror，已经把数据里的阿拉伯数字都改为中文了。。</p>
+<p>2.预训练加载不进去</p>
+<p>config配置路径问题</p>
+<p><img lazyload src="/images/loading.svg" data-src="vits/image-20230303051559316.png" alt="image-20230303051559316"></p>
+<p>原因是在config.json中配置的预训练权重路径没有写绝对路径(愚蠢的我</p>
+<p>优化器数组长度问题</p>
+<p>valueerror: loaded state dict contains a parameter group that doesn’t match</p>
+<p><img lazyload src="/images/loading.svg" data-src="vits/image-20230303051631964.png" alt="image-20230303051631964"></p>
+<p>没找到解决方法，只能先注释了</p>
+<p>3.跨地区数据拷贝</p>
+<p>现在很想知道微调预训练模型不加载优化器对预测结果的影响(在标贝预训练模型上训练了200个epoch只能发出单音节让我很害怕…</p>
+<p>目前猜测是batch太小了(但显存10G不允许，所以尝试一下迁移到24G显存的实例上继续训练 对比模型收敛程度</p>
+<p>由于租的两个实例分属不同地域(我恨，没有充分吸取阿里云服务器的教训…只能通过scp实现实例间的数据拷贝(同地域可以迁移实例以及/root/autodl-nas或/root/autodl-fs实现数据共享)</p>
+<p><a class="link" target="_blank" rel="noopener" href="https://www.autodl.com/docs/env/">https://www.autodl.com/docs/env/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>在控制台查看主机2的ssh登录命令及密码，在主机1输入</p>
+<p><code>scp -rP 66666 /root/autodl-tmp/xxxxx region-3.autodl.com:/root/autodl-tmp/</code>实现主动传输</p>
+<p>4.在新机器上恢复训练中优化器缺少初始学习率参数</p>
+<p><img lazyload src="/images/loading.svg" data-src="vits/image-20230307014550288.png" alt="image-20230307014550288"></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/guls999/article/details/85695409">https://blog.csdn.net/guls999/article/details/85695409 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>KeyError: “param ‘initial_lr’ is not specified in param_groups[0] when resuming an optimizer”</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>bing</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">这个错误是由于在恢复优化器时，没有正确地指定initial_lr参数或者last_epoch参数。可以尝试以下几种方法：</span><br><span class="line">1.在创建优化器时，为每个参数组添加initial_lr参数</span><br><span class="line">例如：optimizer = torch.optim.SGD([&#123;&#x27;params&#x27;: model.parameters(), &#x27;initial_lr&#x27;: 0.01&#125;], lr=0.01)</span><br><span class="line">initial_lr参数是用来指定优化器中每个参数组的初始学习率。如果你在创建优化器时没有指定这个参数，那么在恢复优化器时，它会从param_groups[0]中寻找这个参数，如果没有找到，就会报错。</span><br><span class="line">你可以在创建优化器时，为每个参数组添加initial_lr参数，例如：optimizer = torch.optim.SGD([&#123;&#x27;params&#x27;: model.parameters(), &#x27;initial_lr&#x27;: 0.01&#125;], lr=0.01)。这样，在恢复优化器时，它就可以从每个参数组中读取正确的初始学习率。</span><br><span class="line">2.恢复优化器的时候使用last_epoch=epoch-1参数。这个参数用于指定上一次训练的轮数，以便优化器使用正确的学习率。例如，如果你上一次训练了10轮，那么你可以使用last_epoch=9参数来恢复优化器，并继续训练。</span><br></pre></td></tr></table></figure></div>
+<p>这个错误是之前注释掉优化器加载的错误造成的(utils load_checkpoint函数)，</p>
+<p>会导致每次载入检查点模型时都不加载优化器(<del>导致模型不收敛的原因？</del>训练过程没中断，不会重复载入模型。但可能导致中断后epoch从0开始，删除当时的注释。</p>
+<h1 id="lab2"><a href="#lab2" class="headerlink" title="lab2"></a>lab2</h1><p>视频链接:<a class="link" target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1jo4y1e71H/">https://www.bilibili.com/video/BV1jo4y1e71H/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>Github项目地址：<a class="link" target="_blank" rel="noopener" href="https://github.com/Plachtaa/VITS-fast-fine-tuning">https://github.com/Plachtaa/VITS-fast-fine-tuning <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> </p>
+<p>Google Colab在线训练：<a class="link" target="_blank" rel="noopener" href="https://colab.research.google.com/drive/1omMhfYKrAAQ7a6zOCsyqpla-wU-QyfZn?usp=sharing">https://colab.research.google.com/drive/1omMhfYKrAAQ7a6zOCsyqpla-wU-QyfZn?usp=sharing <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>在训练lab1的过程中尝试一下另一个微调模型</p>
+<p>上传了三百条语音数据 不需要上传标注，程序会自动标注并进行数据的预处理(去BGM 噪音 分割)</p>
+<p>进行了30个epoch 出来一股大佐味 训练时间很短 效果不太行</p>
+<p>(大佐味是因为多语言混训的原因和预训练模型带大佐味的问题)</p>
+<p>解决方案:</p>
+<p>1.拉源码到本地 修改底模为标贝 再放到服务器上跑</p>
+<p>2.尝试增加上传数据集 并增加epoch              </p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：vits语音合成</li>
+        <li>本文作者：y4ny4n</li>
+        <li>创建时间：2023-03-10 11:47:31</li>
+        <li>
+            本文链接：https://y4ny4n.cn/2023/03/10/vits/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/DL/">#DL</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2023/02/25/blog%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">blog速度优化</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">vits语音合成</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#lab1"><span class="nav-text">lab1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E5%87%86%E5%A4%87"><span class="nav-text">数据集准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-text">环境配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83"><span class="nav-text">训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TTS%E6%8E%A8%E7%90%86"><span class="nav-text">TTS推理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MoeGoe"><span class="nav-text">MoeGoe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MoeTTS"><span class="nav-text">MoeTTS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vits-gradio"><span class="nav-text">vits-gradio</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MoeSS"><span class="nav-text">MoeSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#co-lab%E5%9C%A8%E7%BA%BF%E6%8E%A8%E7%90%86"><span class="nav-text">co-lab在线推理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2"><span class="nav-text">服务器部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tensorboard"><span class="nav-text">tensorboard</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%94%B6%E6%95%9B%E6%9D%A1%E4%BB%B6"><span class="nav-text">模型的收敛条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vits%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-text">vits损失函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B"><span class="nav-text">心路历程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B8%A9%E5%9D%91"><span class="nav-text">踩坑</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lab2"><span class="nav-text">lab2</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-regular fa-computer-classic"></i>&nbsp;&nbsp;<a href="/">y4ny4n</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 驱动</span>
+                <br> 
+            <span class="theme-version-container">主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v1.2.0</a>
+        </div>
+        
+        
+        
+            <div id="start_time_div" style="display:none">
+                2022/8/17 11:45:14
+            </div>
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="unfolded-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="fa-regular fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="folded-tools-list">
+        <li class="right-bottom-tools tool-toggle-show flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/menu-shrink.js"></script>
+
+<script src="/js/tools/go-top-bottom.js"></script>
+
+<script src="/js/tools/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/toc-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            REDEFINE.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            REDEFINE.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            REDEFINE.refresh();
+        });
+    });
+</script>
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
