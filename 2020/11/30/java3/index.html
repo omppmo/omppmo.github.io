@@ -23,12 +23,12 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="java学习(3)">
     <meta name="twitter:description" content="Hexo Theme Redefine">
-    <meta name="twitter:image" content="/images/logo1.png">
+    <meta name="twitter:image" content="/images/redefine-logo.svg">
     <!--- Icon Part-->
-    <link rel="icon" type="image/png" href="/images/logo1.png" sizes="192x192">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo1.png">
+    <link rel="icon" type="image/png" href="/images/redefine-logo.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-logo.svg">
     <meta name="theme-color" content="#005080">
-    <link rel="shortcut icon" href="/images/logo1.png">
+    <link rel="shortcut icon" href="/images/redefine-logo.svg">
     
     <title>
         
@@ -48,7 +48,7 @@
     <script id="hexo-configurations">
     let REDEFINE = window.REDEFINE || {};
     REDEFINE.hexo_config = {"hostname":"y4ny4n.cn","root":"/","language":"zh-CN"};
-    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/y4ny4n.jpg","favicon":"/images/logo1.png","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"https://s1.ax1x.com/2023/03/12/ppM1Rmj.jpg","dark":"https://s1.ax1x.com/2023/03/12/ppM171U.jpg"},"title_color":{"light":"#fff","dark":"#fff"},"description":"Let me think that there is one among those stars that guides my life through the dark unknown.","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.2.0","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":true,"audio":[{"name":"The Queen Of Argyll","artist":"Silly Wizard","url":"http://music.163.com/song/media/outer/url?id=19073366.mp3","cover":"/images/cover.jpg"},{"name":null,"artist":null,"url":null,"cover":null}]}}};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/me.jpg","favicon":"/images/redefine-logo.svg","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/images/back1.jpg","dark":"/images/back2.jpg"},"title_color":{"light":"#fff","dark":"#fff"},"description":"Let me think that there is one among those stars that guides my life through the dark unknown.","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.2.0","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":false,"audio":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]}}};
     REDEFINE.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
   </script>
     
@@ -116,6 +116,8 @@
                                 <a class="" 
                                     href="/"  >
                                     
+                                        
+                                            <i class="fa-regular fa-house"></i>
                                         
                                         首页
                                     
@@ -202,6 +204,8 @@
                         <a class="" 
                         href="/"  >
                              
+                                
+                                    <i class="fa-regular fa-house"></i>
                                 
                                 首页
                             
@@ -294,7 +298,7 @@
             
                 <div class="article-header">
                     <div class="avatar">
-                        <img src="/images/y4ny4n.jpg">
+                        <img src="/images/me.jpg">
                     </div>
                     <div class="info">
                         <div class="author">
@@ -368,7 +372,7 @@
 
             <div class="article-content markdown-body">
                 <p>期末考试临时冲的，java的事件处理以及监听类的几个类别。</p>
-<a id="more"></a>
+<span id="more"></span>
 <h2 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h2><h3 id="监听类"><a href="#监听类" class="headerlink" title="监听类"></a>监听类</h3><p>监听类的四种选择</p>
 <ol>
 <li><strong>选择本类</strong></li>
@@ -376,17 +380,17 @@
 <li><strong>定义一个继承于相应适配器类的新类作为监听类</strong></li>
 <li><strong>匿名类 </strong></li>
 </ol>
-<h4 id="本类监听"><a href="#本类监听" class="headerlink" title="本类监听"></a>本类监听</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyFrame</span> <span class="keyword">extends</span> <span class="title">JFrame</span> <span class="keyword">implements</span> <span class="title">XXXListener</span></span>&#123;</span><br><span class="line">    MyFrame()&#123;</span><br><span class="line">        组件名.addXXXListener(**<span class="keyword">this</span>**);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(ActionEvent arg0)</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="定义一个实现接口的新类作为监听类"><a href="#定义一个实现接口的新类作为监听类" class="headerlink" title="定义一个实现接口的新类作为监听类"></a>定义一个实现接口的新类作为监听类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyFrame</span> <span class="keyword">extends</span> <span class="title">JFrame</span></span>&#123;</span><br><span class="line">    MyListener listener = <span class="keyword">new</span> MyListener(<span class="keyword">this</span>);</span><br><span class="line">    <span class="comment">//想传递谁就把相应组件放在括号中</span></span><br><span class="line">    组件名.addXXXListener(listener);</span><br><span class="line">    <span class="comment">//监听类对象</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyListener</span> <span class="keyword">implements</span> <span class="title">XXXListener</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="本类监听"><a href="#本类监听" class="headerlink" title="本类监听"></a>本类监听</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyFrame</span> <span class="keyword">extends</span> <span class="title class_">JFrame</span> <span class="keyword">implements</span> <span class="title class_">XXXListener</span>&#123;</span><br><span class="line">    MyFrame()&#123;</span><br><span class="line">        组件名.addXXXListener(**<span class="built_in">this</span>**);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">actionPerformed</span><span class="params">(ActionEvent arg0)</span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h4 id="定义一个实现接口的新类作为监听类"><a href="#定义一个实现接口的新类作为监听类" class="headerlink" title="定义一个实现接口的新类作为监听类"></a>定义一个实现接口的新类作为监听类</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyFrame</span> <span class="keyword">extends</span> <span class="title class_">JFrame</span>&#123;</span><br><span class="line">    <span class="type">MyListener</span> <span class="variable">listener</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyListener</span>(<span class="built_in">this</span>);</span><br><span class="line">    <span class="comment">//想传递谁就把相应组件放在括号中</span></span><br><span class="line">    组件名.addXXXListener(listener);</span><br><span class="line">    <span class="comment">//监听类对象</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyListener</span> <span class="keyword">implements</span> <span class="title class_">XXXListener</span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 <p><strong>只要类声明实现接口，就必须重写定义接口的方法</strong></p>
 <p><strong>若只想使用其中一个，其他的方法也不能删去</strong></p>
-<h4 id="定义一个继承于相应适配器类的新类作为监听类"><a href="#定义一个继承于相应适配器类的新类作为监听类" class="headerlink" title="定义一个继承于相应适配器类的新类作为监听类"></a>定义一个继承于相应适配器类的新类作为监听类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyFrame</span> <span class="keyword">extends</span> <span class="title">JFrame</span></span>&#123;</span><br><span class="line">    MyFrame()&#123;</span><br><span class="line">    MyListener listener = <span class="keyword">new</span> MyListener(<span class="keyword">this</span>);</span><br><span class="line">    <span class="comment">//想传递谁就把相应组件放在括号中</span></span><br><span class="line">    组件名.addXXXListener(listener);</span><br><span class="line">    <span class="comment">//监听类对象</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;		</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyListener</span> <span class="keyword">extends</span> <span class="title">XXXAdapter</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="定义一个继承于相应适配器类的新类作为监听类"><a href="#定义一个继承于相应适配器类的新类作为监听类" class="headerlink" title="定义一个继承于相应适配器类的新类作为监听类"></a>定义一个继承于相应适配器类的新类作为监听类</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyFrame</span> <span class="keyword">extends</span> <span class="title class_">JFrame</span>&#123;</span><br><span class="line">    MyFrame()&#123;</span><br><span class="line">    <span class="type">MyListener</span> <span class="variable">listener</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyListener</span>(<span class="built_in">this</span>);</span><br><span class="line">    <span class="comment">//想传递谁就把相应组件放在括号中</span></span><br><span class="line">    组件名.addXXXListener(listener);</span><br><span class="line">    <span class="comment">//监听类对象</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;		</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyListener</span> <span class="keyword">extends</span> <span class="title class_">XXXAdapter</span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 <p>与接口类不同的是，如果想处理某一方法，就在新类中重写这个方法</p>
-<h4 id="选择匿名类作为监听类（最常见）"><a href="#选择匿名类作为监听类（最常见）" class="headerlink" title="选择匿名类作为监听类（最常见）"></a>选择匿名类作为监听类（最常见）</h4><h5 id="依赖于相应接口创建匿名类"><a href="#依赖于相应接口创建匿名类" class="headerlink" title="依赖于相应接口创建匿名类"></a>依赖于相应接口创建匿名类</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyFrame</span> <span class="keyword">extends</span> <span class="title">JFrame</span></span>&#123;</span><br><span class="line">    MyFrame()&#123;</span><br><span class="line">    组件名.addXXListener(<span class="keyword">new</span> XXXListener()&#123;</span><br><span class="line">        <span class="comment">//重写XXListener接口中定义的所有方法</span></span><br><span class="line">    &#125;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="选择匿名类作为监听类（最常见）"><a href="#选择匿名类作为监听类（最常见）" class="headerlink" title="选择匿名类作为监听类（最常见）"></a>选择匿名类作为监听类（最常见）</h4><h5 id="依赖于相应接口创建匿名类"><a href="#依赖于相应接口创建匿名类" class="headerlink" title="依赖于相应接口创建匿名类"></a>依赖于相应接口创建匿名类</h5><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyFrame</span> <span class="keyword">extends</span> <span class="title class_">JFrame</span>&#123;</span><br><span class="line">    MyFrame()&#123;</span><br><span class="line">    组件名.addXXListener(<span class="keyword">new</span> <span class="title class_">XXXListener</span>()&#123;</span><br><span class="line">        <span class="comment">//重写XXListener接口中定义的所有方法</span></span><br><span class="line">    &#125;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 <p>new A类(){}表明了创建这个A类的子类（匿名类）的实例对象</p>
 <p>new I接口(){}表明创建了一个匿名类实例，这个类是声明实现I接口的</p>
 <p>new 接口(){}不是创建接口实例，接口是不能创建实例的</p>
-<h5 id="依赖于适配器类创建匿名类"><a href="#依赖于适配器类创建匿名类" class="headerlink" title="依赖于适配器类创建匿名类"></a>依赖于适配器类创建匿名类</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyFrame</span> <span class="keyword">extends</span> <span class="title">JFrame</span></span>&#123;</span><br><span class="line">    MyFrame()&#123;</span><br><span class="line">        组件名.addXXListener(<span class="keyword">new</span> XXAdapter()&#123;</span><br><span class="line">            <span class="comment">//重写关注事件的相应方法</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="依赖于适配器类创建匿名类"><a href="#依赖于适配器类创建匿名类" class="headerlink" title="依赖于适配器类创建匿名类"></a>依赖于适配器类创建匿名类</h5><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyFrame</span> <span class="keyword">extends</span> <span class="title class_">JFrame</span>&#123;</span><br><span class="line">    MyFrame()&#123;</span><br><span class="line">        组件名.addXXListener(<span class="keyword">new</span> <span class="title class_">XXAdapter</span>()&#123;</span><br><span class="line">            <span class="comment">//重写关注事件的相应方法</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
             </div>
 
@@ -715,16 +719,6 @@
     });
 </script>
 
-
-
-
-    <div id="aplayer"></div>
-
-    
-<script src="/js/libs/APlayer.min.js"></script>
-
-    
-<script src="/js/plugins/aplayer.js"></script>
 
 
 

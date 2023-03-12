@@ -23,12 +23,12 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Modeling the scaling properties of human mobility">
     <meta name="twitter:description" content="Hexo Theme Redefine">
-    <meta name="twitter:image" content="/images/logo1.png">
+    <meta name="twitter:image" content="/images/redefine-logo.svg">
     <!--- Icon Part-->
-    <link rel="icon" type="image/png" href="/images/logo1.png" sizes="192x192">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo1.png">
+    <link rel="icon" type="image/png" href="/images/redefine-logo.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-logo.svg">
     <meta name="theme-color" content="#005080">
-    <link rel="shortcut icon" href="/images/logo1.png">
+    <link rel="shortcut icon" href="/images/redefine-logo.svg">
     
     <title>
         
@@ -48,7 +48,7 @@
     <script id="hexo-configurations">
     let REDEFINE = window.REDEFINE || {};
     REDEFINE.hexo_config = {"hostname":"y4ny4n.cn","root":"/","language":"zh-CN"};
-    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/y4ny4n.jpg","favicon":"/images/logo1.png","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"https://s1.ax1x.com/2023/03/12/ppM1Rmj.jpg","dark":"https://s1.ax1x.com/2023/03/12/ppM171U.jpg"},"title_color":{"light":"#fff","dark":"#fff"},"description":"Let me think that there is one among those stars that guides my life through the dark unknown.","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.2.0","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":true,"audio":[{"name":"The Queen Of Argyll","artist":"Silly Wizard","url":"http://music.163.com/song/media/outer/url?id=19073366.mp3","cover":"/images/cover.jpg"},{"name":null,"artist":null,"url":null,"cover":null}]}}};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/me.jpg","favicon":"/images/redefine-logo.svg","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/images/back1.jpg","dark":"/images/back2.jpg"},"title_color":{"light":"#fff","dark":"#fff"},"description":"Let me think that there is one among those stars that guides my life through the dark unknown.","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.2.0","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":false,"audio":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]}}};
     REDEFINE.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
   </script>
     
@@ -116,6 +116,8 @@
                                 <a class="" 
                                     href="/"  >
                                     
+                                        
+                                            <i class="fa-regular fa-house"></i>
                                         
                                         首页
                                     
@@ -202,6 +204,8 @@
                         <a class="" 
                         href="/"  >
                              
+                                
+                                    <i class="fa-regular fa-house"></i>
                                 
                                 首页
                             
@@ -294,7 +298,7 @@
             
                 <div class="article-header">
                     <div class="avatar">
-                        <img src="/images/y4ny4n.jpg">
+                        <img src="/images/me.jpg">
                     </div>
                     <div class="info">
                         <div class="author">
@@ -376,7 +380,7 @@
 <h2 id="Abstarct"><a href="#Abstarct" class="headerlink" title="Abstarct"></a>Abstarct</h2><p>个人移动轨迹的jump size($\Delta r$)和waiting time($\Delta t$)符合胖尾分布，这说明<strong>连续时间随机游走模型(CTRW)</strong>与人类移动的相关性。</p>
 <p>我们需要能描述移动轨迹统计特征的定量模型。本文使用人类移动的经验数据(empirical data)来说明CTRW模型的预测与实证结果存在系统性冲突。</p>
 <p><strong>本文介绍控制人类移动的两个准则，建立一个个体移动的统计微观模型。</strong>该模型解释了经验观察到的标度定律(scaling laws)，同时也允许我们分析预测大多数相关的标度指数。</p>
-<a id="more"></a>
+<span id="more"></span>
 <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>即使众多可用数据集在范围和分辨率上有显著不同，但在人类移动的一些定量特征上表现出一致。</p>
 <p>例如，美钞的追踪和移动电话数据都表明描述人类移动轨迹的聚合jump-size($\Delta r$)和waiting-time($\Delta t$)符合胖尾分布，$\Delta r$ 表示连续观察之间个体移动覆盖的距离，$\Delta t$表示个体在同一位置花费的时间。这些发现说明个体移动轨迹可以被莱维飞行(Lévy flights)或CTRW很好地描述。</p>
 <p>本文的目的是说明<strong>通过一系列的直接测量，个体移动轨迹遵循几个高度可复制的标度定律。</strong>然而这些定律中的许多要么不能被CTRW模型解释，要么直接与CTRW预测相矛盾，这说明缺乏一个能捕捉人类移动基础特征的模型框架。</p>
@@ -393,14 +397,14 @@
 <p>在莱维飞行中$\mu=1$，在CTRW中$\mu=\beta$</p>
 <p>本实验数据中观测到的$\mu=0.6±0.02$，小于CTRW预测的$\beta=0.8±0.1$</p>
 <p>$\mu&lt;1$说明访问不同位置数在大时间尺度上的减缓，用户访问之前没访问过地点的趋势减少。</p>
-<p><img src="/2021/10/05/211005/image-20211013171004927.png" alt="image-20211013171004927"></p>
+<p><img lazyload src="/images/loading.svg" data-src="211005/image-20211013171004927.png" alt="image-20211013171004927"></p>
 <p>该图表现出不同的回转半径$r_g$对应的访问位置数$S(t)$。</p>
 <p><strong>(B)访问频率</strong></p>
 <p>在莱维飞行和CTRW模型中一个用户访问给定位置的概率是处处渐进(t $\to\infty$)一致的(f~const.)。</p>
 <p>相反，人类访问模式相当不均匀，k-th最常访问位置的访问频率f遵循Zipf’s law</p>
 <p>$f_k$~$k^{-\zeta}$   $\zeta\approx1.2\pm0.1$</p>
 <p>这说明访问频率的分布遵循$P(f)$~$f^{-(1+1/\zeta)}$</p>
-<p><img src="/2021/10/05/211005/image-20211013180010666.png" alt></p>
+<p><img lazyload src="/images/loading.svg" data-src="211005/image-20211013180010666.png" alt></p>
 <p>该图反映出不同S值下用户访问k-th最常访问位置的访问频率$f_k$，实证数据很好地被$f_k$~$k^{-\zeta}$拟合。</p>
 <p><strong>(C)极慢扩散</strong></p>
 <p>CTRW模型预测均方距离(MSD)渐进符合$\left \langle \Delta x^2(t)  \right \rangle \sim t^\nu$ ($\nu=2\beta/\alpha$)</p>
@@ -409,7 +413,7 @@
 <p>CTRW模型预测我们观测个体的移动轨迹时间越长，他就会越偏离初始位置。</p>
 <p>然而，人类每天都有回家的倾向，这说明简单扩散过程在二维空间中不循环，不能提供对人的移动进行描述。</p>
 <p>本文的测量观测到了极慢扩散过程，MSD遵循一个比对数更慢的增长(对数增长:对数增长初期进步速度非常快，后面会越来越慢，最后几乎处于一个平台期)。MSD的极慢增长在扩散中是罕见的。</p>
-<p><img src="/2021/10/05/211005/image-20211014174215813.png" alt="image-20211014174215813"></p>
+<p><img lazyload src="/images/loading.svg" data-src="211005/image-20211014174215813.png" alt="image-20211014174215813"></p>
 <p>该图说明用户组的MSD($\left \langle \Delta x^2 \right \rangle^{\alpha/2}$)在不同的回转半径下的时间演化。使用t=1year的值对MSD值进行归一化。</p>
 <p>橙色曲线表示渐近行为的分析预测，灰色曲线代表CTRW模型的分析预测。</p>
 <p>插图:归一化MSD值在不同回转半径下比访问位置数S。</p>
@@ -432,20 +436,20 @@
 <p>个体返回之前访问过的S个位置的概率为$P_{ret}=1-\rho S^{-\gamma}$</p>
 <p>访问位置i的概率$\Pi_i$与该个体之前访问过该位置的次数成正比。</p>
 <p>在网络或社会科学中，这一假设被称为 preferential attachment/ cumulative<br>advantage。</p>
-<p><img src="/2021/10/05/211005/image-20211014155239397.png" alt="image-20211014155239397"></p>
+<p><img lazyload src="/images/loading.svg" data-src="211005/image-20211014155239397.png" alt="image-20211014155239397"></p>
 <p>该图描述了本文提出的个体移动模型。从时间t开始，该用户之前访问过4个不同的位置(访问频率f和每个位置圆的大小成正比)。在时间t+$\Delta t $，该用户可以选择访问离他现在位置$\Delta r$的新位置，也可以返回到他之前访问过的位置，该位置由访问频率f决定。</p>
 <h2 id="Model-predictions"><a href="#Model-predictions" class="headerlink" title="Model predictions"></a>Model predictions</h2><p>本文提到该模型适用于捕捉长期尺度模式，不能再现人类移动短期内的时间顺序和潜在相关性。我们选择关注渐近性质(asymptotic properties)不仅仅是由理论驱动的(旨在重现普遍模式而不是短暂模式)，也是出于实际考虑:许多人类移动驱动过程，从疾病传播到城市规划，都是由人类移动的渐近特征驱动。</p>
 <p>为了实现短期时间更好的还原度，我们加入了人类移动特征的周期调整(24h和7d的周期;个体在晚上很少移动，在早上和傍晚更多移动)，也加入了空间移动的潜在相关性(B地在A和C之间,访问顺序A→B→C或C→B→A)。这些相关性进一步限制了人类的轨迹，在一定程度上是个人移动模式具有高度可预测性的原因。</p>
 <p>提出动态抑制(dynamical quenching)和重复行为是人类轨迹独有的，本文提出的模型代表了对CTRW/Lévy-flight模型的改进，因为它捕捉人类流动性的特性。</p>
 <h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>1.Zipf’s law</p>
-<p><a href="https://blog.csdn.net/historyasamirror/article/details/3125223" target="_blank" rel="noopener">https://blog.csdn.net/historyasamirror/article/details/3125223</a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/historyasamirror/article/details/3125223">https://blog.csdn.net/historyasamirror/article/details/3125223 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>在自然语言的语料库里，一个单词出现的频率与它在频率表里的排名成反比。</p>
 <p>2.MSD</p>
-<p><a href="http://blog.sciencenet.cn/home.php?mod=space&amp;uid=3388193&amp;do=blog&amp;id=1232344" target="_blank" rel="noopener">http://blog.sciencenet.cn/home.php?mod=space&amp;uid=3388193&amp;do=blog&amp;id=1232344</a></p>
+<p><a class="link" target="_blank" rel="noopener" href="http://blog.sciencenet.cn/home.php?mod=space&amp;uid=3388193&amp;do=blog&amp;id=1232344">http://blog.sciencenet.cn/home.php?mod=space&amp;uid=3388193&amp;do=blog&amp;id=1232344 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>即均方位移(the mean square displacement )   </p>
 <p> 在统计力学中，均方位移（MSD，均方位移或均方波动）是粒子随时间移动后的位置相对于参考位置的偏差的量度。它是随机运动中空间范围的最常见度量，可以被认为是对随机行者“探索”的系统部分进行度量。</p>
 <p>MSD定义为t时刻的系综平均(集平均，某一时间点随机变量的期望)：</p>
-<p><img src="/2021/10/05/211005/image-20211017163225739.png" alt="image-20211017163225739"></p>
+<p><img lazyload src="/images/loading.svg" data-src="211005/image-20211017163225739.png" alt="image-20211017163225739"></p>
 <p>3.渐近分析</p>
 
             </div>
@@ -779,16 +783,6 @@
     });
 </script>
 
-
-
-
-    <div id="aplayer"></div>
-
-    
-<script src="/js/libs/APlayer.min.js"></script>
-
-    
-<script src="/js/plugins/aplayer.js"></script>
 
 
 

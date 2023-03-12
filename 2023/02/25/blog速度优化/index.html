@@ -23,12 +23,12 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="blog速度优化">
     <meta name="twitter:description" content="Hexo Theme Redefine">
-    <meta name="twitter:image" content="/images/logo1.png">
+    <meta name="twitter:image" content="/images/redefine-logo.svg">
     <!--- Icon Part-->
-    <link rel="icon" type="image/png" href="/images/logo1.png" sizes="192x192">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo1.png">
+    <link rel="icon" type="image/png" href="/images/redefine-logo.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-logo.svg">
     <meta name="theme-color" content="#005080">
-    <link rel="shortcut icon" href="/images/logo1.png">
+    <link rel="shortcut icon" href="/images/redefine-logo.svg">
     
     <title>
         
@@ -48,7 +48,7 @@
     <script id="hexo-configurations">
     let REDEFINE = window.REDEFINE || {};
     REDEFINE.hexo_config = {"hostname":"y4ny4n.cn","root":"/","language":"zh-CN"};
-    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/y4ny4n.jpg","favicon":"/images/logo1.png","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"https://s1.ax1x.com/2023/03/12/ppM1Rmj.jpg","dark":"https://s1.ax1x.com/2023/03/12/ppM171U.jpg"},"title_color":{"light":"#fff","dark":"#fff"},"description":"Let me think that there is one among those stars that guides my life through the dark unknown.","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.2.0","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":true,"audio":[{"name":"The Queen Of Argyll","artist":"Silly Wizard","url":"http://music.163.com/song/media/outer/url?id=19073366.mp3","cover":"/images/cover.jpg"},{"name":null,"artist":null,"url":null,"cover":null}]}}};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/me.jpg","favicon":"/images/redefine-logo.svg","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/images/back1.jpg","dark":"/images/back2.jpg"},"title_color":{"light":"#fff","dark":"#fff"},"description":"Let me think that there is one among those stars that guides my life through the dark unknown.","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.2.0","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":false,"audio":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]}}};
     REDEFINE.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
   </script>
     
@@ -116,6 +116,8 @@
                                 <a class="" 
                                     href="/"  >
                                     
+                                        
+                                            <i class="fa-regular fa-house"></i>
                                         
                                         首页
                                     
@@ -202,6 +204,8 @@
                         <a class="" 
                         href="/"  >
                              
+                                
+                                    <i class="fa-regular fa-house"></i>
                                 
                                 首页
                             
@@ -294,7 +298,7 @@
             
                 <div class="article-header">
                     <div class="avatar">
-                        <img src="/images/y4ny4n.jpg">
+                        <img src="/images/me.jpg">
                     </div>
                     <div class="info">
                         <div class="author">
@@ -346,21 +350,21 @@
 
             <div class="article-content markdown-body">
                 <p>想写项目总结但发现blog访问慢而偶然触发的一系列优化(<del>踩坑</del>操作</p>
-<a id="more"></a>
-<h2 id="托管平台"><a href="#托管平台" class="headerlink" title="托管平台"></a>托管平台</h2><p>先前将hexo同时托管到gitee和github上。因github Pages 国内访问较慢，故上传到了gitee，发现gitee Pages不知道从何时起更新需要实名认证了(认证过程太麻烦，了解到了<a class="link" href="https://vercel.com/" target="_blank" rel="noopener">vercel <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，将hexo部署到vercel进行加速。</p>
-<p>vercel+github搭建hexo:<a class="link" href="https://zhuanlan.zhihu.com/p/358739246" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/358739246 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<span id="more"></span>
+<h2 id="托管平台"><a href="#托管平台" class="headerlink" title="托管平台"></a>托管平台</h2><p>先前将hexo同时托管到gitee和github上。因github Pages 国内访问较慢，故上传到了gitee，发现gitee Pages不知道从何时起更新需要实名认证了(认证过程太麻烦，了解到了<a class="link" target="_blank" rel="noopener" href="https://vercel.com/">vercel <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，将hexo部署到vercel进行加速。</p>
+<p>vercel+github搭建hexo:<a class="link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/358739246">https://zhuanlan.zhihu.com/p/358739246 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>vercel分发一个免费的二级域名，但是不建议使用。在settings中绑定在阿里云购买的域名，并在阿里云控制台添加CNAME解析</p>
 <p><img lazyload src="/images/loading.svg" data-src="blog速度优化.assets/image-20230225181113319.png" alt="image-20230225181113319"></p>
-<p>根域名/二级域名解析:<a class="link" href="https://tangly1024.com/article/vercel-domain" target="_blank" rel="noopener">https://tangly1024.com/article/vercel-domain <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>根域名/二级域名解析:<a class="link" target="_blank" rel="noopener" href="https://tangly1024.com/article/vercel-domain">https://tangly1024.com/article/vercel-domain <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>至此实现较快国内访问和域名绑定。</p>
 <h2 id="速度优化"><a href="#速度优化" class="headerlink" title="速度优化"></a>速度优化</h2><p>发现访问页面还是很慢 检查-&gt;网络-&gt;查看文件传输耗时</p>
 <p>发现耗时较长的都是js/css/font等静态资源，明明都使用了cdn加速，越来越慢。</p>
 <h3 id="jsdelivr"><a href="#jsdelivr" class="headerlink" title="jsdelivr"></a>jsdelivr</h3><p>由于jsdelivr在国内挂了，导致国内使用了jsdelivr服务的网站要不访问很慢要不干脆就无法访问了。hexo主题中的config中的静态资源基本都使用了cdn.jsedlivr.net加速。</p>
-<p>解决方法:<a class="link" href="https://oniya.cn/archives/123" target="_blank" rel="noopener">https://oniya.cn/archives/123 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>解决方法:<a class="link" target="_blank" rel="noopener" href="https://oniya.cn/archives/123">https://oniya.cn/archives/123 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>鉴于站点没有icp备案无法注册境内cdn(如阿里云 腾讯云)，所以果断选择更换使用的cdn链接，更换了_config.yml中的cdn链接为<code>https://gcore.jsdelivr.net/...</code></p>
 <p>换了以后发现Network-&gt;Initiator中的cdn链接没有，从这里开始了愉快的踩坑之旅。</p>
 <p><img lazyload src="/images/loading.svg" data-src="blog速度优化.assets/image-20230225182820148.png" alt="image-20230225182820148"></p>
-<p>在Google的<a class="link" href="https://developers.google.com/speed/pagespeed/insights/" target="_blank" rel="noopener">PageSpeed Insights <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>在Google的<a class="link" target="_blank" rel="noopener" href="https://developers.google.com/speed/pagespeed/insights/">PageSpeed Insights <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p><img lazyload src="/images/loading.svg" data-src="blog速度优化.assets/image-20230225173712716.png" alt="image-20230225173712716"></p>
 <p><img lazyload src="/images/loading.svg" data-src="blog速度优化.assets/image-20230225173727328.png" alt="image-20230225173727328"></p>
 
@@ -683,16 +687,6 @@
     });
 </script>
 
-
-
-
-    <div id="aplayer"></div>
-
-    
-<script src="/js/libs/APlayer.min.js"></script>
-
-    
-<script src="/js/plugins/aplayer.js"></script>
 
 
 

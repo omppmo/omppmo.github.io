@@ -23,12 +23,12 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Http[极客大挑战 2019]">
     <meta name="twitter:description" content="Hexo Theme Redefine">
-    <meta name="twitter:image" content="/images/logo1.png">
+    <meta name="twitter:image" content="/images/redefine-logo.svg">
     <!--- Icon Part-->
-    <link rel="icon" type="image/png" href="/images/logo1.png" sizes="192x192">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo1.png">
+    <link rel="icon" type="image/png" href="/images/redefine-logo.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-logo.svg">
     <meta name="theme-color" content="#005080">
-    <link rel="shortcut icon" href="/images/logo1.png">
+    <link rel="shortcut icon" href="/images/redefine-logo.svg">
     
     <title>
         
@@ -48,7 +48,7 @@
     <script id="hexo-configurations">
     let REDEFINE = window.REDEFINE || {};
     REDEFINE.hexo_config = {"hostname":"y4ny4n.cn","root":"/","language":"zh-CN"};
-    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/y4ny4n.jpg","favicon":"/images/logo1.png","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"https://s1.ax1x.com/2023/03/12/ppM1Rmj.jpg","dark":"https://s1.ax1x.com/2023/03/12/ppM171U.jpg"},"title_color":{"light":"#fff","dark":"#fff"},"description":"Let me think that there is one among those stars that guides my life through the dark unknown.","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.2.0","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":true,"audio":[{"name":"The Queen Of Argyll","artist":"Silly Wizard","url":"http://music.163.com/song/media/outer/url?id=19073366.mp3","cover":"/images/cover.jpg"},{"name":null,"artist":null,"url":null,"cover":null}]}}};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/me.jpg","favicon":"/images/redefine-logo.svg","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/images/back1.jpg","dark":"/images/back2.jpg"},"title_color":{"light":"#fff","dark":"#fff"},"description":"Let me think that there is one among those stars that guides my life through the dark unknown.","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.2.0","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":false,"audio":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]}}};
     REDEFINE.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
   </script>
     
@@ -116,6 +116,8 @@
                                 <a class="" 
                                     href="/"  >
                                     
+                                        
+                                            <i class="fa-regular fa-house"></i>
                                         
                                         首页
                                     
@@ -202,6 +204,8 @@
                         <a class="" 
                         href="/"  >
                              
+                                
+                                    <i class="fa-regular fa-house"></i>
                                 
                                 首页
                             
@@ -294,7 +298,7 @@
             
                 <div class="article-header">
                     <div class="avatar">
-                        <img src="/images/y4ny4n.jpg">
+                        <img src="/images/me.jpg">
                     </div>
                     <div class="info">
                         <div class="author">
@@ -368,12 +372,12 @@
 
             <div class="article-content markdown-body">
                 <p>http请求头</p>
-<a id="more"></a>
+<span id="more"></span>
 <p>使用burpsuite抓包看到Secret.php</p>
-<p>显示It doesn’t come from ‘<a href="https://www.Sycsecret.com" target="_blank" rel="noopener">https://www.Sycsecret.com</a>‘</p>
+<p>显示It doesn’t come from ‘<a class="link" target="_blank" rel="noopener" href="https://www.Sycsecret.com">https://www.Sycsecret.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>‘</p>
 <p>学到了请求首部字段</p>
 <p>Referer 告知请求的原始资源的URI，可以看出请求URI是从哪个页面发出的</p>
-<p>把请求包发送到重发器 修改头部Referer为 <a href="https://www.Sycsecret.com" target="_blank" rel="noopener">https://www.Sycsecret.com</a></p>
+<p>把请求包发送到重发器 修改头部Referer为 <a class="link" target="_blank" rel="noopener" href="https://www.Sycsecret.com">https://www.Sycsecret.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>显示Please use “Syclover” browser</p>
 <p>继续学到User-Agent字段</p>
 <p>User-Agent  Mozilla/5.0 (Windows NT 6.1; WOW64; rv:13.0) Gecko/20100101 Firefox/13.0.1 创建请求的浏览器和用户代理名称等信息</p>
@@ -384,7 +388,7 @@
 <p>X-Forwarded-For 是一个扩展头。HTTP/1.1（RFC 2616）协议并没有对它的定义，它最开始是由 Squid 这个缓存代理软件引入，用来表示 HTTP 请求端真实 IP，现在已经成为事实上的标准，被各大 HTTP 代理、负载均衡等转发服务广泛使用，并被写入 RFC 7239（Forwarded HTTP Extension）标准之中.</p>
 </blockquote>
 <p>得到flag flag{a5e3eef1-e0d8-426c-acb7-18b094653f29}</p>
-<p>学习出处：<a href="https://www.dazhuanlan.com/2020/03/10/5e670ce66256d/?__cf_chl_jschl_tk__=45aa12cf90d9c0c25eef9918a873d6f7d17f4441-1600263258-0-AaivmMLCayRCIlZxXmdU78F6O6L0iO32tcd-YfB_AcQw_IIxxXasK1QPOGSEQN89atHKD6IE9Oi9JfZNPH5TEPGmnhwDY7BaZ27QsW5tGP46_vv8gPBTZrIKfTDbf7w0iXhcP-e5cD037gL-ZnalH9u8XwVnc4PD3ylRPljIdKMEPVucsXG2SCxTVMZV9NfthOwT5mQrqzolzaSiXNeCzeWWq69W3-gUdL8TgrJWfoMmyUpzfzvpcDAysJ9IFBFxIzSxM-ZLEey-25_3QIFbUNQ3ipoGHh_HMIDgaMbcrudEiJLf_tfQQ1-jDuutjGMw1g" target="_blank" rel="noopener">https://www.dazhuanlan.com/2020/03/10/5e670ce66256d/?__cf_chl_jschl_tk__=45aa12cf90d9c0c25eef9918a873d6f7d17f4441-1600263258-0-AaivmMLCayRCIlZxXmdU78F6O6L0iO32tcd-YfB_AcQw_IIxxXasK1QPOGSEQN89atHKD6IE9Oi9JfZNPH5TEPGmnhwDY7BaZ27QsW5tGP46_vv8gPBTZrIKfTDbf7w0iXhcP-e5cD037gL-ZnalH9u8XwVnc4PD3ylRPljIdKMEPVucsXG2SCxTVMZV9NfthOwT5mQrqzolzaSiXNeCzeWWq69W3-gUdL8TgrJWfoMmyUpzfzvpcDAysJ9IFBFxIzSxM-ZLEey-25_3QIFbUNQ3ipoGHh_HMIDgaMbcrudEiJLf_tfQQ1-jDuutjGMw1g</a></p>
+<p>学习出处：<a class="link" target="_blank" rel="noopener" href="https://www.dazhuanlan.com/2020/03/10/5e670ce66256d/?__cf_chl_jschl_tk__=45aa12cf90d9c0c25eef9918a873d6f7d17f4441-1600263258-0-AaivmMLCayRCIlZxXmdU78F6O6L0iO32tcd-YfB_AcQw_IIxxXasK1QPOGSEQN89atHKD6IE9Oi9JfZNPH5TEPGmnhwDY7BaZ27QsW5tGP46_vv8gPBTZrIKfTDbf7w0iXhcP-e5cD037gL-ZnalH9u8XwVnc4PD3ylRPljIdKMEPVucsXG2SCxTVMZV9NfthOwT5mQrqzolzaSiXNeCzeWWq69W3-gUdL8TgrJWfoMmyUpzfzvpcDAysJ9IFBFxIzSxM-ZLEey-25_3QIFbUNQ3ipoGHh_HMIDgaMbcrudEiJLf_tfQQ1-jDuutjGMw1g">https://www.dazhuanlan.com/2020/03/10/5e670ce66256d/?__cf_chl_jschl_tk__=45aa12cf90d9c0c25eef9918a873d6f7d17f4441-1600263258-0-AaivmMLCayRCIlZxXmdU78F6O6L0iO32tcd-YfB_AcQw_IIxxXasK1QPOGSEQN89atHKD6IE9Oi9JfZNPH5TEPGmnhwDY7BaZ27QsW5tGP46_vv8gPBTZrIKfTDbf7w0iXhcP-e5cD037gL-ZnalH9u8XwVnc4PD3ylRPljIdKMEPVucsXG2SCxTVMZV9NfthOwT5mQrqzolzaSiXNeCzeWWq69W3-gUdL8TgrJWfoMmyUpzfzvpcDAysJ9IFBFxIzSxM-ZLEey-25_3QIFbUNQ3ipoGHh_HMIDgaMbcrudEiJLf_tfQQ1-jDuutjGMw1g <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 
             </div>
 
@@ -713,16 +717,6 @@
     });
 </script>
 
-
-
-
-    <div id="aplayer"></div>
-
-    
-<script src="/js/libs/APlayer.min.js"></script>
-
-    
-<script src="/js/plugins/aplayer.js"></script>
 
 
 

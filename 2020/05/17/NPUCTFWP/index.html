@@ -23,12 +23,12 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="认清形势，建立信心[npuctf]">
     <meta name="twitter:description" content="Hexo Theme Redefine">
-    <meta name="twitter:image" content="/images/logo1.png">
+    <meta name="twitter:image" content="/images/redefine-logo.svg">
     <!--- Icon Part-->
-    <link rel="icon" type="image/png" href="/images/logo1.png" sizes="192x192">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo1.png">
+    <link rel="icon" type="image/png" href="/images/redefine-logo.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-logo.svg">
     <meta name="theme-color" content="#005080">
-    <link rel="shortcut icon" href="/images/logo1.png">
+    <link rel="shortcut icon" href="/images/redefine-logo.svg">
     
     <title>
         
@@ -48,7 +48,7 @@
     <script id="hexo-configurations">
     let REDEFINE = window.REDEFINE || {};
     REDEFINE.hexo_config = {"hostname":"y4ny4n.cn","root":"/","language":"zh-CN"};
-    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/y4ny4n.jpg","favicon":"/images/logo1.png","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"https://s1.ax1x.com/2023/03/12/ppM1Rmj.jpg","dark":"https://s1.ax1x.com/2023/03/12/ppM171U.jpg"},"title_color":{"light":"#fff","dark":"#fff"},"description":"Let me think that there is one among those stars that guides my life through the dark unknown.","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.2.0","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":true,"audio":[{"name":"The Queen Of Argyll","artist":"Silly Wizard","url":"http://music.163.com/song/media/outer/url?id=19073366.mp3","cover":"/images/cover.jpg"},{"name":null,"artist":null,"url":null,"cover":null}]}}};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/me.jpg","favicon":"/images/redefine-logo.svg","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/images/back1.jpg","dark":"/images/back2.jpg"},"title_color":{"light":"#fff","dark":"#fff"},"description":"Let me think that there is one among those stars that guides my life through the dark unknown.","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.2.0","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":false,"audio":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]}}};
     REDEFINE.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
   </script>
     
@@ -116,6 +116,8 @@
                                 <a class="" 
                                     href="/"  >
                                     
+                                        
+                                            <i class="fa-regular fa-house"></i>
                                         
                                         首页
                                     
@@ -202,6 +204,8 @@
                         <a class="" 
                         href="/"  >
                              
+                                
+                                    <i class="fa-regular fa-house"></i>
                                 
                                 首页
                             
@@ -294,7 +298,7 @@
             
                 <div class="article-header">
                     <div class="avatar">
-                        <img src="/images/y4ny4n.jpg">
+                        <img src="/images/me.jpg">
                     </div>
                     <div class="info">
                         <div class="author">
@@ -350,7 +354,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-file-word"></i>&nbsp;<span>59 字</span>
+            <i class="fa-regular fa-file-word"></i>&nbsp;<span>63 字</span>
         </span>
     
     
@@ -372,8 +376,8 @@
 
             <div class="article-content markdown-body">
                 <p>DLP与扩展CRT</p>
-<a id="more"></a>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">p = getPrime(<span class="number">25</span>)</span><br><span class="line">e = <span class="comment"># Hidden</span></span><br><span class="line">q = getPrime(<span class="number">25</span>)</span><br><span class="line">n = p * q</span><br><span class="line">m = bytes_to_long(flag.strip(<span class="string">b"npuctf&#123;"</span>).strip(<span class="string">b"&#125;"</span>))</span><br><span class="line">c = pow(m, e, n)</span><br><span class="line">print(c)</span><br><span class="line">print(pow(<span class="number">2</span>, e, n))</span><br><span class="line">print(pow(<span class="number">4</span>, e, n))</span><br><span class="line">print(pow(<span class="number">8</span>, e, n))</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">p = getPrime(<span class="number">25</span>)</span><br><span class="line">e = <span class="comment"># Hidden</span></span><br><span class="line">q = getPrime(<span class="number">25</span>)</span><br><span class="line">n = p * q</span><br><span class="line">m = bytes_to_long(flag.strip(<span class="string">b&quot;npuctf&#123;&quot;</span>).strip(<span class="string">b&quot;&#125;&quot;</span>))</span><br><span class="line">c = <span class="built_in">pow</span>(m, e, n)</span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">pow</span>(<span class="number">2</span>, e, n))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">pow</span>(<span class="number">4</span>, e, n))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">pow</span>(<span class="number">8</span>, e, n))</span><br></pre></td></tr></table></figure></div>
 <h2 id="考点"><a href="#考点" class="headerlink" title="考点"></a>考点</h2><ul>
 <li>求解DLP</li>
 <li>扩展CRT</li>
@@ -711,16 +715,6 @@
     });
 </script>
 
-
-
-
-    <div id="aplayer"></div>
-
-    
-<script src="/js/libs/APlayer.min.js"></script>
-
-    
-<script src="/js/plugins/aplayer.js"></script>
 
 
 

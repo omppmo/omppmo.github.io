@@ -23,12 +23,12 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="java学习(2)">
     <meta name="twitter:description" content="Hexo Theme Redefine">
-    <meta name="twitter:image" content="/images/logo1.png">
+    <meta name="twitter:image" content="/images/redefine-logo.svg">
     <!--- Icon Part-->
-    <link rel="icon" type="image/png" href="/images/logo1.png" sizes="192x192">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo1.png">
+    <link rel="icon" type="image/png" href="/images/redefine-logo.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-logo.svg">
     <meta name="theme-color" content="#005080">
-    <link rel="shortcut icon" href="/images/logo1.png">
+    <link rel="shortcut icon" href="/images/redefine-logo.svg">
     
     <title>
         
@@ -48,7 +48,7 @@
     <script id="hexo-configurations">
     let REDEFINE = window.REDEFINE || {};
     REDEFINE.hexo_config = {"hostname":"y4ny4n.cn","root":"/","language":"zh-CN"};
-    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/y4ny4n.jpg","favicon":"/images/logo1.png","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"https://s1.ax1x.com/2023/03/12/ppM1Rmj.jpg","dark":"https://s1.ax1x.com/2023/03/12/ppM171U.jpg"},"title_color":{"light":"#fff","dark":"#fff"},"description":"Let me think that there is one among those stars that guides my life through the dark unknown.","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.2.0","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":true,"audio":[{"name":"The Queen Of Argyll","artist":"Silly Wizard","url":"http://music.163.com/song/media/outer/url?id=19073366.mp3","cover":"/images/cover.jpg"},{"name":null,"artist":null,"url":null,"cover":null}]}}};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/me.jpg","favicon":"/images/redefine-logo.svg","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/images/back1.jpg","dark":"/images/back2.jpg"},"title_color":{"light":"#fff","dark":"#fff"},"description":"Let me think that there is one among those stars that guides my life through the dark unknown.","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.2.0","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":false,"audio":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]}}};
     REDEFINE.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
   </script>
     
@@ -116,6 +116,8 @@
                                 <a class="" 
                                     href="/"  >
                                     
+                                        
+                                            <i class="fa-regular fa-house"></i>
                                         
                                         首页
                                     
@@ -202,6 +204,8 @@
                         <a class="" 
                         href="/"  >
                              
+                                
+                                    <i class="fa-regular fa-house"></i>
                                 
                                 首页
                             
@@ -294,7 +298,7 @@
             
                 <div class="article-header">
                     <div class="avatar">
-                        <img src="/images/y4ny4n.jpg">
+                        <img src="/images/me.jpg">
                     </div>
                     <div class="info">
                         <div class="author">
@@ -346,7 +350,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-file-word"></i>&nbsp;<span>453 字</span>
+            <i class="fa-regular fa-file-word"></i>&nbsp;<span>454 字</span>
         </span>
     
     
@@ -368,10 +372,10 @@
 
             <div class="article-content markdown-body">
                 <p>关于protected权限的子类访问方式</p>
-<a id="more"></a>
+<span id="more"></span>
 <h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>听老师讲课说到Object类的clone()方法，其声明方法是protected修饰的。protected修饰的可见性在本类，同包类，子类中皆可见。但子类clone()方法使用时，却不能直接调用Object类的clone()方法，而是需要进行重写,这个问题令我很迷茫。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public Object clone() throws CloneNotSupportedException&#123;</span><br><span class="line">              return super.clone();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="前置芝士"><a href="#前置芝士" class="headerlink" title="前置芝士"></a>前置芝士</h2><p>学习出处：<br><a href="https://blog.csdn.net/blacktal/article/details/81198579" target="_blank" rel="noopener">https://blog.csdn.net/blacktal/article/details/81198579</a><br><a href="https://blog.csdn.net/asahinokawa/article/details/80777302" target="_blank" rel="noopener">https://blog.csdn.net/asahinokawa/article/details/80777302</a><br>通过学习我认识到，protected修饰并不只是被同一包中的所有类和不同包中的子类访问那么简单。<br>直接总结一下，详细实例看出处</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public Object clone() throws CloneNotSupportedException&#123;</span><br><span class="line">              return super.clone();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h2 id="前置芝士"><a href="#前置芝士" class="headerlink" title="前置芝士"></a>前置芝士</h2><p>学习出处：<br><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/blacktal/article/details/81198579">https://blog.csdn.net/blacktal/article/details/81198579 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/asahinokawa/article/details/80777302">https://blog.csdn.net/asahinokawa/article/details/80777302 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>通过学习我认识到，protected修饰并不只是被同一包中的所有类和不同包中的子类访问那么简单。<br>直接总结一下，详细实例看出处</p>
 <ol>
 <li><p>子类可以通过继承获得不同包父类的protected权限成员变量和成员方法，在子类中可以直接访问</p>
 </li>
@@ -714,16 +718,6 @@
     });
 </script>
 
-
-
-
-    <div id="aplayer"></div>
-
-    
-<script src="/js/libs/APlayer.min.js"></script>
-
-    
-<script src="/js/plugins/aplayer.js"></script>
 
 
 

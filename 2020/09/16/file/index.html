@@ -23,12 +23,12 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Secret File[极客大挑战 2019]">
     <meta name="twitter:description" content="Hexo Theme Redefine">
-    <meta name="twitter:image" content="/images/logo1.png">
+    <meta name="twitter:image" content="/images/redefine-logo.svg">
     <!--- Icon Part-->
-    <link rel="icon" type="image/png" href="/images/logo1.png" sizes="192x192">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo1.png">
+    <link rel="icon" type="image/png" href="/images/redefine-logo.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-logo.svg">
     <meta name="theme-color" content="#005080">
-    <link rel="shortcut icon" href="/images/logo1.png">
+    <link rel="shortcut icon" href="/images/redefine-logo.svg">
     
     <title>
         
@@ -48,7 +48,7 @@
     <script id="hexo-configurations">
     let REDEFINE = window.REDEFINE || {};
     REDEFINE.hexo_config = {"hostname":"y4ny4n.cn","root":"/","language":"zh-CN"};
-    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/y4ny4n.jpg","favicon":"/images/logo1.png","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"https://s1.ax1x.com/2023/03/12/ppM1Rmj.jpg","dark":"https://s1.ax1x.com/2023/03/12/ppM171U.jpg"},"title_color":{"light":"#fff","dark":"#fff"},"description":"Let me think that there is one among those stars that guides my life through the dark unknown.","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.2.0","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":true,"audio":[{"name":"The Queen Of Argyll","artist":"Silly Wizard","url":"http://music.163.com/song/media/outer/url?id=19073366.mp3","cover":"/images/cover.jpg"},{"name":null,"artist":null,"url":null,"cover":null}]}}};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/me.jpg","favicon":"/images/redefine-logo.svg","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/images/back1.jpg","dark":"/images/back2.jpg"},"title_color":{"light":"#fff","dark":"#fff"},"description":"Let me think that there is one among those stars that guides my life through the dark unknown.","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.2.0","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":false,"audio":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]}}};
     REDEFINE.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
   </script>
     
@@ -116,6 +116,8 @@
                                 <a class="" 
                                     href="/"  >
                                     
+                                        
+                                            <i class="fa-regular fa-house"></i>
                                         
                                         首页
                                     
@@ -202,6 +204,8 @@
                         <a class="" 
                         href="/"  >
                              
+                                
+                                    <i class="fa-regular fa-house"></i>
                                 
                                 首页
                             
@@ -294,7 +298,7 @@
             
                 <div class="article-header">
                     <div class="avatar">
-                        <img src="/images/y4ny4n.jpg">
+                        <img src="/images/me.jpg">
                     </div>
                     <div class="info">
                         <div class="author">
@@ -350,7 +354,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-file-word"></i>&nbsp;<span>289 字</span>
+            <i class="fa-regular fa-file-word"></i>&nbsp;<span>301 字</span>
         </span>
     
     
@@ -372,28 +376,28 @@
 
             <div class="article-content markdown-body">
                 <p>文件包含与php伪协议</p>
-<a id="more"></a>
+<span id="more"></span>
 <p>查看源码发现Archive_room.php</p>
 <p>接着是action.php</p>
 <p>但由于访问时间过短直接跳转到end.php</p>
 <p>使用burpsuite抓包</p>
-<p><img src="/2020/09/16/file/image-20200904150424108.png" alt="image-20200904150424108"></p>
+<p><img lazyload src="/images/loading.svg" data-src="file/image-20200904150424108.png" alt="image-20200904150424108"></p>
 <p>发现secr3t.php</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">    error_reporting(<span class="number">0</span>);</span><br><span class="line">    $file=$_GET[<span class="string">'file'</span>];</span><br><span class="line">    <span class="keyword">if</span>(strstr($file,<span class="string">"../"</span>)||stristr($file, <span class="string">"tp"</span>)||stristr($file,<span class="string">"input"</span>)||stristr($file,<span class="string">"data"</span>))&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Oh no!"</span>;</span><br><span class="line">        <span class="keyword">exit</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">include</span>($file); </span><br><span class="line"><span class="comment">//flag放在了flag.php里</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">    <span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="variable">$file</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">strstr</span>(<span class="variable">$file</span>,<span class="string">&quot;../&quot;</span>)||<span class="title function_ invoke__">stristr</span>(<span class="variable">$file</span>, <span class="string">&quot;tp&quot;</span>)||<span class="title function_ invoke__">stristr</span>(<span class="variable">$file</span>,<span class="string">&quot;input&quot;</span>)||<span class="title function_ invoke__">stristr</span>(<span class="variable">$file</span>,<span class="string">&quot;data&quot;</span>))&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;Oh no!&quot;</span>;</span><br><span class="line">        <span class="keyword">exit</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$file</span>); </span><br><span class="line"><span class="comment">//flag放在了flag.php里</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
 <p>文件包含漏洞并并过滤掉了一些关键词</p>
 <p>学习到了对于文件包含漏洞用php伪协议读取文件</p>
-<p>学习出处：<a href="https://www.freebuf.com/column/148886.html" target="_blank" rel="noopener">https://www.freebuf.com/column/148886.html</a></p>
+<p>学习出处：<a class="link" target="_blank" rel="noopener" href="https://www.freebuf.com/column/148886.html">https://www.freebuf.com/column/148886.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>file://后加文件的绝对路径和文件名</p>
 <p>php://协议</p>
 <p>1.php://filter 读取源代码并进行base64编码输出，不然会直接当做php代码执行就看不到源代码内容了。</p>
-<p>学习出处：<a href="https://blog.csdn.net/destiny1507/article/details/82347371" target="_blank" rel="noopener">https://blog.csdn.net/destiny1507/article/details/82347371</a></p>
+<p>学习出处：<a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/destiny1507/article/details/82347371">https://blog.csdn.net/destiny1507/article/details/82347371 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>基本使用：?file=php://filter/read=convert.base64-encode/resource=xxx.php</p>
 <p>各参数作用：</p>
-<p><img src="/2020/09/16/file/image-20200904151413498.png" alt="image-20200904151413498"></p>
+<p><img lazyload src="/images/loading.svg" data-src="file/image-20200904151413498.png" alt="image-20200904151413498"></p>
 <p>2.php://input</p>
 <p><strong>php://input</strong> 可以访问请求的原始数据的只读流, 将post请求中的数据作为PHP代码执行。</p>
 <p>其余php封装协议</p>
-<p><img src="/2020/09/16/file/15063209941952.png!small" alt="常规小节.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="file/15063209941952.png!small" alt="常规小节.png"></p>
 <p>/secr3t.php?file=php://filter/read=convert.base64-encode/resource=flag.php</p>
 <p>读取到flag的base64编码后形式，解码即可找到flag</p>
 
@@ -728,16 +732,6 @@
     });
 </script>
 
-
-
-
-    <div id="aplayer"></div>
-
-    
-<script src="/js/libs/APlayer.min.js"></script>
-
-    
-<script src="/js/plugins/aplayer.js"></script>
 
 
 

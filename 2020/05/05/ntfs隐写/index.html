@@ -23,12 +23,12 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="ntfs隐写">
     <meta name="twitter:description" content="Hexo Theme Redefine">
-    <meta name="twitter:image" content="/images/logo1.png">
+    <meta name="twitter:image" content="/images/redefine-logo.svg">
     <!--- Icon Part-->
-    <link rel="icon" type="image/png" href="/images/logo1.png" sizes="192x192">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo1.png">
+    <link rel="icon" type="image/png" href="/images/redefine-logo.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-logo.svg">
     <meta name="theme-color" content="#005080">
-    <link rel="shortcut icon" href="/images/logo1.png">
+    <link rel="shortcut icon" href="/images/redefine-logo.svg">
     
     <title>
         
@@ -48,7 +48,7 @@
     <script id="hexo-configurations">
     let REDEFINE = window.REDEFINE || {};
     REDEFINE.hexo_config = {"hostname":"y4ny4n.cn","root":"/","language":"zh-CN"};
-    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/y4ny4n.jpg","favicon":"/images/logo1.png","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"https://s1.ax1x.com/2023/03/12/ppM1Rmj.jpg","dark":"https://s1.ax1x.com/2023/03/12/ppM171U.jpg"},"title_color":{"light":"#fff","dark":"#fff"},"description":"Let me think that there is one among those stars that guides my life through the dark unknown.","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.2.0","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":true,"audio":[{"name":"The Queen Of Argyll","artist":"Silly Wizard","url":"http://music.163.com/song/media/outer/url?id=19073366.mp3","cover":"/images/cover.jpg"},{"name":null,"artist":null,"url":null,"cover":null}]}}};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/me.jpg","favicon":"/images/redefine-logo.svg","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/images/back1.jpg","dark":"/images/back2.jpg"},"title_color":{"light":"#fff","dark":"#fff"},"description":"Let me think that there is one among those stars that guides my life through the dark unknown.","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.2.0","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":false,"audio":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]}}};
     REDEFINE.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
   </script>
     
@@ -116,6 +116,8 @@
                                 <a class="" 
                                     href="/"  >
                                     
+                                        
+                                            <i class="fa-regular fa-house"></i>
                                         
                                         首页
                                     
@@ -202,6 +204,8 @@
                         <a class="" 
                         href="/"  >
                              
+                                
+                                    <i class="fa-regular fa-house"></i>
                                 
                                 首页
                             
@@ -294,7 +298,7 @@
             
                 <div class="article-header">
                     <div class="avatar">
-                        <img src="/images/y4ny4n.jpg">
+                        <img src="/images/me.jpg">
                     </div>
                     <div class="info">
                         <div class="author">
@@ -346,7 +350,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-file-word"></i>&nbsp;<span>349 字</span>
+            <i class="fa-regular fa-file-word"></i>&nbsp;<span>350 字</span>
         </span>
     
     
@@ -372,12 +376,12 @@
 
 
 <p>ntfs提取隐藏文件</p>
-<a id="more"></a>
+<span id="more"></span>
 <h2 id="NTFS交换数据流（ADS）简介"><a href="#NTFS交换数据流（ADS）简介" class="headerlink" title="NTFS交换数据流（ADS）简介"></a>NTFS交换数据流（ADS）简介</h2><blockquote>
 <p> 在NTFS文件系统中存在着NTFS交换数据流（Alternate Data Streams，简称ADS），这是NTFS磁盘格式的特性之一。每一个文件，都有着主文件流和非主文件流，主文件流能够直接看到；而非主文件流寄宿于主文件流中，无法直接读取，这个非主文件流就是NTFS交换数据流。<br>   ADS的作用在于，它允许一个文件携带着附加的信息。例如，IE浏览器下载文件时，会向文件添加一个数据流，标记该文件来源于外部，即带有风险，那么，在用户打开文件时，就会弹出文件警告提示。再如，在网址收藏中，也会附加一个favicon数据流以存放网站图标。<br> ADS也被用于一些恶意文件隐藏自身,作为后门</p>
 </blockquote>
-<p>学习戳<a href="https://www.cnblogs.com/Chesky/p/ALTERNATE_DATA_STREAMS.html" target="_blank" rel="noopener">https://www.cnblogs.com/Chesky/p/ALTERNATE_DATA_STREAMS.html</a></p>
-<h2 id="提取隐藏文件"><a href="#提取隐藏文件" class="headerlink" title="提取隐藏文件"></a>提取隐藏文件</h2><p>通过看了一些资料，找到了Ntfs Streams Editor这个工具，可以扫描到可疑文件<br><img src="https://upload-images.jianshu.io/upload_images/19601162-79d1842106f967a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="977035-20161116005326607-289849401.png"><br>图片来源：<a href="https://www.cnblogs.com/Chesky/p/ALTERNATE_DATA_STREAMS.html" target="_blank" rel="noopener">https://www.cnblogs.com/Chesky/p/ALTERNATE_DATA_STREAMS.html</a><br>后来又学到了一种可以直接通过DOS命令查看的方法<br><code>dir /r</code>以只读查看文件(这里不知道为什么<code>dir /a:h</code>和<code>dir</code>都不行)<br><img src="https://upload-images.jianshu.io/upload_images/19601162-c25b3d0604557916.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ntfs.PNG"><br>然后输入notepad命令直接查看<br><code>notepad 293.txt:flag.txt</code></p>
+<p>学习戳<a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/Chesky/p/ALTERNATE_DATA_STREAMS.html">https://www.cnblogs.com/Chesky/p/ALTERNATE_DATA_STREAMS.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="提取隐藏文件"><a href="#提取隐藏文件" class="headerlink" title="提取隐藏文件"></a>提取隐藏文件</h2><p>通过看了一些资料，找到了Ntfs Streams Editor这个工具，可以扫描到可疑文件<br><img lazyload src="/images/loading.svg" data-src="https://upload-images.jianshu.io/upload_images/19601162-79d1842106f967a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="977035-20161116005326607-289849401.png"><br>图片来源：<a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/Chesky/p/ALTERNATE_DATA_STREAMS.html">https://www.cnblogs.com/Chesky/p/ALTERNATE_DATA_STREAMS.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>后来又学到了一种可以直接通过DOS命令查看的方法<br><code>dir /r</code>以只读查看文件(这里不知道为什么<code>dir /a:h</code>和<code>dir</code>都不行)<br><img lazyload src="/images/loading.svg" data-src="https://upload-images.jianshu.io/upload_images/19601162-c25b3d0604557916.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ntfs.PNG"><br>然后输入notepad命令直接查看<br><code>notepad 293.txt:flag.txt</code></p>
 
             </div>
 
@@ -706,16 +710,6 @@
     });
 </script>
 
-
-
-
-    <div id="aplayer"></div>
-
-    
-<script src="/js/libs/APlayer.min.js"></script>
-
-    
-<script src="/js/plugins/aplayer.js"></script>
 
 
 

