@@ -441,8 +441,18 @@
 <p><code>pip3 install pydantic-1.6.1</code></p>
 <p>重新运行bot.py</p>
 <p>至此，机器人实现了第一次会话  芜湖~</p>
-<p><img lazyload src="/images/loading.svg" data-src="bot.assets/image-20210102175545239.png" alt="image-20210102175545239"></p>
-<p><img lazyload src="/images/loading.svg" data-src="bot.assets/image-20210102175556793.png" alt="image-20210102175556793"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/01/10/bot/image-20210102175545239.png"
+                      class="" title="image-20210102175545239"
+                >
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/01/10/bot/image-20210102175556793.png"
+                      class="" title="image-20210102175556793"
+                >
 <div class="note idea green"><p><strong>优化</strong></p><p>
     编写代码再用winscp上传到服务器太过费劲(关键是老断，vim也比较麻烦。装了vscode的插件sftp,服务器建立相同文件名文件夹,右键直接upload即可。芜湖~
     </p></div>
@@ -454,11 +464,16 @@
 <p>运行sagiri_bot.py  报错无graia.scheduler模块</p>
 <p>装后broadcast版本问题发生冲突…</p>
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">graia-application-mirai <span class="number">0.1</span><span class="number">.0</span> has requirement graia-broadcast&lt;<span class="number">0.0</span><span class="number">.6</span>,&gt;=<span class="number">0.0</span><span class="number">.5</span>, but yo<span class="string">u&#x27;ll have graia-broadcast 0.5.3 which is incompatible.</span></span><br></pre></td></tr></table></figure></div>
-<p>graia-application-mirai 0.1.0 需要 broadcast<0.0.6,>=0.0.5</0.0.6,></p>
-<p>但graia-scheduler需要broadcast<0.6.0,>=0.5.3</0.6.0,></p>
+<p>graia-application-mirai 0.1.0 需要 broadcast<0.0.6,>=0.0.5</p>
+<p>但graia-scheduler需要broadcast<0.6.0,>=0.5.3</p>
 <p>安装scheduler后broadcast版本为0.5.3</p>
 <p>解决:搜索后发现文档更新</p>
-<p><img lazyload src="/images/loading.svg" data-src="bot.assets/image-20210103225327439.png" alt="image-20210103225327439"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/01/10/bot/image-20210103225327439.png"
+                      class="" title="image-20210103225327439"
+                >
 <p>更新到graia-application-mirai==0.1.1后，broadcast版本可以兼容</p>
 <p>但是佩奇不能回复了….</p>
 <blockquote>
@@ -484,7 +499,7 @@
 <p>子部门群主和管理员都没有权限登录后台(估计要河北师范大学的管理员</p>
 <p>所以不考虑从后台导出表格，可以考虑下ocr…哎</p>
 <h3 id="疫情模块"><a href="#疫情模块" class="headerlink" title="疫情模块"></a>疫情模块</h3><p>调用新浪接口</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://interface.sina.cn/news/wap/fymap2020_data.d.json">https://interface.sina.cn/news/wap/fymap2020_data.d.json <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://interface.sina.cn/news/wap/fymap2020_data.d.json" >https://interface.sina.cn/news/wap/fymap2020_data.d.json <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>返回数据后decode 此时为json格式的字符串</p>
 <p>json.loads() 将<code>json</code>格式数据解码为<code>python</code>对象(即字典)，再对数据进行处理</p>
 <h3 id="六级词汇模块"><a href="#六级词汇模块" class="headerlink" title="六级词汇模块"></a>六级词汇模块</h3><p>六级词汇字典上传到服务器后中文乱码</p>
@@ -495,7 +510,7 @@
 <p>× 1.搞了bilibili的json</p>
 <p>哔哩哔哩小程序 最终分享地址为url参数中的内容，需要每日分享获取其url 较难自动实现(后面的随机值应该为哔哩哔哩小程序自动生成)</p>
 <p>手机端不能显示 PC端可以</p>
-<p><img lazyload src="/images/loading.svg" data-src="bot.assets/image-20210117181941668.png" alt="image-20210117181941668"></p>
+
 <p>这个格式是Bilibili小程序的 url问题解决不了 呜呜呜呜</p>
 <p>× 2.申请自己的小程序 最终直接访问 bilibili.com 涉及开发了 草</p>
 <p>√ 3.找其他小程序的跳转功能 json源码 试了几个跳不了 草</p>
@@ -509,7 +524,7 @@
 <p>定位使用的是find_element_by_link_text</p>
 <p>得到对应文章url  推送即可</p>
 <p>问题是如何部署在centos上，服务器无GUI使用selenium</p>
-<p>参考链接:<a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/shilaike2/article/details/102595228">https://blog.csdn.net/shilaike2/article/details/102595228 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>参考链接:<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/shilaike2/article/details/102595228" >https://blog.csdn.net/shilaike2/article/details/102595228 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>安装xvfb  Xvfb是一个实现了X11显示服务协议的显示服务器。 不同于其他显示服务器，Xvfb在内存中执行所有的图形操作，不需要借助任何显示设备</p>
 <p>还需增加几个options</p>
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">chrome_options =webdriver.Options()</span><br><span class="line"></span><br><span class="line">chrome_options.add_argument(<span class="string">&#x27;--no-sandbox&#x27;</span>) <span class="comment">#让Chrome在root权限运行</span></span><br><span class="line"></span><br><span class="line">chrome_options.add_argument(<span class="string">&#x27;--disable-dev-shm-usage&#x27;</span>) <span class="comment">#不打开图形界面</span></span><br><span class="line"></span><br><span class="line">chrome_options.add_argument(<span class="string">&#x27;--headless&#x27;</span>) <span class="comment">#浏览器不提供可视化页面</span></span><br><span class="line"></span><br><span class="line">chrome_options.add_argument(<span class="string">&#x27;blink-settings=imagesEnabled=false&#x27;</span>) <span class="comment">#不加载图片, 提升速度</span></span><br><span class="line"></span><br><span class="line">chrome_options.add_argument(<span class="string">&#x27;--disable-gpu&#x27;</span>) <span class="comment">#谷歌文档提到需要加上这个属性来规避bug</span></span><br></pre></td></tr></table></figure></div>
@@ -845,5 +860,20 @@
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

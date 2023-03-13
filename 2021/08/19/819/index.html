@@ -358,12 +358,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-file-word"></i>&nbsp;<span>2.5k 字</span>
+            <i class="fa-regular fa-file-word"></i>&nbsp;<span>977 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>9 分钟</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>3 分钟</span>
         </span>
     
     
@@ -379,7 +379,7 @@
             
 
             <div class="article-content markdown-body">
-                <meta name="referrer" content="no-referrer">
+                <meta name="referrer" content="no-referrer"/>
 
 <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>提出一个问题:人类行为在多大程度上是可预测的?</p>
 <p>通过测量每个个体的轨迹熵，作者发现用户的移动有93%的潜在可预测性</p>
@@ -392,15 +392,30 @@
 <p>本文旨在通过人类移动探索可预测性的界限，量化规律(可预测)和随机(不可预测)之间的相互影响。</p>
 <h3 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h3><p>观察期为3个月</p>
 <p>从~1kw筛选出5w个体(访问超过两个地点，通话频率$f\ge0.5$)</p>
-<p><img lazyload src="/images/loading.svg" data-src="819/image-20210828004247531.png" alt="image-20210828004247531"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/08/19/819/image-20210828004247531.png"
+                      class="" title="image-20210828004247531"
+                >
 <p>该图展示了两个移动模式不同用户的轨迹:</p>
 <p>第一个用户在30km内移动了跨越22个信号塔的附近区域</p>
 <p>第二个用户在90km内移动了跨越76个信号塔的附近区域</p>
 <p>灰色线条代表对应塔的信号接收范围</p>
-<p><img lazyload src="/images/loading.svg" data-src="819/image-20210828004602771.png" alt="image-20210828004602771"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/08/19/819/image-20210828004602771.png"
+                      class="" title="image-20210828004602771"
+                >
 <p>该图展现了上面两个用户的移动网络。</p>
 <p>节点大小代表在该塔附近的通话频率(用户在该塔附近花费时间百分比)，线的宽度与在两塔之间的移动频率成正比。</p>
-<p><img lazyload src="/images/loading.svg" data-src="819/image-20210828082020160.png" alt="image-20210828082020160"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/08/19/819/image-20210828082020160.png"
+                      class="" title="image-20210828082020160"
+                >
 <p>每个移动网络都有一个相关的动态模式，捕获用户访问塔的时间序列</p>
 <p>该图表示第一个用户在一周内访问位置的时间序列。每一条竖线代表一次通话，颜色代表此次通话所在塔。</p>
 <h3 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h3><h4 id="Entropy-pt1"><a href="#Entropy-pt1" class="headerlink" title="Entropy(pt1.)"></a>Entropy(pt1.)</h4><p>熵可能是描述时间序列的可预测性的最基本的量</p>
@@ -421,10 +436,21 @@
 <p>$S_i\le S_i^{unc}\le S_i^{rand}$</p>
 <p>为了计算实际熵，我们需要用户连续的(例如 每小时)位置记录。但用户倾向于在短时间内拨打大部分电话，长时间内不进行通话，在此期间无法获取用户位置。由图C可以观察到间断性与突然爆发。</p>
 <p>参数q描述收集数据的不完整性，表示用户位置未知所占比。</p>
-<p><img lazyload src="/images/loading.svg" data-src="819/image-20210828090257375.png" alt="image-20210828090257375"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/08/19/819/image-20210828090257375.png"
+                      class="" title="image-20210828090257375"
+                >
 <p>该图为q的数据集中的分布。峰值在q=0.7附近，说明对一个用户，我们有70%的时间间隔没有位置更新，掩盖了用户的实际熵。</p>
 <p>因此本文研究了不完整性的熵S(q),允许推测q=0时的熵。(?)</p>
-<p>作者通过100个每小时都被记录位置的用户测试该方法的准确性，发现q&lt;0.8时表现良好，即数据集的92%。故移除5000个q最高的用户，使剩余用户满足q&lt;0.8<br><img lazyload src="/images/loading.svg" data-src="819/image-20210828094211427.png" alt="image-20210828094211427"></p>
+<p>作者通过100个每小时都被记录位置的用户测试该方法的准确性，发现q<0.8时表现良好，即数据集的92%。故移除5000个q最高的用户，使剩余用户满足q<0.8
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/08/19/819/image-20210828094211427.png"
+                      class="" title="image-20210828094211427"
+                ></p>
 <p>该图为三个熵在数据集上的分布。$S_{rand}$=6达到峰值，说明<em>：</em>用户位置的每一次更新代表每小时6位的新位置，即用户随机选择他访问新位置的范围是$2^{S^{rand}}=64$ 个。</p>
 <p>但是真实熵在S=0.8达到峰值，说明真实情况不是64个位置的范围，而是$2^{0.8}=1.74$ ,少于两个位置。</p>
 <h4 id="pt2"><a href="#pt2" class="headerlink" title="pt2."></a>pt2.</h4><p>本文随后表示数据集中用户的回转半径符合胖尾分布，虽然大多数个体活动限制在1-10km，但也有一些用户经常移动覆盖数百千米。</p>
@@ -436,29 +462,54 @@
 <p>(二项分布的信息熵)</p>
 <p>如果一个用户的$\Pi^{max}=0.2$ ,说明至少80%的时间下,个体选择地点的方式是随机的，我们仅可以在20%的时间内与预测他的行踪。$\Pi^{max}$代表个体可预测性的基本极限。</p>
 <p>作者对$\Pi^{max}$的分布进行了统计，发现其并没有符合前边所说的胖尾分布，且在$\Pi^{max}=0.93$附近达到了峰值。</p>
-<p><img lazyload src="/images/loading.svg" data-src="819/image-20210828100445186.png" alt="image-20210828100445186"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/08/19/819/image-20210828100445186.png"
+                      class="" title="image-20210828100445186"
+                >
 <p>这说明尽管这些个体的移动轨迹具有明显的随机性，但用户移动模式的记录隐藏着一种高度潜在可预测性。</p>
 <p>作者还通过时间不相关熵和随机熵计算了对应的可预测性。</p>
 <p>其中，$\Pi^{unc}$的分布表现出覆盖很宽，峰值在0.3左右，这说明如果我们只依赖于不同的空间分布，那么整个人口的预测能力是微不足道的，而且人与人之间差异很大。</p>
 <p>$\Pi^{rand}$在0达到峰值，这说明该参数对预测没有作用。可预测性被加密隐藏在访问模式的时间序列中了。</p>
 <h4 id="pt3"><a href="#pt3" class="headerlink" title="pt3."></a>pt3.</h4><p>如何使捕获的回转半径的广泛可变性与整个用户群体中观测到的高度可预测性一致?</p>
 <p>本文绘制了$\Pi^{max}$与回转半径$r_g$的相关性</p>
-<p><img lazyload src="/images/loading.svg" data-src="819/image-20210828102136713.png" alt="image-20210828102136713"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/08/19/819/image-20210828102136713.png"
+                      class="" title="image-20210828102136713"
+                >
 <p>当回转半径≥10km时，可预测性在很大程度上与回转半径无关，在$\Pi^{max}=0.93$左右趋于饱和。这解释了前面提出的假设失败:个体回转半径≥100km,定期覆盖数百千米和回转半径在10km以内的用户同样可以预测。</p>
 <h4 id="pt4"><a href="#pt4" class="headerlink" title="pt4."></a>pt4.</h4><p>为了了解可预测性在多大程度上取决于移动模式中最常去的位置，作者计算了在给定时刻，用户处于最常访问n个位置之一的概率。因此，$\Pi$代表$\Pi^{max}$的上界。</p>
-<p><img lazyload src="/images/loading.svg" data-src="819/image-20210828102801162.png" alt="image-20210828102801162"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/08/19/819/image-20210828102801162.png"
+                      class="" title="image-20210828102801162"
+                >
 <p>当n=1,我们可以预测用户的位置在最有可能的位置(“家”)</p>
 <p>当n=2,我们可以预测用户的位置在他最常访问的两个位置之一，家或办公地。仅有60%的可预测性。</p>
 <p>$\Pi$随n近似对数增长，当添加更多位置时，可预测性$\Pi$随之增长。</p>
 <h4 id="pt5"><a href="#pt5" class="headerlink" title="pt5."></a>pt5.</h4><p>为了理解观察到的潜在可预测性的来源，将每周划分为168小时间隔，在每小时内确定每个用户在该时间内访问最多的位置。</p>
 <p>计算每个用户的规律性R，定义为在用户访问最多位置找到用户的概率。R表示可预测性$\Pi$的下限，因为其忽略了个体移动的时间相关性。</p>
 <p>在整个用户群中，R≈0.7  这说明70%的时间，访问次数最多的位置与用户的实际位置一致。这种模式与时间相关:大多数人晚上待在家里，此时R的峰值为0.9;但在中午到下午1点和下午六七点之间，R有明显的极小值(上下班高峰)。</p>
-<p><img lazyload src="/images/loading.svg" data-src="819/image-20210828103908802.png" alt="image-20210828103908802"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/08/19/819/image-20210828103908802.png"
+                      class="" title="image-20210828103908802"
+                >
 <p>图A表示在对应的时间间隔内，用户在他最常访问位置的比例(规律性R)。</p>
 <p>图B表示在对应的时间间隔内，用户访问位置数目。</p>
 <p>高的规律性对应着小的数目，当R达到顶峰，N下降。</p>
 <p>如果用户在N个位置之间随机移动，$R^{rand}=1/N$  $1/2^{S^{rand}}≈0.016$，比观测到R≈0.7小一个数量级。</p>
-<p><img lazyload src="/images/loading.svg" data-src="819/image-20210828111954363.png" alt="image-20210828111954363"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/08/19/819/image-20210828111954363.png"
+                      class="" title="image-20210828111954363"
+                >
 <p>该图表示$R/R^{rand}$与回转半径相比，表现出回转半径大的用户有更高的相关规律性($R/R^{rand}$)。</p>
 <p>也就是说，相反，移动次数多(回转半径大)的用户比在家较多的用户具有更高的相关规律性。</p>
 <p>作者没有观察到$\Pi^{max}$在性别或年龄上有明显的差异，且家庭、语言群体、人口密度、城市与农村环境等因素对可预测性的影响只有微弱差异。与工作日相比，没有发现用户周末出行规律性有显著变化。这些都说明该规律性是人类活动潜在固有的。</p>
@@ -803,5 +854,20 @@
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

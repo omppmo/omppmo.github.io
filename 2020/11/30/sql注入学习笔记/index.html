@@ -390,7 +390,12 @@
 <li>4.许多的行和列组成一张表单</li>
 <li>5.若干的表单组成database</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="sql注入学习笔记.assets/image-20200324111143839.png" alt="image-20200324111143839"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2020/11/30/sql%E6%B3%A8%E5%85%A5%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20200324111143839.png"
+                      class="" title="image-20200324111143839"
+                >
 <h5 id="数据库基础-1"><a href="#数据库基础-1" class="headerlink" title="数据库基础"></a>数据库基础</h5><h6 id="常用数据库查询语句"><a href="#常用数据库查询语句" class="headerlink" title="常用数据库查询语句"></a>常用数据库查询语句</h6><ul>
 <li>create datebase   创建数据库<strong>数据库名字不能使用全数字</strong></li>
 <li>drop database </li>
@@ -398,7 +403,7 @@
 <li>select databses() 当前的数据库名</li>
 </ul>
 <p>使用一个数据库 use 数据库名；</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://www.runoob.com/mysql">https://www.runoob.com/mysql <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.runoob.com/mysql" >https://www.runoob.com/mysql <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <h6 id="常用数据库内置变量"><a href="#常用数据库内置变量" class="headerlink" title="常用数据库内置变量"></a>常用数据库内置变量</h6><ul>
 <li><p>version() 查询数据库版本</p>
 <p>@@version 效果等同</p>
@@ -509,7 +514,7 @@
 </ul>
 <h2 id="17-18information-schema相关"><a href="#17-18information-schema相关" class="headerlink" title="17 18information_schema相关"></a>17 18information_schema相关</h2><p>information_schema(mysql 5.0以上的版本才存在)</p>
 <p>在MySQL中，把information_schema看作是一个数据库，确切地说是信息数据库，其中保存着关于MySQL服务器所维护的所有其他数据库的信息。如数据库名，数据库的表，表栏的数据类型与访问权限等。</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/shengdimaya/p/6920677.html">https://www.cnblogs.com/shengdimaya/p/6920677.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/shengdimaya/p/6920677.html" >https://www.cnblogs.com/shengdimaya/p/6920677.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>SCHEMATA表：提供了当前mysql实例中所有数据库的信息。是show databases结果取于此表</p>
 <p>TABLES表：提供了关于数据库中所有的表的信息。详细描述了某个表属于哪个schema，表类型，表引擎，创建时间等信息。是show tables from schemaname(数据库名)的结果取之此表。</p>
 <p>COLUMNS表：所有数据库所包含的所有表的列名信息以及每个列的信息。是show columns from schemaname.tablename 的结果取之此表。</p>
@@ -760,7 +765,7 @@
 <h2 id="31-sqlmap简介与使用"><a href="#31-sqlmap简介与使用" class="headerlink" title="31 sqlmap简介与使用"></a>31 sqlmap简介与使用</h2><p>sqlmap是一个自动化的SQL注入工具，其主要功能是扫描，发现并利用给定的URL的SQL注入漏洞，采用四种SQL注入技术：union注入，堆叠注入，报错注入，时间盲注，布尔盲注</p>
 <p>sqlmap基于python2.7</p>
 <h3 id="sqlmap使用"><a href="#sqlmap使用" class="headerlink" title="sqlmap使用"></a>sqlmap使用</h3><p><strong>判断是否存在注入</strong></p>
-<p>①sqlmap -u <a class="link" target="_blank" rel="noopener" href="http://193.112.113.137/sqlilbs/less-1?id=1">http://193.112.113.137/sqlilbs/less-1?id=1 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>①sqlmap -u <a class="link"   target="_blank" rel="noopener" href="http://193.112.113.137/sqlilbs/less-1?id=1" >http://193.112.113.137/sqlilbs/less-1?id=1 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>弹出it looks like the back-end DBMS is “MySQL”.Do you want to skip test payloads specific for other DBMSes?进行交互</p>
 <p>(数据库可能是MySQL数据库，是否跳过检测其他数据库)</p>
 <p>for the remaining tests,do you want to include all tests for ‘MySQL’ extending provided level(1) and risk(1) values?</p>
@@ -770,15 +775,15 @@
 <p>创建文本文件vim sqlcheck.txt</p>
 <p>sqlmap -r sqlcheck.txt</p>
 <p>效果和①相同</p>
-<p>当payload只有Id一个参数时不用加双引号，当有两个参数时，sqlmap -u “<a class="link" target="_blank" rel="noopener" href="http://193.112.113.137/sqlilabs/less-1?id=1&amp;uid=1">http://193.112.113.137/sqlilabs/less-1?id=1&amp;uid=1 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>“ 使用＆并添加双引号</p>
+<p>当payload只有Id一个参数时不用加双引号，当有两个参数时，sqlmap -u “<a class="link"   target="_blank" rel="noopener" href="http://193.112.113.137/sqlilabs/less-1?id=1&amp;uid=1" >http://193.112.113.137/sqlilabs/less-1?id=1&amp;uid=1 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>“ 使用＆并添加双引号</p>
 <p><strong>查询当前用户下所有数据库</strong></p>
-<p>sqlmap -u <a class="link" target="_blank" rel="noopener" href="http://193.112.113.137/sqlilabs/less-1?id=1">http://193.112.113.137/sqlilabs/less-1?id=1 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> —dbs</p>
+<p>sqlmap -u <a class="link"   target="_blank" rel="noopener" href="http://193.112.113.137/sqlilabs/less-1?id=1" >http://193.112.113.137/sqlilabs/less-1?id=1 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> —dbs</p>
 <p><strong>获取某个数据库中的表名</strong></p>
-<p>sqlmap -u <a class="link" target="_blank" rel="noopener" href="http://193.112.113.137/sqlilabs/less-1?id=1">http://193.112.113.137/sqlilabs/less-1?id=1 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> -D(指定获取哪一个数据库中的表名) security —tables(获取security数据库中所有表名)</p>
+<p>sqlmap -u <a class="link"   target="_blank" rel="noopener" href="http://193.112.113.137/sqlilabs/less-1?id=1" >http://193.112.113.137/sqlilabs/less-1?id=1 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> -D(指定获取哪一个数据库中的表名) security —tables(获取security数据库中所有表名)</p>
 <p><strong>获取某张表中的字段名</strong></p>
-<p>sqlmap -u <a class="link" target="_blank" rel="noopener" href="http://193.112.113.137/sqlilabs/less-1?id=1">http://193.112.113.137/sqlilabs/less-1?id=1 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> -D(指定获数据库来定位)security -T users —columns</p>
+<p>sqlmap -u <a class="link"   target="_blank" rel="noopener" href="http://193.112.113.137/sqlilabs/less-1?id=1" >http://193.112.113.137/sqlilabs/less-1?id=1 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> -D(指定获数据库来定位)security -T users —columns</p>
 <p><strong>获取字段里的数据</strong></p>
-<p>sqlmap -u <a class="link" target="_blank" rel="noopener" href="http://193.112.113.137/sqlilabs/less-1?id=1">http://193.112.113.137/sqlilabs/less-1?id=1 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> -D(指定获数据库来定位)security -T users -C id,username,password</p>
+<p>sqlmap -u <a class="link"   target="_blank" rel="noopener" href="http://193.112.113.137/sqlilabs/less-1?id=1" >http://193.112.113.137/sqlilabs/less-1?id=1 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> -D(指定获数据库来定位)security -T users -C id,username,password</p>
 <p>—dump</p>
 <p>需要获取的字段通过逗号连接 id,username,password</p>
 <h2 id="32-sqlmap自动化注入实战"><a href="#32-sqlmap自动化注入实战" class="headerlink" title="32 sqlmap自动化注入实战"></a>32 sqlmap自动化注入实战</h2><p>首先判断注入点是否存在</p>
@@ -797,7 +802,7 @@
 <p> 自动把所有数据库中所有表给读取出来</p>
 <p>并对相应的哈希值进行暴力破解</p>
 <h2 id="33-sqlmap的使用以及load-file-读取目标系统文件"><a href="#33-sqlmap的使用以及load-file-读取目标系统文件" class="headerlink" title="33 sqlmap的使用以及load_file()读取目标系统文件"></a>33 sqlmap的使用以及load_file()读取目标系统文件</h2><h3 id="sqlmap连接需要登录的页面"><a href="#sqlmap连接需要登录的页面" class="headerlink" title="sqlmap连接需要登录的页面"></a>sqlmap连接需要登录的页面</h3><p>ipconfig查询本地ip</p>
-<p>sqlmap -u “<a class="link" target="_blank" rel="noopener" href="http://172.20.10.2/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#">http://172.20.10.2/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit# <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>“ —dbs</p>
+<p>sqlmap -u “<a class="link"   target="_blank" rel="noopener" href="http://172.20.10.2/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#" >http://172.20.10.2/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit# <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>“ —dbs</p>
 <p>会显示sqlmap got a 302 redirect to ‘…’ 进行重定向</p>
 <p>如果换一个浏览器，访问上述地址会首先判断是否登陆过系统</p>
 <p>如果没有登录，就会跳转到登录页面登录</p>
@@ -810,7 +815,7 @@
 <p>vim cookie.txt(新建一个txt) 保存请求报文</p>
 <p>sqlmap -r cookie.txt —dbs</p>
 <p>也可以达到同样的效果</p>
-<p>sqlmap -u “<a class="link" target="_blank" rel="noopener" href="http://172.20.10.2/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#">http://172.20.10.2/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit# <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>“ —cookie=””  —dbs</p>
+<p>sqlmap -u “<a class="link"   target="_blank" rel="noopener" href="http://172.20.10.2/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit#" >http://172.20.10.2/DVWA/vulnerabilities/sqli/?id=1&amp;Submit=Submit# <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>“ —cookie=””  —dbs</p>
 <h3 id="其他参数"><a href="#其他参数" class="headerlink" title="其他参数"></a>其他参数</h3><p>1.查看正在连接的数据库</p>
 <p>sqlmap -r cookie.txt —current-db</p>
 <p>2.获取数据库用户的密码</p>
@@ -1165,5 +1170,20 @@
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

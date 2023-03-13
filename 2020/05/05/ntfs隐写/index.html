@@ -371,7 +371,7 @@
             
 
             <div class="article-content markdown-body">
-                <meta name="referrer" content="no-referrer">
+                <meta name="referrer" content="no-referrer"/>
 
 
 
@@ -380,8 +380,18 @@
 <h2 id="NTFS交换数据流（ADS）简介"><a href="#NTFS交换数据流（ADS）简介" class="headerlink" title="NTFS交换数据流（ADS）简介"></a>NTFS交换数据流（ADS）简介</h2><blockquote>
 <p> 在NTFS文件系统中存在着NTFS交换数据流（Alternate Data Streams，简称ADS），这是NTFS磁盘格式的特性之一。每一个文件，都有着主文件流和非主文件流，主文件流能够直接看到；而非主文件流寄宿于主文件流中，无法直接读取，这个非主文件流就是NTFS交换数据流。<br>   ADS的作用在于，它允许一个文件携带着附加的信息。例如，IE浏览器下载文件时，会向文件添加一个数据流，标记该文件来源于外部，即带有风险，那么，在用户打开文件时，就会弹出文件警告提示。再如，在网址收藏中，也会附加一个favicon数据流以存放网站图标。<br> ADS也被用于一些恶意文件隐藏自身,作为后门</p>
 </blockquote>
-<p>学习戳<a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/Chesky/p/ALTERNATE_DATA_STREAMS.html">https://www.cnblogs.com/Chesky/p/ALTERNATE_DATA_STREAMS.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h2 id="提取隐藏文件"><a href="#提取隐藏文件" class="headerlink" title="提取隐藏文件"></a>提取隐藏文件</h2><p>通过看了一些资料，找到了Ntfs Streams Editor这个工具，可以扫描到可疑文件<br><img lazyload src="/images/loading.svg" data-src="https://upload-images.jianshu.io/upload_images/19601162-79d1842106f967a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="977035-20161116005326607-289849401.png"><br>图片来源：<a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/Chesky/p/ALTERNATE_DATA_STREAMS.html">https://www.cnblogs.com/Chesky/p/ALTERNATE_DATA_STREAMS.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>后来又学到了一种可以直接通过DOS命令查看的方法<br><code>dir /r</code>以只读查看文件(这里不知道为什么<code>dir /a:h</code>和<code>dir</code>都不行)<br><img lazyload src="/images/loading.svg" data-src="https://upload-images.jianshu.io/upload_images/19601162-c25b3d0604557916.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ntfs.PNG"><br>然后输入notepad命令直接查看<br><code>notepad 293.txt:flag.txt</code></p>
+<p>学习戳<a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/Chesky/p/ALTERNATE_DATA_STREAMS.html" >https://www.cnblogs.com/Chesky/p/ALTERNATE_DATA_STREAMS.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="提取隐藏文件"><a href="#提取隐藏文件" class="headerlink" title="提取隐藏文件"></a>提取隐藏文件</h2><p>通过看了一些资料，找到了Ntfs Streams Editor这个工具，可以扫描到可疑文件<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://upload-images.jianshu.io/upload_images/19601162-79d1842106f967a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
+                      alt="977035-20161116005326607-289849401.png"
+                ><br>图片来源：<a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/Chesky/p/ALTERNATE_DATA_STREAMS.html" >https://www.cnblogs.com/Chesky/p/ALTERNATE_DATA_STREAMS.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>后来又学到了一种可以直接通过DOS命令查看的方法<br><code>dir /r</code>以只读查看文件(这里不知道为什么<code>dir /a:h</code>和<code>dir</code>都不行)<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://upload-images.jianshu.io/upload_images/19601162-c25b3d0604557916.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
+                      alt="ntfs.PNG"
+                ><br>然后输入notepad命令直接查看<br><code>notepad 293.txt:flag.txt</code></p>
 
             </div>
 
@@ -713,5 +723,20 @@
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

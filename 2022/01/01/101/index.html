@@ -379,7 +379,7 @@
             
 
             <div class="article-content markdown-body">
-                <meta name="referrer" content="no-referrer">
+                <meta name="referrer" content="no-referrer"/>
 
 <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>城市自下向上的增长方式导致了用标度律描述的<strong>碎形/分形</strong>(fractal-like)城市结构。相关<strong>渗流模型</strong>(percolation model)</p>
 <p>通过施加强空间相关性成功建模出城市的<strong>几何形状</strong>(urban geometries)。然而，在空间相关的城市增长背后的潜在机制的起源仍然很大程度未知。</p>
@@ -397,35 +397,65 @@
 <p>所以研究人员提出把城市增长分为两个方面进行建模:新簇的出现和存在簇的增长。</p>
 <p>先前的模型虽然成功解释了城市形态，但都把城市增长建模为物理粒子的随机过程，遗留了人类移动在微观基础上很大程度未知的问题。</p>
 <h2 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h2><h3 id="Human-movement-models"><a href="#Human-movement-models" class="headerlink" title="Human movement models"></a>Human movement models</h3><p>现存的人类移动模型基于社会联系和长时记忆可以被分为四类。</p>
-<p><img lazyload src="/images/loading.svg" data-src="101/image-20220111121548488.png" alt="image-20220111121548488"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2022/01/01/101/image-20220111121548488.png"
+                      class="" title="image-20220111121548488"
+                >
 <p>社会联系指个体的移动会影响其他人。</p>
 <p>长时记忆指个体未来的移动行为受他历史移动的影响。</p>
 <p>(1)Catergory-1</p>
 <p>Category-1将人类移动看作没有社会联系的粒子随机移动。</p>
 <p>布朗运动中个体的位移正态分布，与物理粒子不同，实证数据中人类移动符合胖尾分布(幂律)。</p>
-<p><img lazyload src="/images/loading.svg" data-src="101/image-20220111141556842.png" alt="image-20220111141556842"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2022/01/01/101/image-20220111141556842.png"
+                      class="" title="image-20220111141556842"
+                >
 <p>转移概率随距离(即移动花费的距离)减少,即大部分时间人们短距离移动，偶尔长距离移动。</p>
 <p>忽略社会关系和长时记忆，该式表明人类移动遵循莱维飞行模型，但莱维飞行和布朗运动在时间t接近无穷时都预测均匀的人口分布，与实证观测相反。</p>
 <p>(2)Catergory-2</p>
 <p>Category-2中辐射模型和引力模型都起源于对迁移的研究，两地之间的移动流取决于他们的人口。</p>
 <p>引力模型的转移概率如下</p>
-<p><img lazyload src="/images/loading.svg" data-src="101/image-20220111141611399.png" alt="image-20220111141611399"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2022/01/01/101/image-20220111141611399.png"
+                      class="" title="image-20220111141611399"
+                >
 <p>其中$\rho_0$是一个耦合常数。除了(1)式中的胖尾分布，引力模型的转移概率还与位置$\overrightarrow{v}$的人口呈线性关系增长。该机制解释了在平均场背景下在社会联系中存在的吸引力，例如人口密集的地方通常提供更多的社会机会。</p>
 <p>但是引力模型遵循与莱维飞行相同的扩散过程，在t很大值下预测均匀的城市人口分布。</p>
 <p>(3)Catergory-3</p>
 <p>Category-1/2中的个体随意地进行移动，但实证数据中发现显著的周期性访问模式。为了解释这些观测，个体移动模型(IMM)将人类移动行为看作两个阶段:return/exporation来解释长时记忆效应。</p>
 <p>提出偏好返回机制，即返回先前访问过得位置$\overrightarrow{v_i}$的概率是</p>
-<p><img lazyload src="/images/loading.svg" data-src="101/image-20220111142813407.png" alt="image-20220111142813407"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2022/01/01/101/image-20220111142813407.png"
+                      class="" title="image-20220111142813407"
+                >
 <p>与历史访问频率成正比，这样的长时记忆返回过程大大减缓了人类的扩散过程。</p>
 <p>IMM预测典型移动距离$l_t$符合对数增长:</p>
-<p><img lazyload src="/images/loading.svg" data-src="101/image-20220111142941559.png" alt="image-20220111142941559"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2022/01/01/101/image-20220111142941559.png"
+                      class="" title="image-20220111142941559"
+                >
 <p>其中A是访问位置的总体数目。对数增长是人类移动的关键特征，描述了异常的极慢扩散和活动范围的影响。</p>
 <p>d-EPR模型对IMM模型进行了推广，个体探索新位置的概率与其人口密度呈正比。</p>
 <p>即使d-EPR和IMM模型都成功捕捉了日常个体的移动，但个体独立的移动并且不与其他个体相互作用，是静态的且不随时间演变。这个模型不能捕捉个体之间的动态交互，也不能再现城市增长模式。</p>
 <p>(4)Category-4</p>
 <p>既包含社会关系也包含长时记忆的模型很大程度上是没被探索的。最近提出的GeoSim模型将社会网络(每个个体更倾向于探索他们朋友访问的位置)与有记忆的IMM模型结合，然而社会网络需要根据实证数据提前确定，不随时间演化，也无法长时间追踪城市增长。</p>
 <h3 id="The-collective-mobility-model"><a href="#The-collective-mobility-model" class="headerlink" title="The collective mobility model"></a>The collective mobility model</h3><p>为了结合长时记忆与动态交互关系，本文提出群体移动模型(CMM)，提供了将人类移动与城市增长联系的最小原则。</p>
-<p><img lazyload src="/images/loading.svg" data-src="101/image-20220111145028628.png" alt="image-20220111145028628"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2022/01/01/101/image-20220111145028628.png"
+                      class="" title="image-20220111145028628"
+                >
 <p>该图为CMM模型的图示。在时间$t_1$，个体位于位置$v_0$且他已经访问四个位置(S=4)。结点大小代表位置的人口大小，结点颜色的程度代表该地点的访问频次。</p>
 <p>在该模型中，个体的移动依照IMM模型中return-exploration过程，个体决定返回到先前访问过的地点的概率为$P_{ret}=1-\delta S^{-\gamma}$,其中S是先前访问地点数目，$\delta$控制初始返回概率，$\gamma$控制返回概率怎样随S变化。返回选择位置的概率正比于他先前访问位置的频次。</p>
 <p>个体同样具有互补的探索概率$P_{exp}=\delta S^{-\gamma}$。在探索的过程中，个体将选择<strong>在人口和距离基础上先前没访问过的地点，满足(3)式中的引力定律。其中人口$\rho(\overrightarrow{v})$在t时刻所有个体的位置的基础上瞬时计算。</strong>$\rho_0^{-1}$可以看做是平滑常数，控制人口的吸引强度，增加该值降低了探索无人居住位置的概率，加强了社会联系。</p>
@@ -434,7 +464,12 @@
 <h3 id="Experimental-settings"><a href="#Experimental-settings" class="headerlink" title="Experimental settings"></a>Experimental settings</h3><p>本文使用三个包含人口的城市区域的公开数据集（US/GB(英国)/柏林）</p>
 <p>为了对比，本文使用category1-4的模型(莱维飞行，引力模型，IMM,CMM)进行人类移动的模拟。</p>
 <p>该模拟在一个l×l的二维仿真空间中进行的，模拟的居民初始位于城市中心，即仿真空间的中心点。随后在每个时间步迭代他们的下一个位置直到模拟收敛。</p>
-<h3 id="Urban-morphology"><a href="#Urban-morphology" class="headerlink" title="Urban morphology"></a>Urban morphology</h3><p><img lazyload src="/images/loading.svg" data-src="101/image-20220111155450225.png" alt="image-20220111155450225"></p>
+<h3 id="Urban-morphology"><a href="#Urban-morphology" class="headerlink" title="Urban morphology"></a>Urban morphology</h3><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2022/01/01/101/image-20220111155450225.png"
+                      class="" title="image-20220111155450225"
+                >
 <p>该图画出人口分布图来比较模拟城市系统和实证观测的城市形态。图a-d分别由莱维飞行、引力模型、IMM、CMM生成，图e为伦敦城市的实证数据。</p>
 <p><strong>实证数据中表现出显著的特征:紧凑的城市中心和碎形的周边。</strong></p>
 <p>莱维飞行和引力模型模拟的城市人口分布遵循分数阶扩散过程(the fractional diffusion process),都意味着随着时间推移，个体会逐渐远离他们的初始位置。模拟结果证实这两种模型不能再现紧凑而稳定的城市中心，收敛时人口在城市空间中均匀分布。</p>
@@ -442,14 +477,34 @@
 <p>CMM成功再现了城市系统中紧凑的城市中心，人口密度大幅度高于城市周边。此外，城市周边具有明显的碎形几何特征，并在其周围形成了大量的子群，这些观测与实证数据一致。</p>
 <h3 id="Urban-growth-patterns"><a href="#Urban-growth-patterns" class="headerlink" title="Urban growth patterns"></a>Urban growth patterns</h3><p>本文通过三个基本的实证定律检验模型再现城市增长模式的能力:</p>
 <p>(1)城市规模分布: 城市数目N(A)随他们的面积减小符合标度律</p>
-<p><img lazyload src="/images/loading.svg" data-src="101/image-20220111162103301.png" alt="image-20220111162103301"></p>
-<p><img lazyload src="/images/loading.svg" data-src="101/image-20220111162859402.png" alt="image-20220111162859402"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2022/01/01/101/image-20220111162103301.png"
+                      class="" title="image-20220111162103301"
+                >
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2022/01/01/101/image-20220111162859402.png"
+                      class="" title="image-20220111162859402"
+                >
 <p>指数在2.0左右。</p>
 <p>该图为实证数据中城市大小的分布。在三个数据集中的估计指数分别为1.94,2.01,2.08，这些发现与<strong>位置渗透理论(site percolation theory)的理论预测</strong>相一致。。</p>
 <p>渗透理论是描述这一观测结果的普遍框架，其产生某个位置被占用为城市区域的概率。它预测了(6)式的标度律指数在2.0-2.5左右，其中指数为2对应不同位置之间的强相关，指数为2.5对应平均场理论。</p>
 <p>莱维飞行将移动描述为个体的扩散过程，城市系统达到稳态时，城市人口在空间中均匀分布。与莱维飞行相同，当t趋近于正无穷时，人口也会均匀分布。<strong>因此，莱维飞行和引力模型预计将在不相关渗流(uncorrelated percolation)中生成指数为2.5左右的标度律</strong>。</p>
-<p><img lazyload src="/images/loading.svg" data-src="101/image-20220111165245336.png" alt="image-20220111165245336"></p>
-<p><img lazyload src="/images/loading.svg" data-src="101/image-20220111165323078.png" alt="image-20220111165323078"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2022/01/01/101/image-20220111165245336.png"
+                      class="" title="image-20220111165245336"
+                >
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2022/01/01/101/image-20220111165323078.png"
+                      class="" title="image-20220111165323078"
+                >
 <p>该图展示了莱维飞行和引力模型再现幂律城市大小分布，指数为2.55和2.58，与渗透理论一致。</p>
 <p>模拟的IMM符合指数为2.98的标度律。这个较大指数意味着人们只局限于他们的活动范围。</p>
 <p>相反，CMM展现出强相关性，其再现了指数为2.02的标度律，与理论预测和实际数据一致。本文发现CMM是唯一一个在95%置信区间内包含实证观察到的普遍指数为2.0的模型。</p>
@@ -468,28 +523,73 @@
 </ul>
 <p>收支平衡时有$\rho_A \approx l_t $</p>
 <p>代入等式(5)(典型移动距离$l_t$随访问位置数A对数增长)得到</p>
-<p><img lazyload src="/images/loading.svg" data-src="101/image-20220112162319444.png" alt="image-20220112162319444"></p>
-<p><img lazyload src="/images/loading.svg" data-src="101/image-20220112162958493.png" alt="image-20220112162958493"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2022/01/01/101/image-20220112162319444.png"
+                      class="" title="image-20220112162319444"
+                >
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2022/01/01/101/image-20220112162958493.png"
+                      class="" title="image-20220112162958493"
+                >
 <p>该图绘制了在US和GB不同城市中$\rho_A$随A的变化，发现实证观测与式(7)预测的对数律一致。</p>
 <p>值得注意的是，之前的研究显示，大多数城市遵循小指数$\delta \approx 0.04 \sim 0.3$的标度律$\rho_A \approx A^{\delta}$，但在实证数据的幅度范围内，无法区分对数关系和小指数标度律。</p>
 <p>式(7)中指出的对数关系为人口增长模式的起源提供了另一种解释，它源于人类移动行为。</p>
-<p><img lazyload src="/images/loading.svg" data-src="101/image-20220112204510221.png" alt="image-20220112204510221"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2022/01/01/101/image-20220112204510221.png"
+                      class="" title="image-20220112204510221"
+                >
 <p>该图为四个模型模拟的城市人口密度与城市规模之间的关系。</p>
 <p>本文提出的CMM模型再现了对数律，其他三个模型用系数为0的直线进行拟合，说明它们预测人口密度独立于城市规模。</p>
 <p>(3)指数的城市占有概况(occupation profile)</p>
 <p>城市占有概况 $\phi(r) $定义为在距城市中心距离为r找到人口密集区域的概率。在先前研究中观察到的指数概况:</p>
-<p><img lazyload src="/images/loading.svg" data-src="101/image-20220112210406139.png" alt="image-20220112210406139"></p>
-<p><img lazyload src="/images/loading.svg" data-src="101/image-20220112210457499.png" alt="image-20220112210457499"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2022/01/01/101/image-20220112210406139.png"
+                      class="" title="image-20220112210406139"
+                >
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2022/01/01/101/image-20220112210457499.png"
+                      class="" title="image-20220112210457499"
+                >
 <p>该图为在三个实证数据集中对该模式的检验，其中$\lambda$分别为0.3,0.3,0.4。该图说明城市中心吸引了大多数人口，占有概率随r快速递减。</p>
-<p><img lazyload src="/images/loading.svg" data-src="101/image-20220112211313906.png" alt="image-20220112211313906"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2022/01/01/101/image-20220112211313906.png"
+                      class="" title="image-20220112211313906"
+                >
 <p>该图为四种模型模拟的城市占有概况。莱维飞行与引力模型不能再现城市中心，预测的$\phi(r)$不随距离r变化。缺乏社会互动的IMM模型不能再现城市边缘地区的大子群，导致城市边缘区域人口密度急剧下降。而CMM模型符合式(8)提出的指数律。</p>
 <p>此外，下降率$\lambda$ 应随城市边界不断扩大的时间演化而降低。</p>
-<p><img lazyload src="/images/loading.svg" data-src="101/image-20220113013915070.png" alt="image-20220113013915070"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2022/01/01/101/image-20220113013915070.png"
+                      class="" title="image-20220113013915070"
+                >
 <p>该图展示了实证数据柏林的城市占有概况的时间演化。从图中可以看出，随年份增加，降低速率逐渐变缓。</p>
-<p><img lazyload src="/images/loading.svg" data-src="101/image-20220113014624493.png" alt="image-20220113014624493"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2022/01/01/101/image-20220113014624493.png"
+                      class="" title="image-20220113014624493"
+                >
 <p>CMM模型的模拟结果再现了城市发展中占用概况的时间演化。</p>
 <h3 id="Impact-of-simulation-parameters"><a href="#Impact-of-simulation-parameters" class="headerlink" title="Impact of simulation parameters"></a>Impact of simulation parameters</h3><p>有三个重要的参数可能影响城市系统的模拟</p>
-<p><img lazyload src="/images/loading.svg" data-src="101/image-20220112235939752.png" alt="image-20220112235939752"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2022/01/01/101/image-20220112235939752.png"
+                      class="" title="image-20220112235939752"
+                >
 <ul>
 <li><p>(3)式中的$\alpha$ </p>
 <p>描述主要移动距离成本，控制每个位移的距离分布</p>
@@ -502,7 +602,12 @@
 <p>它代表个体在每个单位空间中社会互动的数量。</p>
 </li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="101/image-20220113001147276.png" alt="image-20220113001147276"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2022/01/01/101/image-20220113001147276.png"
+                      class="" title="image-20220113001147276"
+                >
 <p>该图为CMM模型不同参数数值再现城市形态的比较。</p>
 <p>标准参数设置为$\omega=1/3,\alpha=0.55,\rho_0=0$</p>
 <p>在图a-f中对模拟中单个参数值进行修改，其中</p>
@@ -511,7 +616,12 @@
 <p>(e)$\rho_0=10^{-6}$  (f)$\rho_0=1$ </p>
 <p>(1)$\omega$ </p>
 <p>图ab表明$\omega$没有显著影响城市系统的碎形形态。</p>
-<p><img lazyload src="/images/loading.svg" data-src="101/image-20220113015227045.png" alt="image-20220113015227045"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2022/01/01/101/image-20220113015227045.png"
+                      class="" title="image-20220113015227045"
+                >
 <p>该图为设置不同$\omega$值对再现城市增长模式的影响。</p>
 <p>城市规模分布，人口增长模式和城市占有概况在不同$\omega$设置下都与实证观测一致。</p>
 <p>这个结果表明城市的增长模式在不同$\omega$下是稳定的。</p>
@@ -519,14 +629,24 @@
 <p>$\alpha$对模拟城市的紧凑性有重要的影响，这可能是因为它控制式(1)中每次探索的jump-size步长大小的分布。</p>
 <p>当$\alpha$比实证数据小，探索将有较大的步长。图c中表示城市系统的占据区域将更分散，分布更远离城市中心。</p>
 <p>当$\alpha$比实证数据大，如图d所示，模拟的城市系统更聚合，产生更大的子群。</p>
-<p><img lazyload src="/images/loading.svg" data-src="101/image-20220113020819708.png" alt="image-20220113020819708"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2022/01/01/101/image-20220113020819708.png"
+                      class="" title="image-20220113020819708"
+                >
 <p>该图为设置不同$\alpha$值对再现城市增长模式的影响。</p>
 <p>当$\alpha$值不同时，城市规模分布 、人口增长模式、城市占有概况都背离实证规则。这些结果表明，$\alpha$ 在城市形态和城市增长模式中均有重要作用。因此，$\alpha$ 不仅是人类移动行为的重要参数，也是影响城市增长的重要因素。</p>
 <p>(3)$\rho_0$</p>
 <p>该参数很大程度上影响了城市区域的形态。</p>
 <p>图e展示出显著的碎形形态($\rho_0=10^{-6}$)</p>
 <p>当将$\rho_0$增加到1，如图f所示，不能再现碎形的城市形态，并且 其在城市边缘展现出同质增长。</p>
-<p><img lazyload src="/images/loading.svg" data-src="101/image-20220113022002649.png" alt="image-20220113022002649"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2022/01/01/101/image-20220113022002649.png"
+                      class="" title="image-20220113022002649"
+                >
 <p>g图表示城市规模分布的指数随$\rho_0$增加而逐渐增加。(?)</p>
 <p>h,i表示当$\rho_0$从0增加到1时，人口增长模式和城市占用概况也偏离了实证规则。</p>
 <p>这些结果说明参数$\alpha$和$\rho_0$在CMM模型中对城市系统的紧密性和碎形形态有重要影响。</p>
@@ -886,5 +1006,20 @@
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

@@ -410,7 +410,7 @@
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img.save(img_name, quality=<span class="number">95</span>)</span><br></pre></td></tr></table></figure></div>
 <p>有些时候往往需要图片的大小不能变化太大或不能太小。所以在使用此方式时可以加入参数。quality参数： 保存图像的质量，值的范围从1（最差）到95（最佳）。 默认值为75，使用中应尽量避免高于95的值; 100会禁用部分JPEG压缩算法，并导致大文件图像质量几乎没有任何增益。</p>
 <h3 id="routes-py"><a href="#routes-py" class="headerlink" title="routes.py"></a>routes.py</h3><p><strong>and/or</strong></p>
-<p>学习出处：<a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/yonyong/p/9166067.html">https://www.cnblogs.com/yonyong/p/9166067.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>学习出处：<a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/yonyong/p/9166067.html" >https://www.cnblogs.com/yonyong/p/9166067.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>and和or比较的结果不是布尔值，而是比较值之一</p>
 <p>and</p>
 <p>从左到右演算表达式，如果比较的值都为真，and返回最后一个值</p>
@@ -427,16 +427,16 @@
 <p><strong>nodeprep.prepare</strong></p>
 <p>nodeprep.prepare函数 nodeprep是从twisted模块中导入的from twisted.words.protocols.jabber.xmpp_stringprep import nodeprep</p>
 <p>看师傅博客说 在requirements.txt文件中，发现这里用到的twisted版本是Twisted==10.2.0，而官网最新版本为19.2.0(2019/6/2)，版本差距过大可以判断有漏洞（原来如此</p>
-<p>学习出处:<a class="link" target="_blank" rel="noopener" href="https://hu3sky.github.io/2019/02/07/hctf/">https://hu3sky.github.io/2019/02/07/hctf/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>学习出处:<a class="link"   target="_blank" rel="noopener" href="https://hu3sky.github.io/2019/02/07/hctf/" >https://hu3sky.github.io/2019/02/07/hctf/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p><code>nodeprep.prepare()</code><br>这个函数会把大写转换为小写 并且<code>nodeprep.prepare()</code>会做如下转换<br>假如有一个<code>ᴬ</code>字符 第一次调用函数时会造成<code>ᴬ-&gt;A</code>，第二次调用时会<code>A-&gt;a</code></p>
 <h2 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h2><p>学习出处:</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/wangtanzhi/p/11861820.html">https://www.cnblogs.com/wangtanzhi/p/11861820.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44677409/article/details/100733581">https://blog.csdn.net/weixin_44677409/article/details/100733581 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/wangtanzhi/p/11861820.html" >https://www.cnblogs.com/wangtanzhi/p/11861820.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44677409/article/details/100733581" >https://blog.csdn.net/weixin_44677409/article/details/100733581 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>1.unicode欺骗</p>
 <p>注册一个ᴬdmin账号 此时第一次调用nodeprep.prepare()账号变为<br>Admin() 此时进行登录，再次调用nodeprep.prepare()，页面显示Hello Admin,此时应已变成admin,修改密码再次调用，修改admin密码 再进行登录</p>
 <p>2.flask session伪造</p>
-<p>学习出处:<a class="link" target="_blank" rel="noopener" href="https://www.leavesongs.com/PENETRATION/client-session-security.html">https://www.leavesongs.com/PENETRATION/client-session-security.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>通过这个工具(<a class="link" target="_blank" rel="noopener" href="https://github.com/noraj/flask-session-cookie-manager)可以加密解密flask中session，大概看了一下具体的原理(因为太菜了，还没太看懂呜呜呜呜">https://github.com/noraj/flask-session-cookie-manager)可以加密解密flask中session，大概看了一下具体的原理(因为太菜了，还没太看懂呜呜呜呜 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>学习出处:<a class="link"   target="_blank" rel="noopener" href="https://www.leavesongs.com/PENETRATION/client-session-security.html" >https://www.leavesongs.com/PENETRATION/client-session-security.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>通过这个工具(<a class="link"   target="_blank" rel="noopener" href="https://github.com/noraj/flask-session-cookie-manager)可以加密解密flask中session，大概看了一下具体的原理(因为太菜了，还没太看懂呜呜呜呜" >https://github.com/noraj/flask-session-cookie-manager)可以加密解密flask中session，大概看了一下具体的原理(因为太菜了，还没太看懂呜呜呜呜 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>大概分为这几步:</p>
 <ol>
 <li>json.dumps 将对象转换成json字符串，作为数据</li>
@@ -462,7 +462,12 @@
 <p>带参数的post请求<code>r=requests.post(url,data=params)</code></p>
 <p>params同样为字典传递参数</p>
 <p><code>r=requests.post(url,data=params)</code></p>
-<p><img lazyload src="/images/loading.svg" data-src="https://images2017.cnblogs.com/blog/77835/201709/77835-20170907152822351-1210277893.png" alt="img"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://images2017.cnblogs.com/blog/77835/201709/77835-20170907152822351-1210277893.png"
+                      alt="img"
+                ></p>
 <p>r.text输出结果:</p>
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;args&quot;</span>: &#123;&#125;, </span><br><span class="line">  <span class="string">&quot;data&quot;</span>: <span class="string">&quot;&quot;</span>, </span><br><span class="line">  <span class="string">&quot;files&quot;</span>: &#123;&#125;, </span><br><span class="line">  <span class="string">&quot;form&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;key1&quot;</span>: <span class="string">&quot;value1&quot;</span>, </span><br><span class="line">    <span class="string">&quot;key2&quot;</span>: <span class="string">&quot;value2&quot;</span></span><br><span class="line">  &#125;, </span><br><span class="line">  <span class="string">&quot;headers&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;Accept&quot;</span>: <span class="string">&quot;*/*&quot;</span>, </span><br><span class="line">    <span class="string">&quot;Accept-Encoding&quot;</span>: <span class="string">&quot;gzip, deflate&quot;</span>, </span><br><span class="line">    <span class="string">&quot;Connection&quot;</span>: <span class="string">&quot;close&quot;</span>, </span><br><span class="line">    <span class="string">&quot;Content-Length&quot;</span>: <span class="string">&quot;23&quot;</span>, </span><br><span class="line">    <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/x-www-form-urlencoded&quot;</span>, </span><br><span class="line">    <span class="string">&quot;Host&quot;</span>: <span class="string">&quot;httpbin.org&quot;</span>, </span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;python-requests/2.18.1&quot;</span></span><br><span class="line">  &#125;, </span><br><span class="line">  <span class="string">&quot;json&quot;</span>: null, </span><br><span class="line">  <span class="string">&quot;origin&quot;</span>: <span class="string">&quot;183.14.133.88&quot;</span>, </span><br><span class="line">  <span class="string">&quot;url&quot;</span>: <span class="string">&quot;http://httpbin.org/post&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
@@ -800,5 +805,20 @@
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

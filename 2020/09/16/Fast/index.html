@@ -373,13 +373,13 @@
             <div class="article-content markdown-body">
                 <p>一系列公式推导，费马小定理与CRT</p>
 <span id="more"></span>
-<p>学习出处：<a class="link" target="_blank" rel="noopener" href="http://element-ui.cn/article/show-13917.aspx">http://element-ui.cn/article/show-13917.aspx <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>学习出处：<a class="link"   target="_blank" rel="noopener" href="http://element-ui.cn/article/show-13917.aspx" >http://element-ui.cn/article/show-13917.aspx <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <h2 id="p与q推理"><a href="#p与q推理" class="headerlink" title="p与q推理"></a>p与q推理</h2><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">g, r1, r2 = [getRandomRange(<span class="number">1</span>, N) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)]</span><br><span class="line">g1 = <span class="built_in">pow</span>(g, r1 * (p-<span class="number">1</span>), N)</span><br><span class="line">g2 = <span class="built_in">pow</span>(g, r2 * (q-<span class="number">1</span>), N)</span><br></pre></td></tr></table></figure></div>
 <p>$g^{r_1*(p-1)} \equiv g_1 \bmod N$</p>
 <p>$ g^{r_1(p-1)}=kN+g_1 $</p>
 <p>$g^{r_1*(p-1)}\equiv g_1 \bmod p$</p>
 <p>由于费马小定理</p>
-<p>如果p是一个<a class="link" target="_blank" rel="noopener" href="https://baike.baidu.com/item/质数/263515">质数 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，而整数a不是p的倍数，则有$a^{p-1} \equiv 1 \bmod p$</p>
+<p>如果p是一个<a class="link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/质数/263515" >质数 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，而整数a不是p的倍数，则有$a^{p-1} \equiv 1 \bmod p$</p>
 <p>推出$g^{r_1*(p-1)}\bmod p \equiv 1$</p>
 <p>故$g_1 \equiv 1 \bmod p$</p>
 <p>同理$g_2 \equiv 1 \bmod q$</p>
@@ -728,5 +728,20 @@
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

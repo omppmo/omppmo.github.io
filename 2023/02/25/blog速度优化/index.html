@@ -316,8 +316,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="pc">2023-03-08 17:21:52</span>
-            <span class="mobile">2023-03-08 17:21</span>
+            <span class="pc">2023-03-13 18:53</span>
+            <span class="mobile">2023-03-13 18</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -328,7 +328,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-file-word"></i>&nbsp;<span>391 字</span>
+            <i class="fa-regular fa-file-word"></i>&nbsp;<span>462 字</span>
         </span>
     
     
@@ -351,22 +351,25 @@
             <div class="article-content markdown-body">
                 <p>想写项目总结但发现blog访问慢而偶然触发的一系列优化(<del>踩坑</del>操作</p>
 <span id="more"></span>
-<h2 id="托管平台"><a href="#托管平台" class="headerlink" title="托管平台"></a>托管平台</h2><p>先前将hexo同时托管到gitee和github上。因github Pages 国内访问较慢，故上传到了gitee，发现gitee Pages不知道从何时起更新需要实名认证了(认证过程太麻烦，了解到了<a class="link" target="_blank" rel="noopener" href="https://vercel.com/">vercel <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，将hexo部署到vercel进行加速。</p>
-<p>vercel+github搭建hexo:<a class="link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/358739246">https://zhuanlan.zhihu.com/p/358739246 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="托管平台"><a href="#托管平台" class="headerlink" title="托管平台"></a>托管平台</h2><p>先前将hexo同时托管到gitee和github上。因github Pages 国内访问较慢，故上传到了gitee，发现gitee Pages不知道从何时起更新需要实名认证了(认证过程太麻烦，了解到了<a class="link"   target="_blank" rel="noopener" href="https://vercel.com/" >vercel <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，将hexo部署到vercel进行加速。</p>
+<p>vercel+github搭建hexo:<a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/358739246" >https://zhuanlan.zhihu.com/p/358739246 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>vercel分发一个免费的二级域名，但是不建议使用。在settings中绑定在阿里云购买的域名，并在阿里云控制台添加CNAME解析</p>
-<p><img lazyload src="/images/loading.svg" data-src="blog速度优化.assets/image-20230225181113319.png" alt="image-20230225181113319"></p>
-<p>根域名/二级域名解析:<a class="link" target="_blank" rel="noopener" href="https://tangly1024.com/article/vercel-domain">https://tangly1024.com/article/vercel-domain <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+
+<p>根域名/二级域名解析:<a class="link"   target="_blank" rel="noopener" href="https://tangly1024.com/article/vercel-domain" >https://tangly1024.com/article/vercel-domain <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>至此实现较快国内访问和域名绑定。</p>
 <h2 id="速度优化"><a href="#速度优化" class="headerlink" title="速度优化"></a>速度优化</h2><p>发现访问页面还是很慢 检查-&gt;网络-&gt;查看文件传输耗时</p>
 <p>发现耗时较长的都是js/css/font等静态资源，明明都使用了cdn加速，越来越慢。</p>
 <h3 id="jsdelivr"><a href="#jsdelivr" class="headerlink" title="jsdelivr"></a>jsdelivr</h3><p>由于jsdelivr在国内挂了，导致国内使用了jsdelivr服务的网站要不访问很慢要不干脆就无法访问了。hexo主题中的config中的静态资源基本都使用了cdn.jsedlivr.net加速。</p>
-<p>解决方法:<a class="link" target="_blank" rel="noopener" href="https://oniya.cn/archives/123">https://oniya.cn/archives/123 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>解决方法:<a class="link"   target="_blank" rel="noopener" href="https://oniya.cn/archives/123" >https://oniya.cn/archives/123 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>鉴于站点没有icp备案无法注册境内cdn(如阿里云 腾讯云)，所以果断选择更换使用的cdn链接，更换了_config.yml中的cdn链接为<code>https://gcore.jsdelivr.net/...</code></p>
 <p>换了以后发现Network-&gt;Initiator中的cdn链接没有，从这里开始了愉快的踩坑之旅。</p>
-<p><img lazyload src="/images/loading.svg" data-src="blog速度优化.assets/image-20230225182820148.png" alt="image-20230225182820148"></p>
-<p>在Google的<a class="link" target="_blank" rel="noopener" href="https://developers.google.com/speed/pagespeed/insights/">PageSpeed Insights <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><img lazyload src="/images/loading.svg" data-src="blog速度优化.assets/image-20230225173712716.png" alt="image-20230225173712716"></p>
-<p><img lazyload src="/images/loading.svg" data-src="blog速度优化.assets/image-20230225173727328.png" alt="image-20230225173727328"></p>
+
+<p>在Google的<a class="link"   target="_blank" rel="noopener" href="https://developers.google.com/speed/pagespeed/insights/" >PageSpeed Insights <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+
+
+<p>本地图片显示 问题</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://arcsin2.cloud/2023/02/23/Hexo-%E5%8D%9A%E5%AE%A2%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" >https://arcsin2.cloud/2023/02/23/Hexo-%E5%8D%9A%E5%AE%A2%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>更换插件为hexo-image-link  本地markdown和博客同时显示图片</p>
 
             </div>
 
@@ -690,5 +693,20 @@
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

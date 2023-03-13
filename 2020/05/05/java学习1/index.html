@@ -371,7 +371,7 @@
             
 
             <div class="article-content markdown-body">
-                <meta name="referrer" content="no-referrer">
+                <meta name="referrer" content="no-referrer"/>
 
 <p>今天老师留了一个作业：建立框架，在中央放置多行文本框（TextArea）,在南方放置一个面板(JPanel),并在上边放置两个按钮，按钮文本分别为确定和取消</p>
 <span id="more"></span>
@@ -381,7 +381,12 @@
 <h3 id="错在哪里"><a href="#错在哪里" class="headerlink" title="错在哪里"></a>错在哪里</h3><p>这里显然j1就是内容面板，我在这句话中把j1添加到了JFrame上。但实质是把j1加到了j1上</p>
 <h3 id="纠错"><a href="#纠错" class="headerlink" title="纠错"></a>纠错</h3><p>这里我实际上是误解了题意，题目说的是放置一个面板，所以和获取内容面板没关系。<br>只需要<code>j1=new JPanel()</code>,然后把按钮添加到这个面板上，再把这个面板添加到JFrame（真正的内容面板）就可以了</p>
 <h2 id="默认布局"><a href="#默认布局" class="headerlink" title="默认布局"></a>默认布局</h2><p>jframe默认是边界布局,同一个位置放入组件,那么后面的组件覆盖前面的组件（BorderLayout）<br>JPanel的默认布局为流式布局 ,所以就是一个靠近一个的出来（FlowLayout）<br>这里new出来的JPanel是流式布局，所以不会覆盖</p>
-<h3 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h3><p><img lazyload src="/images/loading.svg" data-src="https://upload-images.jianshu.io/upload_images/19601162-d400bd536c3eb5f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2020-02-25 (4).png"></p>
+<h3 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://upload-images.jianshu.io/upload_images/19601162-d400bd536c3eb5f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
+                      alt="2020-02-25 (4).png"
+                ></p>
 <p>如果我非要用<code>j1=(JPanel)this.getContentPane();</code>获取内容面板，然后<code>j1.add(bt1,BorderLayout.SOUTH);</code> <code>j1.add(bt2,BorderLayout.SOUTH);</code>为什么同时添加的两个南方的按钮会有一个被覆盖呢，明明JPanel是流式的…<br><strong>内容面板的默认布局管理器是边界式的，普通面板是流式的</strong><br>经过答疑了解到，<strong>强制类型转换改变不了内容面板的布局管理器，只是可以赋值给JPanel对象了</strong><br>当然题目说的是放置一个面板，如果像我这样做，等于直接在内容面板的南方放了两个按钮，虽然看着没什么不同，但感觉还是有实质上的区别</p>
 
             </div>
@@ -714,5 +719,20 @@
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

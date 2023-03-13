@@ -381,23 +381,33 @@
 <p>接着是action.php</p>
 <p>但由于访问时间过短直接跳转到end.php</p>
 <p>使用burpsuite抓包</p>
-<p><img lazyload src="/images/loading.svg" data-src="file/image-20200904150424108.png" alt="image-20200904150424108"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2020/09/16/file/image-20200904150424108.png"
+                      class="" title="image-20200904150424108"
+                >
 <p>发现secr3t.php</p>
 <div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">    <span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="variable">$file</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">strstr</span>(<span class="variable">$file</span>,<span class="string">&quot;../&quot;</span>)||<span class="title function_ invoke__">stristr</span>(<span class="variable">$file</span>, <span class="string">&quot;tp&quot;</span>)||<span class="title function_ invoke__">stristr</span>(<span class="variable">$file</span>,<span class="string">&quot;input&quot;</span>)||<span class="title function_ invoke__">stristr</span>(<span class="variable">$file</span>,<span class="string">&quot;data&quot;</span>))&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;Oh no!&quot;</span>;</span><br><span class="line">        <span class="keyword">exit</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$file</span>); </span><br><span class="line"><span class="comment">//flag放在了flag.php里</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
 <p>文件包含漏洞并并过滤掉了一些关键词</p>
 <p>学习到了对于文件包含漏洞用php伪协议读取文件</p>
-<p>学习出处：<a class="link" target="_blank" rel="noopener" href="https://www.freebuf.com/column/148886.html">https://www.freebuf.com/column/148886.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>学习出处：<a class="link"   target="_blank" rel="noopener" href="https://www.freebuf.com/column/148886.html" >https://www.freebuf.com/column/148886.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>file://后加文件的绝对路径和文件名</p>
 <p>php://协议</p>
 <p>1.php://filter 读取源代码并进行base64编码输出，不然会直接当做php代码执行就看不到源代码内容了。</p>
-<p>学习出处：<a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/destiny1507/article/details/82347371">https://blog.csdn.net/destiny1507/article/details/82347371 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>学习出处：<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/destiny1507/article/details/82347371" >https://blog.csdn.net/destiny1507/article/details/82347371 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>基本使用：?file=php://filter/read=convert.base64-encode/resource=xxx.php</p>
 <p>各参数作用：</p>
-<p><img lazyload src="/images/loading.svg" data-src="file/image-20200904151413498.png" alt="image-20200904151413498"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2020/09/16/file/image-20200904151413498.png"
+                      class="" title="image-20200904151413498"
+                >
 <p>2.php://input</p>
 <p><strong>php://input</strong> 可以访问请求的原始数据的只读流, 将post请求中的数据作为PHP代码执行。</p>
 <p>其余php封装协议</p>
-<p><img lazyload src="/images/loading.svg" data-src="file/15063209941952.png!small" alt="常规小节.png"></p>
+
 <p>/secr3t.php?file=php://filter/read=convert.base64-encode/resource=flag.php</p>
 <p>读取到flag的base64编码后形式，解码即可找到flag</p>
 
@@ -735,5 +745,20 @@
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

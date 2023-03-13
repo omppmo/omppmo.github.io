@@ -360,25 +360,25 @@
             
 
             <div class="article-content markdown-body">
-                <meta name="referrer" content="no-referrer">
+                <meta name="referrer" content="no-referrer"/>
 
 <span id="more"></span>
 <h1 id="Paper-Reading"><a href="#Paper-Reading" class="headerlink" title="Paper Reading"></a>Paper Reading</h1><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>为了更深学习在城市空间内人类移动返回和探索模式的特征，本文<strong>在原始回转半径指标的基础上提出了一个多重指标模型</strong>。用图阐述了k-returners和k-explorers根据回转半径比值的分类机制，并提出其不足。比较了不同空间指标对人类返回和探索的分类效果。</p>
 <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>重要研究(后续关注重点):</p>
 <ul>
-<li><p><a class="link" target="_blank" rel="noopener" href="https://www.nature.com/articles/nature06958">Understanding individual human mobility patterns <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://www.nature.com/articles/nature06958" >Understanding individual human mobility patterns <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>提出人类空间运动的强周期规律遵循简单的重复模式，</p>
 <p>个人访问地点的顺序符合指数为−1的幂律分布</p>
 <p>回转半径首次提出</p>
 </li>
-<li><p><a class="link" target="_blank" rel="noopener" href="https://science.sciencemag.org/content/327/5968/1018.abstract">Limits of predictability in human mobility <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://science.sciencemag.org/content/327/5968/1018.abstract" >Limits of predictability in human mobility <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>运用<strong>移动轨迹熵</strong>表示人类移动行为预测准确率可以达到93%的上限</p>
 </li>
-<li><p><a class="link" target="_blank" rel="noopener" href="https://link.springer.com/article/10.1007/s11116-015-9597-y">Understanding aggregate human mobility patterns using passive mobile phone location data: a home-based approach <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://link.springer.com/article/10.1007/s11116-015-9597-y" >Understanding aggregate human mobility patterns using passive mobile phone location data: a home-based approach <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>提出了一个标准距离公式，<strong>将家定义为计算中心</strong>，以描述用户的移动范围。这和第一条作者使用算术平均数作为回转半径中心的方法不同。</p>
 <p>聚类算法将用户按照标准距离划分为6类，研究了不同人类移动模式的空间分布。</p>
 </li>
-<li><p><a class="link" target="_blank" rel="noopener" href="https://www.nature.com/articles/ncomms9166">Returners and explorers dichotomy in human mobility <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://www.nature.com/articles/ncomms9166" >Returners and explorers dichotomy in human mobility <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>根据top-k $r_g$与$r_g$比率定义k-returners和k-explorers。</p>
 <p>本文作者提出人类移动具有时空多样性，<strong>returners和explorers能否通过$r_g$的比率体现出人类的回归和探索特征</strong>值得研究。</p>
 </li>
@@ -719,5 +719,20 @@
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

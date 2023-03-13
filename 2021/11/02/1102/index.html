@@ -375,7 +375,7 @@
             
 
             <div class="article-content markdown-body">
-                <meta name="referrer" content="no-referrer">
+                <meta name="referrer" content="no-referrer"/>
 
 <p>不需要出行调查的城市流动性建模框架TimeGeo</p>
 <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>许多精细尺度的城市流动模型都需要繁琐昂贵的出行调查来校准，且这种出行调查成本高采样率低。</p>
@@ -397,7 +397,12 @@
 <p>对于每个用户，根据开始时间和访问每个stay地点的频率，推断stay地点类型为家(H)、工作(W)或其他(O)。</p>
 <p>在数据集中过滤活跃用户:提取数据集中原始用户75%的家坐标，并过滤总stay超过50次并至少在家stay10次的用户。这些活跃用户用来提取TimeGeo模型的参数。</p>
 <p>作者将这些用户分为通勤者(有往返工作地的出行)和非通勤者(没有往返工作地的出行)两类。</p>
-<p><img lazyload src="/images/loading.svg" data-src="1102/image-20211105175523819.png" alt="image-20211105175523819"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/11/02/1102/image-20211105175523819.png"
+                      class="" title="image-20211105175523819"
+                >
 <p>该图展示了三天中学生自我收集的移动轨迹中stay的地点和在连续的stay之间发生的移动(即定义为每天的行程)。不同活动类型地点及其之间的连线用颜色区分。</p>
 <p>下图是所有stay地点的访问频率，两图之间的时间条显示了每次stay的开始时间和持续时间。</p>
 <h3 id="Generating-Mechanism"><a href="#Generating-Mechanism" class="headerlink" title="Generating Mechanism"></a>Generating Mechanism</h3><p>该模型整合了人类移动的时间空间选择机制。</p>
@@ -410,7 +415,12 @@
 <li>其他活动的位置，开始时间 ，持续时间都是灵活的</li>
 </ul>
 <p>本文提出的框架旨在模拟灵活的空间和时间流动性选择，固定的活动(即工作)的时间被假定为预先确定的。</p>
-<p><img lazyload src="/images/loading.svg" data-src="1102/image-20211111214439699.png" alt="image-20211111214439699"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/11/02/1102/image-20211111214439699.png"
+                      class="" title="image-20211111214439699"
+                >
 <p>TimeGeo模型的流程图</p>
 <h4 id="Temporal-Choices"><a href="#Temporal-Choices" class="headerlink" title="Temporal Choices"></a>Temporal Choices</h4><p>文章使用带有三个参数的time-inhomogeneous(?非齐次)马尔科夫链模型来捕捉个体出行的倾向和在连续序列中进行短时间活动的可能性。</p>
 <p>参数:the weekly home-based tour<br>number($n_w$), the dwell rate($\beta_1$), and the burst rate($\beta_2$). </p>
@@ -424,7 +434,12 @@
 <p>对通勤者和非通勤者来说，P(t)不同:</p>
 <ul>
 <li><p>非通勤者:在一周内的时间间隔t所有人口的出行数占所有出行的比例。(即$\sum_{t=1}^{1008}P(t)=1,t=1,2…,1008$)，捕捉了在一周内不同时间出行的预期变化。</p>
-<p><img lazyload src="/images/loading.svg" data-src="1102/image-20211111203522748.png" alt="image-20211111203522748"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/11/02/1102/image-20211111203522748.png"
+                      class="" title="image-20211111203522748"
+                >
 </li>
 <li><p>通勤者:P(t)不包括往返工作地的出行(工作被看作是固定的活动)</p>
 </li>
@@ -445,20 +460,40 @@
 <p>原始EPR模型的限制为缺少探索中选择新位置的机制。原始EPR模型随机在实证jump-size($\Delta r$)分布中抽取距离。为了描绘更能反映城市结构的探索机制，在本文中结合对探索新的位置基于排名的选择机制，即r-EPR模型。</p>
 <p>选择机制:基于距移动始发地的距离，给每个可选目的地排名。在所有潜在的新目的地中，离现在位置最近的k=1…</p>
 <p><strong>将第k个位置作为目的地的概率被量化为$P(k)\sim k^{-\alpha}$</strong></p>
-<p><img lazyload src="/images/loading.svg" data-src="1102/image-20211112144732374.png" alt="image-20211112144732374"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/11/02/1102/image-20211112144732374.png"
+                      class="" title="image-20211112144732374"
+                >
 <p>该图为对r-EPR模型的图示。可能的目的地使用颜色对不同选择概率进行区分。  地点距始发地越近，它被选择的概率越高。每个点代表从CDR数据中提取的进行other活动的位置。点的高度代表在附近区域可选目的地的密度。</p>
 <h3 id="Role-of-Land-Use-on-Travel-Distance"><a href="#Role-of-Land-Use-on-Travel-Distance" class="headerlink" title="Role of Land Use on Travel Distance"></a>Role of Land Use on Travel Distance</h3><p>为了解释和量化土地利用(land use)对出行的影响，本文提出<strong>a hierarchical multiplicative cascade(层次乘法级联模型)</strong>进行分析。 </p>
 <p>TimeGeo将位置的空间分布(在CDR数据中观测到的)作为输入。</p>
-<p><img lazyload src="/images/loading.svg" data-src="1102/image-20211112151048619.png" alt="image-20211112151048619"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/11/02/1102/image-20211112151048619.png"
+                      class="" title="image-20211112151048619"
+                >
 <p>该图展示了不同类型的位置(home/other)在两个尺度下的分布。AB图是home位置在不同分辨率下的分布，CD图释other位置在不同分辨率下的分布。</p>
 <p>在较大网格尺度下，home和other位置在空间上是混合的，表现出高度的空间相关。在较小网格尺度下，home和other类型的土地利用分离变得清晰。</p>
 <p><strong>层次乘法级联将感兴趣的区域划分为不同粒度的网格，量化不同尺度下各类土地利用的空间相关性。</strong></p>
 <p>当前框架结合了影响探索机制空间选择的两个特征:<strong>(i)活动位置的空间分布 (ii)基于排名的位置选择</strong>。</p>
 <p>为了量化家到Other位置(H-O)的出行距离，作者提出将家位置作为需求方D，other位置作为提供方S。</p>
 <p>需要分析的整个区域为$\Omega_0$，作者渐进地使用边长$2^{-1},2^{-2},…,2^{-n}$将其分为$4^{1},4^{2},…,4^{n}$块。每次一个父块$\Omega_{i-1}$（分辨率i-1层）分为四个子块$\Omega_{i}$（分辨率i层）。</p>
-<p>示意图如下:<br><img lazyload src="/images/loading.svg" data-src="1102/image-20211116164858893.png" alt="image-20211116164858893"></p>
+<p>示意图如下:<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/11/02/1102/image-20211116164858893.png"
+                      class="" title="image-20211116164858893"
+                ></p>
 <p><strong>在分辨率为i层时，一次出行走出其所在起始块的概率</strong>为$P_&gt;(i)$</p>
-<p><img lazyload src="/images/loading.svg" data-src="1102/image-20211116165145462.png" alt="image-20211116165145462"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/11/02/1102/image-20211116165145462.png"
+                      class="" title="image-20211116165145462"
+                >
 <p>起始块超出概率$P_&gt;(i)$在不同块分辨率产生移动距离的分布。</p>
 <p>其中</p>
 <ul>
@@ -467,7 +502,12 @@
 <li><p>$P_&gt;(k)$是k个在起始块的提供方不被选择的概率，代表基于排名的地点选择机制。</p>
 </li>
 <li><p>$f_{S_i,trip}(k)$是在起始块内找到k个提供方的概率，代表位置的地理分布。计算方式如下:</p>
-<p><img lazyload src="/images/loading.svg" data-src="1102/image-20211116173305962.png" alt="image-20211116173305962"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/11/02/1102/image-20211116173305962.png"
+                      class="" title="image-20211116173305962"
+                >
 <p>$f_{D_i,trip}(D)$是给定D需求在分辨率水平为i从起始块移动的条件概率。$f_{S_i|D_i}$是给定需求后供应的条件概率。Q是在整个研究区域中需求数。</p>
 </li>
 </ul>
@@ -478,58 +518,113 @@
 <p>首先在初始块$\Omega_0$均匀测量供需密度$D^{‘}_0$和$S^{‘}_0$，然后逐步将初始块划分为$4^1,4^2,…,4^n$。在子块中的供需密度需乘以非负的随机因子$W_{D_i}$和$W_{S_i}$(平均值为1)，随机因子组成的向量$W_i=[W_{D_i},W_{S_i}]$是级联的生成器。</p>
 <p>即使级联生成器在不同分辨率i下有独立取值，但它们的分量$W_{D_i}$和$W_{S_i}$在给定i中可能是互相依赖的。</p>
 <p>在分辨率i−1和i下测量的密度关系式为</p>
-<p><img lazyload src="/images/loading.svg" data-src="1102/image-20211119203226257.png" alt="image-20211119203226257"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/11/02/1102/image-20211119203226257.png"
+                      class="" title="image-20211119203226257"
+                >
 <p>在更小尺寸的块中，空块不能被忽略。在这种情况下，最好将生成器建模为β级联，块要么为满，要么为空。二元β级联的生成器$W(i)=[W_{D(i)},W_{S(i)}]$具有一个离散分布，其概率质量集中在四个($W_D,W_S$)点:</p>
 <p>$P_{00}$ at $(0,0)$  $P_{D0}$ at $(1/P_D,0)$  $P_{0S}$ at $(0,1/P_S)$ $P_{DS}$ at $(1/P_D,1/P_S)$</p>
 <p>在一个给定的区域内，用层次乘法级联分析框架来描述人口和场所设施分布的协方差，考虑了区域特定空间结构对个体出行距离的影响。</p>
 <p>这使得我们能够对城市土地利用的变化如何影响微观层面的个人出行行为和宏观层面的OD矩阵进行情景测试。</p>
 <h3 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h3><h4 id="Extracted-Mobility-Features-from-Mobile-Phone-Data"><a href="#Extracted-Mobility-Features-from-Mobile-Phone-Data" class="headerlink" title="Extracted Mobility Features from Mobile Phone Data"></a>Extracted Mobility Features from Mobile Phone Data</h4><p>对每个个体，$n_w$直接从数据中提取，$\beta_1$和$\beta_2$使用时间马尔科夫模型进行标定(<strong>calibrate</strong>)。其余参数如排名选择机制的参数$\alpha$，偏好返回机制的参数$\gamma$,$\rho$在全部人口的聚合数据中提取。</p>
-<p><img lazyload src="/images/loading.svg" data-src="1102/image-20211116174011928.png" alt="image-20211116174011928"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/11/02/1102/image-20211116174011928.png"
+                      class="" title="image-20211116174011928"
+                >
 <p>该图为$\beta_1n_w,\beta_2n_w,n_w$的联合分布。绿点为最可能的参数组合$n_w=6.1,\beta_1n_w=22.4,\beta_2n_w=508.0$</p>
 <h4 id="Simulated-Mobility-Features"><a href="#Simulated-Mobility-Features" class="headerlink" title="Simulated Mobility Features"></a>Simulated Mobility Features</h4><p>有了上述观测到的特征参数，TimeGeo模型可以在城市尺度产生长时间内个体每日移动轨迹。</p>
 <p>以学生自愿收集的14-mo数据为例，固定家和工作地(学校)。使用模型框架来模拟灵活的Other活动的时空选择和家活动的时间选择。</p>
 <p>计算该学生的个人参数，发现其burst rate$\beta_2$小于人口平均水平，说明其有更小的可能性产生连续的短时间活动。</p>
-<p><img lazyload src="/images/loading.svg" data-src="1102/image-20211116174956650.png" alt="image-20211116174956650"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/11/02/1102/image-20211116174956650.png"
+                      class="" title="image-20211116174956650"
+                >
 <p>该图为模拟该学生三天移动的结果。他每天主要在H-O(home-work)间进行移动，只有一些去Other位置的移动。该模型不仅捕捉到每天个体访问地点的数量，还捕捉了每天行程链更详细的构造。</p>
-<p><img lazyload src="/images/loading.svg" data-src="1102/image-20211116175329672.png" alt="image-20211116175329672"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/11/02/1102/image-20211116175329672.png"
+                      class="" title="image-20211116175329672"
+                >
 <p>该图展示了该学生每日移动的<strong>模体(motif)</strong>，作者使用结点代表位置，边代表位置之间发生的移动，并统计模体的分布。主导的模体是在一天中在两个位置之间移动。</p>
 <p>TimeGeo模型的关键在于使用ICT记录产生个体移动轨迹。对于数据稀疏的个体(在30天中只有4 个不同的位置)，作者模拟他时空完整的移动轨迹:<br>在联合分布中选择两组参数$\beta_1,\beta_2,n_w$来产生这个用户的两组合成轨迹。</p>
-<p><img lazyload src="/images/loading.svg" data-src="1102/image-20211117155712292.png" alt="image-20211117155712292"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/11/02/1102/image-20211117155712292.png"
+                      class="" title="image-20211117155712292"
+                >
 <p>左图使用参数$n_w=6,\beta_1=4,\beta_2=23$</p>
 <p>右图使用参数$n_w=6,\beta_1=10,\beta_2=73$</p>
 <p>较大的$\beta_1$和$\beta_2$产生更多连续的out-of-home活动，访问更多地点。</p>
-<p><img lazyload src="/images/loading.svg" data-src="1102/image-20211117155946701.png" alt="image-20211117155946701"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/11/02/1102/image-20211117155946701.png"
+                      class="" title="image-20211117155946701"
+                >
 <p>该图展示了该用户通过这两组参数模拟的每日移动的模体，较小的参数更倾向于简单的模体，较大的参数有更复杂的活动链。</p>
 <p>作者通过绘制三种不同参数个体(频繁移动/不太频繁移动/中值)停留时间($\Delta t$)和访问地点数(N)的分布发现不太频繁移动的个体明显有更长的停留时间和更少的位置访问。</p>
 <p>为了量化模型模拟和实证数据分布之间的差异,作者使用KS检验( Kolmogorov–Smirnov test)。</p>
 <p>两种极端个体(频繁移动/不太频繁移动)实证和模拟P($\Delta t$)的KS统计值为0.12和0.11,如果将他们的实证数据和中值个体模拟进行比较，KS值增加。同样，作者也计算了P(N)实证和模拟的KS值。<strong>这证实了包含个人特定参数来模拟时间选择的重要性。</strong></p>
 <p>随后作者做了类似于消融实验的分析，来证明模型中的每个机制($n_w,\beta_1,\beta_2$,r-EPR)都是至关重要的。</p>
 <p>对于dwell rate$\beta_1$,如果使之都为1，该模型不区分家和other活动的移动倾向，结果导致$P(\Delta t)$低估了短时间的出行，KS检验统计值从0.04增加至0.27。</p>
-<p><img lazyload src="/images/loading.svg" data-src="1102/image-20211119162259558.png" alt="image-20211119162259558"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/11/02/1102/image-20211119162259558.png"
+                      class="" title="image-20211119162259558"
+                >
 <p>对于burst rate$\beta_2$，模型是否带有这个参数P(N)分布的KS统计值为0.03和0.22。</p>
-<p><img lazyload src="/images/loading.svg" data-src="1102/image-20211119163026348.png" alt="image-20211119163026348"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/11/02/1102/image-20211119163026348.png"
+                      class="" title="image-20211119163026348"
+                >
 <p>$\beta_1$和$\beta_2$捕捉了灵活活动的爆发 ，来确保停留时间$P(\Delta t)$和访问地点的数目P(N)。</p>
 <p>EF两图展示了有无偏好返回机制个体L-th位置访问频率对比和有无基于排名选择机制个体出行距离$\Delta r$对比来说明机制的重要性。</p>
 <p>作者扩展用户(通勤者和非通勤者)到人群(年龄超过16岁)，并产生一个工作日的移动轨迹。作者<strong>使用模拟产生的移动轨迹和传统出行调查数据进行对比</strong>。</p>
 <p>分别使用MTS(一个州的出行调查)和NHTS(国家家庭出行调查)</p>
-<p><img lazyload src="/images/loading.svg" data-src="1102/image-20211119164505567.png" alt="image-20211119164505567"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/11/02/1102/image-20211119164505567.png"
+                      class="" title="image-20211119164505567"
+                >
 <p>$P(\Delta t)$分布的KS检验值分别为0.23和0.59。发现调查数据和模拟数据之间的停留时间分布显著不同，这主要是因为在一天的调查中人们很少报告停留时间超过12小时的活动，而模拟使用的信息由活跃的手机用户的数据记录提供。</p>
-<p><img lazyload src="/images/loading.svg" data-src="1102/image-20211119164937417.png" alt="image-20211119164937417"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/11/02/1102/image-20211119164937417.png"
+                      class="" title="image-20211119164937417"
+                >
 <p>P(N)的分布相比较好，KS检验值为0.07和0.23。</p>
-<p><img lazyload src="/images/loading.svg" data-src="1102/image-20211119165132169.png" alt="image-20211119165132169"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/11/02/1102/image-20211119165132169.png"
+                      class="" title="image-20211119165132169"
+                >
 <p>$P(\Delta r)$模拟数据相比于MTS数据,KS检验值为0.24。<br>因为模型在选择选择返回地点时没有考虑行程距离，高估了长距离的行程。此处没有和NHTS进行比较是因为出行的空间层面取决于城市的特定扩展，在全国区域不同。</p>
 <h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>TimeGeo模型可以根据任何城市的人口密度和场所设施分布灵活适应到不同应用场景。最低要求是要有人口和场所设施分布。</p>
 <p>在目前的结果中，模型的探索和返回参数($\alpha,\rho,\gamma$)在人口中假定是相同的，个体的时间流动率假定独立于实际位置。在未来的研究中，随着更多的高频率和长时间的数据可用，有可能学习到提出参数个体层面的不同。以及在不同城市区域,不同人口结构和生活方式中模型参数的不同。</p>
-<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="Markov-Chain"><a href="#Markov-Chain" class="headerlink" title="Markov Chain"></a>Markov Chain</h3><p><a class="link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26453269">https://zhuanlan.zhihu.com/p/26453269 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link" target="_blank" rel="noopener" href="https://www.zhihu.com/question/37588564">https://www.zhihu.com/question/37588564 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="Markov-Chain"><a href="#Markov-Chain" class="headerlink" title="Markov Chain"></a>Markov Chain</h3><p><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26453269" >https://zhuanlan.zhihu.com/p/26453269 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.zhihu.com/question/37588564" >https://www.zhihu.com/question/37588564 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>随机过程:随机过程使用一些统计模型，利用这些统计模型可以对自然界的一些事物进行预测和处理。</p>
 <p>马尔科夫链是随机过程的一种，每个时刻具有状态分布。每个状态的转移是有概率的，即转移概率矩阵P，且它是保持不变。有了转移概率矩阵和初始状态分布，就可以推算出后续时刻的状态分布。</p>
 <p><strong>马尔科夫链的状态分布只取决于现在，与过去无关。</strong></p>
 <p>在第n+1刻的状态只跟第n刻的状态有关,与第n-1,n-2,n-3,…等时刻的状态是没有任何关系。在随机游走的例子里，下一刻走到什么地方只与这一刻有关。</p>
 <p>非齐次马尔科夫链模型</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31999081">https://zhuanlan.zhihu.com/p/31999081 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="KS检验"><a href="#KS检验" class="headerlink" title="KS检验"></a>KS检验</h3><p><a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/arkenstone/p/5496761.html">https://www.cnblogs.com/arkenstone/p/5496761.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/jiangkejie/p/11572205.html">https://www.cnblogs.com/jiangkejie/p/11572205.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31999081" >https://zhuanlan.zhihu.com/p/31999081 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="KS检验"><a href="#KS检验" class="headerlink" title="KS检验"></a>KS检验</h3><p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/arkenstone/p/5496761.html" >https://www.cnblogs.com/arkenstone/p/5496761.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/jiangkejie/p/11572205.html" >https://www.cnblogs.com/jiangkejie/p/11572205.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>Kolmogorov-Smirnov是比较一个频率分布f(x)与理论分布g(x)或者两个观测值分布的检验方法。</p>
 <p>其原假设H0:两个数据分布一致或者数据符合理论分布。D=max| f(x)- g(x)|，当实际观测值D&gt;D(n,α)则拒绝H0，否则则接受H0假设。其中D值计算两分布样本之间累积经验分布函数之差。</p>
 <p>KS检验不需要知道数据的分布情况，可以算是一种非参数检验方法。</p>
@@ -869,5 +964,20 @@
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

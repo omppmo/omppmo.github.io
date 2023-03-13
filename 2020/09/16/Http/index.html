@@ -374,10 +374,10 @@
                 <p>http请求头</p>
 <span id="more"></span>
 <p>使用burpsuite抓包看到Secret.php</p>
-<p>显示It doesn’t come from ‘<a class="link" target="_blank" rel="noopener" href="https://www.Sycsecret.com">https://www.Sycsecret.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>‘</p>
+<p>显示It doesn’t come from ‘<a class="link"   target="_blank" rel="noopener" href="https://www.Sycsecret.com" >https://www.Sycsecret.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>‘</p>
 <p>学到了请求首部字段</p>
 <p>Referer 告知请求的原始资源的URI，可以看出请求URI是从哪个页面发出的</p>
-<p>把请求包发送到重发器 修改头部Referer为 <a class="link" target="_blank" rel="noopener" href="https://www.Sycsecret.com">https://www.Sycsecret.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>把请求包发送到重发器 修改头部Referer为 <a class="link"   target="_blank" rel="noopener" href="https://www.Sycsecret.com" >https://www.Sycsecret.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>显示Please use “Syclover” browser</p>
 <p>继续学到User-Agent字段</p>
 <p>User-Agent  Mozilla/5.0 (Windows NT 6.1; WOW64; rv:13.0) Gecko/20100101 Firefox/13.0.1 创建请求的浏览器和用户代理名称等信息</p>
@@ -388,7 +388,7 @@
 <p>X-Forwarded-For 是一个扩展头。HTTP/1.1（RFC 2616）协议并没有对它的定义，它最开始是由 Squid 这个缓存代理软件引入，用来表示 HTTP 请求端真实 IP，现在已经成为事实上的标准，被各大 HTTP 代理、负载均衡等转发服务广泛使用，并被写入 RFC 7239（Forwarded HTTP Extension）标准之中.</p>
 </blockquote>
 <p>得到flag flag{a5e3eef1-e0d8-426c-acb7-18b094653f29}</p>
-<p>学习出处：<a class="link" target="_blank" rel="noopener" href="https://www.dazhuanlan.com/2020/03/10/5e670ce66256d/?__cf_chl_jschl_tk__=45aa12cf90d9c0c25eef9918a873d6f7d17f4441-1600263258-0-AaivmMLCayRCIlZxXmdU78F6O6L0iO32tcd-YfB_AcQw_IIxxXasK1QPOGSEQN89atHKD6IE9Oi9JfZNPH5TEPGmnhwDY7BaZ27QsW5tGP46_vv8gPBTZrIKfTDbf7w0iXhcP-e5cD037gL-ZnalH9u8XwVnc4PD3ylRPljIdKMEPVucsXG2SCxTVMZV9NfthOwT5mQrqzolzaSiXNeCzeWWq69W3-gUdL8TgrJWfoMmyUpzfzvpcDAysJ9IFBFxIzSxM-ZLEey-25_3QIFbUNQ3ipoGHh_HMIDgaMbcrudEiJLf_tfQQ1-jDuutjGMw1g">https://www.dazhuanlan.com/2020/03/10/5e670ce66256d/?__cf_chl_jschl_tk__=45aa12cf90d9c0c25eef9918a873d6f7d17f4441-1600263258-0-AaivmMLCayRCIlZxXmdU78F6O6L0iO32tcd-YfB_AcQw_IIxxXasK1QPOGSEQN89atHKD6IE9Oi9JfZNPH5TEPGmnhwDY7BaZ27QsW5tGP46_vv8gPBTZrIKfTDbf7w0iXhcP-e5cD037gL-ZnalH9u8XwVnc4PD3ylRPljIdKMEPVucsXG2SCxTVMZV9NfthOwT5mQrqzolzaSiXNeCzeWWq69W3-gUdL8TgrJWfoMmyUpzfzvpcDAysJ9IFBFxIzSxM-ZLEey-25_3QIFbUNQ3ipoGHh_HMIDgaMbcrudEiJLf_tfQQ1-jDuutjGMw1g <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>学习出处：<a class="link"   target="_blank" rel="noopener" href="https://www.dazhuanlan.com/2020/03/10/5e670ce66256d/?__cf_chl_jschl_tk__=45aa12cf90d9c0c25eef9918a873d6f7d17f4441-1600263258-0-AaivmMLCayRCIlZxXmdU78F6O6L0iO32tcd-YfB_AcQw_IIxxXasK1QPOGSEQN89atHKD6IE9Oi9JfZNPH5TEPGmnhwDY7BaZ27QsW5tGP46_vv8gPBTZrIKfTDbf7w0iXhcP-e5cD037gL-ZnalH9u8XwVnc4PD3ylRPljIdKMEPVucsXG2SCxTVMZV9NfthOwT5mQrqzolzaSiXNeCzeWWq69W3-gUdL8TgrJWfoMmyUpzfzvpcDAysJ9IFBFxIzSxM-ZLEey-25_3QIFbUNQ3ipoGHh_HMIDgaMbcrudEiJLf_tfQQ1-jDuutjGMw1g" >https://www.dazhuanlan.com/2020/03/10/5e670ce66256d/?__cf_chl_jschl_tk__=45aa12cf90d9c0c25eef9918a873d6f7d17f4441-1600263258-0-AaivmMLCayRCIlZxXmdU78F6O6L0iO32tcd-YfB_AcQw_IIxxXasK1QPOGSEQN89atHKD6IE9Oi9JfZNPH5TEPGmnhwDY7BaZ27QsW5tGP46_vv8gPBTZrIKfTDbf7w0iXhcP-e5cD037gL-ZnalH9u8XwVnc4PD3ylRPljIdKMEPVucsXG2SCxTVMZV9NfthOwT5mQrqzolzaSiXNeCzeWWq69W3-gUdL8TgrJWfoMmyUpzfzvpcDAysJ9IFBFxIzSxM-ZLEey-25_3QIFbUNQ3ipoGHh_HMIDgaMbcrudEiJLf_tfQQ1-jDuutjGMw1g <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 
             </div>
 
@@ -720,5 +720,20 @@
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

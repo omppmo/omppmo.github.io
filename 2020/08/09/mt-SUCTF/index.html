@@ -373,7 +373,7 @@
             <div class="article-content markdown-body">
                 <p>MT的提取算法逆向</p>
 <span id="more"></span>
-<p>学习出处:<a class="link" target="_blank" rel="noopener" href="https://liam.page/2018/01/12/Mersenne-twister/">https://liam.page/2018/01/12/Mersenne-twister/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>学习出处:<a class="link"   target="_blank" rel="noopener" href="https://liam.page/2018/01/12/Mersenne-twister/" >https://liam.page/2018/01/12/Mersenne-twister/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Random <span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> Crypto.Util <span class="keyword">import</span> number</span><br><span class="line"><span class="keyword">from</span> flag <span class="keyword">import</span> flag</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">convert</span>(<span class="params">m</span>):</span><br><span class="line">    m = m ^ m &gt;&gt; <span class="number">13</span></span><br><span class="line">    m = m ^ m &lt;&lt; <span class="number">9</span> &amp; <span class="number">2029229568</span></span><br><span class="line">    m = m ^ m &lt;&lt; <span class="number">17</span> &amp; <span class="number">2245263360</span></span><br><span class="line">    m = m ^ m &gt;&gt; <span class="number">19</span></span><br><span class="line">    <span class="keyword">return</span> m</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">transform</span>(<span class="params">message</span>):</span><br><span class="line">    <span class="keyword">assert</span> <span class="built_in">len</span>(message) % <span class="number">4</span> == <span class="number">0</span></span><br><span class="line">    new_message = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(message) / <span class="number">4</span>):</span><br><span class="line">        block = message[i * <span class="number">4</span> : i * <span class="number">4</span> +<span class="number">4</span>]</span><br><span class="line">        block = number.bytes_to_long(block)</span><br><span class="line">        block = convert(block)</span><br><span class="line">        block = number.long_to_bytes(block, <span class="number">4</span>)</span><br><span class="line">        new_message += block</span><br><span class="line">    <span class="keyword">return</span> new_message</span><br><span class="line"></span><br><span class="line">transformed_flag = transform(flag[<span class="number">5</span>:-<span class="number">1</span>].decode(<span class="string">&#x27;hex&#x27;</span>)).encode(<span class="string">&#x27;hex&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span> <span class="string">&#x27;transformed_flag:&#x27;</span>, transformed_flag</span><br><span class="line"><span class="comment"># transformed_flag: 641460a9e3953b1aaa21f3a2</span></span><br></pre></td></tr></table></figure></div>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><h3 id="逆提取算法"><a href="#逆提取算法" class="headerlink" title="逆提取算法"></a>逆提取算法</h3><h4 id="向右移位异或"><a href="#向右移位异或" class="headerlink" title="向右移位异或"></a>向右移位异或</h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result=value^value&gt;&gt;shift</span><br></pre></td></tr></table></figure></div>
 <p>result的前shift位和value相同</p>
@@ -722,5 +722,20 @@
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

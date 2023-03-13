@@ -371,34 +371,44 @@
             
 
             <div class="article-content markdown-body">
-                <meta name="referrer" content="no-referrer">
+                <meta name="referrer" content="no-referrer"/>
 
 <p>Boundary-Aware Salient Object Detection 即边界感知显著目标检测</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/630zqS"><img lazyload src="/images/loading.svg" data-src="https://s3.ax1x.com/2021/03/09/630zqS.png" alt="630zqS.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/630zqS"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s3.ax1x.com/2021/03/09/630zqS.png"
+                      alt="630zqS.png"
+                ></a></p>
 <p>根据放假以来的学习，简单画了下理解网络所需要理解掌握的知识。自己还没有摸太清，只是目前理解的，待更新…</p>
 <span id="more"></span>
 <h1 id="BASNet"><a href="#BASNet" class="headerlink" title="BASNet"></a>BASNet</h1><h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><h3 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h3><p>GD MBGD SGD区别:</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/lliuye/p/9451903.html">https://www.cnblogs.com/lliuye/p/9451903.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/lliuye/p/9451903.html" >https://www.cnblogs.com/lliuye/p/9451903.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>? SGD为什么能逃脱鞍点:</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/bl128ve900/article/details/94293284">https://blog.csdn.net/bl128ve900/article/details/94293284 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/bl128ve900/article/details/94293284" >https://blog.csdn.net/bl128ve900/article/details/94293284 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <h3 id="softmax"><a href="#softmax" class="headerlink" title="softmax"></a>softmax</h3><blockquote>
 <p>我们知道max，假如说我有两个数，a和b，并且a&gt;b，如果取max，那么就直接取a，没有第二种可能但有的时候我不想这样，因为这样会造成分值小的那个饥饿。所以我希望分值大的那一项经常取到，分值小的那一项也偶尔可以取到，那么我用softmax就可以了  现在还是a和b，a&gt;b，如果我们取按照softmax来计算取a和b的概率，那a的softmax值大于b的，所以a会经常取到，而b也会偶尔取到，概率跟它们本来的大小有关。所以说不是max，而是 <strong>Soft</strong> max  那各自的概率究竟是多少</p>
-<p>来源:<a class="link" target="_blank" rel="noopener" href="https://www.zhihu.com/question/23765351">https://www.zhihu.com/question/23765351 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>来源:<a class="link"   target="_blank" rel="noopener" href="https://www.zhihu.com/question/23765351" >https://www.zhihu.com/question/23765351 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 </blockquote>
-<p><img lazyload src="/images/loading.svg" data-src="https://img-blog.csdn.net/20180902220822202?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2JpdGNhcm1hbmxlZQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdn.net/20180902220822202?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2JpdGNhcm1hbmxlZQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"
+                      alt="这里写图片描述"
+                ></p>
 <p>softmax不仅把神经元输出构造成概率分布，而且还起到了归一化的作用，适用于很多需要进行归一化处理的分类问题。</p>
 <p>?以softmax为激励函数交叉熵Loss函数的求导过程      </p>
-<p><a class="link" target="_blank" rel="noopener" href="https://www.iteye.com/blog/kissmett-2440592">https://www.iteye.com/blog/kissmett-2440592 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/bitcarmanlee/article/details/82320853">https://blog.csdn.net/bitcarmanlee/article/details/82320853 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.iteye.com/blog/kissmett-2440592" >https://www.iteye.com/blog/kissmett-2440592 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/bitcarmanlee/article/details/82320853" >https://blog.csdn.net/bitcarmanlee/article/details/82320853 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>这个不懂 留坑了</p>
 <h3 id="BN"><a href="#BN" class="headerlink" title="BN"></a>BN</h3><p>Batch Normalization批标准化</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/guoyaohua/p/8724433.html">https://www.cnblogs.com/guoyaohua/p/8724433.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/guoyaohua/p/8724433.html" >https://www.cnblogs.com/guoyaohua/p/8724433.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p><strong>BatchNorm就是在深度神经网络训练过程中使得每一层神经网络的输入保持相同分布的。</strong></p>
 <p><strong>白化</strong>，<strong>就是对输入数据分布变换到0均值，单位方差的正态分布</strong></p>
 <h4 id="Relu与BN层顺序问题"><a href="#Relu与BN层顺序问题" class="headerlink" title="Relu与BN层顺序问题"></a>Relu与BN层顺序问题</h4><p>这是我比较疑惑的问题，看到网络模型中Conv+BN+ReLU层，根据Batch Normalization，下一层输入不是应该保持相同分布更好吗，为什么不先进行激活再标准化下一层输入呢….</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/zi-wang/p/12295529.html">https://www.cnblogs.com/zi-wang/p/12295529.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/113442866?from_voters_page=true">https://zhuanlan.zhihu.com/p/113442866?from_voters_page=true <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link" target="_blank" rel="noopener" href="https://www.zhihu.com/question/318354788">https://www.zhihu.com/question/318354788 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/zi-wang/p/12295529.html" >https://www.cnblogs.com/zi-wang/p/12295529.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/113442866?from_voters_page=true" >https://zhuanlan.zhihu.com/p/113442866?from_voters_page=true <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.zhihu.com/question/318354788" >https://www.zhihu.com/question/318354788 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>现在网络一般默认用BN-ReLu</p>
 <p>Batch Norm方法经过规范化和缩放平移，可以使输入数据，重新回到非饱和区，还可以更进一步：控制激活的饱和程度，或是非饱和函数抑制与激活的范围。</p>
 <h3 id="sigmoid"><a href="#sigmoid" class="headerlink" title="sigmoid"></a>sigmoid</h3><p>看到源码里BASNET中最后return的是几个side-output的sigmoid值不理解，留坑</p>
@@ -406,32 +416,57 @@
 <h4 id="网络架构"><a href="#网络架构" class="headerlink" title="网络架构"></a>网络架构</h4><p><strong>卷积神经网络结构包括：卷积层，降采样层，全链接层。每一层有多个特征图，每个特征图通过一种卷积滤波器提取输入的一种特征，每个特征图有多个神经元。</strong></p>
 <p>卷积神经网络是一种多层的监督学习神经网络，隐含层的卷积层和池采样层是实现卷积神经网络特征提取功能的核心模块。该网络模型通过采用梯度下降法最小化损失函数对网络中的权重参数逐层反向调节，通过频繁的迭代训练提高网络的精度。==卷积神经网络的低隐层是由卷积层和最大池采样层交替组成，高层是全连接层对应传统多层感知器的隐含层和逻辑回归分类器。==第一个全连接层的输入是由卷积层和子采样层进行特征提取得到的特征图像。最后一层输出层是一个分类器，可以采用逻辑回归，Softmax回归甚至是支持向量机对输入图像进行分类。</p>
 <h4 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h4><p>卷积的目的：为了从输入图像中提取特征。卷积可以通过从输入的一小块数据中学到图像的特征，并可以保留像素间的空间关系。</p>
-<h5 id="滤波器filter-卷积核kernel-的运算"><a href="#滤波器filter-卷积核kernel-的运算" class="headerlink" title="滤波器filter(卷积核kernel)的运算"></a>滤波器filter(卷积核kernel)的运算</h5><p>卷积运算细节:<a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/dcrmg/article/details/79652487">https://blog.csdn.net/dcrmg/article/details/79652487 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h5 id="滤波器filter-卷积核kernel-的运算"><a href="#滤波器filter-卷积核kernel-的运算" class="headerlink" title="滤波器filter(卷积核kernel)的运算"></a>滤波器filter(卷积核kernel)的运算</h5><p>卷积运算细节:<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/dcrmg/article/details/79652487" >https://blog.csdn.net/dcrmg/article/details/79652487 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p> 对于同样的输入图像，不同值的滤波器将会生成不同的特征图。</p>
 <p>通过在卷积操作前修改滤波矩阵的数值，我们可以进行诸如边缘检测、锐化和模糊等操作 —— 这表明不同的滤波器可以从图中检测到不同的特征，比如边缘、曲线等。</p>
 <p><strong>卷积核里面的参数，一开始是随机数，它本身是需要训练的权重值，只是一开始被初始化了为随机数，并不是一直都是随机数，它会随着网络的训练，逐渐发生变化，最后生成固定的权重值。</strong></p>
 <p><strong>卷积核与通道数的关系</strong></p>
-<p><a class="link" target="_blank" rel="noopener" href="https://segmentfault.com/q/1010000016667038">https://segmentfault.com/q/1010000016667038 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://segmentfault.com/q/1010000016667038" >https://segmentfault.com/q/1010000016667038 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>看网络架构的时候很懵，回来补一下基础。</p>
 <p><strong>卷积核数与输出通道数是相等的</strong>，且可以自定义，取决于自己的实验设置。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://img-blog.csdn.net/20180322130042532?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L2Rjcm1n/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
-<p><img lazyload src="/images/loading.svg" data-src="https://image-static.segmentfault.com/292/098/292098771-59e98309e35bc_fix732" alt></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdn.net/20180322130042532?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L2Rjcm1n/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"
+                      alt="img"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://image-static.segmentfault.com/292/098/292098771-59e98309e35bc_fix732"
+                      alt=""
+                ></p>
 <h5 id="特征图"><a href="#特征图" class="headerlink" title="特征图"></a>特征图</h5><p>通过在图像上滑动滤波器并计算点乘得到矩阵叫做“卷积特征（Convolved Feature）”或者“激活图（Activation Map）”或者“特征图（Feature Map）”。</p>
 <p>特征图的大小（卷积特征）由三个参数控制：深度（depth）、步长（stride）、零填充（zero-padding）。</p>
 <p>深度：深度对应的是卷积操作所需的滤波器个数。在下图的网络中，我们使用三个不同的滤波器对原始图像进行卷积操作，这样就可以生成三个不同的特征图。你可以把这三个特征图看作是堆叠的 2d 矩阵，那么，特征图的“深度”就是三。</p>
-<p><img lazyload src="/images/loading.svg" data-src="http://5b0988e595225.cdn.sohucs.com/images/20180817/36f594f0081f4cb39401ee659348401b.jpeg" alt="img">步长：步长是我们在输入矩阵上滑动滤波矩阵的像素数。当步长为 1 时，我们每次移动滤波器一个像素的位置。当步长为 2 时，我们每次移动滤波器会跳过 2 个像素。<strong>步长越大，将会得到更小的特征图</strong>。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://5b0988e595225.cdn.sohucs.com/images/20180817/36f594f0081f4cb39401ee659348401b.jpeg"
+                      alt="img"
+                >步长：步长是我们在输入矩阵上滑动滤波矩阵的像素数。当步长为 1 时，我们每次移动滤波器一个像素的位置。当步长为 2 时，我们每次移动滤波器会跳过 2 个像素。<strong>步长越大，将会得到更小的特征图</strong>。</p>
 <p>零填充：有时，在输入矩阵的边缘使用零值进行填充，这样我们就可以对输入图像矩阵的边缘进行滤波。零填充的一大好处是可以让我们控制特征图的大小。使用零填充的也叫做泛卷积，不适用零填充的叫做严格卷积。(padding用于提取边缘特征,解决图像边缘信息损失的问题)</p>
 <h5 id="感受野"><a href="#感受野" class="headerlink" title="感受野"></a>感受野</h5><p>感受野，即一个像素对应回原图的区域大小</p>
 <p>在卷积神经网络中，感受野（Receptive Field）的定义是卷积神经网络每一层输出的特征图（feature map）上的像素点在输入图片上映射的区域大小。再通俗点的解释是，特征图上的一个点对应输入图上的区域，如图1所示。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://img-blog.csdn.net/2018070813280633?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Byb2dyYW1fZGV2ZWxvcGVy/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdn.net/2018070813280633?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Byb2dyYW1fZGV2ZWxvcGVy/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"
+                      alt="img"
+                ></p>
 <p>感受野计算公式</p>
 <p>关于感受野大小的计算方式是采用从最后一层往下计算的方法，即先计算最深层在前一层上的感受野，然后逐层传递到第一层，使用的公式可以表示如下：</p>
 <p>$RF_i=(RF_{i+1}-1)*strife_i+K_{size_i}$</p>
 <p>其中，$RF_i$是第i层卷积层的感受野，$RF_{i+1}$是（i+1）层上的感受野，stride是卷积的步长，Ksize是本层卷积核的大小。</p>
 <h4 id="池化"><a href="#池化" class="headerlink" title="池化"></a>池化</h4><p>Pooling 的本质，其实是采样。Pooling 对于输入的 Feature Map，选择某种方式对其进行压缩。</p>
 <p><strong>对输入的特征图进行压缩，一方面使特征图变小，简化网络计算复杂度；一方面进行特征压缩，提取主要特征</strong>。</p>
-<p><img lazyload src="/images/loading.svg" data-src="http://images2015.cnblogs.com/blog/1062917/201611/1062917-20161117211920029-1784506227.png" alt="这里写图片描述"></p>
-<h5 id="Max-Pooling的作用"><a href="#Max-Pooling的作用" class="headerlink" title="Max Pooling的作用"></a>Max Pooling的作用</h5><p><a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/guoyaohua/p/8674228.html">https://www.cnblogs.com/guoyaohua/p/8674228.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://images2015.cnblogs.com/blog/1062917/201611/1062917-20161117211920029-1784506227.png"
+                      alt="这里写图片描述"
+                ></p>
+<h5 id="Max-Pooling的作用"><a href="#Max-Pooling的作用" class="headerlink" title="Max Pooling的作用"></a>Max Pooling的作用</h5><p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/guoyaohua/p/8674228.html" >https://www.cnblogs.com/guoyaohua/p/8674228.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>1.invariance(不变性)，这种不变性包括translation(平移)，rotation(旋转)，scale(尺度)</p>
 <p>2.扩大感受野</p>
 <p>首先它第一个作用是降低feature map的尺寸，减少需要训练的参数；其次，因为有缩小的作用，所以之前的4个像素点，现在压缩成1个。那么，相当于透过这1个点，就可以看到前面的4个点。</p>
@@ -439,7 +474,7 @@
 <p>1:卷积过程导致的图像变小是为了提取特征。卷积操作相当于经过特征提取，已经改变了卷积核区域大小的像素变化，重新组合成新特征像素了。</p>
 <p>2:池化下采样是为了降低特征的维度，池化操作可以起到平移不变性，如4个像素经过池化选泽一个具有代表的像素，给相似特征一定弹性。</p>
 <p>虽然结果都是图像或者特征图变小，但是目的是不一样的。<strong>池化下采样比较粗暴，可能将有用的信息滤除掉，而卷积下采样过程控制了步进大小，信息融合较好，现在池化操作较少的被采用。</strong>反卷积和上采样也同理。</p>
-<h4 id="卷积与池化特征图的计算"><a href="#卷积与池化特征图的计算" class="headerlink" title="卷积与池化特征图的计算"></a>卷积与池化特征图的计算</h4><p><a class="link" target="_blank" rel="noopener" href="https://www.pianshen.com/article/30711004970/">https://www.pianshen.com/article/30711004970/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h4 id="卷积与池化特征图的计算"><a href="#卷积与池化特征图的计算" class="headerlink" title="卷积与池化特征图的计算"></a>卷积与池化特征图的计算</h4><p><a class="link"   target="_blank" rel="noopener" href="https://www.pianshen.com/article/30711004970/" >https://www.pianshen.com/article/30711004970/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p><strong>卷积:</strong></p>
 <p>若图像为正方形：设输入图像尺寸为WxW，卷积核尺寸为FxF，步幅为S，Padding使用P,经过该卷积层后输出的图像尺寸为NxN：</p>
 <p>$N=\frac{W-F+2P}{S}+1$</p>
@@ -460,103 +495,163 @@
 <p><strong>空洞卷积:</strong></p>
 <p>$W=\frac{W-d(k-1)-1+2p}{s}+1$</p>
 <p>d为dilation(空洞率)  p为padding k为kernel size</p>
-<h4 id="high-level与low-level-feature"><a href="#high-level与low-level-feature" class="headerlink" title="high-level与low-level feature"></a>high-level与low-level feature</h4><p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/nanhuaibeian/article/details/103305128">https://blog.csdn.net/nanhuaibeian/article/details/103305128 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h4 id="high-level与low-level-feature"><a href="#high-level与low-level-feature" class="headerlink" title="high-level与low-level feature"></a>high-level与low-level feature</h4><p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/nanhuaibeian/article/details/103305128" >https://blog.csdn.net/nanhuaibeian/article/details/103305128 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>Low-level feature： 通常是指图像中的一些小的细节信息，例如边缘（edge),角(corner),颜色(color),像素(pixeles), 梯度(gradients)等，这些信息可以通过滤波器、SIFT或HOG获取</p>
 <p>high-level feature:是建立在low level feature之上的,可以用于图像中目标或物体形状的识别和检测,具有更丰富的语义信息</p>
 <p>浅层的特征他的感受野较小，例如：他只从5x5的区域提取一个边缘信息。 high-level feature 他的感受野大， 他可以从100x100的区域总结一个语义信息。</p>
-<h4 id="空洞卷积"><a href="#空洞卷积" class="headerlink" title="空洞卷积"></a>空洞卷积</h4><p><a class="link" target="_blank" rel="noopener" href="https://www.zhihu.com/question/54149221">https://www.zhihu.com/question/54149221 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h4 id="空洞卷积"><a href="#空洞卷积" class="headerlink" title="空洞卷积"></a>空洞卷积</h4><p><a class="link"   target="_blank" rel="noopener" href="https://www.zhihu.com/question/54149221" >https://www.zhihu.com/question/54149221 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>空洞卷积(扩张卷积，带孔卷积，dilated convolution)</p>
 <p>在图像分割领域，图像输入到CNN中，FCN先像传统的CNN那样对图像做卷积再pooling，降低图像尺寸的同时增大感受野，但是由于图像分割预测是pixel-wise的输出，所以要将pooling后较小的图像尺寸upsampling到原始的图像尺寸进行预测（upsampling一般采用deconv反卷积操作），之前的pooling操作使得每个pixel预测都能看到较大感受野信息。</p>
 <p>因此图像分割FCN中有两个关键，一个是pooling减小图像尺寸增大感受野，另一个是upsampling扩大图像尺寸。在先减小再增大尺寸的过程中，肯定有一些信息损失掉了，<strong>不通过pooling也能有较大的感受野看到更多的信息</strong>可以使用dilated conv。</p>
 <p>空洞卷积核kernel 并不连续，也就是并不是所有的 pixel 都用来计算了。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://pic1.zhimg.com/50/v2-4959201e816888c6648f2e78cccfd253_hd.webp?source=1940ef5c" alt="img"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic1.zhimg.com/50/v2-4959201e816888c6648f2e78cccfd253_hd.webp?source=1940ef5c"
+                      alt="img"
+                ></p>
 <p>上图实际的卷积kernel  size还是3x3，但是空洞为1，也可以理解为kernel的size为7x7，但是只有图中的9个点的权重不为0，其余都为0。<strong>可以看到虽然kernel size只有3x3，但是这个卷积的感受野已经增大到了7x7。</strong></p>
-<h5 id="dilation空洞率的计算"><a href="#dilation空洞率的计算" class="headerlink" title="dilation空洞率的计算"></a>dilation空洞率的计算</h5><p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/chen1234520nnn/article/details/102516704">https://blog.csdn.net/chen1234520nnn/article/details/102516704 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h5 id="dilation空洞率的计算"><a href="#dilation空洞率的计算" class="headerlink" title="dilation空洞率的计算"></a>dilation空洞率的计算</h5><p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/chen1234520nnn/article/details/102516704" >https://blog.csdn.net/chen1234520nnn/article/details/102516704 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>膨胀后卷积核尺寸 = 膨胀系数 * (原始卷积核尺寸 - 1) + 1</p>
 <p>以卷积核3*3为例，膨胀系数为2，那么卷积核膨胀之后，卷积核的单边尺寸就变成了2*(3-1)+1，即卷积核的尺寸变成了5*5。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/20191012113145392.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoZW4xMjM0NTIwbm5u,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20191012113145392.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoZW4xMjM0NTIwbm5u,size_16,color_FFFFFF,t_70"
+                      alt="img"
+                ></p>
 <p><strong>卷积核膨胀是将卷积核扩张到膨胀尺度约束的尺度中，并将原卷积核没有占用的区域填充零</strong></p>
-<h3 id="FCN"><a href="#FCN" class="headerlink" title="FCN"></a>FCN</h3><p>paper:<a class="link" target="_blank" rel="noopener" href="https://arxiv.org/abs/1411.4038">https://arxiv.org/abs/1411.4038 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="FCN"><a href="#FCN" class="headerlink" title="FCN"></a>FCN</h3><p>paper:<a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/abs/1411.4038" >https://arxiv.org/abs/1411.4038 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>对于一般的分类CNN网络，如VGG和Resnet，都会在网络的最后加入一些全连接层，经过softmax后就可以获得类别概率信息。但是这个概率信息是1维的，即只能标识整个图片的类别，不能标识每个像素点的类别，所以这种全连接方法不适用于图像分割。而FCN提出可以把后面几个全连接都换成卷积，这样就可以获得一张2维的feature map，后接softmax获得每个像素点的分类信息，从而解决了分割问题。</p>
 <h4 id="上采样-Upsample"><a href="#上采样-Upsample" class="headerlink" title="上采样(Upsample)"></a>上采样(Upsample)</h4><p>在应用在计算机视觉的深度学习领域，由于输入图像通过卷积神经网络(CNN)提取特征后，输出的尺寸往往会变小，而有时我们需要将图像恢复到原来的尺寸以便进行进一步的计算(e.g.:图像的语义分割)，这个采用扩大图像尺寸，实现图像由小分辨率到大分辨率的映射的操作，叫做上采样(Upsample)。</p>
 <p>上采样有3种常见的方法：双线性插值(bilinear)，反卷积(Transposed Convolution)，反池化(Unpooling)。</p>
-<h5 id="反卷积"><a href="#反卷积" class="headerlink" title="反卷积"></a>反卷积</h5><p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/jasonleesjtu/article/details/89791528">https://blog.csdn.net/jasonleesjtu/article/details/89791528 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link" target="_blank" rel="noopener" href="https://www.zhihu.com/question/48279880">https://www.zhihu.com/question/48279880 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h5 id="反卷积"><a href="#反卷积" class="headerlink" title="反卷积"></a>反卷积</h5><p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/jasonleesjtu/article/details/89791528" >https://blog.csdn.net/jasonleesjtu/article/details/89791528 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.zhihu.com/question/48279880" >https://www.zhihu.com/question/48279880 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <blockquote>
 <p>稀疏矩阵</p>
 <p>在矩阵中，<strong>若数值为0的元素数目远远多于非0元素的数目，并且非0元素分布没有规律时</strong>，则称该矩阵为稀疏矩阵；与之相反，若非0元素数目占大多数时，则称该矩阵为稠密矩阵。定义非零元素的总数比上矩阵所有元素的总数为矩阵的稠密度。</p>
 </blockquote>
 <p>反卷积的操作只是恢复了输入矩阵的尺寸大小，并不能恢复输入矩阵的每个元素值。反卷积，也叫转置卷积，它并不是正向卷积的完全逆过程。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://pic1.zhimg.com/80/v2-78be59f3fee31730d49372bca2cec843_1440w.jpg?source=1940ef5c" alt="img"></p>
-<p>反卷积的输入输出尺寸关系为：<img lazyload src="/images/loading.svg" data-src="https://www.zhihu.com/equation?tex=o%3Ds%28i-1%29-2p%2Bk" alt="[公式]"></p>
-<p><img lazyload src="/images/loading.svg" data-src="https://www.zhihu.com/equation?tex=%5Cbegin%7Balign%2A%7D+o%26%3Dsize%5C+of%5C+output%5C%5C+i%26%3Dsize%5C+of%5C+input%5C%5C+p%26%3Dpadding%5C%5C+s%26%3Dstrides+%5Cend%7Balign%2A%7D" alt="[公式]"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic1.zhimg.com/80/v2-78be59f3fee31730d49372bca2cec843_1440w.jpg?source=1940ef5c"
+                      alt="img"
+                ></p>
+<p>反卷积的输入输出尺寸关系为：<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://www.zhihu.com/equation?tex=o%3Ds%28i-1%29-2p%2Bk"
+                      alt="[公式]"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://www.zhihu.com/equation?tex=%5Cbegin%7Balign%2A%7D+o%26%3Dsize%5C+of%5C+output%5C%5C+i%26%3Dsize%5C+of%5C+input%5C%5C+p%26%3Dpadding%5C%5C+s%26%3Dstrides+%5Cend%7Balign%2A%7D"
+                      alt="[公式]"
+                ></p>
 <h5 id="双线性插值-bilinear-upsampling"><a href="#双线性插值-bilinear-upsampling" class="headerlink" title="双线性插值(bilinear upsampling)"></a>双线性插值(bilinear upsampling)</h5><p>FCN中上采样的过程用到的就是双线性插值法，双线性插值不需要学习任何的参数，通过人为的操作的。</p>
 <p>用x和x0，x1的距离作为一个权重，用于y0和y1的加权。双线性插值本质上就是在两个方向上做线性插值。</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37577735/article/details/80041586">https://blog.csdn.net/qq_37577735/article/details/80041586 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="U-net"><a href="#U-net" class="headerlink" title="U-net"></a>U-net</h3><p><a class="link" target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000021798146">https://segmentfault.com/a/1190000021798146 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/hduxiejun/article/details/71107285">https://blog.csdn.net/hduxiejun/article/details/71107285 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37577735/article/details/80041586" >https://blog.csdn.net/qq_37577735/article/details/80041586 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="U-net"><a href="#U-net" class="headerlink" title="U-net"></a>U-net</h3><p><a class="link"   target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000021798146" >https://segmentfault.com/a/1190000021798146 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/hduxiejun/article/details/71107285" >https://blog.csdn.net/hduxiejun/article/details/71107285 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>U-net的网络结构如下所示。左边为encoder部分，对输入进行下采样，下采样通过最大池化实现；右边为decoder部分，对encoder的输出进行上采样，恢复分辨率，上采样通过Upsample实现；中间为跳跃连接（Skip-connect）,进行特征融合。由于整个网络形似一个”U”,所以称为U-net。<br>网络中除了最后的输出层，其余所有卷积层均为3 * 3卷积。</p>
-<p><img lazyload src="/images/loading.svg" data-src="BASNet/image-20210430204730067.png" alt="image-20210430204730067"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/01/19/BASNet/image-20210430204730067.png"
+                      class="" title="image-20210430204730067"
+                >
 <p>除了全连接层，使用卷积神经网络进行语义分割存在的另一个大问题是池化层。池化层不仅扩大感受野、聚合语境从而造成了==位置信息的丢失。==但是，语义分割要求类别图完全贴合，因此需要保留位置信息。</p>
 <p>U-Net 采用编码器-解码器结构。编码器逐渐减少池化层的空间维度，解码器逐步修复物体的细节和空间维度。编码器和解码器之间通常存在快捷连接，因此能帮助解码器更好地修复目标的细节。</p>
 <h4 id="skip-connection"><a href="#skip-connection" class="headerlink" title="skip-connection"></a>skip-connection</h4><p>跳跃连接，通常用于残差网络中。(确实把U-net拉直成纵向排布可以看到Resnet中的跳跃连接)</p>
 <p>在论文中叫拼接，在UNet有四个拼接操作。这一操作的目的是为了融合特征信息，融合了底层信息的位置信息与深层特征的语义信息，在拼接的时候要注意，不仅图片大小要一致（故要crop,是为了使图片大小一致）而且特征的维度（channels）也要才一样，才可以拼接。</p>
 <p><strong>具体来说，当网络完成反卷积之后，就会将反卷积的结果与Encoder中对应步骤的特征图拼接起来，需要注意的是，Encoder特征图尺寸稍大，将其修剪过后进行拼接。</strong>拼接会保留了更多的维度/位置 信息，这使得后面的 layer 可以在浅层特征与深层特征自由选择，这对语义分割任务来说更有优势</p>
 <p><em><code>copy and crop</code>中的<code>copy</code>就是<code>concatenate</code>而<code>crop</code>是为了让两者的长宽一致</em></p>
-<h3 id="Segnet"><a href="#Segnet" class="headerlink" title="Segnet"></a>Segnet</h3><p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/zhuzemin45/article/details/79709874">https://blog.csdn.net/zhuzemin45/article/details/79709874 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>paper:<a class="link" target="_blank" rel="noopener" href="https://arxiv.org/abs/1511.00561">https://arxiv.org/abs/1511.00561 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="Segnet"><a href="#Segnet" class="headerlink" title="Segnet"></a>Segnet</h3><p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/zhuzemin45/article/details/79709874" >https://blog.csdn.net/zhuzemin45/article/details/79709874 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>paper:<a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/abs/1511.00561" >https://arxiv.org/abs/1511.00561 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>SegNet基于FCN，修改VGG-16网络得到的语义分割网络。</p>
-<h4 id="网络架构-1"><a href="#网络架构-1" class="headerlink" title="网络架构"></a>网络架构</h4><p><img lazyload src="/images/loading.svg" data-src="https://img-blog.csdn.net/20180327110125543?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3podXplbWluNDU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<h4 id="网络架构-1"><a href="#网络架构-1" class="headerlink" title="网络架构"></a>网络架构</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdn.net/20180327110125543?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3podXplbWluNDU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"
+                      alt="img"
+                ></p>
 <p>SegNet和FCN思路十分相似，只是Encoder,Decoder(Upsampling)使用的技术不一致。最终解码器的输出被送入soft-max分类器以独立的为每个像素产生类概率。</p>
-<h3 id="Resnet"><a href="#Resnet" class="headerlink" title="Resnet"></a>Resnet</h3><p>解读:<a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/csdnldp/article/details/78313087">https://blog.csdn.net/csdnldp/article/details/78313087 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/sunny_yeah_/article/details/89430124">https://blog.csdn.net/sunny_yeah_/article/details/89430124 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link" target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1T7411T7wa">https://www.bilibili.com/video/BV1T7411T7wa <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="Resnet"><a href="#Resnet" class="headerlink" title="Resnet"></a>Resnet</h3><p>解读:<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/csdnldp/article/details/78313087" >https://blog.csdn.net/csdnldp/article/details/78313087 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/sunny_yeah_/article/details/89430124" >https://blog.csdn.net/sunny_yeah_/article/details/89430124 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1T7411T7wa" >https://www.bilibili.com/video/BV1T7411T7wa <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>解决了梯度弥散/爆炸问题和退化问题</p>
 <p>在残差网络中，不是让网络直接拟合原先的映射，而是拟合残差映射。</p>
 <p>原来提取出的特征是H(x)，x就是估计值（也就是上一层ResNet输出的特征映射）。作者认为F(x)=H(x)-x的求解比H(x)的求解更简单。这样的话这一层的神经网络可以不用学习整个的输出，而是学习上一个网络输出的残差。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z3.ax1x.com/2021/04/04/cKnghD.png" alt="cKnghD.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://z3.ax1x.com/2021/04/04/cKnghD.png"
+                      alt="cKnghD.png"
+                ></p>
 <blockquote>
-<p>如果是采用一般的卷积神经网络的化，原先咱们要求解的是H(x) = F(x)这个值。那么，我们现在假设，在我的网络达到某一个深度的时候，咱们的网络已经达到最优状态了，也就是说，此时的错误率是最低的时候，再往下加深网络的化就会出现退化问题（错误率上升的问题）。咱们现在要更新下一层网络的权值就会变得很麻烦，权值得是一个让下一层网络同样也是最优状态才行。对吧？<br>但是采用残差网络就能很好的解决这个问题。还是假设当前网络的深度能够使得错误率最低，如果继续增加咱们的ResNet，为了保证下一层的网络状态仍然是最优状态，咱们只需要把令F(x)=0就好啦！因为x是当前输出的最优解，为了让它成为下一层的最优解也就是希望咱们的输出H(x)=x的话，是不是只要让F(x)=0就行了？<br>当然上面提到的只是理想情况，咱们在真实测试的时候x肯定是很难达到最优的，但是总会有那么一个时刻它能够无限接近最优解。采用ResNet的话，也只用小小的更新F(x)部分的权重值就行啦！不用像一般的卷积层一样大动干戈！<br>————————————————<br>版权声明：本文为CSDN博主「sunny_yeah_」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/sunny_yeah_/article/details/89430124">https://blog.csdn.net/sunny_yeah_/article/details/89430124 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>如果是采用一般的卷积神经网络的化，原先咱们要求解的是H(x) = F(x)这个值。那么，我们现在假设，在我的网络达到某一个深度的时候，咱们的网络已经达到最优状态了，也就是说，此时的错误率是最低的时候，再往下加深网络的化就会出现退化问题（错误率上升的问题）。咱们现在要更新下一层网络的权值就会变得很麻烦，权值得是一个让下一层网络同样也是最优状态才行。对吧？<br>但是采用残差网络就能很好的解决这个问题。还是假设当前网络的深度能够使得错误率最低，如果继续增加咱们的ResNet，为了保证下一层的网络状态仍然是最优状态，咱们只需要把令F(x)=0就好啦！因为x是当前输出的最优解，为了让它成为下一层的最优解也就是希望咱们的输出H(x)=x的话，是不是只要让F(x)=0就行了？<br>当然上面提到的只是理想情况，咱们在真实测试的时候x肯定是很难达到最优的，但是总会有那么一个时刻它能够无限接近最优解。采用ResNet的话，也只用小小的更新F(x)部分的权重值就行啦！不用像一般的卷积层一样大动干戈！<br>————————————————<br>版权声明：本文为CSDN博主「sunny_yeah_」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/sunny_yeah_/article/details/89430124" >https://blog.csdn.net/sunny_yeah_/article/details/89430124 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 </blockquote>
 <p><strong>为什么层数多了准确率反而下降</strong></p>
-<p>参考资料:<a class="link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/67860570">https://zhuanlan.zhihu.com/p/67860570 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>参考资料:<a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/67860570" >https://zhuanlan.zhihu.com/p/67860570 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>虽然56层网络的解空间包含了20层网络的解空间，但是我们在训练网络用的是随机梯度下降策略，往往解到的不是全局最优解，而是局部的最优解，显而易见56层网络的解空间更加的复杂，所以导致使用随机梯度下降算法无法解到最优解。</p>
 <p>如果深层网络的后面那些层是恒等映射，那么模型就退化为一个浅层网络。那现在要解决的就是学习恒等映射函数。  但是直接让一些层去<strong>拟合一个潜在的恒等映射函数H(x) = x</strong>，比较困难，这可能就是深层网络难以训练的原因。但是，如果把网络设计为H(x) =  F(x) + x，我们可以转换为学习一个残差函数F(x) = H(x) - x. 只要F(x)=0，就构成了一个恒等映射H(x) =  x. 而且，<strong>拟合残差比拟合恒等映射更加容易</strong>。</p>
 <p><strong>引入残差后的映射对输出的变化更敏感。</strong>比如s输出从5.1变到5.2，映射F’的输出增加了1/51=2%，而对于残差结构输出从5.1到5.2，映射F是从0.1到0.2，增加了100%。明显后者输出变化对权重的调整作用更大，所以效果更好。<strong>残差的思想都是去掉相同的主体部分，从而突出微小的变化</strong></p>
 <p>shortcut连接相当于简单执行了同等映射，不会产生额外的参数，也不会增加计算复杂度。 而且，整个网络可以依旧通过端到端的反向传播训练。</p>
 <p>不同规格ResNet结构:</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cKnoHP"><img lazyload src="/images/loading.svg" data-src="https://z3.ax1x.com/2021/04/04/cKnoHP.png" alt="cKnoHP.png"></a></p>
-<h4 id="BasicBlock和Bottleneck"><a href="#BasicBlock和Bottleneck" class="headerlink" title="BasicBlock和Bottleneck"></a>BasicBlock和Bottleneck</h4><p><a class="link" target="_blank" rel="noopener" href="https://www.zhihu.com/question/413586557/answer/1402003639">https://www.zhihu.com/question/413586557/answer/1402003639 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cKnoHP"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://z3.ax1x.com/2021/04/04/cKnoHP.png"
+                      alt="cKnoHP.png"
+                ></a></p>
+<h4 id="BasicBlock和Bottleneck"><a href="#BasicBlock和Bottleneck" class="headerlink" title="BasicBlock和Bottleneck"></a>BasicBlock和Bottleneck</h4><p><a class="link"   target="_blank" rel="noopener" href="https://www.zhihu.com/question/413586557/answer/1402003639" >https://www.zhihu.com/question/413586557/answer/1402003639 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>在ResNet网络结构中会用到两种残差模块，一种是以两个3*3的卷积网络串接在一起作为一个残差模块，另外一种是1*1、3*3、1*1的3个卷积网络串接在一起作为一个残差模块。</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cKnXcj"><img lazyload src="/images/loading.svg" data-src="https://z3.ax1x.com/2021/04/04/cKnXcj.png" alt="cKnXcj.png"></a></p>
-<h4 id="1-1卷积核的作用"><a href="#1-1卷积核的作用" class="headerlink" title="1*1卷积核的作用"></a>1*1卷积核的作用</h4><p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_27871973/article/details/82970640">https://blog.csdn.net/qq_27871973/article/details/82970640 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cKnXcj"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://z3.ax1x.com/2021/04/04/cKnXcj.png"
+                      alt="cKnXcj.png"
+                ></a></p>
+<h4 id="1-1卷积核的作用"><a href="#1-1卷积核的作用" class="headerlink" title="1*1卷积核的作用"></a>1*1卷积核的作用</h4><p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_27871973/article/details/82970640" >https://blog.csdn.net/qq_27871973/article/details/82970640 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>看到Bottleneck中使用了1*1卷积核，好奇起什么作用</p>
 <p>对二维矩阵来说，相当于直接乘以2</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://img-blog.csdn.net/2018100817560866?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI3ODcxOTcz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdn.net/2018100817560866?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI3ODcxOTcz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"
+                      alt="img"
+                ></p>
 <p>对三维矩阵来说</p>
 <p>可以进行降维或者升维，也就是通过控制卷积核（通道数）实现，这个可以帮助减少模型参数，也可以对不同特征进行尺寸的归一化；同时也可以用于不同channel上特征的融合。</p>
 <p>(?留坑了 三维不懂 所以Bottleneck也留坑)</p>
-<h3 id="HED"><a href="#HED" class="headerlink" title="HED"></a>HED</h3><p>paper:<a class="link" target="_blank" rel="noopener" href="https://arxiv.org/abs/1504.06375">https://arxiv.org/abs/1504.06375 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="HED"><a href="#HED" class="headerlink" title="HED"></a>HED</h3><p>paper:<a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/abs/1504.06375" >https://arxiv.org/abs/1504.06375 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>参考资料:</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/u014779538/article/details/92765963">https://blog.csdn.net/u014779538/article/details/92765963 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/u012905422/article/details/52782615">https://blog.csdn.net/u012905422/article/details/52782615 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/35694372">https://zhuanlan.zhihu.com/p/35694372 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/u014779538/article/details/92765963" >https://blog.csdn.net/u014779538/article/details/92765963 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/u012905422/article/details/52782615" >https://blog.csdn.net/u012905422/article/details/52782615 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/35694372" >https://zhuanlan.zhihu.com/p/35694372 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>supervised by gt这块不懂 留坑了</p>
 <p>这部分感谢研究生姐姐的帮助，我不懂HED中多尺度特征与supervised by gt之间的关系，感谢细心的解答QAQ</p>
-<h4 id="ground-truth"><a href="#ground-truth" class="headerlink" title="ground truth"></a>ground truth</h4><p><a class="link" target="_blank" rel="noopener" href="https://www.zhihu.com/question/22464082">https://www.zhihu.com/question/22464082 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h4 id="ground-truth"><a href="#ground-truth" class="headerlink" title="ground truth"></a>ground truth</h4><p><a class="link"   target="_blank" rel="noopener" href="https://www.zhihu.com/question/22464082" >https://www.zhihu.com/question/22464082 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>在有监督学习中，数据是有标注的，以(x, t)的形式出现，其中x是输入数据，t是标注.<strong>正确的t标注是ground truth，</strong> 错误的标记则不是。</p>
 <p>因此如果标注数据不是ground truth，那么loss的计算将会产生误差，从而影响到模型质量。</p>
-<h4 id="监督学习与无监督学习"><a href="#监督学习与无监督学习" class="headerlink" title="监督学习与无监督学习"></a>监督学习与无监督学习</h4><h4 id="多尺度特征"><a href="#多尺度特征" class="headerlink" title="多尺度特征"></a>多尺度特征</h4><h5 id="图像金字塔"><a href="#图像金字塔" class="headerlink" title="图像金字塔"></a>图像金字塔</h5><p><a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/sddai/p/10330756.html">https://www.cnblogs.com/sddai/p/10330756.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/94014493">https://zhuanlan.zhihu.com/p/94014493 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h4 id="监督学习与无监督学习"><a href="#监督学习与无监督学习" class="headerlink" title="监督学习与无监督学习"></a>监督学习与无监督学习</h4><h4 id="多尺度特征"><a href="#多尺度特征" class="headerlink" title="多尺度特征"></a>多尺度特征</h4><h5 id="图像金字塔"><a href="#图像金字塔" class="headerlink" title="图像金字塔"></a>图像金字塔</h5><p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/sddai/p/10330756.html" >https://www.cnblogs.com/sddai/p/10330756.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/94014493" >https://zhuanlan.zhihu.com/p/94014493 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>图像金字塔是<strong>图像中多尺度表达</strong>的一种，最主要用于<strong>图像的分割</strong>，是一种<strong>以多分辨率来解释图像的有效但概念简单的结构</strong>。</p>
 <p><strong>一幅图像的金字塔是一系列以金字塔形状排列的分辨率逐步降低，且来源于同一张原始图的图像集合</strong>。其通过梯次向下采样获得，直到达到某个终止条件才停止采样。</p>
 <p>金字塔的底部是待处理图像的高分辨率表示，而顶部是低分辨率的近似。<strong>层级越高，则图像越小，分辨率越低</strong>。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://images2018.cnblogs.com/blog/1389184/201808/1389184-20180831140704177-401148282.png" alt="img"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://images2018.cnblogs.com/blog/1389184/201808/1389184-20180831140704177-401148282.png"
+                      alt="img"
+                ></p>
 <p>高斯金字塔用来向下降采样图像(尺寸减半)，而拉普拉斯金字塔则用来从金字塔底层图像中向上采样重建一个图像(图片尺寸加倍)。</p>
 <p><strong>高斯金字塔</strong></p>
 <p>在计算机视觉与图像处理相关任务中，经常需要使用同一张图的不同尺寸的子图，我们可以使用高斯金字塔来获取这些子图。</p>
 <p>下采样之前需要<strong>首先进行高斯滤波</strong></p>
-<p>高斯噪声与高斯滤波:<a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/u013007900/article/details/78181249（？留坑了）">https://blog.csdn.net/u013007900/article/details/78181249（？留坑了） <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>高斯噪声与高斯滤波:<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/u013007900/article/details/78181249（？留坑了）" >https://blog.csdn.net/u013007900/article/details/78181249（？留坑了） <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>下采样可以通过抛去图像中的偶数行和偶数列来实现，这样图像长宽各减少二分之一，面积减少四分之一。opencv提供了pyrDown()函数用于下采样。</p>
 <p>随着下采样的进行，图像的分辨率不断降低，视觉效果也越来越模糊。</p>
 <p><strong>拉普拉斯金字塔</strong></p>
@@ -564,24 +659,49 @@
 <p>我们需要记录<strong>再次上采样得到Up(Down(Gi))与原始图片Gi之间的差异</strong>，这就是拉普拉斯金字塔的核心思想</p>
 <p>拉普拉斯金字塔就是<strong>记录高斯金字塔每一级下采样后再上采样与下采样前的差异</strong>，目的是为了能够完整的恢复出每一层级的下采样前图像。</p>
 <p>$L_i=G_i-Up(Down(G_i))$</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://pic3.zhimg.com/80/v2-1641deeb3eec372b6ff3fc436c8651b6_1440w.jpg" alt="img"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic3.zhimg.com/80/v2-1641deeb3eec372b6ff3fc436c8651b6_1440w.jpg"
+                      alt="img"
+                ></p>
 <p>构建对应的拉普拉斯金字塔如下（第1级为高斯金字塔中最小尺寸的图，也就是高斯金字塔最后1级)</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://pic3.zhimg.com/80/v2-d88c440419db98a262482d31b4a19e22_1440w.jpg" alt="img"></p>
-<h5 id="多尺度模型架构"><a href="#多尺度模型架构" class="headerlink" title="多尺度模型架构"></a>多尺度模型架构</h5><p><a class="link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/74710464">https://zhuanlan.zhihu.com/p/74710464 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic3.zhimg.com/80/v2-d88c440419db98a262482d31b4a19e22_1440w.jpg"
+                      alt="img"
+                ></p>
+<h5 id="多尺度模型架构"><a href="#多尺度模型架构" class="headerlink" title="多尺度模型架构"></a>多尺度模型架构</h5><p><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/74710464" >https://zhuanlan.zhihu.com/p/74710464 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>（先留坑）</p>
-<h4 id="网络架构-2"><a href="#网络架构-2" class="headerlink" title="网络架构"></a>网络架构</h4><p><img lazyload src="/images/loading.svg" data-src="BASNet/image-20210408204932290.png" alt="image-20210408204932290"></p>
+<h4 id="网络架构-2"><a href="#网络架构-2" class="headerlink" title="网络架构"></a>网络架构</h4><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/01/19/BASNet/image-20210408204932290.png"
+                      class="" title="image-20210408204932290"
+                >
 <p>HED采用的多尺度特征结构。</p>
 <p>Holistically ：表示边缘预测结果是基于端对端的</p>
 <p>Nested：生成的Edge过程中，将许多尺度不同的图片进行fusion得到结果</p>
 <p>作者在VGG-Net的基础上进行修改，在每个卷积层的后边加入一层 side output layer，<strong>在每个side output layer 上进行deep supervision learning</strong>，有助于结果向边缘检测方向进行。每个side output layer  将得到一个edge map，如下图：</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://pic4.zhimg.com/80/v2-50f95cf6d020d31732014bf39b3289fb_720w.jpg" alt="img"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic4.zhimg.com/80/v2-50f95cf6d020d31732014bf39b3289fb_720w.jpg"
+                      alt="img"
+                ></p>
 <p>浅层越能检测出很细节的边缘信息，越深层越能体现一些语义分割上的信息，与ground truth 比较接近。最后通过一个fusion  layer将各个edge map 进行融合，在这个fusion layer中对所有的edge map  都进行loss，以及bp等操作（multi-loss）。</p>
 <p>在VGG-16的5个block的Max  Pooling降采样之前，HED通过side_branch函数产生了5个分支,最后这5个side_branch的输出通过Concatenate操作合并在一起。网络的5个side_branch和一个fuse branch通过sigmoid激活函数后共同作为网络的输出，每个输出的尺寸均和输入图像相同。</p>
 <p>还是不懂 代码也是- -留坑 </p>
 <h2 id="loss"><a href="#loss" class="headerlink" title="loss"></a>loss</h2><h3 id="BCE"><a href="#BCE" class="headerlink" title="BCE"></a>BCE</h3><p>如何理解信息量、熵、相对熵、交叉熵:</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/Lison_Zhu/article/details/97234817">https://blog.csdn.net/Lison_Zhu/article/details/97234817 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/Lison_Zhu/article/details/97234817" >https://blog.csdn.net/Lison_Zhu/article/details/97234817 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>BCE用于二分类 </p>
-<p><img lazyload src="/images/loading.svg" data-src="https://www.zhihu.com/equation?tex=Loss+%3D+-%28y+%5Ccdot+log%28%5Chat%7By%7D%29+%2B+%281-y%29+%5Ccdot+log%281+-+%5Chat%7By%7D%29%29" alt="[公式]"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://www.zhihu.com/equation?tex=Loss+%3D+-%28y+%5Ccdot+log%28%5Chat%7By%7D%29+%2B+%281-y%29+%5Ccdot+log%281+-+%5Chat%7By%7D%29%29"
+                      alt="[公式]"
+                ></p>
 <p>其中 $\widehat{y}$ 是模型预测样本是正例的概率， y是样本标签，如果样本属于正例，取值为1，否则取值为0。</p>
 <p>链接中举出青蛙的例子浅显易懂，如果忘了可以回去看一遍。</p>
 <h3 id="SSIM-结构相似性"><a href="#SSIM-结构相似性" class="headerlink" title="SSIM(结构相似性)"></a>SSIM(结构相似性)</h3><p>SSIM是一种衡量两幅图片相似度的指标。</p>
@@ -600,21 +720,41 @@
 <li><strong>SSIM是一个0到1之间的数，越大表示输出图像和无失真图像的差距越小，即图像质量越好</strong>。当两幅图像一模一样时，SSIM=1</li>
 </ol>
 <h3 id="IOU"><a href="#IOU" class="headerlink" title="IOU"></a>IOU</h3><p><strong>交并比</strong>，是目标检测中最常用的指标</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://www.zhihu.com/equation?tex=IOU+%3D++%5Cfrac%7B%28A%5Ccap+B%29%7D%7B%28A%5Ccup+B%29%7D" alt="[公式]"></p>
-<p><img lazyload src="/images/loading.svg" data-src="https://www.zhihu.com/equation?tex=IOU+Loss+%3D+1+-+IOU" alt="[公式]"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://www.zhihu.com/equation?tex=IOU+%3D++%5Cfrac%7B%28A%5Ccap+B%29%7D%7B%28A%5Ccup+B%29%7D"
+                      alt="[公式]"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://www.zhihu.com/equation?tex=IOU+Loss+%3D+1+-+IOU"
+                      alt="[公式]"
+                ></p>
 <p><strong>可以反映预测检测框与真实检测框的检测效果</strong></p>
 <p>关于IOU/GIOU/DIOU/CIOU:</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/wujianming-110117/p/13019343.html">https://www.cnblogs.com/wujianming-110117/p/13019343.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/wujianming-110117/p/13019343.html" >https://www.cnblogs.com/wujianming-110117/p/13019343.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <h2 id="optimizer"><a href="#optimizer" class="headerlink" title="optimizer"></a>optimizer</h2><h3 id="标准动量优化算法（Momentum）"><a href="#标准动量优化算法（Momentum）" class="headerlink" title="标准动量优化算法（Momentum）"></a>标准动量优化算法（Momentum）</h3><h3 id="RMSProp算法"><a href="#RMSProp算法" class="headerlink" title="RMSProp算法"></a>RMSProp算法</h3><h3 id="Adam算法"><a href="#Adam算法" class="headerlink" title="Adam算法"></a>Adam算法</h3><h2 id="网络架构分析"><a href="#网络架构分析" class="headerlink" title="网络架构分析"></a>网络架构分析</h2><p>有了上述基础知识和相关模型的了解，我们分析一下BASNET的架构。</p>
 <p>目的是实现显著目标检测和物体分割</p>
 <details><summary><p>BASNet相关资料</p></summary><p>
-    paper:<a class="link" target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content_CVPR_2019/papers/Qin_BASNet_Boundary-Aware_Salient_Object_Detection_CVPR_2019_paper.pdf">戳这里 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p><p>简介:<a class="link" target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650795924&idx=2&sn=1b15a2540ffb9220f00be0cbbd62cafd&chksm=871a2beab06da2fcd63c7b22ecde508e90b488533a3f97939ec1cfc65ec3ab823e3afe579a7f&mpshare=1&scene=23&srcid=1123k84nCTl7SzHKywymED4G&sharer_sharetime=1606132949286&sharer_shareid=8feb0cd9552063c70146726ba076ab86#rd">戳这里 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-    <p>解读:<a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/calvinpaean/article/details/101036249">戳这里 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p><p>github:<a class="link" target="_blank" rel="noopener" href="https://github.com/NathanUA/BASNet">戳这里 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p></details>
+    paper:<a class="link"   target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content_CVPR_2019/papers/Qin_BASNet_Boundary-Aware_Salient_Object_Detection_CVPR_2019_paper.pdf" >戳这里 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p><p>简介:<a class="link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650795924&idx=2&sn=1b15a2540ffb9220f00be0cbbd62cafd&chksm=871a2beab06da2fcd63c7b22ecde508e90b488533a3f97939ec1cfc65ec3ab823e3afe579a7f&mpshare=1&scene=23&srcid=1123k84nCTl7SzHKywymED4G&sharer_sharetime=1606132949286&sharer_shareid=8feb0cd9552063c70146726ba076ab86#rd" >戳这里 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+    <p>解读:<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/calvinpaean/article/details/101036249" >戳这里 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p><p>github:<a class="link"   target="_blank" rel="noopener" href="https://github.com/NathanUA/BASNet" >戳这里 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p></details>
 
-<p><img lazyload src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/20190920102120212.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NhbHZpbnBhZWFu,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20190920102120212.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NhbHZpbnBhZWFu,size_16,color_FFFFFF,t_70"
+                      alt="在这里插入图片描述"
+                ></p>
 <h3 id="Predict-Module"><a href="#Predict-Module" class="headerlink" title="Predict Module"></a>Predict Module</h3><h4 id="Encoder"><a href="#Encoder" class="headerlink" title="Encoder"></a>Encoder</h4><p>Encoder部分包含一个输入卷积层和六个由基本残差模块组成的stage。输入卷积层和前4个stages都是使用ResNet-34的层。</p>
 <p>ResNet34架构:</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/20190521090040152.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjEzNTM5OQ==,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20190521090040152.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjEzNTM5OQ==,size_16,color_FFFFFF,t_70"
+                      alt="img"
+                ></p>
 <p>各层参数如下:</p>
 <p>1.输入卷积层</p>
 <div class="table-container">
@@ -1001,8 +1141,8 @@
 <h4 id="Decoder"><a href="#Decoder" class="headerlink" title="Decoder"></a>Decoder</h4><p>Decoder结构几乎与Encoder对称。每个stage包括三个卷积层，每个卷积层后跟随BN,ReLU。每个stage的input都是前一层upsample和在Encoder中对应层concatenate而成的。</p>
 <p>为了生成特征图的side-output，将每个decoder stage和bridge stage的多通道输出作为一个普通的 3 × 3 卷积层的输入，后面跟着一个双线性上采样以及一个sigmoid 函数。因而，给定输入图像，我们的预测模块在训练过程中就产生7个特征图。</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>pytorch学习</p>
-<p>开发文档:<a class="link" target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/index.html">https://pytorch.org/docs/stable/index.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Tensors"><a href="#Tensors" class="headerlink" title="Tensors"></a>Tensors</h3><p><a class="link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/347676809">https://zhuanlan.zhihu.com/p/347676809 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>开发文档:<a class="link"   target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/index.html" >https://pytorch.org/docs/stable/index.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="Tensors"><a href="#Tensors" class="headerlink" title="Tensors"></a>Tensors</h3><p><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/347676809" >https://zhuanlan.zhihu.com/p/347676809 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>Tensors张量是一种特殊的数据结构，它和数组还有矩阵十分相似。在Pytorch中，我们使用tensors来给模型的输入输出以及参数进行编码。 Tensors除了张量可以在gpu或其他专用硬件上运行来加速计算之外，其他用法类似于Numpy中的ndarrays。</p>
 <p>1.创建方法</p>
 <p>直接创建tensor/从numpy导入</p>
@@ -1012,10 +1152,10 @@
 <p>tensor.device 存储设备</p>
 <p>3.操作</p>
 <p>操作见开发文档，它们都可以在GPU上运行</p>
-<h3 id="Autograd"><a href="#Autograd" class="headerlink" title="Autograd"></a>Autograd</h3><p><a class="link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/347672836">https://zhuanlan.zhihu.com/p/347672836 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="Autograd"><a href="#Autograd" class="headerlink" title="Autograd"></a>Autograd</h3><p><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/347672836" >https://zhuanlan.zhihu.com/p/347672836 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>神经网络(NNs)是作用在输入数据上的一系列嵌套函数的集合，这些函数由权重和误差来定义，被存储在PyTorch中的tensors中。  神经网络训练的两个步骤： 前向传播：在前向传播中，神经网络通过将接收到的数据与每一层对应的权重和误差进行运算来对正确的输出做出最好的预测。  反向传播：在反向传播中，神经网络调整其参数使得其与输出误差成比例。反向传播基于梯度下降策略，是链式求导法则的一个应用，以目标的负梯度方向对参数进行调整。</p>
-<h3 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h3><p>:o:<a class="link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/347678492">https://zhuanlan.zhihu.com/p/347678492 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>:o:<a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/zkk9527/article/details/88399176（写的详细，适合新手阅读）">https://blog.csdn.net/zkk9527/article/details/88399176（写的详细，适合新手阅读） <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h3><p>:o:<a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/347678492" >https://zhuanlan.zhihu.com/p/347678492 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>:o:<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/zkk9527/article/details/88399176（写的详细，适合新手阅读）" >https://blog.csdn.net/zkk9527/article/details/88399176（写的详细，适合新手阅读） <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>使用<code>torch.nn</code>包来构建神经网络.</p>
 <p>一个<code>nn.Module</code>包含各个层和一个<code>forward(input)</code>方法,该方法返回<code>output</code>.</p>
 <p><code>nn.Parameter</code>-一种张量,当把它赋值给一个<code>Module</code>时,被自动的注册为参数.</p>
@@ -1056,8 +1196,13 @@
 <p>优化器也是一个类，先定义一个实例optimizer，然后之后会用。<strong>注意在optimizer定义的时候，==需要给SGD传入了net的参数parameters，这样之后优化器就掌握了对网络参数的控制权==，就能够对它进行修改了。传入的时候把学习率lr也传入了。</strong></p>
 <p>在每次迭代之前，先把optimizer里存的梯度清零一下（因为W已经更新过的“更新量”下一次就不需要用了）·<code>optimizer.zero_grad()</code></p>
 <p>在loss.backward()反向传播以后，更新参数： <code>optimizer.step()</code></p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cKuuE6"><img lazyload src="/images/loading.svg" data-src="https://z3.ax1x.com/2021/04/04/cKuuE6.png" alt="cKuuE6.png"></a></p>
-<h3 id="处理流程"><a href="#处理流程" class="headerlink" title="处理流程"></a>处理流程</h3><h4 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h4><p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37568167/article/details/105841129">https://blog.csdn.net/qq_37568167/article/details/105841129 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cKuuE6"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://z3.ax1x.com/2021/04/04/cKuuE6.png"
+                      alt="cKuuE6.png"
+                ></a></p>
+<h3 id="处理流程"><a href="#处理流程" class="headerlink" title="处理流程"></a>处理流程</h3><h4 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h4><p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37568167/article/details/105841129" >https://blog.csdn.net/qq_37568167/article/details/105841129 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>数据包含以下四个子模块：</p>
 <ul>
 <li>数据收集： img,label 原始数据和标签</li>
@@ -1065,7 +1210,12 @@
 <li>数据读取： DataLoader<br>   1） Sampler(生成index)；<br>2)  Dataset(读取Img，Label)；</li>
 <li>数据预处理：transforms</li>
 </ul>
-<p><img lazyload src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/20200429153312260.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NTY4MTY3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20200429153312260.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NTY4MTY3,size_16,color_FFFFFF,t_70"
+                      alt="在这里插入图片描述"
+                ></p>
 <h5 id="DataLoader"><a href="#DataLoader" class="headerlink" title="DataLoader"></a>DataLoader</h5><p>torch.utils.data.DataLoader  功能：构建可迭代的数据装载器<br>参数：</p>
 <pre><code>- dataset：Dataset类，决定数据从哪里读取及如何读取
 - batchsize：批大小
@@ -1079,14 +1229,14 @@
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">样本总数：<span class="number">87</span> batchsize：<span class="number">8</span></span><br><span class="line"> <span class="keyword">if</span>  drop_last = true   <span class="number">1</span> epoch = <span class="number">10</span>  iteration</span><br><span class="line"> <span class="keyword">else</span>  drop_last = false  <span class="number">1</span> epoch = <span class="number">11</span>  iteration</span><br></pre></td></tr></table></figure></div>
 <h5 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h5><p>torch.utils.data.Dataset   功能：Dataset抽象类，所有自定义的Dataset需要继承它，并且要复写函数 <strong>getitem</strong>()</p>
 <pre><code> - __getitem__()  ：接收一个索引，返回一个样本及标签
-</code></pre><h3 id="数据标准化与归一化"><a href="#数据标准化与归一化" class="headerlink" title="数据标准化与归一化"></a>数据标准化与归一化</h3><p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_36604953/article/details/102652160">https://blog.csdn.net/weixin_36604953/article/details/102652160 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+</code></pre><h3 id="数据标准化与归一化"><a href="#数据标准化与归一化" class="headerlink" title="数据标准化与归一化"></a>数据标准化与归一化</h3><p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_36604953/article/details/102652160" >https://blog.csdn.net/weixin_36604953/article/details/102652160 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <h4 id="归一化"><a href="#归一化" class="headerlink" title="归一化"></a>归一化</h4><p>Normalization</p>
 <p>是对原始数据的线性变换，使结果值映射到[0 - 1]之间。</p>
 <p>$x^*={\frac{x-min}{max-min}}$</p>
 <p>其中max为样本数据的最大值，min为样本数据的最小值。这种方法有个缺陷就是当有新数据加入时，可能导致max和min的变化，需要重新定义。</p>
 <p>归一化后的图像与原始图像存储的信息是一样的，不会有信息损失</p>
 <p><strong>为什么进行归一化</strong></p>
-<p><a class="link" target="_blank" rel="noopener" href="https://www.zhihu.com/question/293640354">https://www.zhihu.com/question/293640354 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.zhihu.com/question/293640354" >https://www.zhihu.com/question/293640354 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>灰度数据表示有两种方法：</p>
 <p> uint8类型   double类型</p>
 <p>其中uint8类型数据的取值范围为 [0,255]，而double类型数据的取值范围为[0,1]，两者正好相差255倍。</p>
@@ -1102,14 +1252,14 @@
 <h5 id="CenterCrop"><a href="#CenterCrop" class="headerlink" title="CenterCrop"></a>CenterCrop</h5><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CenterCrop</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">	<span class="comment">#初始化output_size </span></span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,output_size</span>):</span><br><span class="line">        <span class="comment">#确认output_size为int或者元组</span></span><br><span class="line">		<span class="keyword">assert</span> <span class="built_in">isinstance</span>(output_size, (<span class="built_in">int</span>, <span class="built_in">tuple</span>))</span><br><span class="line">		<span class="comment">#若为int,扩展为元组</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(output_size, <span class="built_in">int</span>): </span><br><span class="line">			self.output_size = (output_size, output_size)</span><br><span class="line">		<span class="comment">#若为元组，直接对self.output_size进行赋值</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">			<span class="keyword">assert</span> <span class="built_in">len</span>(output_size) == <span class="number">2</span></span><br><span class="line">			self.output_size = output_size</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">__call__</span>(<span class="params">self,sample</span>):</span><br><span class="line">		image, label = sample[<span class="string">&#x27;image&#x27;</span>], sample[<span class="string">&#x27;label&#x27;</span>]</span><br><span class="line"></span><br><span class="line">		h, w = image.shape[:<span class="number">2</span>]</span><br><span class="line">		new_h, new_w = self.output_size</span><br><span class="line"></span><br><span class="line">		<span class="comment"># print(&quot;h: %d, w: %d, new_h: %d, new_w: %d&quot;%(h, w, new_h, new_w))</span></span><br><span class="line">		<span class="keyword">assert</span>((h &gt;= new_h) <span class="keyword">and</span> (w &gt;= new_w))</span><br><span class="line">		<span class="comment">#计算中心偏移量</span></span><br><span class="line">		h_offset = <span class="built_in">int</span>(math.floor((h - new_h)/<span class="number">2</span>))</span><br><span class="line">		w_offset = <span class="built_in">int</span>(math.floor((w - new_w)/<span class="number">2</span>))</span><br><span class="line">		<span class="comment">#对sample中心进行剪裁 取output_size大小</span></span><br><span class="line">		image = image[h_offset: h_offset + new_h, w_offset: w_offset + new_w]</span><br><span class="line">		label = label[h_offset: h_offset + new_h, w_offset: w_offset + new_w]</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> &#123;<span class="string">&#x27;image&#x27;</span>: image, <span class="string">&#x27;label&#x27;</span>: label&#125;</span><br></pre></td></tr></table></figure></div>
 <h5 id="RandomCrop"><a href="#RandomCrop" class="headerlink" title="RandomCrop"></a>RandomCrop</h5><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">RandomCrop</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">	<span class="comment">#同上 对output_size进行处理</span></span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,output_size</span>):</span><br><span class="line">		<span class="keyword">assert</span> <span class="built_in">isinstance</span>(output_size, (<span class="built_in">int</span>, <span class="built_in">tuple</span>))</span><br><span class="line">		<span class="keyword">if</span> <span class="built_in">isinstance</span>(output_size, <span class="built_in">int</span>):</span><br><span class="line">			self.output_size = (output_size, output_size)</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			<span class="keyword">assert</span> <span class="built_in">len</span>(output_size) == <span class="number">2</span></span><br><span class="line">			self.output_size = output_size</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">__call__</span>(<span class="params">self,sample</span>):</span><br><span class="line">		image, label = sample[<span class="string">&#x27;image&#x27;</span>], sample[<span class="string">&#x27;label&#x27;</span>]</span><br><span class="line">		</span><br><span class="line">		h, w = image.shape[:<span class="number">2</span>]</span><br><span class="line">		new_h, new_w = self.output_size</span><br><span class="line">		<span class="comment">#随机确定sample的左上角 限制保留ouput_size大小</span></span><br><span class="line">		top = np.random.randint(<span class="number">0</span>, h - new_h)</span><br><span class="line">		left = np.random.randint(<span class="number">0</span>, w - new_w)</span><br><span class="line">		<span class="comment">#对sample进行随机剪裁</span></span><br><span class="line">		image = image[top: top + new_h, left: left + new_w]</span><br><span class="line">		label = label[top: top + new_h, left: left + new_w]</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> &#123;<span class="string">&#x27;image&#x27;</span>: image, <span class="string">&#x27;label&#x27;</span>: label&#125;</span><br></pre></td></tr></table></figure></div>
 <h5 id="ToTensorLab"><a href="#ToTensorLab" class="headerlink" title="ToTensorLab"></a>ToTensorLab</h5><h3 id="问题记录"><a href="#问题记录" class="headerlink" title="问题记录"></a>问题记录</h3><h4 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h4><p>RuntimeError: CUDA out of memory. Tried to allocate 96.00 MiB</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_29134801/article/details/102640138">https://blog.csdn.net/qq_29134801/article/details/102640138 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_29134801/article/details/102640138" >https://blog.csdn.net/qq_29134801/article/details/102640138 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>IndexError: invalid index of a 0-dim tensor. Use tensor.item() to convert a 0-dim tensor to a Python</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/chen645096127/article/details/94019443">https://blog.csdn.net/chen645096127/article/details/94019443 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h4 id="with-torch-no-grad"><a href="#with-torch-no-grad" class="headerlink" title="with torch.no_grad()"></a>with torch.no_grad()</h4><p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/u014229742/article/details/110629886">https://blog.csdn.net/u014229742/article/details/110629886 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/chen645096127/article/details/94019443" >https://blog.csdn.net/chen645096127/article/details/94019443 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h4 id="with-torch-no-grad"><a href="#with-torch-no-grad" class="headerlink" title="with torch.no_grad()"></a>with torch.no_grad()</h4><p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/u014229742/article/details/110629886" >https://blog.csdn.net/u014229742/article/details/110629886 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>不使用with torch.no_grad():可以进行梯度反传等操作。</p>
 <p>只是想要网络结果的话就不需要后向传播 ，如果你想通过网络输出的结果去进一步优化网络的话 就需要后向传播了。</p>
 <p>使用验证集的时候，我们只是想看一下训练的效果，并不是想通过验证集来更新网络时，就可以使用with torch.no_grad()。</p>
-<h4 id="torch-cat-问题"><a href="#torch-cat-问题" class="headerlink" title="torch.cat()问题"></a>torch.cat()问题</h4><p><a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/JeasonIsCoding/p/10162356.html">https://www.cnblogs.com/JeasonIsCoding/p/10162356.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h4 id="torch-cat-问题"><a href="#torch-cat-问题" class="headerlink" title="torch.cat()问题"></a>torch.cat()问题</h4><p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/JeasonIsCoding/p/10162356.html" >https://www.cnblogs.com/JeasonIsCoding/p/10162356.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>torch.cat()按维度进行拼接</p>
 <p>此处举例<code>hx = self.relu6d_1(self.bn6d_1(self.conv6d_1(torch.cat((hbg,h6),1))))</code></p>
 <p>即7x7进行拼接</p>
@@ -1117,7 +1267,7 @@
 <p>按通道进行拼接</p>
 <p>拼接后通过卷积(512个kernels)将1024通道数变为512提取特征</p>
 <p>进行后续操作</p>
-<h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><p><a class="link" target="_blank" rel="noopener" href="https://bbs.cvmart.net/articles/410/xian-zhu-xing-fen-ge-jian-ce-de-shu-ju-ji-hui-zong">https://bbs.cvmart.net/articles/410/xian-zhu-xing-fen-ge-jian-ce-de-shu-ju-ji-hui-zong <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><p><a class="link"   target="_blank" rel="noopener" href="https://bbs.cvmart.net/articles/410/xian-zhu-xing-fen-ge-jian-ce-de-shu-ju-ji-hui-zong" >https://bbs.cvmart.net/articles/410/xian-zhu-xing-fen-ge-jian-ce-de-shu-ju-ji-hui-zong <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <div class="table-container">
 <table>
 <thead>
@@ -1522,5 +1672,20 @@
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

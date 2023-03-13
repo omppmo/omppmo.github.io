@@ -374,8 +374,8 @@
                 <p>分组密码的CBC与EBC模式</p>
 <span id="more"></span>
 <p>学习出处:</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/eleven-elv/p/7289579.html">https://www.cnblogs.com/eleven-elv/p/7289579.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link" target="_blank" rel="noopener" href="https://www.jianshu.com/p/79a225c2650e">https://www.jianshu.com/p/79a225c2650e <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/eleven-elv/p/7289579.html" >https://www.cnblogs.com/eleven-elv/p/7289579.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.jianshu.com/p/79a225c2650e" >https://www.jianshu.com/p/79a225c2650e <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python2.7</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> Crypto.Random <span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">MyOwnCBC</span>(<span class="params">key, plain</span>):</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(key)!=<span class="number">32</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;error!&quot;</span></span><br><span class="line">	cipher_txt = <span class="string">b&quot;&quot;</span></span><br><span class="line">	cipher_arr = []</span><br><span class="line">	cipher = AES.new(key, AES.MODE_ECB, <span class="string">&quot;&quot;</span>)</span><br><span class="line">	plain = [plain[i:i+<span class="number">32</span>] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(plain), <span class="number">32</span>)]</span><br><span class="line">	<span class="built_in">print</span> plain</span><br><span class="line">	cipher_arr.append(cipher.encrypt(plain[<span class="number">0</span>]))</span><br><span class="line">	cipher_txt += cipher_arr[<span class="number">0</span>]</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(plain)):</span><br><span class="line">		cipher = AES.new(cipher_arr[i-<span class="number">1</span>], AES.MODE_ECB, <span class="string">&quot;&quot;</span>)</span><br><span class="line">		cipher_arr.append(cipher.encrypt(plain[i]))</span><br><span class="line">		cipher_txt += cipher_arr[i]</span><br><span class="line">	<span class="keyword">return</span> cipher_txt</span><br><span class="line">	</span><br><span class="line">key = random.getrandbits(<span class="number">256</span>)</span><br><span class="line">key = long_to_bytes(key)</span><br><span class="line"></span><br><span class="line">s = <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;flag.txt&quot;</span>,<span class="string">&quot;r&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">	s = f.read()</span><br><span class="line">	f.close()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;flag_cipher&quot;</span>,<span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">	f.write(MyOwnCBC(key, s))</span><br><span class="line">	f.close()</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>不同于一般的CBC,该题不是将加密后的一小段密文作为iv，而是直接作为下一次加密的key。</p>
 <p>由于给出密文，将其分段后，就可以从最后一段逐段推出前一段明文，但由于不知道初始key,所以无法推出第一段明文（flag放到了文末）</p>
@@ -384,16 +384,15 @@
 <p>电码本模式</p>
 <p>这种模式是将整个明文分成若干段相同的小段，然后对每一小段进行加密。</p>
 </blockquote>
-<p><img lazyload src="/images/loading.svg" data-src="MyOwnCBC/image-20200712162612376.png" alt="image-20200712162612376"></p>
+
 <p>CBC模式</p>
 <blockquote>
 <p>密码分组链接模式</p>
 <p> 这种模式是先将明文切分成若干小段，然后每一小段与初始块或者上一段的密文段进行异或运算后，再与密钥进行加密。</p>
 </blockquote>
-<p><img lazyload src="/images/loading.svg" data-src="MyOwnCBC/image-20200712162708926.png" alt="image-20200712162708926"></p>
-<p>搬运自:<a class="link" target="_blank" rel="noopener" href="https://www.jianshu.com/p/79a225c2650e">https://www.jianshu.com/p/79a225c2650e <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+
+<p>搬运自:<a class="link"   target="_blank" rel="noopener" href="https://www.jianshu.com/p/79a225c2650e" >https://www.jianshu.com/p/79a225c2650e <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <h2 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h2><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes</span><br><span class="line">cipher_text=<span class="built_in">open</span>(<span class="string">&#x27;MyOwnCBC/flag_cipher&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>).read()</span><br><span class="line">cipher=[]</span><br><span class="line">plain=[]</span><br><span class="line">mode=AES.MODE_ECB</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(cipher_text),<span class="number">32</span>):</span><br><span class="line">    cipher.append(cipher_text[i:i+<span class="number">32</span>])</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(cipher)-<span class="number">1</span>):</span><br><span class="line">    cryptor=AES.new(cipher[(-<span class="number">1</span>)*i-<span class="number">2</span>],mode)</span><br><span class="line">    plain.append(cryptor.decrypt(cipher[(-<span class="number">1</span>)*i-<span class="number">1</span>]))</span><br><span class="line">flag=[i.decode(<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">for</span> i <span class="keyword">in</span>  plain]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;&#x27;</span>.join(flag[::-<span class="number">1</span>]))</span><br></pre></td></tr></table></figure></div>
-<p><img lazyload src="/images/loading.svg" data-src="MyOwnCBC/image-20200712163031171.png" alt="image-20200712163031171"></p>
 
             </div>
 
@@ -725,5 +724,20 @@
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

