@@ -283,7 +283,7 @@
             
              
                 <div class="article-title">         
-                    <img src="https://s1.ax1x.com/2023/03/13/ppMq6oT.png" alt="vits语音合成" />
+                    <img src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20230305020742556.png" alt="vits语音合成" />
                     <h1 class="article-title-cover">vits语音合成</h1>
                 </div>
             
@@ -311,8 +311,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="pc">2023-03-15 18:34:34</span>
-            <span class="mobile">2023-03-15 18:34</span>
+            <span class="pc">2024-02-27 01:57:21</span>
+            <span class="mobile">2024-02-27 01:57</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -395,42 +395,42 @@
 <p>文本整理</p>
 <p>提前使用腾讯云的接口实现了语音转文字  这里只需整理为固定输入格式</p>
 <p>将数据集分为测试集和训练集分别整理</p>
-<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><img  
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/03/10/vits/image-20230302224501385.png"
-                      class="" title="image-20230302224501385"
-                >
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20230302224501385.png"
+                      alt="image-20230302224501385"
+                ></p>
 <p>租好gpu后安装requirements中的依赖</p>
 <h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>生成config.json</p>
 <p>根据租的服务器显存选择合适的batch</p>
 <p>修改cleaner为chinese_cleaner</p>
 <p>进行预处理</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/03/10/vits/image-20230302234847771.png"
-                      class="" title="image-20230302234847771"
-                >
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20230302234847771.png"
+                      alt="image-20230302234847771"
+                ></p>
 <h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p>首先进行预训练</p>
 <p>使用中文女声标贝进行预训练300个epoch，再在该权重模型基础上进行微调</p>
 <p>只需按原方法将标贝的语音数据集和文本进行替换(并重新预处理生成cleaned文件)开始训练即可</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/03/10/vits/image-20230303012745585.png"
-                      class="" title="image-20230303012745585"
-                >
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20230303012745585.png"
+                      alt="image-20230303012745585"
+                ></p>
 <p>RTX 3080 10GB 开始设置batch为16后内存不足 改为8</p>
 <p>训练一个epoch大概5min </p>
 <p>训练过程中发现2200个epoch的标贝预训练模型也无法正常说话？并且模型参数不匹配，怀疑是预训练模型的版本与MoeTTS及后面训练的模型版本冲突，故又租了个服务器，打算自己训练300epoch的标贝试试。(money—</p>
 <h2 id="TTS推理"><a href="#TTS推理" class="headerlink" title="TTS推理"></a>TTS推理</h2><h3 id="MoeGoe"><a href="#MoeGoe" class="headerlink" title="MoeGoe"></a>MoeGoe</h3><p>开始使用MoeGoe后报错，修改全英路径和删除config文件后无果，改用MoeTTS。</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/03/10/vits/image-20230304180937189.png"
-                      class="" title="image-20230304180937189"
-                >
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20230304180937189.png"
+                      alt="image-20230304180937189"
+                ></p>
 <h3 id="MoeTTS"><a href="#MoeTTS" class="headerlink" title="MoeTTS"></a>MoeTTS</h3><p>可以加载kilo的模型，不能加载预训练的标贝模型</p>
 <p>RuntimeError: Error(s) in loading state_dict for SynthesizerTrn:<br>        size mismatch for enc_p.emb.weight: copying a param with shape torch.Size([50, 192]) from checkpoint, the shape in current model is torch.Size([78, 192]).</p>
 <h3 id="vits-gradio"><a href="#vits-gradio" class="headerlink" title="vits-gradio"></a>vits-gradio</h3><p>kilo和标贝都参数不匹配  </p>
@@ -457,12 +457,12 @@
 <p>4.No module named ..</p>
 <p>路径问题  参考引用不同文件夹下的模块 <a class="link"   target="_blank" rel="noopener" href="https://www.jb51.net/article/269579.htm" >https://www.jb51.net/article/269579.htm <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>5.依旧是ImportError</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/03/10/vits/image-20230305020444178.png"
-                      class="" title="image-20230305020444178"
-                >
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20230305020444178.png"
+                      alt="image-20230305020444178"
+                ></p>
 <p>这个一眼看出是vits模型里的文件夹和saya模块的文件夹重名了(犯过太多次错</p>
 <p>改bot主程序saya加载部分和文件夹名</p>
 <p>至此 可以实现vits模型tts推理接入qq-bot的模块 效果如图</p>
@@ -470,12 +470,12 @@
 <h2 id="tensorboard"><a href="#tensorboard" class="headerlink" title="tensorboard"></a>tensorboard</h2><p>在autodl中使用tensorboard查看模型收敛情况</p>
 <p>autodl默认的tensorboard的event文件保存路径为/root/tf-logs/</p>
 <p>修改tf logs目录为模型文件夹下生成event的路径  再重启tensorboard</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/03/10/vits/image-20230306132346778.png"
-                      class="" title="image-20230306132346778"
-                >
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20230306132346778.png"
+                      alt="image-20230306132346778"
+                ></p>
 <p>在autopanel中查看loss曲线</p>
 <h3 id="模型的收敛条件"><a href="#模型的收敛条件" class="headerlink" title="模型的收敛条件"></a>模型的收敛条件</h3><p>参考： <a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv6372536/" >https://www.bilibili.com/read/cv6372536/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> </p>
 <p>通常模型的收敛条件可以有以下3个：</p>
@@ -490,59 +490,59 @@
 </li>
 </ul>
 <p>tensorboard给出的loss曲线过多 一时没看懂</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/03/10/vits/image-20230308213404345.png"
-                      class="" title="image-20230308213404345"
-                >
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20230308213404345.png"
+                      alt="image-20230308213404345"
+                ></p>
 <p> 只能翻一下vits中使用的loss学习一下</p>
 <h3 id="vits损失函数"><a href="#vits损失函数" class="headerlink" title="vits损失函数"></a>vits损失函数</h3><p><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/419883319" >https://zhuanlan.zhihu.com/p/419883319 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/zzfive/article/details/127503913" >https://blog.csdn.net/zzfive/article/details/127503913 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>VITS可以看作是VAE和GAN的联合训练，因此总体损失为：</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/03/10/vits/image-20230306161858486.png"
-                      class="" title="image-20230306161858486"
-                >
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20230306161858486.png"
+                      alt="image-20230306161858486"
+                ></p>
 <p><code>loss_gen_all = loss_gen + loss_fm + loss_mel + loss_dur + loss_kl</code></p>
 <p>对抗训练过程中，判别器是常规的判别器损失结构，但是使用的是多周期判别器，由多个子判别器组成。生成器的损失，包括mel重建损失、KL散度、时长预测器损失、对抗训练生成损失以及特征图损失。</p>
 <p>1.重建损失</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/03/10/vits/image-20230306162112238.png"
-                      class="" title="image-20230306162112238"
-                >
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20230306162112238.png"
+                      alt="image-20230306162112238"
+                ></p>
 <p><code>loss_mel = F.l1_loss(y_mel, y_hat_mel) * hps.train.c_mel</code></p>
 <ol>
 <li><p>KL散度</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/03/10/vits/image-20230306162237066.png"
-                      class="" title="image-20230306162237066"
-                >
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20230306162237066.png"
+                      alt="image-20230306162237066"
+                ></p>
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先验分布和后验分布之间的KL散度</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">kl_loss</span>(<span class="params">z_p, logs_q, m_p, logs_p, z_mask</span>):</span><br><span class="line">  <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">  z_p, logs_q: [b, h, t_t]</span></span><br><span class="line"><span class="string">  m_p, logs_p: [b, h, t_t]</span></span><br><span class="line"><span class="string">  &quot;&quot;&quot;</span></span><br><span class="line">  z_p = z_p.<span class="built_in">float</span>()</span><br><span class="line">  logs_q = logs_q.<span class="built_in">float</span>()</span><br><span class="line">  m_p = m_p.<span class="built_in">float</span>()</span><br><span class="line">  logs_p = logs_p.<span class="built_in">float</span>()</span><br><span class="line">  z_mask = z_mask.<span class="built_in">float</span>()</span><br><span class="line"></span><br><span class="line">  kl = logs_p - logs_q - <span class="number">0.5</span></span><br><span class="line">  kl += <span class="number">0.5</span> * ((z_p - m_p)**<span class="number">2</span>) * torch.exp(-<span class="number">2.</span> * logs_p)</span><br><span class="line">  kl = torch.<span class="built_in">sum</span>(kl * z_mask)</span><br><span class="line">  l = kl / torch.<span class="built_in">sum</span>(z_mask)</span><br><span class="line">  <span class="keyword">return</span> l</span><br></pre></td></tr></table></figure></div>
 <p><code>loss_kl = kl_loss(z_p, logs_q, m_p, logs_p, z_mask) * hps.train.c_kl</code></p>
 </li>
 </ol>
 <p>3.对抗训练</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/03/10/vits/image-20230306164629488.png"
-                      class="" title="image-20230306164629488"
-                >
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20230306164629488.png"
+                      alt="image-20230306164629488"
+                ></p>
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成器的对抗损失，就是将生成器生成的波形经过判别器后的输出与1计算距离损失，L2损失</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">generator_loss</span>(<span class="params">disc_outputs</span>):</span><br><span class="line">  loss = <span class="number">0</span></span><br><span class="line">  gen_losses = []</span><br><span class="line">  <span class="keyword">for</span> dg <span class="keyword">in</span> disc_outputs:</span><br><span class="line">    dg = dg.<span class="built_in">float</span>()</span><br><span class="line">    l = torch.mean((<span class="number">1</span>-dg)**<span class="number">2</span>)</span><br><span class="line">    gen_losses.append(l)</span><br><span class="line">    loss += l</span><br><span class="line">  <span class="keyword">return</span> loss, gen_losses</span><br></pre></td></tr></table></figure></div>
 <p><code>loss_gen, losses_gen = generator_loss(y_d_hat_g)</code></p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/03/10/vits/image-20230306164758952.png"
-                      class="" title="image-20230306164758952"
-                >
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20230306164758952.png"
+                      alt="image-20230306164758952"
+                ></p>
 <div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 计算对抗训练中生成波形和真实波形在判别器中间特征之间的距离损失</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">feature_loss</span>(<span class="params">fmap_r, fmap_g</span>):</span><br><span class="line">  loss = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> dr, dg <span class="keyword">in</span> <span class="built_in">zip</span>(fmap_r, fmap_g):</span><br><span class="line">    <span class="keyword">for</span> rl, gl <span class="keyword">in</span> <span class="built_in">zip</span>(dr, dg):</span><br><span class="line">      rl = rl.<span class="built_in">float</span>().detach()</span><br><span class="line">      gl = gl.<span class="built_in">float</span>()</span><br><span class="line">      loss += torch.mean(torch.<span class="built_in">abs</span>(rl - gl))</span><br><span class="line">  <span class="keyword">return</span> loss * <span class="number">2</span> </span><br></pre></td></tr></table></figure></div>
 <p><code>loss_fm = feature_loss(fmap_r, fmap_g)</code></p>
 <p>4.时长预测器损失</p>
@@ -551,25 +551,25 @@
 <p>至此 可以根据tensorboard中给出的loss曲线分析模型的收敛情况</p>
 <hr>
 <p>看到github vits下相关issue对loss的讨论</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/jaywalnut310/vits/issues/14" >https://github.com/jaywalnut310/vits/issues/14 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/jaywalnut310/https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/issues/14" >https://github.com/jaywalnut310/https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/issues/14 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>找了别的佬训练vits时的loss参考</p>
 <p>1.<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39182815/article/details/126312069" >https://blog.csdn.net/qq_39182815/article/details/126312069 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>500条 57k步收敛</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/03/10/vits/image-20230308213045539.png"
-                      class="" title="image-20230308213045539"
-                >
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20230308213045539.png"
+                      alt="image-20230308213045539"
+                ></p>
 <p>2.<a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1dY411Q7q1/" >https://www.bilibili.com/video/BV1dY411Q7q1/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>300条 1500个epoch</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/03/10/vits/image-20230308212904615.png"
-                      class="" title="image-20230308212904615"
-                >
-<p>3.<a class="link"   target="_blank" rel="noopener" href="https://github.com/jaywalnut310/vits/issues/14" >https://github.com/jaywalnut310/vits/issues/14 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20230308212904615.png"
+                      alt="image-20230308212904615"
+                ></p>
+<p>3.<a class="link"   target="_blank" rel="noopener" href="https://github.com/jaywalnut310/https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/issues/14" >https://github.com/jaywalnut310/https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/issues/14 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <h2 id="心路历程"><a href="#心路历程" class="headerlink" title="心路历程"></a>心路历程</h2><p>记录一下在训练过程中模型合成效果不好采取的一系列措施:</p>
 <p>解决方案:</p>
 <p>1.等机器1的2000个epoch跑完继续训练2000个(保存当前镜像</p>
@@ -586,49 +586,49 @@
 <p>2.修改参数<code>should_auto_delete_old_checkpoints</code>为False，保存适量的大batch模型后删除原有的(但tensorboard无法正常显示更新模型的效果，需要拉到本地进行tts推理</p>
 <p>了解到tensorboard通过events.out.tfevents文件绘制图表。events.out.tfevents文件是训练时生成的日志文件，用于记录训练过程中的各种信息，如损失函数、准确率、图结构等。使用TensorBoard工具来可视化这些信息，分析训练效果和模型性能。</p>
 <p>发现其命名方式中包含容器名，尝试分类之前机器和现在机器训练产生的文件后，果然更新后的折线图可以正常显示。同理新建文件夹存放之前机器的测试结果，并只在eval文件夹下存放当前机器的测试结果，测试音频也可以播放。</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/03/10/vits/image-20230312013936188.png"
-                      class="" title="image-20230312013936188"
-                >
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20230312013936188.png"
+                      alt="image-20230312013936188"
+                ></p>
 <p>就是两个batch的global step会有重叠而非延续，不过可以凑合着看，毕竟不会改源码T^T</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/03/10/vits/image-20230312014052008.png"
-                      class="" title="image-20230312014052008"
-                >
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20230312014052008.png"
+                      alt="image-20230312014052008"
+                ></p>
 <h2 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h2><p>由于原版vits没有加载预训练权重模型的模块</p>
 <p>更换为<a class="link"   target="_blank" rel="noopener" href="https://github.com/rotten-work/vits-mandarin-windows" >https://github.com/rotten-work/vits-mandarin-windows <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>需要在config.json里增加一些字段如data_loader</p>
 <ol>
 <li>keyerror </li>
 </ol>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/03/10/vits/image-20230303045551666.png"
-                      class="" title="image-20230303045551666"
-                >
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20230303045551666.png"
+                      alt="image-20230303045551666"
+                ></p>
 <p>文本数据真的要好好处理，我哭死。从报错一层一层溯源发现是我的文本数据里由于包含阿拉伯数字没有解析所以出现Keyerror，已经把数据里的阿拉伯数字都改为中文了。。</p>
 <p>2.预训练加载不进去</p>
 <p>config配置路径问题</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/03/10/vits/image-20230303051559316.png"
-                      class="" title="image-20230303051559316"
-                >
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20230303051559316.png"
+                      alt="image-20230303051559316"
+                ></p>
 <p>原因是在config.json中配置的预训练权重路径没有写绝对路径(愚蠢的我</p>
 <p>优化器数组长度问题</p>
 <p>valueerror: loaded state dict contains a parameter group that doesn’t match</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/03/10/vits/image-20230303051631964.png"
-                      class="" title="image-20230303051631964"
-                >
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20230303051631964.png"
+                      alt="image-20230303051631964"
+                ></p>
 <p>没找到解决方法，只能先注释了</p>
 <p>3.跨地区数据拷贝</p>
 <p>现在很想知道微调预训练模型不加载优化器对预测结果的影响(在标贝预训练模型上训练了200个epoch只能发出单音节让我很害怕…</p>
@@ -638,12 +638,12 @@
 <p>在控制台查看主机2的ssh登录命令及密码，在主机1输入</p>
 <p><code>scp -rP 66666 /root/autodl-tmp/xxxxx region-3.autodl.com:/root/autodl-tmp/</code>实现主动传输</p>
 <p>4.在新机器上恢复训练中优化器缺少初始学习率参数</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/03/10/vits/image-20230307014550288.png"
-                      class="" title="image-20230307014550288"
-                >
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20230307014550288.png"
+                      alt="image-20230307014550288"
+                ></p>
 <p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/guls999/article/details/85695409" >https://blog.csdn.net/guls999/article/details/85695409 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>KeyError: “param ‘initial_lr’ is not specified in param_groups[0] when resuming an optimizer”</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>bing</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">这个错误是由于在恢复优化器时，没有正确地指定initial_lr参数或者last_epoch参数。可以尝试以下几种方法：</span><br><span class="line">1.在创建优化器时，为每个参数组添加initial_lr参数</span><br><span class="line">例如：optimizer = torch.optim.SGD([&#123;&#x27;params&#x27;: model.parameters(), &#x27;initial_lr&#x27;: 0.01&#125;], lr=0.01)</span><br><span class="line">initial_lr参数是用来指定优化器中每个参数组的初始学习率。如果你在创建优化器时没有指定这个参数，那么在恢复优化器时，它会从param_groups[0]中寻找这个参数，如果没有找到，就会报错。</span><br><span class="line">你可以在创建优化器时，为每个参数组添加initial_lr参数，例如：optimizer = torch.optim.SGD([&#123;&#x27;params&#x27;: model.parameters(), &#x27;initial_lr&#x27;: 0.01&#125;], lr=0.01)。这样，在恢复优化器时，它就可以从每个参数组中读取正确的初始学习率。</span><br><span class="line">2.恢复优化器的时候使用last_epoch=epoch-1参数。这个参数用于指定上一次训练的轮数，以便优化器使用正确的学习率。例如，如果你上一次训练了10轮，那么你可以使用last_epoch=9参数来恢复优化器，并继续训练。</span><br></pre></td></tr></table></figure></div>

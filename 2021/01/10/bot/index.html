@@ -310,8 +310,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="pc">2023-03-11 14:16:53</span>
-            <span class="mobile">2023-03-11 14:16</span>
+            <span class="pc">2024-02-27 01:37:59</span>
+            <span class="mobile">2024-02-27 01:37</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -344,12 +344,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-file-word"></i>&nbsp;<span>2.4k 字</span>
+            <i class="fa-regular fa-file-word"></i>&nbsp;<span>2.2k 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>9 分钟</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>8 分钟</span>
         </span>
     
     
@@ -367,17 +367,7 @@
             <div class="article-content markdown-body">
                 <p>一直想搭建一个bot实现一些功能，该bot基于mirai机器人框架和graia搭建，参考sagiri-bot功能实现。自己随便写写，这篇文章主要记录一下报错信息和心路历程。</p>
 <span id="more"></span>
-<h2 id="基本搭建"><a href="#基本搭建" class="headerlink" title="基本搭建"></a>基本搭建</h2><p>首先找到了 sagiri-bot框架</p>
-<p>服务器pip换源  pip3 install -r requirements.txt</p>
-<p>创建数据库文件同名数据库(这边之前自己没操作服务器，之间修改配置文件把mysql登录跳过了)</p>
-<p>source 数据库文件的绝对路径 执行数据库文件</p>
-<div class="note bug red">mysql报错:ERROR 1273 (HY000): Unknown collation: 'utf8mb4_0900_ai_ci'</div>
-
-<p>版本原因：生成转储文件的数据库版本为8.0,要导入sql文件的数据库版本为5.6,因为是高版本导入到低版本，引起1273错误</p>
-<p>解决方法：<br> 打开sql文件，将文件中的所有<br> <code>utf8mb4_0900_ai_ci</code>替换为<code>utf8_general_ci</code><br> <code>utf8mb4</code>替换为<code>utf8</code><br> 保存后再次运行sql文件，运行成功</p>
-<hr>
-<p>以上做的都没什么用，事实上sagiri-bot不能用，魔改了源码采用部分功能重写了</p>
-<h3 id="mirai部分"><a href="#mirai部分" class="headerlink" title="mirai部分"></a>mirai部分</h3><p>基于mirai框架，需要下mirai-console和配置mirai-api-http</p>
+<h2 id="基本搭建"><a href="#基本搭建" class="headerlink" title="基本搭建"></a>基本搭建</h2><h3 id="mirai部分"><a href="#mirai部分" class="headerlink" title="mirai部分"></a>mirai部分</h3><p>基于mirai框架，需要下mirai-console和配置mirai-api-http</p>
 <p>启动mirai-console需要装自启动mirai-console-loader</p>
 <div class="note idea green"><p><strong>优化</strong></p><p>这边github太慢了，直接导入gitee仓库</p></div>
 
@@ -435,18 +425,18 @@
 <p><code>pip3 install pydantic-1.6.1</code></p>
 <p>重新运行bot.py</p>
 <p>至此，机器人实现了第一次会话  芜湖~</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2021/01/10/bot/image-20210102175545239.png"
-                      class="" title="image-20210102175545239"
-                >
-<img  
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20210102175545239.png"
+                      alt="image-20210102175545239"
+                ></p>
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2021/01/10/bot/image-20210102175556793.png"
-                      class="" title="image-20210102175556793"
-                >
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20210102175556793.png"
+                      alt="image-20210102175556793"
+                ></p>
 <div class="note idea green"><p><strong>优化</strong></p><p>
     编写代码再用winscp上传到服务器太过费劲(关键是老断，vim也比较麻烦。装了vscode的插件sftp,服务器建立相同文件名文件夹,右键直接upload即可。芜湖~
     </p></div>
@@ -462,12 +452,12 @@
 <p>但graia-scheduler需要broadcast<0.6.0,>=0.5.3</p>
 <p>安装scheduler后broadcast版本为0.5.3</p>
 <p>解决:搜索后发现文档更新</p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2021/01/10/bot/image-20210103225327439.png"
-                      class="" title="image-20210103225327439"
-                >
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20210103225327439.png"
+                      alt="image-20210103225327439"
+                ></p>
 <p>更新到graia-application-mirai==0.1.1后，broadcast版本可以兼容</p>
 <p>但是佩奇不能回复了….</p>
 <blockquote>
@@ -504,7 +494,12 @@
 <p>× 1.搞了bilibili的json</p>
 <p>哔哩哔哩小程序 最终分享地址为url参数中的内容，需要每日分享获取其url 较难自动实现(后面的随机值应该为哔哩哔哩小程序自动生成)</p>
 <p>手机端不能显示 PC端可以</p>
-
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20210117181941668.png"
+                      alt="image-20210117181941668"
+                ></p>
 <p>这个格式是Bilibili小程序的 url问题解决不了 呜呜呜呜</p>
 <p>× 2.申请自己的小程序 最终直接访问 bilibili.com 涉及开发了 草</p>
 <p>√ 3.找其他小程序的跳转功能 json源码 试了几个跳不了 草</p>

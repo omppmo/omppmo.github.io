@@ -310,8 +310,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="pc">2023-03-15 18:36:39</span>
-            <span class="mobile">2023-03-15 18:36</span>
+            <span class="pc">2024-02-27 01:49:26</span>
+            <span class="mobile">2024-02-27 01:49</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -348,7 +348,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-file-word"></i>&nbsp;<span>455 字</span>
+            <i class="fa-regular fa-file-word"></i>&nbsp;<span>462 字</span>
         </span>
     
     
@@ -382,15 +382,31 @@
 <p>电码本模式</p>
 <p>这种模式是将整个明文分成若干段相同的小段，然后对每一小段进行加密。</p>
 </blockquote>
-
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20200712162612376.png"
+                      alt="image-20200712162612376"
+                ></p>
 <p>CBC模式</p>
 <blockquote>
 <p>密码分组链接模式</p>
 <p> 这种模式是先将明文切分成若干小段，然后每一小段与初始块或者上一段的密文段进行异或运算后，再与密钥进行加密。</p>
 </blockquote>
-
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20200712162708926.png"
+                      alt="image-20200712162708926"
+                ></p>
 <p>搬运自:<a class="link"   target="_blank" rel="noopener" href="https://www.jianshu.com/p/79a225c2650e" >https://www.jianshu.com/p/79a225c2650e <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h2 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h2><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes</span><br><span class="line">cipher_text=<span class="built_in">open</span>(<span class="string">&#x27;MyOwnCBC/flag_cipher&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>).read()</span><br><span class="line">cipher=[]</span><br><span class="line">plain=[]</span><br><span class="line">mode=AES.MODE_ECB</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(cipher_text),<span class="number">32</span>):</span><br><span class="line">    cipher.append(cipher_text[i:i+<span class="number">32</span>])</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(cipher)-<span class="number">1</span>):</span><br><span class="line">    cryptor=AES.new(cipher[(-<span class="number">1</span>)*i-<span class="number">2</span>],mode)</span><br><span class="line">    plain.append(cryptor.decrypt(cipher[(-<span class="number">1</span>)*i-<span class="number">1</span>]))</span><br><span class="line">flag=[i.decode(<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">for</span> i <span class="keyword">in</span>  plain]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;&#x27;</span>.join(flag[::-<span class="number">1</span>]))</span><br></pre></td></tr></table></figure></div>
+<h2 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h2><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes</span><br><span class="line">cipher_text=<span class="built_in">open</span>(<span class="string">&#x27;https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/flag_cipher&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>).read()</span><br><span class="line">cipher=[]</span><br><span class="line">plain=[]</span><br><span class="line">mode=AES.MODE_ECB</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(cipher_text),<span class="number">32</span>):</span><br><span class="line">    cipher.append(cipher_text[i:i+<span class="number">32</span>])</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(cipher)-<span class="number">1</span>):</span><br><span class="line">    cryptor=AES.new(cipher[(-<span class="number">1</span>)*i-<span class="number">2</span>],mode)</span><br><span class="line">    plain.append(cryptor.decrypt(cipher[(-<span class="number">1</span>)*i-<span class="number">1</span>]))</span><br><span class="line">flag=[i.decode(<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">for</span> i <span class="keyword">in</span>  plain]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;&#x27;</span>.join(flag[::-<span class="number">1</span>]))</span><br></pre></td></tr></table></figure></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20200712163031171.png"
+                      alt="image-20200712163031171"
+                ></p>
 
             </div>
 

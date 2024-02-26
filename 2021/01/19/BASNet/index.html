@@ -422,8 +422,8 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="pc">2023-03-15 18:45:58</span>
-            <span class="mobile">2023-03-15 18:45</span>
+            <span class="pc">2024-02-27 01:34:29</span>
+            <span class="mobile">2024-02-27 01:34</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -606,7 +606,7 @@ mjx-container[display="true"] + br {
 <h3 id="U-net"><a href="#U-net" class="headerlink" title="U-net"></a>U-net</h3><p><a class="link" target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000021798146">https://segmentfault.com/a/1190000021798146 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/hduxiejun/article/details/71107285">https://blog.csdn.net/hduxiejun/article/details/71107285 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>U-net的网络结构如下所示。左边为encoder部分，对输入进行下采样，下采样通过最大池化实现；右边为decoder部分，对encoder的输出进行上采样，恢复分辨率，上采样通过Upsample实现；中间为跳跃连接（Skip-connect）,进行特征融合。由于整个网络形似一个”U”,所以称为U-net。<br>网络中除了最后的输出层，其余所有卷积层均为3 * 3卷积。</p>
-<img lazyload="" src="/images/loading.svg" data-src="/2021/01/19/BASNet/image-20210430204730067.png" class="" title="image-20210430204730067">
+<p><img lazyload="" src="/images/loading.svg" data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20210430204730067.png" alt="image-20210430204730067"></p>
 <p>除了全连接层，使用卷积神经网络进行语义分割存在的另一个大问题是池化层。池化层不仅扩大感受野、聚合语境从而造成了==位置信息的丢失。==但是，语义分割要求类别图完全贴合，因此需要保留位置信息。</p>
 <p>U-Net 采用编码器-解码器结构。编码器逐渐减少池化层的空间维度，解码器逐步修复物体的细节和空间维度。编码器和解码器之间通常存在快捷连接，因此能帮助解码器更好地修复目标的细节。</p>
 <h4 id="skip-connection"><a href="#skip-connection" class="headerlink" title="skip-connection"></a>skip-connection</h4><p>跳跃连接，通常用于残差网络中。(确实把U-net拉直成纵向排布可以看到Resnet中的跳跃连接)</p>
@@ -679,7 +679,7 @@ mjx-container[display="true"] + br {
 <p><img lazyload="" src="/images/loading.svg" data-src="https://pic3.zhimg.com/80/v2-d88c440419db98a262482d31b4a19e22_1440w.jpg" alt="img"></p>
 <h5 id="多尺度模型架构"><a href="#多尺度模型架构" class="headerlink" title="多尺度模型架构"></a>多尺度模型架构</h5><p><a class="link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/74710464">https://zhuanlan.zhihu.com/p/74710464 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>（先留坑）</p>
-<h4 id="网络架构-2"><a href="#网络架构-2" class="headerlink" title="网络架构"></a>网络架构</h4><img lazyload="" src="/images/loading.svg" data-src="/2021/01/19/BASNet/image-20210408204932290.png" class="" title="image-20210408204932290">
+<h4 id="网络架构-2"><a href="#网络架构-2" class="headerlink" title="网络架构"></a>网络架构</h4><p><img lazyload="" src="/images/loading.svg" data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20210408204932290.png" alt="image-20210408204932290"></p>
 <p>HED采用的多尺度特征结构。</p>
 <p>Holistically ：表示边缘预测结果是基于端对端的</p>
 <p>Nested：生成的Edge过程中，将许多尺度不同的图片进行fusion得到结果</p>
