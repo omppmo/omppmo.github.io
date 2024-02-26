@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    <meta name="description" content="Hexo Theme Redefine">
+    <meta name="author" content="y4ny4n">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-redefine.png">
+    
+        
+            <link rel="preconnect" href="https://evan.beee.top" crossorigin>
+        
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://y4ny4n.cn/2023/02/05/bot/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="基于mirai和graia框架的机器人搭建">
+    <meta property="og:description" content="Hexo Theme Redefine">
+    <meta property="og:url" content="https://y4ny4n.cn2023/02/05/bot/">
+    
+    <meta property="og:site_name" content="y4ny4n&#39;s blog">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="基于mirai和graia框架的机器人搭建">
+    <meta name="twitter:description" content="Hexo Theme Redefine">
+    <meta name="twitter:image" content="/images/redefine-logo.svg">
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-logo.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-logo.svg">
+    <meta name="theme-color" content="#005080">
+    <link rel="shortcut icon" href="/images/redefine-logo.svg">
+    
+    <title>
+        
+            基于mirai和graia框架的机器人搭建 -
+        
+        y4ny4n&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine/v1.2.0/source/assets/fonts.css">
+    
+    
+    
+    <script id="hexo-configurations">
+    let REDEFINE = window.REDEFINE || {};
+    REDEFINE.hexo_config = {"hostname":"y4ny4n.cn","root":"/","language":"zh-CN"};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/202402270005081.jpg","favicon":"/images/redefine-logo.svg","og_image":{"enable":false,"image_url":null},"article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/202402270005971.jpg","dark":"https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/202402270005970.jpg"},"title_color":{"light":"#fff","dark":"#fff"},"description":"Let me think that there is one among those stars that guides my life through the dark unknown.","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.2.0","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}},"plugins":{"aplayer":{"enable":false,"audio":[{"name":null,"artist":null,"url":null,"cover":null},{"name":null,"artist":null,"url":null,"cover":null}]}}};
+    REDEFINE.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+    
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine/v1.2.0/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine/v1.2.0/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine/v1.2.0/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine/v1.2.0/source/fontawesome/regular.min.css">
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="menu-wrapper">
+    
+    <div class="menu-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                y4ny4n&#39;s blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        首页
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                        归档
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/categories"  >
+                                    
+                                        
+                                        分类
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/tags"  >
+                                    
+                                        
+                                        标签
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/about"  >
+                                    
+                                        
+                                        关于
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="menu-drawer">
+        <ul class="drawer-menu-list">
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                首页
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/archives"  >
+                             
+                                
+                                归档
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/categories"  >
+                             
+                                
+                                分类
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/tags"  >
+                             
+                                
+                                标签
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/about"  >
+                             
+                                
+                                关于
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">基于mirai和graia框架的机器人搭建</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/202402270005081.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">y4ny4n</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="pc">2023-02-05 09:19:22</span>
+        <span class="mobile">2023-02-05 09:19</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="pc">2024-02-27 05:22:34</span>
+            <span class="mobile">2024-02-27 05:22</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/QQBot/">QQBot</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/bot/">bot</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-file-word"></i>&nbsp;<span>5.6k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>23 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <p>一直想搭建一个bot实现一些功能，该bot基于mirai机器人框架和graia搭建，参考sagiri-bot功能实现。自己随便写写，这篇文章主要记录一下报错信息和心路历程。</p>
+<p>更：考研回来了，重写了之前的bot，见船新版本。</p>
+<span id="more"></span>
+<h1 id="基本搭建"><a href="#基本搭建" class="headerlink" title="基本搭建"></a>基本搭建</h1><h3 id="mirai部分"><a href="#mirai部分" class="headerlink" title="mirai部分"></a>mirai部分</h3><p>基于mirai框架，需要下mirai-console和配置mirai-api-http</p>
+<p>启动mirai-console需要装自启动mirai-console-loader，这边github太慢了，直接导入gitee仓库。</p>
+<p>给服务器装一下Java环境</p>
+<div class="note bug red">启动console报错: java.lang.UnsupportedClassVersionError</div>
+
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.UnsupportedClassVersionError: org/zjh/openlayersdemo/OpenlayersdemoApplication has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime only recognizes class file versions up to 52.0</span><br></pre></td></tr></table></figure></div>
+<p>这边装的java8..  需要重装java11</p>
+<div class="note bug red">启动console报错: java.lang.NoSuchMethodError</div>
+
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.NoSuchMethodError: net.mamoe.mirai.utils.MiraiLogger$Companion.setDefaultLoggerCreator(Lkotlin/jvm/functions/Function1;)V</span><br></pre></td></tr></table></figure></div>
+<p>解决:.\mcl —update-package net.mamoe:mirai-core-all —channel nightly</p>
+<p>重新运行mcl 启动mirai-console<br>将mirai-api-http的jar文件拖入plugins</p>
+<p>配置生成的setting.yml 文件</p>
+<p>重新启动console</p>
+<p>配置sagiri-bot个人信息</p>
+<div class="note bug red">java报错: JCE cannot authenticate the provider BC</div>
+
+<p>报错原因：在使用oracle的JDK时，JAR包必须签署特殊的证书才能使用。</p>
+<p>使用openJDK或者非oracle的JDK，这样就可以绕开证书的限制。</p>
+<p>所以重装了java环境，卸载了原有java11环境，使用yum安装了openjdk,将/etc/profile配置文件中的环境变量更改为openjdk安装目录/usr/lib/jvm/xxx，source使之生效</p>
+<p>虽然报错解决了，但对登录不上去这个问题没什么改变…</p>
+<div class="note bug red">console登录报错</div>
+
+<p>在mirai-console登录qq报错</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2021-01-01 16:26:05 E/main: Failed to init MiraiConsole.</span><br><span class="line"></span><br><span class="line">net.mamoe.mirai.network.WrongPasswordException: Error(title=温馨提示, message=当前版本过低，请先升级到手机QQ最新版本。, errorInfo=)</span><br></pre></td></tr></table></figure></div>
+<p>最开始报错是不支持滑动验证，根据文档提示修改协议为PAD后</p>
+<p>输入验证码登录，若账号密码验证码不正确则报错网络环境问题；若都正确报错以上信息…问题772</p>
+<p>已解决，更改协议为WATCH后，验证登录即可</p>
+<p>至此mirai部分配置完成，启动需要graia</p>
+<h3 id="graia部分"><a href="#graia部分" class="headerlink" title="graia部分"></a>graia部分</h3><div class="note bug red">启动bot报错: TypeError('Expected maxsize to be an integer or None')</div>
+
+<p>python3 sagiri_bot.py报错</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">File <span class="string">&quot;/usr/lib64/python3.6/functools.py&quot;</span>, line <span class="number">477</span>, <span class="keyword">in</span> lru_cache     <span class="keyword">raise</span> TypeError(<span class="string">&#x27;Expected maxsize to be an integer or None&#x27;</span>) TypeError: Expected maxsize to be an integer <span class="keyword">or</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure></div>
+<p> 装了SDK</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install graia-application-mirai</span><br><span class="line">pip install graia-broadcast --upgrade</span><br></pre></td></tr></table></figure></div>
+<p>发现不仅是import graia.broadcast产生的报错,后边调库的时候还有很多别的报错，经过很久很久的搜索，终于在graia project的issue下面找到了原因所在</p>
+<p>由于pip使用阿里源的问题，直接下载了graia-application-mirai 0.0.6的版本 会出现很多报错</p>
+<p><code>$ pip install -i https://pypi.python.org/simple graia-application-mirai==0.1.0</code></p>
+<p>更改为0.1.0版本不再报错</p>
+<div class="note bug red">启动bot报错: SyntaxError: future feature annotations is not defined </div>
+
+<p>这次又有了船新报错</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">from</span> __future__ <span class="keyword">import</span> annotations</span><br><span class="line">    ^</span><br><span class="line">SyntaxError: future feature annotations <span class="keyword">is</span> <span class="keyword">not</span> defined</span><br></pre></td></tr></table></figure></div>
+<p>从<code>Python 3.7</code>才可以开始导入<code>__future__``annotations</code></p>
+<p>服务器centos自带3.6 重装3.7….. 之前给ubuntu做过升级</p>
+<p>装好后更改软连接，使pip3与python3指向3.7</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -s /usr/local/python3/bin/python3 /usr/local/bin/python3</span><br><span class="line">ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip3</span><br></pre></td></tr></table></figure></div>
+<p>重装第三方库</p>
+<div class="note bug red">启动bot报错: AttributeError: 'ApplicationLaunched' object has no attribute 'app'</div>
+
+<p>好家伙，还有什么报错是我没遇到的…</p>
+<p>报错原因:问题出在pydantic包，graia.broadcast.entities.event.EventMeta类继承自pydantic中的ModelMetaclass类，在pydantic版本是1.7.1的情况下该类貌似添加了一个空的<strong>slots</strong>属性，导致子类都无法进行self的赋值。把pydantic包回退到1.6.1版本问题解决。</p>
+<p><code>pip3 install pydantic-1.6.1</code></p>
+<p>重新运行bot.py</p>
+<p>至此，机器人实现了第一次会话  芜湖~</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20210102175545239.png"
+                      alt="image-20210102175545239"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20210102175556793.png"
+                      alt="image-20210102175556793"
+                ></p>
+<p>编写代码再用winscp上传到服务器太过费劲(关键是老断，vim也比较麻烦。装了vscode的插件sftp,服务器建立相同文件名文件夹,右键直接upload即可。芜湖~</p>
+<div class="note bug red">scheduler与application不兼容报错</div>
+
+<p>运行sagiri_bot.py  报错无graia.scheduler模块</p>
+<p>装后broadcast版本问题发生冲突…</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">graia-application-mirai <span class="number">0.1</span><span class="number">.0</span> has requirement graia-broadcast&lt;<span class="number">0.0</span><span class="number">.6</span>,&gt;=<span class="number">0.0</span><span class="number">.5</span>, but yo<span class="string">u&#x27;ll have graia-broadcast 0.5.3 which is incompatible.</span></span><br></pre></td></tr></table></figure></div>
+<p>graia-application-mirai 0.1.0 需要 broadcast<0.0.6,>=0.0.5</p>
+<p>但graia-scheduler需要broadcast<0.6.0,>=0.5.3</p>
+<p>安装scheduler后broadcast版本为0.5.3</p>
+<p>解决:搜索后发现文档更新</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20210103225327439.png"
+                      alt="image-20210103225327439"
+                ></p>
+<p>更新到graia-application-mirai==0.1.1后，broadcast版本可以兼容</p>
+<p>最终解决: 看github上作者commit的历史版本找了个合适的graia-application-mirai 0.11.0 ,可以兼容并运行(突然发现graia-application-mirai 都更到0.14.0了</p>
+<p>今天被冻结了呜呜呜呜，又是拼命解冻的一天</p>
+<h1 id="模块编写"><a href="#模块编写" class="headerlink" title="模块编写"></a>模块编写</h1><p>服务器服务后台悬挂(关闭终端不影响)</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nohup python xxx.py &amp;  </span><br><span class="line">ps -ef|grep xxx</span><br><span class="line">kill -9 pid</span><br></pre></td></tr></table></figure></div>
+<h3 id="钉钉接口"><a href="#钉钉接口" class="headerlink" title="钉钉接口"></a>钉钉接口</h3><p>可以实现从后台导出日报数据，但必须是企业管理员权限</p>
+<p>分析河北师大的组织架构与我创建的APItest映射</p>
+<p>河北师范大学(APItest)</p>
+<p>2019级群(子部门)</p>
+<p>辅导员(子部门群主test)</p>
+<p>班长(子部门管理员)</p>
+<p>经测试，所有人都可创建表，并对自己创建的表有管理权限</p>
+<p>子部门群主和管理员都没有权限登录后台(估计要河北师范大学的管理员</p>
+<p>所以不考虑从后台导出表格，可以考虑下ocr…哎</p>
+<h3 id="疫情模块"><a href="#疫情模块" class="headerlink" title="疫情模块"></a>疫情模块</h3><p>调用新浪接口</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://interface.sina.cn/news/wap/fymap2020_data.d.json" >https://interface.sina.cn/news/wap/fymap2020_data.d.json <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>返回数据后decode 此时为json格式的字符串</p>
+<p>json.loads() 将<code>json</code>格式数据解码为<code>python</code>对象(即字典)，再对数据进行处理</p>
+<h3 id="六级词汇模块"><a href="#六级词汇模块" class="headerlink" title="六级词汇模块"></a>六级词汇模块</h3><p>六级词汇字典上传到服务器后中文乱码</p>
+<p>开始以为是vim编码的问题，但是py的问题</p>
+<p>读文件r读字符串utf8无法解码，rb以二进制形式读进来后需要再解码进行转换成str 解码用gbk就可以显示了(不知道为啥utf8不行 菜鸡の迷惑</p>
+<p>奥  txt是ANSI编码的，GBK属于ANSI之中的，在ANSI的国际通用集，GBK是专门来解决中文编码的，那没事了TnT</p>
+<h3 id="bilibili推送模块"><a href="#bilibili推送模块" class="headerlink" title="bilibili推送模块"></a>bilibili推送模块</h3><p>三个思路</p>
+<p>× 1.搞了bilibili的json</p>
+<p>哔哩哔哩小程序 最终分享地址为url参数中的内容，需要每日分享获取其url 较难自动实现(后面的随机值应该为哔哩哔哩小程序自动生成)</p>
+<p>手机端不能显示 PC端可以</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20210117181941668.png"
+                      alt="image-20210117181941668"
+                ></p>
+<p>这个格式是Bilibili小程序的 url问题解决不了 呜呜呜呜</p>
+<p>× 2.申请自己的小程序 最终直接访问 bilibili.com 涉及开发了 草</p>
+<p>√ 3.找其他小程序的跳转功能 json源码 试了几个跳不了 草</p>
+<p>歪日 终于成了 google永远滴神 找了一个可跳转的小程序 唯二不足就是图片白搞了&amp;BV号得手动输入（待优化）</p>
+<p>然后设成定时了</p>
+<h3 id="论文推送"><a href="#论文推送" class="headerlink" title="论文推送"></a>论文推送</h3><p>知乎的非官方api都用不了了，增加了反爬机制。</p>
+<p>最初使用requests包请求界面，报403..原来是因为没加headers(没有设置headers请求头，被服务器拦截，一般情况下设置user-agent即可。)</p>
+<p>后来使用selenium库 模拟打开浏览器，寻找元素并定位</p>
+<p>一直报错找不到元素，很疑惑  加个sleep就好了 一部分没加载出来</p>
+<p>找到对应标题的超链接 获取元素属性get_attribute()</p>
+<p>定位使用的是find_element_by_link_text</p>
+<p>得到对应文章url  推送即可</p>
+<p>问题是如何部署在centos上，服务器无GUI使用selenium</p>
+<p>参考链接:<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/shilaike2/article/details/102595228" >https://blog.csdn.net/shilaike2/article/details/102595228 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>安装xvfb  Xvfb是一个实现了X11显示服务协议的显示服务器。 不同于其他显示服务器，Xvfb在内存中执行所有的图形操作，不需要借助任何显示设备</p>
+<p>还需增加几个options</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">chrome_options =webdriver.Options()</span><br><span class="line"></span><br><span class="line">chrome_options.add_argument(<span class="string">&#x27;--no-sandbox&#x27;</span>) <span class="comment">#让Chrome在root权限运行</span></span><br><span class="line"></span><br><span class="line">chrome_options.add_argument(<span class="string">&#x27;--disable-dev-shm-usage&#x27;</span>) <span class="comment">#不打开图形界面</span></span><br><span class="line"></span><br><span class="line">chrome_options.add_argument(<span class="string">&#x27;--headless&#x27;</span>) <span class="comment">#浏览器不提供可视化页面</span></span><br><span class="line"></span><br><span class="line">chrome_options.add_argument(<span class="string">&#x27;blink-settings=imagesEnabled=false&#x27;</span>) <span class="comment">#不加载图片, 提升速度</span></span><br><span class="line"></span><br><span class="line">chrome_options.add_argument(<span class="string">&#x27;--disable-gpu&#x27;</span>) <span class="comment">#谷歌文档提到需要加上这个属性来规避bug</span></span><br></pre></td></tr></table></figure></div>
+<p>又是面向百度编程的一天</p>
+<h1 id="船新版本"><a href="#船新版本" class="headerlink" title="船新版本"></a>船新版本</h1><p>以上为大二时瞎捣鼓的结果，因为考研耽搁了很长一段时间。有了上述基础，终于可以在考研后进行愉快的探索~</p>
+<p>这一次，带着我的船新bot卷土重来！~</p>
+<h2 id="功能展示"><a href="#功能展示" class="headerlink" title="功能展示"></a>功能展示</h2><h3 id="抽卡功能"><a href="#抽卡功能" class="headerlink" title="抽卡功能"></a>抽卡功能</h3><p>卡池内包含恋与制作人截止22年所有羁绊,包括进化前后的两张卡面,各稀有度概率分别为:<br>SP—1% SSR—2% \ER—7% SR—10% R—80%</p>
+<p>连接数据库记录群聊内每个成员的抽卡记录及所获得的卡面，当出现未收录时显示new标。快速十连界面和羁绊界面为实时绘制，若羁绊较多则响应速度慢，后续考虑改进。</p>
+<p><strong>usage:回复 抽卡 进行单次获取羁绊</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20240227042028141.png"
+                      alt="image-20240227042028141"
+                ></p>
+<p><strong>usage:回复 抽卡十连 进行十次获取羁绊 以十张卡面大图形式返回 耗时10s左右</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20240227042414018.png"
+                      alt="image-20240227042414018"
+                ></p>
+<p><strong>usage:回复 快速十连 进行十次获取羁绊 以缩略图单张形式返回 耗时2s左右</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20240227042101346.png"
+                      alt="image-20240227042101346"
+                ></p>
+<p><strong>usage:回复 我的羁绊 查看已获得的羁绊</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20240227042139226.png"
+                      alt="image-20240227042139226"
+                ></p>
+<p><strong>usage:回复 我的图鉴 查看羁绊的收集进度</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20240227042158777.png"
+                      alt="image-20240227042158777"
+                ></p>
+<p><strong>usage:回复 进化+羁绊名 进化到羁绊的第二张卡面(只能进化自己拥有的羁绊)</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20240227051952055.png"
+                      alt="image-20240227051952055"
+                ></p>
+<h3 id="提问功能"><a href="#提问功能" class="headerlink" title="提问功能"></a>提问功能</h3><p><strong>usage:回复 提问+问题 即可发出提问，问题发出后kilo应答即为请求成功，需耐心等待数秒</strong><br>若返回1分钟后再试提示，则表明请求次数频繁，1分钟后kilo会提示再次请求</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20240227042726561.png"
+                      alt="image-20240227042726561"
+                ></p>
+<h3 id="TodoList功能"><a href="#TodoList功能" class="headerlink" title="TodoList功能"></a>TodoList功能</h3><p>该功能的左侧立绘及对话框每次调用随机选择进行绘制，若添加任务过多至上限，则删除已完成待办。若全部未完成，则不能再继续添加。</p>
+<p><strong>usage:回复 添加待办+需要完成的任务 进行单次添加</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20240227042859634.png"
+                      alt="image-20240227042859634"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20240227043131050.png"
+                      alt="image-20240227043131050"
+                ></p>
+<p><strong>usage:回复 添加待办+任务1/任务2/任务3 进行批量添加</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20240227042953179.png"
+                      alt="image-20240227042953179"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20240227043211508.png"
+                      alt="image-20240227043211508"
+                ></p>
+<p><strong>usage:回复 删除待办+需要删除的任务 进行单次删除，批量删除用法同上</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20240227043251827.png"
+                      alt="image-20240227043251827"
+                ></p>
+<p><strong>usage:回复 完成待办+完成删除的任务 进行单次完成，批量完成用法同上</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20240227043325181.png"
+                      alt="image-20240227043325181"
+                ></p>
+<p><strong>usage:回复 清空待办 即可删除所有待办</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20240227043045410.png"
+                      alt="image-20240227043045410"
+                ></p>
+<p><strong>usage:回复 我的待办 查看当前TodoList的记录</strong></p>
+<h3 id="调教功能"><a href="#调教功能" class="headerlink" title="调教功能"></a>调教功能</h3><p>关键词匹配模式有三种: 全匹配，模糊匹配，正则匹配<br>全匹配:输入全等于关键词，模糊:输入中包含关键词，正则:输入满足正则表达式</p>
+<p>该功能支持除文字外的表情包、表情、图片等文件格式。</p>
+<p><strong>usage:回复 问关键字答xxx 触发全匹配 例:问洛洛答在呀</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20240227043702277.png"
+                      alt="image-20240227043702277"
+                ></p>
+<p><strong>usage:回复 模糊问关键字答xxx 触发模糊匹配 例:模糊问洛洛答在呀</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20240227043821354.png"
+                      alt="image-20240227043821354"
+                ></p>
+<p><strong>usage:回复 正则问正则表达式答xxx 触发模糊匹配 例:正则问^.*洛洛$答在呀</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20240227044014253.png"
+                      alt="image-20240227044014253"
+                ></p>
+<h3 id="语音合成功能"><a href="#语音合成功能" class="headerlink" title="语音合成功能"></a>语音合成功能</h3><p>该功能通过调用使用角色语音数据训练好的vits模型进行实时tts推理，并以QQ支持的语音文件格式进行发送，结合语音标注的功能，可以简陋实现与角色的模拟对话。</p>
+<p><strong>usage:回复 speak 想说的话 返回合成的角色语音</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://y4ny4nblog.oss-cn-beijing.aliyuncs.com/img/image-20240227045352770.png"
+                      alt="image-20240227045352770"
+                ></p>
+<h3 id="语音标注功能"><a href="#语音标注功能" class="headerlink" title="语音标注功能"></a>语音标注功能</h3><p>语音标注可以视作是调教功能的一部分(但不成熟qaq)，由于kilo语音数据繁多且种类复杂，开发的薯片小姐无法短时间内完成数据标注<br>本功能涉及kilo的语音数据标注，请使用之前慎重考虑，确保添加内容有意义并符合应用场景和人物设定<br>usage:回复 语音标注 kilo会返回语音库中任意一条语音，并返回其编号和文本<br>usage:回复 问/模糊问/正则问关键字答[wav语音编号] 添加关键字用法同调教功能</p>
+<h2 id="发展构想"><a href="#发展构想" class="headerlink" title="发展构想"></a>发展构想</h2><p>bot说话风格参数设置：通过不同风格参数值的调整形成不同的话术风格。</p>
+<p>语言对话模型需要用不同数据集来训练，可以通过网络小说中不同角色的台词进行提取，通过辅助性的样本训练将原始模型拉到不同方向。</p>
+<p>基本路线: 在chatgpt的基础上微调模型风格参数或重新训练赋予人格或者将chatgpt输入通过另一个风格转换的自然语言处理模型进行转换输出   赋予使用语言对话模型的Bot特定人设 并生成对话</p>
+<p>使用语音合成技术，进行训练并生成语音实现聊天机器人的情感需求。</p>
+<p>需解决的问题：说话风格迁移模型 上下文联系</p>
+<h2 id="开发小记"><a href="#开发小记" class="headerlink" title="开发小记"></a>开发小记</h2><p><strong>解决抽卡速度响应过慢问题</strong></p>
+<p>排查到是发送图片过大(MB),隔壁群为KB 响应速度差10s</p>
+<p>法1 想到图片压缩  使用opencv  粗暴的使用</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">img=cv2.imread(card_path)</span><br><span class="line">cv2.imwrite(card_path,img,[cv2.IMWRITE_JPEG_QUALITY,<span class="number">50</span>])</span><br></pre></td></tr></table></figure></div>
+<p>进行压缩，发送速度提高，但面临无法查看原图及高清图片被覆盖的情况。如果写到另一个文件夹，存储位置翻倍且要进行判断是否已经存在。</p>
+<p>如果在本地压缩后上传所有图片，费时费力且opencv读写文件不能出现中文。想到有没有方法可以直接进行图片压缩发送而不保存到本地</p>
+<p>法2 了解到imencode：将图片格式转换(编码)成流数据，赋值到内存缓存中;主要用于图像数据格式的压缩，方便网络传输。</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_34910922/article/details/117537384" >https://blog.csdn.net/weixin_34910922/article/details/117537384 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">img=cv2.imread(card_path)</span><br><span class="line">params = [cv2.IMWRITE_JPEG_QUALITY, <span class="number">50</span>]</span><br><span class="line">img_encode = cv2.imencode(<span class="string">&quot;.jpg&quot;</span>, img, params)[<span class="number">1</span>]</span><br><span class="line">msg = (np.array(img_encode)).tobytes()</span><br></pre></td></tr></table></figure></div>
+<p>对图像进行压缩同时，转换为二进制数据。正好graia支持使用字节流发送图片，实现无保存压缩。</p>
+<p><strong>卡面小图的截取问题</strong></p>
+<p>本来图省事，想着能不能自动识别一下，发现识别概率太低了</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.freesion.com/article/9367146372/" >https://www.freesion.com/article/9367146372/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42951560/article/details/111831797" >https://blog.csdn.net/qq_42951560/article/details/111831797 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">face_cascade = cv2.CascadeClassifier(<span class="string">&#x27;E:/bot/lbpcascade_animeface.xml&#x27;</span>)</span><br><span class="line">img = cv2.imread(<span class="string">&#x27;test.jpg&#x27;</span>)</span><br><span class="line">img = cv2.resize(img, dsize=(img.shape[<span class="number">1</span>] // <span class="number">4</span>, img.shape[<span class="number">0</span>] // <span class="number">4</span>), dst=<span class="literal">None</span>, fx=<span class="number">0</span>, fy=<span class="number">0</span>)</span><br><span class="line"><span class="comment">#调整为灰度图像</span></span><br><span class="line">gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line"><span class="comment"># 检测脸部</span></span><br><span class="line">faces = face_cascade.detectMultiScale(gray,scaleFactor=<span class="number">1.1</span>, minNeighbors=<span class="number">5</span>, minSize=(<span class="number">30</span>, <span class="number">30</span>),flags=cv2.CASCADE_SCALE_IMAGE)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Detected &#x27;</span>, <span class="built_in">len</span>(faces), <span class="string">&quot; face&quot;</span>)</span><br><span class="line"><span class="comment">#遍历检测出的所有脸部，绘制矩形框</span></span><br><span class="line"><span class="keyword">for</span> (x, y, w, h) <span class="keyword">in</span> faces: </span><br><span class="line">    img = cv2.rectangle(img, (x, y), (x+w, y+h), (<span class="number">255</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">5</span>) </span><br><span class="line"></span><br><span class="line">cv2.imshow(<span class="string">&#x27;img&#x27;</span>, img)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure></div>
+<p>由于opencv中没有动漫的2D人像识别，下载lbpcascade_animeface.xml文件到所在目录</p>
+<p>detectMultiScale参数:</p>
+<p>scaleFactor–表示在前后两次相继的扫描中，搜索窗口的比例系数。默认为1.1即每次搜索窗口依次扩大10%;</p>
+<p>minNeighbors–表示构成检测目标的相邻矩形的最小个数(默认为3个)。如果组成检测目标的小矩形的个数和小于 min_neighbors - 1 都会被排除。</p>
+<p>如果min_neighbors 为 0, 则函数不做任何操作就返回所有的被检候选矩形框，</p>
+<p>minSize和maxSize用来限制得到的目标区域的范围。</p>
+<p>根本没几张图能用，还必须是正脸，只能用于R卡，还是手动吧。</p>
+<p><strong>批量语音转文字</strong></p>
+<p>通过批量语音转文字服务为角色语音数据集标注，用于训练。</p>
+<p>现有平台：</p>
+<ul>
+<li>科大讯飞、知意等付费平台</li>
+<li>剪映、Pr等剪辑如案件生成字幕</li>
+<li>百度云、腾讯云等国内接口</li>
+<li>Google、IBM、Bing等国外接口</li>
+</ul>
+<p>1)使用讯飞语音识别</p>
+<p>语音听写 <a class="link"   target="_blank" rel="noopener" href="https://www.xfyun.cn/services/voicedictation" >https://www.xfyun.cn/services/voicedictation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>语音转写<a class="link"   target="_blank" rel="noopener" href="https://www.xfyun.cn/services/lfasr#anchor4503211" >https://www.xfyun.cn/services/lfasr#anchor4503211 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>API文档 <a class="link"   target="_blank" rel="noopener" href="https://www.xfyun.cn/doc/asr/voicedictation/API.html" >https://www.xfyun.cn/doc/asr/voicedictation/API.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>坑：demo中鉴权401问题 <a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/laihongfeng/article/details/123116826" >https://blog.csdn.net/laihongfeng/article/details/123116826 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> urllib的urlencode将date中空间编码为+号而非%20造成Unauthorized错误 <code>url = url.replace(&#39;+&#39;,&#39;%20&#39;)</code>替换解决</p>
+<p>解决后可以建立连接 但是识别不出来 可能由于音频文件格式或者采样率问题</p>
+<p>2）使用百度云语音识别API <a class="link"   target="_blank" rel="noopener" href="https://cloud.baidu.com/product/speech/asr" >https://cloud.baidu.com/product/speech/asr <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>API文档 <a class="link"   target="_blank" rel="noopener" href="https://ai.baidu.com/ai-doc/SPEECH/Vk38lxily" >https://ai.baidu.com/ai-doc/SPEECH/Vk38lxily <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>依旧识别不出来</p>
+<p>3)使用腾讯云 </p>
+<p>API Explorer测试成功后在本地安装 tencentcloud-sdk-python</p>
+<p>需要先发送识别请求 再查询识别结果</p>
+<p>API Explorer <a class="link"   target="_blank" rel="noopener" href="https://console.cloud.tencent.com/api/explorer" >https://console.cloud.tencent.com/api/explorer <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>API文档 <a class="link"   target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/1093/37823" >https://cloud.tencent.com/document/product/1093/37823 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>教程 <a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/alv2888/article/details/124224020" >https://blog.csdn.net/alv2888/article/details/124224020 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>完成一个发送请求和识别后，进行批量处理</p>
+<h2 id="修理小记"><a href="#修理小记" class="headerlink" title="修理小记"></a>修理小记</h2><p>原因：出现code45报错  大规模封控 需要增加第三方签名服务</p>
+<p>mirai提供了协议修复插件 用于对接第三方签名服务</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/cssxsh/fix-protocol-version" >https://github.com/cssxsh/fix-protocol-version <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><strong>安装并配置第三方签名服务</strong></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/fuqiuluo/unidbg-fetch-qsign" >https://github.com/fuqiuluo/unidbg-fetch-qsign <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>部署教程 <a class="link"   target="_blank" rel="noopener" href="https://github.com/fuqiuluo/unidbg-fetch-qsign/wiki/%E9%83%A8%E7%BD%B2%E5%9C%A8Linux" >https://github.com/fuqiuluo/unidbg-fetch-qsign/wiki/%E9%83%A8%E7%BD%B2%E5%9C%A8Linux <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>并配置该服务的config.json  </p>
+<p>！踩坑 不要把该签名服务的端口和mirai端口开在同一个 会出现占用情况</p>
+<p>在该文件夹下启动 bash bin/unidbg-fetch-qsign —basePath=txlib/8.9.68</p>
+<p>注意：需要手动从apk安装包的<code>lib/arm64-v8a</code>目录中提取出<a class="link"   target="_blank" rel="noopener" href="https://github.com/fuqiuluo/unidbg-fetch-qsign/wiki/txlib%2F8.9.63%2Flibfekit.so" >libfekit.so <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>、<a class="link"   target="_blank" rel="noopener" href="https://github.com/fuqiuluo/unidbg-fetch-qsign/wiki/txlib%2F8.9.63%2FlibQSec.so" >libQSec.so <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>文件并存放至一个文件夹，然后使用<code>--basePath</code>指定该文件夹的<code>绝对路径</code></p>
+<p>从该项目issue下发现有一键包提取好的文件  可以选择对应版本直接拖过来</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/rhwong/unidbg-fetch-qsign-onekey" >https://github.com/rhwong/unidbg-fetch-qsign-onekey <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>启动<code>bash bin/unidbg-fetch-qsign --basePath=txlib/8.9.63</code></p>
+<p>或后台运行 <code>nohup bash bin/unidbg-fetch-qsign --basePath=txlib/8.9.63 &amp;</code></p>
+<p>注：服务器重启后需重新运行第三方签名服务</p>
+<p><strong>fix-protocol对接</strong></p>
+<p>确保第三方签名服务可以正常运行后</p>
+<p>首先更新修复插件版本<a class="link"   target="_blank" rel="noopener" href="https://github.com/cssxsh/fix-protocol-version" >fix-protocol-version <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>从1.3.0-1.11.0<br>下载release中的 <code>mirai2.jar</code> 放到 <code>plugins</code> ，重启 <code>Mirai Console</code> 即可</p>
+<p>修改配置文件(KFCFactory.json)，根据版本指定<strong>第三方签名服务</strong></p>
+<p>启动后发现mirai中ANDROID_PHONE协议的版本为8.9.58  与第三方签名服务中版本不符  缺少8.9.58配置信息 会强制退出控制台</p>
+<p>在config/Console/AutoLogin.yml中先取消自动登录</p>
+<p>进入mirai控制台后 拉取更新协议版本 </p>
+<p><code>protocol sync</code> 在线同步协议</p>
+<p><code>protocol fetch</code> 在线获取协议</p>
+<p>将mirai中ANDROID_PHONE协议的版本为8.9.63 同时启动对应版本的第三方签名服务</p>
+<p>再设置回自动登录 此时需要重新进行滑块验证  使用edge进入F12重新抓取获得tickets 完成mirai登录</p>
+<p><strong>启动bot主程序</strong></p>
+<p><code>poetry run python3 bot.py</code></p>
+<p><strong>登录不久后掉线</strong></p>
+<p>回溯mcl下nohup.out发现</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">2023-09-20 16:27:00 E/UnidbgFetchQsign: xyz.cssxsh.mirai.tool.KFCStateException: unidbg-fetch-qsign 服务异常, 请检查其日志, &#x27;Uin is not registered.&#x27;</span><br><span class="line"></span><br><span class="line">xyz.cssxsh.mirai.tool.KFCStateException: unidbg-fetch-qsign 服务异常, 请检查其日志, &#x27;Uin is not registered.&#x27;</span><br><span class="line"></span><br><span class="line">        at fix-protocol-version-1.11.0.mirai2.jar//xyz.cssxsh.mirai.tool.UnidbgFetchQsign.check(UnidbgFetchQsign.kt:109)</span><br><span class="line"></span><br><span class="line">        at fix-protocol-version-1.11.0.mirai2.jar//xyz.cssxsh.mirai.tool.UnidbgFetchQsign.requestToken(UnidbgFetchQsign.kt:204)</span><br><span class="line"></span><br><span class="line">        at fix-protocol-version-1.11.0.mirai2.jar//xyz.cssxsh.mirai.tool.UnidbgFetchQsign.access$requestToken(UnidbgFetchQsign.kt:16)</span><br><span class="line"></span><br><span class="line">        at fix-protocol-version-1.11.0.mirai2.jar//xyz.cssxsh.mirai.tool.UnidbgFetchQsign$qSecurityGetSign$1.invokeSuspend(UnidbgFetchQsign.kt:160)</span><br><span class="line"></span><br><span class="line">        at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)</span><br><span class="line"></span><br><span class="line">        at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106)</span><br><span class="line"></span><br><span class="line">        at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:570)</span><br><span class="line"></span><br><span class="line">        at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:750)</span><br><span class="line"></span><br><span class="line">        at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:677)</span><br><span class="line"></span><br><span class="line">        at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:664)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2023-09-20 16:27:00 V/Bot.2760603938: Event: BotOfflineEvent.Dropped(bot=Bot(2760603938), cause=xyz.cssxsh.mirai.tool.KFCStateException: unidbg-fetch-qsign 服务异常, 请检查其日志, &#x27;Uin is not registered.&#x27;, reconnect=true)</span><br><span class="line"></span><br><span class="line">2023-09-20 16:27:00 W/Bot.2760603938: Connection lost, reconnecting... (xyz.cssxsh.mirai.tool.KFCStateException: unidbg-fetch-qsign 服务异常, 请检查其日志, &#x27;Uin is not registered.&#x27;)</span><br><span class="line"></span><br><span class="line">2023-09-20 16:27:00 V/Bot.2760603938: Event: BotOfflineEvent.Dropped(bot=Bot(2760603938), cause=xyz.cssxsh.mirai.tool.KFCStateException: unidbg-fetch-qsign 服务异常, 请检查其日志, &#x27;Uin is not registered.&#x27;, reconnect=true)</span><br><span class="line"></span><br><span class="line">2023-09-20 16:27:00 W/Bot.2760603938: Connection lost, reconnecting... (xyz.cssxsh.mirai.tool.KFCStateException: unidbg-fetch-qsign 服务异常, 请检查其日志, &#x27;Uin is not registered.&#x27;)</span><br><span class="line"></span><br><span class="line">2023-09-20 16:27:00 I/Bot.2760603938: Reconnected successfully in 0.004s.</span><br><span class="line"></span><br><span class="line">2023-09-20 16:27:00 I/UnidbgFetchQsign: Bot(2760603938) initialize by http://127.0.0.1:8081</span><br><span class="line"></span><br><span class="line">2023-09-20 16:27:00 I/UnidbgFetchQsign: Bot(2760603938) register, The QQ has already loaded an instance, so this time it is deleting the existing instance and creating a new one.</span><br><span class="line"></span><br><span class="line">2023-09-20 16:27:00 I/UnidbgFetchQsign: Bot(2760603938) initialize complete</span><br><span class="line"></span><br><span class="line">2023-09-20 16:27:00 V/Bot.2760603938: Event: BotOfflineEvent.Dropped(bot=Bot(2760603938), cause=xyz.cssxsh.mirai.tool.KFCStateException: unidbg-fetch-qsign 服务异常, 请检查其日志, &#x27;Uin is not registered.&#x27;, reconnect=true)</span><br><span class="line"></span><br><span class="line">2023-09-20 16:27:00 W/Bot.2760603938: Connection lost, reconnecting... (xyz.cssxsh.mirai.tool.KFCStateException: unidbg-fetch-qsign 服务异常, 请检查其日志, &#x27;Uin is not registered.&#x27;)</span><br><span class="line"></span><br><span class="line">2023-09-20 16:27:00 I/Bot.2760603938: Reconnected successfully in 0.29s.</span><br><span class="line"></span><br><span class="line">2023-09-20 16:27:00 V/Bot.2760603938: Event: BotOfflineEvent.Dropped(bot=Bot(2760603938), cause=xyz.cssxsh.mirai.tool.KFCStateException: unidbg-fetch-qsign 服务异常, 请检查其日志, &#x27;Uin is not registered.&#x27;, reconnect=true)</span><br><span class="line"></span><br><span class="line">2023-09-20 16:27:00 W/Bot.2760603938: Connection lost, reconnecting... (xyz.cssxsh.mirai.tool.KFCStateException: unidbg-fetch-qsign 服务异常, 请检查其日志, &#x27;Uin is not registered.&#x27;)</span><br><span class="line"></span><br><span class="line">2023-09-20 16:27:00 I/UnidbgFetchQsign: Bot(2760603938) destroy, Instance destroyed successfully.</span><br><span class="line"></span><br><span class="line">2023-09-20 16:27:00 I/UnidbgFetchQsign: Bot(2760603938) destroy, Instance does not exist.</span><br><span class="line"></span><br><span class="line">2023-09-20 16:27:00 I/Bot.2760603938: Bot cancelled: Bot closed</span><br></pre></td></tr></table></figure></div>
+<p>报错信息显示 ‘Uin is not registered.’</p>
+<p>疑似token过期需要刷新 或者 没有使用时没有注册实例</p>
+<p>见readme(还没看懂) <a class="link"   target="_blank" rel="noopener" href="https://github.com/fuqiuluo/unidbg-fetch-qsign/blob/master/refresh_token/README.md" >https://github.com/fuqiuluo/unidbg-fetch-qsign/blob/master/refresh_token/README.md <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>sign的token会过期（过期时间在1小时左右，建议每隔30~40分钟请求刷新token）</p>
+<p>目前只在config.json中修改auto_register参数为true，启用自动注册实例功能。</p>
+<p>实时运行成功，待后续等待时间后报错观察。</p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：基于mirai和graia框架的机器人搭建</li>
+        <li>本文作者：y4ny4n</li>
+        <li>创建时间：2023-02-05 09:19:22</li>
+        <li>
+            本文链接：https://y4ny4n.cn/2023/02/05/bot/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/bot/">#bot</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2023/03/10/vits/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">vits语音合成</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2023/01/03/%E5%A4%96%E5%88%8A%E9%98%85%E8%AF%BB/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">TE Reading | The night before Christmas</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">基于mirai和graia框架的机器人搭建</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%90%AD%E5%BB%BA"><span class="nav-text">基本搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mirai%E9%83%A8%E5%88%86"><span class="nav-text">mirai部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#graia%E9%83%A8%E5%88%86"><span class="nav-text">graia部分</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E7%BC%96%E5%86%99"><span class="nav-text">模块编写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%92%89%E9%92%89%E6%8E%A5%E5%8F%A3"><span class="nav-text">钉钉接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%96%AB%E6%83%85%E6%A8%A1%E5%9D%97"><span class="nav-text">疫情模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E7%BA%A7%E8%AF%8D%E6%B1%87%E6%A8%A1%E5%9D%97"><span class="nav-text">六级词汇模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bilibili%E6%8E%A8%E9%80%81%E6%A8%A1%E5%9D%97"><span class="nav-text">bilibili推送模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%E6%8E%A8%E9%80%81"><span class="nav-text">论文推送</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%88%B9%E6%96%B0%E7%89%88%E6%9C%AC"><span class="nav-text">船新版本</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E5%B1%95%E7%A4%BA"><span class="nav-text">功能展示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%BD%E5%8D%A1%E5%8A%9F%E8%83%BD"><span class="nav-text">抽卡功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E9%97%AE%E5%8A%9F%E8%83%BD"><span class="nav-text">提问功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TodoList%E5%8A%9F%E8%83%BD"><span class="nav-text">TodoList功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E6%95%99%E5%8A%9F%E8%83%BD"><span class="nav-text">调教功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90%E5%8A%9F%E8%83%BD"><span class="nav-text">语音合成功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E9%9F%B3%E6%A0%87%E6%B3%A8%E5%8A%9F%E8%83%BD"><span class="nav-text">语音标注功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%91%E5%B1%95%E6%9E%84%E6%83%B3"><span class="nav-text">发展构想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0"><span class="nav-text">开发小记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E7%90%86%E5%B0%8F%E8%AE%B0"><span class="nav-text">修理小记</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-regular fa-computer-classic"></i>&nbsp;&nbsp;<a href="/">y4ny4n</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 驱动</span>
+                <br> 
+            <span class="theme-version-container">主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v1.2.0</a>
+        </div>
+        
+        
+        
+            <div id="start_time_div" style="display:none">
+                2022/8/17 11:45:14
+            </div>
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="unfolded-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="fa-regular fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="folded-tools-list">
+        <li class="right-bottom-tools tool-toggle-show flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+<script src="//evan.beee.top/projects/hexo-theme-redefine/v1.2.0/source/js/utils.js"></script><script src="//evan.beee.top/projects/hexo-theme-redefine/v1.2.0/source/js/main.js"></script><script src="//evan.beee.top/projects/hexo-theme-redefine/v1.2.0/source/js/layouts/menu-shrink.js"></script><script src="//evan.beee.top/projects/hexo-theme-redefine/v1.2.0/source/js/tools/go-top-bottom.js"></script><script src="//evan.beee.top/projects/hexo-theme-redefine/v1.2.0/source/js/tools/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//evan.beee.top/projects/hexo-theme-redefine/v1.2.0/source/js/tools/code-block.js"></script>
+
+
+
+    <script src="//evan.beee.top/projects/hexo-theme-redefine/v1.2.0/source/js/layouts/lazyload.js"></script>
+
+
+
+    <script src="//evan.beee.top/projects/hexo-theme-redefine/v1.2.0/source/js/tools/runtime.js"></script>
+    <script src="//evan.beee.top/projects/hexo-theme-redefine/v1.2.0/source/js/layouts/odometer.min.js"></script>
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine/v1.2.0/source/assets/odometer-theme-minimal.css">
+
+
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//evan.beee.top/projects/hexo-theme-redefine/v1.2.0/source/js/tools/toc-toggle.js"></script><script src="//evan.beee.top/projects/hexo-theme-redefine/v1.2.0/source/js/libs/anime.min.js"></script><script src="//evan.beee.top/projects/hexo-theme-redefine/v1.2.0/source/js/layouts/toc.js"></script><script src="//evan.beee.top/projects/hexo-theme-redefine/v1.2.0/source/js/plugins/tabs.js"></script>
+    
+    
+</div>
+
+
+    <script src="//evan.beee.top/projects/hexo-theme-redefine/v1.2.0/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            REDEFINE.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            REDEFINE.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            REDEFINE.refresh();
+        });
+    });
+</script>
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
